@@ -1,0 +1,237 @@
+fileFormatVersion: 2
+guid: 0c50471805059b74c9b2bfa885c4418d
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 19
+  mGraphInstanceData:
+  - graphLabel: Thermal Insulation Panel
+    prototypeName: Thermal Insulation Panel
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://thermal_insulation_panel\" label=\"\" >\n
+      \ <presetinput identifier=\"insulation_color\" uid=\"1139864949\" type=\"3\"
+      value=\"0.886792,0.815941,0.748754,1\" />\n  <presetinput identifier=\"rip_color\"
+      uid=\"1140289486\" type=\"3\" value=\"0.584906,0.449715,0.449715,1\" />\n  <presetinput
+      identifier=\"insulation_rips\" uid=\"1137654348\" type=\"4\" value=\"0\" />\n
+      \ <presetinput identifier=\"insulation_tape\" uid=\"1137593527\" type=\"4\"
+      value=\"0\" />\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    materialProperties:
+      shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+      shaderKeywords: _MAINTEX _METALLICGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP
+      lightmapFlags: 4
+      texEnvs:
+      - name: _BumpMap
+        texture: {fileID: 4860743944344797152, guid: 0c50471805059b74c9b2bfa885c4418d,
+          type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _DetailAlbedoMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _DetailMask
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _DetailNormalMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _EmissionMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _MainTex
+        texture: {fileID: 549366835173182152, guid: 0c50471805059b74c9b2bfa885c4418d,
+          type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _MetallicGlossMap
+        texture: {fileID: 1739654809496113928, guid: 0c50471805059b74c9b2bfa885c4418d,
+          type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _OcclusionMap
+        texture: {fileID: 2258245820741535019, guid: 0c50471805059b74c9b2bfa885c4418d,
+          type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _ParallaxMap
+        texture: {fileID: 3003097890909754445, guid: 0c50471805059b74c9b2bfa885c4418d,
+          type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      floats:
+      - name: _BumpScale
+        float: 1
+      - name: _Cutoff
+        float: 0.5
+      - name: _DetailNormalMapScale
+        float: 1
+      - name: _DstBlend
+        float: 0
+      - name: _GlossMapScale
+        float: 1
+      - name: _Glossiness
+        float: 0.5
+      - name: _GlossyReflections
+        float: 1
+      - name: _Metallic
+        float: 0
+      - name: _Mode
+        float: 0
+      - name: _OcclusionStrength
+        float: 1
+      - name: _Parallax
+        float: 0.02
+      - name: _SmoothnessTextureChannel
+        float: 0
+      - name: _SpecularHighlights
+        float: 1
+      - name: _SrcBlend
+        float: 1
+      - name: _UVSec
+        float: 0
+      - name: _ZWrite
+        float: 1
+      colors:
+      - name: _Color
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - name: _EmissionColor
+        color: {r: 0, g: 0, b: 0, a: 1}
+    texturePackingList:
+    - outputName: diffuse
+      alphaSource: diffuse
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: specular
+      alphaSource: specular
+    - outputName: glossiness
+      alphaSource: glossiness
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    - outputName: ambientOcclusion
+      alphaSource: ambientOcclusion
+    textureParameters:
+    - textureName: Thermal Insulation Panel_1 - glossiness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - diffuse
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - specular
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel_1 - ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - glossiness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - diffuse
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - specular
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Thermal Insulation Panel - ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: diffuse
+      bLinear: 0
+    - outputName: baseColor
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    - outputName: specular
+      bLinear: 0
+    - outputName: glossiness
+      bLinear: 1
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: height
+      bLinear: 1
+    - outputName: ambientOcclusion
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {fileID: 2878713379736320278, guid: 0c50471805059b74c9b2bfa885c4418d,
+      type: 3}
+    generatedTextures:
+    - {fileID: 549366835173182152, guid: 0c50471805059b74c9b2bfa885c4418d, type: 3}
+    - {fileID: 4860743944344797152, guid: 0c50471805059b74c9b2bfa885c4418d, type: 3}
+    - {fileID: 1739654809496113928, guid: 0c50471805059b74c9b2bfa885c4418d, type: 3}
+    - {fileID: 3003097890909754445, guid: 0c50471805059b74c9b2bfa885c4418d, type: 3}
+    - {fileID: 2258245820741535019, guid: 0c50471805059b74c9b2bfa885c4418d, type: 3}

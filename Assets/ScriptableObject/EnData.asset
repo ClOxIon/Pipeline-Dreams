@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7387f0d6910bc845bb8197fecd4d798, type: 3}
+  m_Name: EnData
+  m_EditorClassIdentifier: 
+  Dataset:
+  - Name: Spider
+    Description: It sucks.
+    MaxHP: 5
+    Damage: 5
+    Value1: 0
+    Value2: 0
+    Type: 1
+    HasDialogue: 0
+    Icon: {fileID: 0}
+    Prefab: {fileID: 8056400577095368730, guid: 52ada8c7a2fc2ae4b9feac8f69b0bed3,
+      type: 3}
+    loot: Disk Momentum
+    lootChance: 1
+  - Name: Green-eyed Spider
+    Description: It sucks a bit more.
+    MaxHP: 8
+    Damage: 3
+    Value1: 0
+    Value2: 0
+    Type: 1
+    HasDialogue: 0
+    Icon: {fileID: 0}
+    Prefab: {fileID: 1665931868677219845, guid: 9e9cfae9395853a4e9cd27dfe5c8e663,
+      type: 3}
+    loot: Disk Inertia L
+    lootChance: 1
+  - Name: Blue-eyed Spider
+    Description: Ouch!
+    MaxHP: 5
+    Damage: 20
+    Value1: 0
+    Value2: 0
+    Type: 1
+    HasDialogue: 0
+    Icon: {fileID: 0}
+    Prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
+      type: 3}
+    loot: Disk Oscillate U
+    lootChance: 1
+  - Name: Player
+    Description: Who are you?
+    MaxHP: 250
+    Damage: 0
+    Value1: 0
+    Value2: 0
+    Type: 0
+    HasDialogue: 0
+    Icon: {fileID: 0}
+    Prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
+      type: 3}
+    loot: 
+    lootChance: 0
