@@ -129,10 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Panel: {fileID: 5198975562235422383}
   Emoji: {fileID: 3081665139486414563}
-  Surprised: {fileID: 21300000, guid: e85ef4cf9e865ad4d8c55accb215d54f, type: 3}
-  Confused: {fileID: 21300000, guid: 1d1e4114aa0106746b1b2e2a7d392690, type: 3}
+  Surprised: {fileID: 21300000, guid: e817d3bbbb356b444b5be01fe6e850a1, type: 3}
+  Confused: {fileID: 21300000, guid: 57d4dc4100974aa489040d7ce8d68c9c, type: 3}
   None: {fileID: 21300000, guid: 4f1a8996aa528eb42b43fb1ef7078e16, type: 3}
-  Angry: {fileID: 21300000, guid: d70ecbac36f14e944992845f708dac95, type: 3}
+  Angry: {fileID: 21300000, guid: 1fdc5cc546bb9a04e9fbdd0ab5801672, type: 3}
 --- !u!1 &5198975562235422383
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* This UI is not used anymore.
 public class ItemPromptUI : MonoBehaviour
 {
     public event Action<int> OnDestroyButtonClicked;
@@ -43,3 +44,4 @@ public class ItemPromptUI : MonoBehaviour
         
     }
 }
+*/

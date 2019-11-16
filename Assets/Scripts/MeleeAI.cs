@@ -7,7 +7,7 @@ public enum EntityEmotion {
 
 }
 public enum EntityAIState {
-    Wander = 1, Chase = 2, Attack = 3, Angry = 4
+    Wander = 1, Chase = 2, Attack = 3, Confused = 4
 
 }
 public abstract class EntityAI : MonoBehaviour {
@@ -107,7 +107,7 @@ public class MeleeAI : EntityAI {
                 if (IsRecentlyDamaged) {
                     //Target = EM.FindEntityInLine(DamagedDirection, entity, 6);
 
-                    state = EntityAIState.Angry;
+                    state = EntityAIState.Confused;
                     emotion = EntityEmotion.Angry;
                     break;
                 }
@@ -120,7 +120,7 @@ public class MeleeAI : EntityAI {
                     break;
                 }
                 break;
-            case EntityAIState.Angry:
+            case EntityAIState.Confused:
                 if (Util.LHQToFace(entity.IdealRotation) == DamagedDirection) {
                     Target = EM.FindEntityInLine(DamagedDirection, entity);
                     if (Target != null) {
@@ -160,7 +160,7 @@ public class MeleeAI : EntityAI {
                 IsTargetSeen = false;
                 RandomWalk();
                 break;
-            case EntityAIState.Angry:
+            case EntityAIState.Confused:
                 move.Face(DamagedDirection, EntityClock);
                 break;
 

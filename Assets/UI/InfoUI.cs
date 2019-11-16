@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* This UI is not used anymore.
 public class InfoUI : MonoBehaviour
 {
     [SerializeField]GameObject InfoPanel;
@@ -182,3 +183,4 @@ public class InfoUI : MonoBehaviour
         }
     }
 }
+*/

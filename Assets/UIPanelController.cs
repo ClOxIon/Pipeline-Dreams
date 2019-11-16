@@ -14,6 +14,11 @@ public class UIPanelController : MonoBehaviour
     void Start()
     {
         PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
+        HUD.SetActive(true);
+        IUI.HideDialogue();
+        OUI.HideDialogue();
+        MUI.HideDialogue();
+        DUI.HideDialogue();
     }
 
     // Update is called once per frame
