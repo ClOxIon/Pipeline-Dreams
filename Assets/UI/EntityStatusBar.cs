@@ -47,16 +47,20 @@ public class EntityStatusBar : MonoBehaviour
         if (Visible) {
             switch (entity.GetComponent<EntityAI>().state) {
             case EntityAIState.Attack:
-                Emoji.sprite = Surprised;
+                Emoji.sprite = Angry;
+                Emoji.color = Color.red;
                 break;
             case EntityAIState.Wander:
                 Emoji.sprite = None;
+                Emoji.color = new Color(0, 0, 0, 0);
                 break;
             case EntityAIState.Chase:
-                Emoji.sprite = Confused;
+                Emoji.sprite = Surprised;
+                Emoji.color = Color.yellow;
                 break;
-            case EntityAIState.Angry:
-                Emoji.sprite = Angry;
+            case EntityAIState.Confused:
+                Emoji.sprite = Confused;
+                Emoji.color = Color.green;
                 break;
             }
            t.position = eT.position;

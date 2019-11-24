@@ -24,7 +24,7 @@ MonoBehaviour:
     Icon: {fileID: 0}
     Prefab: {fileID: 8056400577095368730, guid: 52ada8c7a2fc2ae4b9feac8f69b0bed3,
       type: 3}
-    loot: Disk Momentum
+    loot: SpeedUp
     lootChance: 1
   - Name: Green-eyed Spider
     Description: It sucks a bit more.
@@ -37,7 +37,7 @@ MonoBehaviour:
     Icon: {fileID: 0}
     Prefab: {fileID: 1665931868677219845, guid: 9e9cfae9395853a4e9cd27dfe5c8e663,
       type: 3}
-    loot: Disk Inertia L
+    loot: SpeedUp
     lootChance: 1
   - Name: Blue-eyed Spider
     Description: Ouch!
@@ -50,7 +50,7 @@ MonoBehaviour:
     Icon: {fileID: 0}
     Prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
       type: 3}
-    loot: Disk Oscillate U
+    loot: SpeedUp
     lootChance: 1
   - Name: Player
     Description: Who are you?

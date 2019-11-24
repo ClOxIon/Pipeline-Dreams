@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EntityMove : MonoBehaviour
 {
+    public float SpeedModifier = 1;
     Entity entity;
     ClockManager CM;
     PlayerController PC;
@@ -45,14 +46,14 @@ public class EntityMove : MonoBehaviour
         var speed = 2f;
         if (entity.Type == EntityType.ENEMY&& !mManager.IsLineOfSight(entity.IdealPosition, EM.Player.IdealPosition)) speed = 0f;
         CM.AddSequentialTask(new RotateTask() { Entity = entity, q = Util.RotateToFace(f, entity.IdealRotation), StartClock = startClock, Priority = (int)entity.Type, Speed = speed, HasIteration = speed!=0});
-        GetComponent<EntityAI>().EntityClock += 50;
+        GetComponent<EntityAI>().EntityClock += 50* SpeedModifier;
 
     }
     public virtual void MoveToward(Vector3Int v, float startClock) {
         var speed = 2f;
         if (entity.Type == EntityType.ENEMY && !mManager.IsLineVisible(EM.Player.IdealPosition, entity.IdealPosition, entity.IdealPosition + Util.LHQToLHUnitVector(entity.IdealRotation))) speed = 0f;
         CM.AddSequentialTask(new MoveTask() { Entity = entity, Face = Util.LHQToFace(entity.IdealRotation), StartClock =  startClock, Priority = (int)entity.Type, Speed = speed, HasIteration = speed != 0 });
-        GetComponent<EntityAI>().EntityClock += 100;
+        GetComponent<EntityAI>().EntityClock += 100* SpeedModifier;
     }
     public class MoveTask : IClockTask {
         public int Priority { get; set; }
