@@ -45,11 +45,11 @@ public class MapGenerator
             m.v[v.x, v.y, v.z].b = Block.pipe;
 
 
-        GenerateTrivialTopology(m);
-        GenerateCyclePathTopology(m, Path);
-        CreateLowerStation(m, Path);
-        CreateUpperStation(m, Path);
-        GenerateRandomBranch(m, Path);
+        GenerateTrivialTopology(m); //Setting tile values to default
+        GenerateCyclePathTopology(m, Path); //Sets tile holes between connected nodes
+        CreateLowerStation(m, Path); //Sets the lower entrance
+        CreateUpperStation(m, Path); //Sets the upper entrance
+        GenerateRandomBranch(m, Path); //Add 3 loops off the main branch
         GenerateRandomBranch(m, Path);
         GenerateRandomBranch(m, Path);
         return m;
@@ -97,7 +97,7 @@ public class MapGenerator
         return Path;
     }
     /// <summary>
-    /// function fills 
+    /// Function sets the tiles connecting node to hole tile enum 
     /// </summary>
     /// <param name="m">A 3D-Voxel array of occupancy</param>
     /// <param name="Path">The path which the new path spawned from</param>
@@ -124,7 +124,7 @@ public class MapGenerator
         m.v[pf.x, pf.y, pf.z].t[ff2] = Tile.hole;
     }
     /// <summary>
-    /// FILLL IN
+    /// Add a new loop extending out of the main loop
     /// </summary>
     /// <param name="m">A 3D-Voxel array of occupancy</param>
     /// <param name="Mother">The path which the new path spawned from</param>

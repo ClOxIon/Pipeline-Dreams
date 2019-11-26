@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SceneObjectManager : MonoBehaviour
 {
     public const float worldscale = 10;
@@ -15,39 +16,52 @@ public class SceneObjectManager : MonoBehaviour
     PlayerController cMovement;
     EntityManager EM;
     // Start is called before the first frame update
-    private void Awake() {
-        GridVisibility = new bool[2*sightscale+1, 2 * sightscale + 1, 2 * sightscale + 1];
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+    private void Awake()
+    {
+        Debug.Log("I have awoken");
+        GridVisibility = new bool[2 * sightscale + 1, 2 * sightscale + 1, 2 * sightscale + 1];
+        if (GameObject.FindGameObjectsWithTag("Player").Length != 0) Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        else Debug.Log("Player object not found");
         mManager = GetComponent<MapManager>();
         cMovement = GetComponent<PlayerController>();
         EM = GetComponent<EntityManager>();
-        EM.OnPlayerInit += CalculateVisibility;
-        cMovement.OnPlayerTranslation += (v)=> { CalculateVisibility(); };
-        mManager.OnMapCreateComplete += InitializeWorldObjects;
-        mManager.OnMapLoadComplete += LoadWorldObjects;
+        if (EM != null) EM.OnPlayerInit += CalculateVisibility;
+        else Debug.Log("Event manager not found");
+        if (cMovement != null) cMovement.OnPlayerTranslation += (v) => { CalculateVisibility(); };
+        else Debug.Log("Player controller not found");
+        if (mManager != null)
+        {
+            mManager.OnMapCreateComplete += InitializeWorldObjects;
+            mManager.OnMapLoadComplete += LoadWorldObjects;
+        }
+        else Debug.Log("Map manager not found");
     }
-    
-    void SetGridVisibilityRelative(Vector3Int v, bool b) {
-        
+
+    void SetGridVisibilityRelative(Vector3Int v, bool b)
+    {
+
         v += Vector3Int.one * sightscale;
         GridVisibility[v.x, v.y, v.z] = b;
     }
-    public bool GetGridVisibilityRelative(Vector3Int v) {
+    public bool GetGridVisibilityRelative(Vector3Int v)
+    {
         v += Vector3Int.one * sightscale;
         return GridVisibility[v.x, v.y, v.z];
     }
     /// <summary>
     /// Mark each point of the grid Visible/Invisible. (Does not render invisible passages)
     /// </summary>
-    void CalculateVisibility() {
-        foreach (var o in SceneObjects) {
+    void CalculateVisibility()
+    {
+        foreach (var o in SceneObjects)
+        {
             var v = o.Position - Player.IdealPosition;
             o.gameObject.SetActive(true);
             //o.gameObject.SetActive(v.x * v.y == 0 && v.z * v.y == 0 && v.x * v.z == 0);
 
 
         }
-        
+
         /*
         GridVisibility.Initialize();
         GridVisibility[sightscale, sightscale, sightscale] = true;
@@ -75,10 +89,11 @@ public class SceneObjectManager : MonoBehaviour
     /// To instantiate, read object data from MapManager. 
     /// </summary>
     /// <param name="deltaOrigin"></param>
-    void TranslateAndInstantiateWorldObjects(Vector3Int deltaOrigin) {
-        
-        for(int i= SceneObjects.Count-1;i >=0;i--)
-         {
+    void TranslateAndInstantiateWorldObjects(Vector3Int deltaOrigin)
+    {
+
+        for (int i = SceneObjects.Count - 1; i >= 0; i--)
+        {
             /*
             if (Squaremetric(SceneObjects[i].Position, mManager.CurrentPosition) > despawnscale) {
                    
@@ -87,23 +102,29 @@ public class SceneObjectManager : MonoBehaviour
             }
             */
         }
-      
+
 
     }
-    int Squaremetric(Vector3Int a, Vector3Int b) {
+    int Squaremetric(Vector3Int a, Vector3Int b)
+    {
         return Mathf.Max(Mathf.Abs(a.x - b.x), Mathf.Abs(a.y - b.y), Mathf.Abs(a.z - b.z));
     }
-    void InitializeWorldObjects() {
+    public void InitializeWorldObjects()
+    {
+        Debug.Log("Initializing world objects");
         SceneObjects = new List<SceneObject>();
         for (int i = 0; i < mManager.GetMapScale(0); i++)
             for (int j = 0; j < mManager.GetMapScale(1); j++)
-                for (int k = 0; k < mManager.GetMapScale(2); k++) {
+                for (int k = 0; k < mManager.GetMapScale(2); k++)
+                {
 
-                    for (int f = 0; f < 6; f++) {
+                    for (int f = 0; f < 6; f++)
+                    {
                         if (mManager.GetTile(i, j, k, f) == Tile.nothing)
                             continue;
                         var obj = mManager.Dataset.Dataset.Find((x) => x.Type == mManager.GetTile(i, j, k, f));
-                        if (obj.Prefab != null) {
+                        if (obj.Prefab != null)
+                        {
                             var o = Instantiate(obj.Prefab, new Vector3(i, j, k) * worldscale, Util.FaceToLHQ(f));
                             o.Position = new Vector3Int(i, j, k);
                             SceneObjects.Add(o);
@@ -112,14 +133,18 @@ public class SceneObjectManager : MonoBehaviour
 
                 }
     }
-    void LoadWorldObjects() {
-        
+    void LoadWorldObjects()
+    {
+
     }
-    bool IsOutofRange(bool[,,] m, int i, int j, int k) {
-        try {
+    bool IsOutofRange(bool[,,] m, int i, int j, int k)
+    {
+        try
+        {
             var b = m[i, j, k];
         }
-        catch (IndexOutOfRangeException e) {
+        catch (IndexOutOfRangeException e)
+        {
 
             return true;
         }
@@ -127,19 +152,20 @@ public class SceneObjectManager : MonoBehaviour
         return false;
 
     }
-    
+
     void Start()
     {
-        
-       
+
+
     }
-    void RecalculateGridVisibility() {
+    void RecalculateGridVisibility()
+    {
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
