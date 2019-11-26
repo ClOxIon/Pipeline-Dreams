@@ -56,11 +56,11 @@ public class MapGenerator
 
     }
     /// <summary>
-    /// 
+    /// Implimentation of Wilsons Algorithm
     /// </summary>
-    /// <param name="m"></param>
-    /// <param name="cur"></param>
-    /// <param name="Mother"></param>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
+    /// <param name="cur">The first element of the path</param>
+    /// <param name="Mother">The path which the new path spawned from</param>
     /// <returns>The entire path. The last element is either the first element if the path is cyclic, or the element of the mother path which the path is connected to.</returns>
     List<Vector3Int> Wilson(MapBundle m, Vector3Int cur, List<Vector3Int> Mother)
     {
@@ -96,6 +96,11 @@ public class MapGenerator
         }
         return Path;
     }
+    /// <summary>
+    /// function fills 
+    /// </summary>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
+    /// <param name="Path">The path which the new path spawned from</param>
     protected void GenerateCyclePathTopology(MapBundle m, List<Vector3Int> Path)
     {
         var p0 = Path[0];
@@ -118,6 +123,12 @@ public class MapGenerator
         var ff2 = Util.LHUnitVectorToFace(Path[0] - Path[Path.Count - 1]);
         m.v[pf.x, pf.y, pf.z].t[ff2] = Tile.hole;
     }
+    /// <summary>
+    /// FILLL IN
+    /// </summary>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
+    /// <param name="Mother">The path which the new path spawned from</param>
+    /// <returns>FILL IN</returns>
     protected List<Vector3Int> GenerateRandomBranch(MapBundle m, List<Vector3Int> Mother)
     {
         List<Vector3Int> Path;
@@ -158,6 +169,10 @@ public class MapGenerator
         m.v[pf.x, pf.y, pf.z].t[ff1] = Tile.hole;
         return Path;
     }
+    /// <summary>
+    /// Function fills all nodes with default tile info
+    /// </summary>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
     protected virtual void GenerateTrivialTopology(MapBundle m)
     {
         for (int i = 0; i < m.v.GetLength(0); i++)
@@ -175,6 +190,11 @@ public class MapGenerator
                         }
                     }
     }
+    /// <summary>
+    /// Function fills domain nodes with default tile info
+    /// </summary>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
+    /// <param name="domain">The voxels which need tile info provided</param>
     protected virtual void GenerateTrivialTopology(MapBundle m, List<Vector3Int> domain)
     {
         foreach (var x in domain)
@@ -191,6 +211,11 @@ public class MapGenerator
             }
 
     }
+    /// <summary>
+    /// Place a lower entrance on the bottom of the lowest node in the map
+    /// </summary>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
+    /// <param name="Path">Full list of pipe nodes</param>
     protected void CreateLowerStation(MapBundle m, List<Vector3Int> Path)
     {
         Vector3Int infPoint = Path[0];
@@ -202,6 +227,11 @@ public class MapGenerator
         m.v[infPoint.x, infPoint.y - 1, infPoint.z].t[3] = Tile.station;
         m.v[infPoint.x, infPoint.y - 1, infPoint.z].t[2] = Tile.stationHole;
     }
+    /// <summary>
+    /// Place a upper entrace on the highest node in the map
+    /// </summary>
+    /// <param name="m">A 3D-Voxel array of occupancy</param>
+    /// <param name="Path">The path which the new path spawned from</param>
     protected void CreateUpperStation(MapBundle m, List<Vector3Int> Path)
     {
         Vector3Int supPoint = Path[0];
@@ -213,12 +243,15 @@ public class MapGenerator
         m.v[supPoint.x, supPoint.y + 1, supPoint.z].t[2] = Tile.station;
         m.v[supPoint.x, supPoint.y + 1, supPoint.z].t[3] = Tile.stationHole;
     }
-    protected bool IsOutofRange(MapBundle m, int i, int j, int k)
+
+
+    //Short utility functions
+    static protected bool IsOutofRange(MapBundle m, int i, int j, int k) //Checks weather this voxel position is inside the map
     {
 
         return !(m.v.GetLength(0) - margin > i && margin <= i && m.v.GetLength(1) - margin > j && margin <= j && m.v.GetLength(2) - margin > k && margin <= k);
     }
-    protected bool IsOutofRange(MapBundle m, Vector3Int v)
+    static protected bool IsOutofRange(MapBundle m, Vector3Int v) //Checks weather this voxel position is inside the map
     {
         return IsOutofRange(m, v.x, v.y, v.z);
 
