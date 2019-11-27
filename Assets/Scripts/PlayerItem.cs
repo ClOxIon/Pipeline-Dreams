@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public abstract class Item {
+public class Item {
     public ItemData ItData;
     public event Action OnDestroy;
     protected ItemSlot Slot;
@@ -128,14 +128,18 @@ public class PlayerItem : MonoBehaviour
         var Disktest = name.Split(' ')[0];
         Item AddedItem;
         ItemData AddedItemData;
-        
-            
-            if (typeof(Item).Namespace != null)
-                AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name));
-            else
-                AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name));
+
+        AddedItem = new Item();//If the item class for the specific item is not defined, we will just use the base class.
+        if (typeof(Item).Namespace != null)
+            if(Type.GetType(typeof(Item).Namespace + ".Item" + name)!=null)
+            AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name));
+        else {
+            if (Type.GetType("Item" + name) != null)
+            AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name));
+        }
             AddedItemData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
-           
+        
+         
         
         try {
             

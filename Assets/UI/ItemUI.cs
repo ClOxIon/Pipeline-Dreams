@@ -19,6 +19,7 @@ public class ItemUI : MonoBehaviour {
         }
         text.text = testIt.ItData.Name;
         Icon.sprite = testIt.ItData.Icon;
+        Icon.color = new Color(1,1,1,0.7f);
         Icon.enabled = true;
         text.enabled = true;
     }
