@@ -9,7 +9,8 @@ public class EntityManager : MonoBehaviour
     public Entity Player { get; private set; }
     public event Action<Entity> OnNewEntitySpawn;
     public event Action<Entity> OnEntityDeath;
-    [SerializeField] EntityDataset DataContainer;
+    [SerializeField] EntityDataset EDataContainer;
+    [SerializeField] public BuffDataset BDataContainer;
     [SerializeField]List<Entity> EntitiesInScene = new List<Entity>();
     // Start is called before the first frame update
     MapManager mManager;
@@ -40,16 +41,16 @@ public class EntityManager : MonoBehaviour
 
     }
 
-    EntityData GetDataFromName(string name) {
-        return DataContainer.Dataset.Find((x)=> { return x.Name == name; });
+    EntityData GetEntityDataFromName(string name) {
+        return EDataContainer.Dataset.Find((x)=> { return x.Name == name; });
 
     }
     void InitPlayer() {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().Initialize(GetComponent<MapManager>().GetPlayerSpawnPoint(), Util.FaceToLHQ(UnityEngine.Random.Range(0, 5)),GetDataFromName("Player"));
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().Initialize(GetComponent<MapManager>().GetPlayerSpawnPoint(), Util.FaceToLHQ(UnityEngine.Random.Range(0, 5)),GetEntityDataFromName("Player"));
         OnPlayerInit?.Invoke();
     }
     void SpawnRandomEnemy() {
-        SpawnEnemy(DataContainer.Dataset[UnityEngine.Random.Range(0, DataContainer.Dataset.Count - 1)].Name, mManager.GetRandomAccessiblePoint(), Util.TurnDown);
+        SpawnEnemy(EDataContainer.Dataset[UnityEngine.Random.Range(0, EDataContainer.Dataset.Count - 1)].Name, mManager.GetRandomAccessiblePoint(), Util.TurnDown);
     }
     void SpawnEnemy(string name, Vector3Int Position, Quaternion Rotation) {
        
@@ -57,7 +58,7 @@ public class EntityManager : MonoBehaviour
 
             
             if (FindEntityInPosition(Position) != null) return;
-            var dt = GetDataFromName(name);
+            var dt = GetEntityDataFromName(name);
             var mob = Instantiate(dt.Prefab);
             mob.Initialize(Position, Rotation,dt);
             EntitiesInScene.Add(mob);
