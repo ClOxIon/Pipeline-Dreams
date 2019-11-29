@@ -6,6 +6,7 @@ public class EntityHealth : MonoBehaviour
 {
     int MaxHP;
     int CurrentHP;
+    public float damageRecieveCoef { get; set; } = 1f;
     public event Action<float> OnHpModified;
 
     public event Action<int, int, Entity> OnDamagedAmount;
@@ -24,9 +25,9 @@ public class EntityHealth : MonoBehaviour
 
     }
     public virtual void RecieveDamage(int damage, Entity subject) {
-        CurrentHP -= damage;
+        CurrentHP -= (int)(damageRecieveCoef*damage);
 
-        OnDamagedAmount?.Invoke(damage,MaxHP, subject);
+        OnDamagedAmount?.Invoke((int)(damageRecieveCoef * damage), MaxHP, subject);
         OnHpModified?.Invoke((float)CurrentHP / MaxHP);
         if (CurrentHP <= 0) {
             CurrentHP = 0;

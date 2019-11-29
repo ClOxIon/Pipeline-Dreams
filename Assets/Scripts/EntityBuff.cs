@@ -21,6 +21,16 @@ public class Buff {
         OnDestroy?.Invoke();
     }
 }
+public class BuffTargeted : Buff {
+    public BuffTargeted(Entity subject, BuffData buffData) : base(subject, buffData) {
+        Subject.GetComponent<EntityHealth>().damageRecieveCoef *= 2f;
+    }
+    public override void Destroy() {
+        base.Destroy();
+
+        Subject.GetComponent<EntityHealth>().damageRecieveCoef /= 2f;
+    }
+}
 public class TimedBuff : Buff {
     float timeleft;
     protected float initialTime;
@@ -36,12 +46,14 @@ public class TimedBuff : Buff {
 
 public class EntityBuff : MonoBehaviour
 {
-    [SerializeField] BuffDataset DataContainer;
+    BuffDataset DataContainer;
     List<Buff> Buffs;
     EntityManager EM;
     private void Awake() {
+        Buffs = new List<Buff>();
         EM = (EntityManager)FindObjectOfType(typeof(EntityManager));
         DataContainer = EM.BDataContainer;
+        AddBuff("Targeted");
     }
     /// <summary>
     /// Adds the Buff corresponding to the name to the inventory.
@@ -50,15 +62,14 @@ public class EntityBuff : MonoBehaviour
     public void AddBuff(string name) {
        
         Buff AddedBuff;
-        BuffData AddedBuffData;
-        
-            if (typeof(Buff).Namespace != null)
-                AddedBuff = (Buff)Activator.CreateInstance(Type.GetType(typeof(Buff).Namespace + ".Buff" + name));
+        BuffData AddedBuffData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
+        if (typeof(Buff).Namespace != null)
+                AddedBuff = (Buff)Activator.CreateInstance(Type.GetType(typeof(Buff).Namespace + ".Buff" + name),GetComponent<Entity>(), AddedBuffData);
             else {
                 
-                    AddedBuff = (Buff)Activator.CreateInstance(Type.GetType("Buff" + name));
+                    AddedBuff = (Buff)Activator.CreateInstance(Type.GetType("Buff" + name), GetComponent<Entity>(), AddedBuffData);
             }
-        AddedBuffData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
+        
         Buffs.Add(AddedBuff);
     }
 }

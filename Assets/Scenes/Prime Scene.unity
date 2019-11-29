@@ -9891,6 +9891,7 @@ GameObject:
   - component: {fileID: 865417986}
   - component: {fileID: 865417987}
   - component: {fileID: 865417988}
+  - component: {fileID: 865417989}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10019,6 +10020,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d919b54c15358964f8e038eaf37635c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &865417989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865417979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665a8211ed12f0d4fbd0d9a8b3e54dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &872960967
@@ -10337,7 +10350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dataset: {fileID: 11400000, guid: 2fb0dc8715c04654b8a9933b1698e3a0, type: 2}
-  positionText: {fileID: 916322978}
 --- !u!4 &885259645
 Transform:
   m_ObjectHideFlags: 0
@@ -10405,7 +10417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ac86015f963534285b37a0df1ae663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataContainer: {fileID: 11400000, guid: 917b093516bc911448f0a509d8f8c98f, type: 2}
+  EDataContainer: {fileID: 11400000, guid: 917b093516bc911448f0a509d8f8c98f, type: 2}
+  BDataContainer: {fileID: 11400000, guid: 69b6c9f2ae9f5ee4bbf4ea25073c5934, type: 2}
   EntitiesInScene: []
 --- !u!114 &885259650
 MonoBehaviour:
