@@ -28,6 +28,9 @@ public class ClockManager : MonoBehaviour
     private void Awake() {
         PC = GetComponent<PlayerController>();
     }
+    private void Start() {
+        AddTime(0);//Alert all event receivers.
+    }
     public void AddTime(float time) {
         Clock += time;
         

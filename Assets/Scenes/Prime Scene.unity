@@ -1892,10 +1892,10 @@ GameObject:
   m_Component:
   - component: {fileID: 141076008}
   - component: {fileID: 141076011}
-  - component: {fileID: 141076010}
   - component: {fileID: 141076009}
+  - component: {fileID: 141076010}
   m_Layer: 5
-  m_Name: BuffUI
+  m_Name: BuffCollectionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1953,9 +1953,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 141076007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99ecfe4159a711e48a9fc6c74286dcde, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ddf5739b30283f4b9c13ee19715314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuffUIPrefab: {fileID: 1057845903972541790, guid: 95ecc6cbc75fd7043800753307f9d7aa,
+    type: 3}
 --- !u!222 &141076011
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10402,7 +10404,7 @@ GameObject:
   - component: {fileID: 885259651}
   - component: {fileID: 885259646}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: ManagerObjects
   m_TagString: SceneManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15620,7 +15622,7 @@ GameObject:
   - component: {fileID: 1391070206}
   - component: {fileID: 1391070208}
   m_Layer: 5
-  m_Name: ItemPanel
+  m_Name: ItemCollectionUI
   m_TagString: ItemPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

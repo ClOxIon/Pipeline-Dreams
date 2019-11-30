@@ -32,13 +32,14 @@ public class BuffTargeted : Buff {
     }
 }
 public class TimedBuff : Buff {
-    float timeleft;
+    public float TimeLeft { get; private set; }
     protected float initialTime;
     public TimedBuff(Entity subject, BuffData buffData):base(subject,buffData) {
         initialTime = CM.Clock;
     }
     protected override void EffectByTime(float Time) {
-        if (initialTime + BuData.baseDuration <= Time)
+        TimeLeft = initialTime + BuData.baseDuration - Time;
+        if (TimeLeft <0)
             Destroy();
     }
 }
@@ -49,12 +50,22 @@ public class EntityBuff : MonoBehaviour
     BuffDataset DataContainer;
     List<Buff> Buffs;
     EntityManager EM;
+    ClockManager CM;
+    public event Action<Buff[]> OnRefreshBuffs;
     private void Awake() {
         Buffs = new List<Buff>();
         EM = (EntityManager)FindObjectOfType(typeof(EntityManager));
+
+        CM = (ClockManager)FindObjectOfType(typeof(ClockManager));
+        
+        CM.OnClockModified += CM_OnClockModified;
         DataContainer = EM.BDataContainer;
-        AddBuff("Targeted");
     }
+
+    private void CM_OnClockModified(float obj) {
+        OnRefreshBuffs?.Invoke(Buffs.ToArray());
+    }
+
     /// <summary>
     /// Adds the Buff corresponding to the name to the inventory.
     /// </summary>
@@ -62,6 +73,7 @@ public class EntityBuff : MonoBehaviour
     public void AddBuff(string name) {
        
         Buff AddedBuff;
+        
         BuffData AddedBuffData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
         if (typeof(Buff).Namespace != null)
                 AddedBuff = (Buff)Activator.CreateInstance(Type.GetType(typeof(Buff).Namespace + ".Buff" + name),GetComponent<Entity>(), AddedBuffData);
@@ -71,5 +83,6 @@ public class EntityBuff : MonoBehaviour
             }
         
         Buffs.Add(AddedBuff);
+        OnRefreshBuffs?.Invoke(Buffs.ToArray());
     }
 }

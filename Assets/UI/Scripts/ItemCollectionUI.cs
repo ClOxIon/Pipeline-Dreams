@@ -9,8 +9,8 @@ public class ItemCollectionUI : MonoBehaviour
     private void Awake() {
         PI = (PlayerItem)FindObjectOfType(typeof(PlayerItem));
         ItemUIs = new List<ItemUI>(GetComponentsInChildren<ItemUI>());
-        PI.OnRefreshUI += PI_OnRefreshUI;
-        PI.OnRefreshItemSlotUI += PI_OnRefreshItemSlotUI;
+        PI.OnRefreshItems += PI_OnRefreshUI;
+        PI.OnChangeItemSlotAvailability += PI_OnRefreshItemSlotUI;
     }
 
     private void PI_OnRefreshItemSlotUI(bool[] obj) {

@@ -79,8 +79,8 @@ Core1, Core2, Core3, Core4, Core5, Core6, Core7, Core8, Core9, Temporary
 }
 public class PlayerItem : MonoBehaviour
 {
-    public event Action<Item[]> OnRefreshUI;
-    public event Action<bool[]> OnRefreshItemSlotUI;
+    public event Action<Item[]> OnRefreshItems;
+    public event Action<bool[]> OnChangeItemSlotAvailability;
     OperatorContainer OC;
     //[SerializeField]ItemPromptUI ItemDestroyPrompt;
     [SerializeField]ItemDataset DataContainer;
@@ -118,7 +118,7 @@ public class PlayerItem : MonoBehaviour
         SetActiveSlot(ItemSlot.Core1, true);
         SetActiveSlot(ItemSlot.Core2, true);
         SetActiveSlot(ItemSlot.Temporary, true);
-        OnRefreshUI(Items);
+        OnRefreshItems(Items);
     }
     /// <summary>
     /// Adds the item corresponding to the name to the inventory.
@@ -148,7 +148,7 @@ public class PlayerItem : MonoBehaviour
                 if (Items[position] == null&&IsItemFrameActivated[position]) {
                     AddedItem.Activate(AddedItemData, (ItemSlot)position);
                     Items[position] = AddedItem;
-                    OnRefreshUI(Items);
+                    OnRefreshItems(Items);
                     SetDestroyCallback(Items[position], position);
                     flag = true;
                     break;
@@ -180,7 +180,7 @@ public class PlayerItem : MonoBehaviour
                 Items[i] = AddedItem;
                 AddedItem.Activate(AddedItemData, (ItemSlot)i);
                 SetDestroyCallback(AddedItem, i);
-                OnRefreshUI(Items);
+                OnRefreshItems(Items);
             }
             
         }
@@ -197,10 +197,10 @@ public class PlayerItem : MonoBehaviour
     public void SetDestroyCallback(Item i, int position) {
         i.OnDestroy += () => {
             Items[position] = null;
-            OnRefreshUI(Items);
+            OnRefreshItems(Items);
         };
     }
-    public void SetActiveSlot(ItemSlot i, bool b) { IsItemFrameActivated[(int)i] = b; OnRefreshItemSlotUI(IsItemFrameActivated); }
+    public void SetActiveSlot(ItemSlot i, bool b) { IsItemFrameActivated[(int)i] = b; OnChangeItemSlotAvailability(IsItemFrameActivated); }
     
     // Update is called once per frame
     void Update()
