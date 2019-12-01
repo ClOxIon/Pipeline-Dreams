@@ -35,9 +35,9 @@ public class InstructionCollection : MonoBehaviour {
         if(s.Length>1)
          variant = s[1];
         if (typeof(Instruction).Namespace!=null)
-            testOp = (Instruction)Activator.CreateInstance(Type.GetType(typeof(Instruction).Namespace+".Operator"+name));
+            testOp = (Instruction)Activator.CreateInstance(Type.GetType(typeof(Instruction).Namespace+".Instruction"+name));
         else
-            testOp = (Instruction)Activator.CreateInstance(Type.GetType("Operator" + name));
+            testOp = (Instruction)Activator.CreateInstance(Type.GetType("Instruction" + name));
         var testOpD = DataContainer.Dataset.Find((x) => { return x.Name == name; });
         testOp.Activate(testOpD, variant);
         if (Instructions.Count < MaxInstruction) {

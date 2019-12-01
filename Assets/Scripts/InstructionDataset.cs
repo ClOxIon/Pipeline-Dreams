@@ -37,6 +37,11 @@ public struct InstructionData {
     public OpDirection Direction;
     public List<Command> Commands;
     public List<string> Variants;
+    public float meleeCoef;
+
+    public float rangeCoef;
+
+    public float fieldCoef;
     public int Value1;
     public int Value2;
     public Sprite Icon;

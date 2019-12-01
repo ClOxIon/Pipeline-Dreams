@@ -12,17 +12,18 @@ public abstract class Instruction {
     List<Command> Commands;
     [SerializeField] GunController gun;
     public virtual IClockTask Operation(float startClock) {
-        return new OperationTask() {Op = this, StartClock = startClock , Priority = (int)EntityType.PLAYER };
+        return new AttackInstructionTask() {Op = this, StartClock = startClock , Priority = (int)EntityType.PLAYER };
 
     }
-    protected class OperationTask : IClockTask {
+    protected class AttackInstructionTask : IClockTask {
         public int Priority { get; set; }
         public Instruction Op;
         public bool HasIteration { get; } = true;
         public float StartClock { get; set; }
 
         public IEnumerator Run() {
-            Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.EM.Player.IdealRotation), Op.EM.Player)?.GetComponent<EntityHealth>().RecieveDamage(Op.OpData.Value1, Op.Player);
+            
+            Op.Player.GetComponent<EntityWeapon>().TryAttack(Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.EM.Player.IdealRotation), Op.EM.Player), StartClock, Op.OpData.meleeCoef, Op.OpData.rangeCoef, Op.OpData.fieldCoef);
             if (Op.gun != null)
                 Op.gun.trigger = true;
             float time = 0;
@@ -132,140 +133,140 @@ public abstract class Instruction {
     }
 }
 
-public class OperatorMomentum: Instruction
+public class InstructionMomentum: Instruction
 {
    
 }
-public class OperatorInertia : Instruction {
+public class InstructionInertia : Instruction {
     
 }
-public class OperatorThrust : Instruction {
+public class InstructionThrust : Instruction {
     
 }
-public class OperatorManipulate : Instruction {
+public class InstructionManipulate : Instruction {
 
 }
-public class OperatorRearrange : Instruction {
+public class InstructionRearrange : Instruction {
 
 }
-public class OperatorCircuitBreaker : Instruction {
+public class InstructionCircuitBreaker : Instruction {
 
 }
-public class OperatorTrace : Instruction {
+public class InstructionTrace : Instruction {
 
 }
-public class OperatorOscillate : Instruction {
+public class InstructionOscillate : Instruction {
 
 }
 //Tier 2
-public class OperatorOrbit : Instruction {
+public class InstructionOrbit : Instruction {
 
 }
-public class OperatorSpatialRotation : Instruction {
+public class InstructionSpatialRotation : Instruction {
 
 }
-public class OperatorCharge : Instruction {
+public class InstructionCharge : Instruction {
 
 }
-public class OperatorGradualCharge : Instruction {
+public class InstructionGradualCharge : Instruction {
 
 }
-public class OperatorWarp : Instruction {
+public class InstructionWarp : Instruction {
 
 }
-public class OperatorRotationalCharge : Instruction {
+public class InstructionRotationalCharge : Instruction {
 
 }
-public class OperatorBypass : Instruction {
+public class InstructionBypass : Instruction {
 
 }
-public class OperatorRecursion : Instruction {
+public class InstructionRecursion : Instruction {
 
 }
-public class OperatorRestore : Instruction {
+public class InstructionRestore : Instruction {
 
 }
-public class OperatorFluctuation : Instruction {
+public class InstructionFluctuation : Instruction {
 
 }
-public class OperatorEject : Instruction {
+public class InstructionEject : Instruction {
 
 }
-public class OperatorTranslate : Instruction {
+public class InstructionTranslate : Instruction {
 
 }
-public class OperatorConversion : Instruction {
+public class InstructionConversion : Instruction {
 
 }
-public class OperatorMerge: Instruction {
+public class InstructionMerge: Instruction {
 
 }
-public class OperatorClone : Instruction {
+public class InstructionClone : Instruction {
 
 }
 //Tier 3
-public class OperatorIntersect : Instruction {
+public class InstructionIntersect : Instruction {
 
 }
-public class OperatorDistort : Instruction {
+public class InstructionDistort : Instruction {
 
 }
-public class OperatorInfinity : Instruction {
+public class InstructionInfinity : Instruction {
 
 }
-public class OperatorTrigger : Instruction {
+public class InstructionTrigger : Instruction {
 
 }
-public class OperatorInfuse : Instruction {
+public class InstructionInfuse : Instruction {
 
 }
-public class OperatorAdvance : Instruction {
+public class InstructionAdvance : Instruction {
 
 }
-public class OperatorConnect : Instruction {
+public class InstructionConnect : Instruction {
 
 }
-public class OperatorBackendConnect : Instruction {
+public class InstructionBackendConnect : Instruction {
 
 }
-public class OperatorRead : Instruction {
+public class InstructionRead : Instruction {
 
 }
-public class OperatorChartR : Instruction {
+public class InstructionChartR : Instruction {
 
 }
-public class OperatorChartL : Instruction {
+public class InstructionChartL : Instruction {
 
 }
-public class OperatorReiterate : Instruction {
+public class InstructionReiterate : Instruction {
 
 }
-public class OperatorModify : Instruction {
+public class InstructionModify : Instruction {
 
 }
 //Tier 4
-public class OperatorOvercharge : Instruction {
+public class InstructionOvercharge : Instruction {
 
 }
-public class OperatorReciprocation : Instruction {
+public class InstructionReciprocation : Instruction {
 
 }
-public class OperatorReverse : Instruction {
+public class InstructionReverse : Instruction {
 
 }
-public class OperatorCrystal : Instruction {
+public class InstructionCrystal : Instruction {
 
 }
-public class OperatorSubstitute : Instruction {
+public class InstructionSubstitute : Instruction {
 
 }
-public class OperatorOverdrive : Instruction {
+public class InstructionOverdrive : Instruction {
 
 }
-public class OperatorInvariant : Instruction {
+public class InstructionInvariant : Instruction {
 
     
 }
-public class OperatorDerive : Instruction {
+public class InstructionDerive : Instruction {
 
 }

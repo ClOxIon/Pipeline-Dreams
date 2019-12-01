@@ -13,7 +13,11 @@ public struct ItemData {
     [TextArea(5, 10)]
     public string Description;    
     public Sprite Icon;
-    public int value1;
-   
+    public float value1;
+
+    public float value2;
+
+    public float value3;
+
 
 }

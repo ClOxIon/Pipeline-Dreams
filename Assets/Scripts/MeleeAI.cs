@@ -141,7 +141,7 @@ public class MeleeAI : EntityAI {
 
             switch (state) {
             case EntityAIState.Attack:
-                EW.TryAttack(Target, EntityClock);
+                EW.TryAttack(Target, EntityClock,1,0,0);//Attempts melee attack
                 IsTargetSeen = true;
                 memoryTime = 0;
                 break;
