@@ -9,17 +9,17 @@ public class OperatorPromptUI : MonoBehaviour {
     [SerializeField] Text DescriptionText;
     [SerializeField] Text TitleText;
     [SerializeField] Image Icon;
-    OperatorContainer OC;
+    InstructionCollection OC;
     Button destroyButton;
-    OperatorData defaultData;
+    InstructionData defaultData;
     int Selection;
-    public void Activate(OperatorData data) {
+    public void Activate(InstructionData data) {
         gameObject.SetActive(true);
         defaultData = data;
         ShowOperatorInfo(data);
     }
     private void Awake() {
-        OC = GetComponentInParent<OperatorContainer>();
+        OC = GetComponentInParent<InstructionCollection>();
         destroyButton = GetComponentInChildren<Button>();
         destroyButton.onClick.AddListener(() => OnDestroyButtonClicked(Selection));
     }
@@ -27,7 +27,7 @@ public class OperatorPromptUI : MonoBehaviour {
     void Start() {
 
     }
-    private void ShowOperatorInfo(OperatorData data) {
+    private void ShowOperatorInfo(InstructionData data) {
         DescriptionText.text = data.Description;
         TitleText.text = data.Name;
         Icon.sprite = data.Icon;
@@ -36,7 +36,7 @@ public class OperatorPromptUI : MonoBehaviour {
     void Update() {
         if (Input.GetButtonDown("Item0")) { Selection = 0; ShowOperatorInfo(defaultData); }
         for (int i = 1; i <= 9; i++)
-            if (Input.GetButtonDown("Item" + i)) { Selection = i; ShowOperatorInfo(OC.Operators[Selection - 1].OpData); }
+            if (Input.GetButtonDown("Item" + i)) { Selection = i; ShowOperatorInfo(OC.Instructions[Selection - 1].OpData); }
 
     }
 }

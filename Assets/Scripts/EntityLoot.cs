@@ -5,11 +5,11 @@ using UnityEngine;
 public class EntityLoot : MonoBehaviour
 {
     Entity entity;
-    PlayerItem PI;
+    ItemCollection PI;
     private void Awake() {
         GetComponent<EntityDeath>().OnEntityDeath += EntityLoot_OnEntityDeath;
         entity = GetComponent<Entity>();
-        PI = (PlayerItem)FindObjectOfType(typeof(PlayerItem));
+        PI = (ItemCollection)FindObjectOfType(typeof(ItemCollection));
     }
 
     private void EntityLoot_OnEntityDeath(Entity obj) {

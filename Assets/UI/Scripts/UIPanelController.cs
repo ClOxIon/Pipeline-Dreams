@@ -8,7 +8,7 @@ public class UIPanelController : MonoBehaviour
     [SerializeField] GameObject HUD;
     [SerializeField]DialogueUI DUI;
     [SerializeField] ItemPanelUI IUI;
-    [SerializeField] OperatorPanelUI OUI;
+    [SerializeField] InstructionPanelUI OUI;
     [SerializeField] MapPanelUI MUI;
     // Start is called before the first frame update
     void Start()
