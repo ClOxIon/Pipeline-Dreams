@@ -66,18 +66,18 @@ public class DialogueUI : MonoBehaviour
     public void HideDialogue() {
         isMoving = true;
         visible = false;
-        PC.EnableInput(PlayerInputFlag.UIPANEL);
+        PC.SetInputEnabled(PlayerInputFlag.UIPANEL, true);
         FindObjectOfType<DialogueRunner>()?.Stop();
         DialoguePanel.SetActive(false);
     }
     public void ShowDialogue() {
         isMoving = true;
         visible = true;
-        PC.DisableInput(PlayerInputFlag.UIPANEL);
-        
+        PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
 
-        
-        
+
+
+
         DialoguePanel.SetActive(visible);
         
             var e = EM.FindEntityInLine(Util.LHQToFace(EM.Player.IdealRotation), EM.Player);

@@ -31,35 +31,35 @@ public class UIPanelController : MonoBehaviour
                 OUI.HideDialogue();
                 MUI.HideDialogue();
                 DUI.HideDialogue();
-                PC.EnableInput(PlayerInputFlag.UIPANEL);
-        } else if (Input.GetKeyDown(KeyCode.F2)) {
+                PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
+            } else if (Input.GetKeyDown(KeyCode.F2)) {
                 HUD.SetActive(false);
                 IUI.ShowDialogue();
                 OUI.HideDialogue();
                 MUI.HideDialogue();
                 DUI.HideDialogue();
-                PC.DisableInput(PlayerInputFlag.UIPANEL);
+                PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
             } else if (Input.GetKeyDown(KeyCode.F3)) {
                 HUD.SetActive(false);
                 IUI.HideDialogue();
                 OUI.ShowDialogue();
                 MUI.HideDialogue();
                 DUI.HideDialogue();
-                PC.DisableInput(PlayerInputFlag.UIPANEL);
+                PC.SetInputEnabled(PlayerInputFlag.UIPANEL,false);
             } else if (Input.GetKeyDown(KeyCode.F4)) {
                 HUD.SetActive(false);
                 IUI.HideDialogue();
                 OUI.HideDialogue();
                 MUI.ShowDialogue();
                 DUI.HideDialogue();
-                PC.DisableInput(PlayerInputFlag.UIPANEL);
+                PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
             } else if (Input.GetKeyDown(KeyCode.F5)) {
                 HUD.SetActive(false);
                 IUI.HideDialogue();
                 OUI.HideDialogue();
                 MUI.HideDialogue();
                 DUI.ShowDialogue();
-                PC.DisableInput(PlayerInputFlag.UIPANEL);
+                PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
             }
     }
 }

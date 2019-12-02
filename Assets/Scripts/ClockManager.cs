@@ -55,7 +55,7 @@ public class ClockManager : MonoBehaviour
     */
 
     IEnumerator RunTasks() {
-        PC.DisableInput(PlayerInputFlag.CLOCKMANAGER);
+        PC.SetInputEnabled(PlayerInputFlag.CLOCKMANAGER,false);
         /*
         TaskEndFlag = new bool[ImmediateTasks.Count];
         var Tasks = new List<IClockTask>(ImmediateTasks);
@@ -92,7 +92,7 @@ public class ClockManager : MonoBehaviour
                 yield return t.Run();
             else
                 t.Run();
-            Debug.Log("Task : " + t.ToString() + ", Priority : " + t.Priority + ", Time : " + t.StartClock + ", Frame : " + Time.frameCount + ", RealTime : " + Time.unscaledTime);
+            //Debug.Log("Task : " + t.ToString() + ", Priority : " + t.Priority + ", Time : " + t.StartClock + ", Frame : " + Time.frameCount + ", RealTime : " + Time.unscaledTime);
             SequentialTasks.Remove(t);
             OnTaskEnd?.Invoke();
 
@@ -109,7 +109,7 @@ public class ClockManager : MonoBehaviour
 
         //ImmediateTasks.Clear();
         SequentialTasks.Clear();
-        PC.EnableInput(PlayerInputFlag.CLOCKMANAGER);
+        PC.SetInputEnabled(PlayerInputFlag.CLOCKMANAGER, true);
     }
     IEnumerator RunTaskAndRaiseFlag(IClockTask f, int i) {
         yield return f.Run();
