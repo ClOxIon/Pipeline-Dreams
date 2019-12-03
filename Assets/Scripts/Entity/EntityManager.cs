@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class EntityManager : MonoBehaviour
 {
-    public event Action OnPlayerInit;
+    public event Action OnPlayerInitPosition;
+    public event Action OnPlayerReferenceSet;
     public Entity Player { get; private set; }
     public event Action<Entity> OnNewEntitySpawn;
     public event Action<Entity> OnEntityDeath;
@@ -17,17 +18,22 @@ public class EntityManager : MonoBehaviour
     float spawntimer;
     void Start()
     {
-       
-       
+        
+
+    }
+    private void OnLevelWasLoaded(int level) {
+        OnPlayerReferenceSet?.Invoke();
     }
     private void Awake() {
         mManager = GetComponent<MapManager>();
         GetComponent<ClockManager>().OnClockModified += (f)=> { while (f - spawntimer >= 100) { SpawnRandomEnemy(); spawntimer += 100; } };
-        GetComponent<MapManager>().OnMapCreateComplete += ()=> { InitPlayer(); InitEntities(); };
+        GetComponent<MapManager>().OnMapCreateComplete += ()=> { InitPlayerPosition(); InitEntities(); };
         GetComponent<MapManager>().OnMapLoadComplete += () => { LoadPlayer(); LoadEntities(); };
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        
         EntitiesInScene.Add(Player);
     }
+    
 
     private void LoadPlayer() {
        
@@ -45,9 +51,9 @@ public class EntityManager : MonoBehaviour
         return EDataContainer.Dataset.Find((x)=> { return x.Name == name; });
 
     }
-    void InitPlayer() {
+    void InitPlayerPosition() {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().Initialize(GetComponent<MapManager>().GetPlayerSpawnPoint(), Util.FaceToLHQ(UnityEngine.Random.Range(0, 5)),GetEntityDataFromName("Player"));
-        OnPlayerInit?.Invoke();
+        OnPlayerInitPosition?.Invoke();
     }
     void SpawnRandomEnemy() {
         SpawnEnemy(EDataContainer.Dataset[UnityEngine.Random.Range(0, EDataContainer.Dataset.Count - 1)].Name, mManager.GetRandomAccessiblePoint(), Util.TurnDown);

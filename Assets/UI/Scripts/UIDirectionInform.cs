@@ -36,7 +36,7 @@ public class UIDirectionInform : MonoBehaviour
         clock.OnTaskEnd += UpdateUIInfo;
         
         EM = CM.GetComponent<EntityManager>();
-        EM.OnPlayerInit += UpdateUIInfo;
+        EM.OnPlayerInitPosition += UpdateUIInfo;
         mManager = CM.GetComponent<MapManager>();
     }
     // Start is called before the first frame update

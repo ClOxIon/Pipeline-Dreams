@@ -16,16 +16,13 @@ public class InstructionCollection : MonoBehaviour {
         PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
         CM = PC.GetComponent<ClockManager>();
         EM = PC.GetComponent<EntityManager>();
-        EM.OnPlayerInit+=()=>PC.OnOperatorKeyPressed += (i) => {
+        EM.OnPlayerReferenceSet+=()=>PC.OnOperatorKeyPressed += (i) => {
             if(Instructions[i]!=null)
             if (Instructions[i].CheckCommand()) {
                 CM.AddSequentialTask(Instructions[i].Operation(CM.Clock));
                 EM.Player.GetComponent<PlayerAI>().EntityClock+=Instructions[i].OpData.Time * 12.5f;
             }
             };
-        AddInst("Inertia R");
-        AddInst("Thrust U");
-        AddInst("Manipulate RU");
     }
     public void AddInst(string cname) {
         Instruction testOp;
@@ -50,7 +47,9 @@ public class InstructionCollection : MonoBehaviour {
     }
     // Start is called before the first frame update
     void Start() {
-        OnRefreshItems?.Invoke(Instructions.ToArray());
+        AddInst("Inertia R");
+        AddInst("Thrust U");
+        AddInst("Manipulate RU");
     }
     
 

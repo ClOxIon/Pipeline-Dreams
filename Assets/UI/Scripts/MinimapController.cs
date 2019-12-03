@@ -19,7 +19,7 @@ public class MinimapController : MonoBehaviour
     private void Awake() {
         mManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<MapManager>();
         EM = mManager.GetComponent<EntityManager>();
-        EM.OnPlayerInit += Render;
+        EM.OnPlayerInitPosition += Render;
         CM = mManager.GetComponent<ClockManager>();
         CM.OnTaskEnd += Render;
         minimapPlayerMarker = Instantiate(playerPrefab, gameObject.transform,false);

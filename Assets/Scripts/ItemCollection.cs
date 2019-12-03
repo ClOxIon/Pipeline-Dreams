@@ -4,18 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Item {
     public ItemData ItData;
-    public event Action OnDestroy;
+    public event Action OnLose;
     protected ClockManager CM;
     public Item() {
        
     }
-    public virtual void Activate(ItemData data) {
+    /// <summary>
+    /// Called when the item is moved into player's inventory.
+    /// </summary>
+    /// <param name="data"></param>
+    public virtual void Obtain(ItemData data) {
         ItData = data;
         CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
     }
     public virtual void EffectByTime(float time) { }
-    public virtual void Destroy() {
-        OnDestroy?.Invoke();
+    /// <summary>
+    /// Called when the item is removed from player's inventory.
+    /// </summary>
+    public virtual void Lose() {
+        OnLose?.Invoke();
     }
 }
 
@@ -53,17 +60,24 @@ public class ItemSpeedUp : Item {
 
     }
 
-    public override void Activate(ItemData data) {
-        base.Activate(data);
+    public override void Obtain(ItemData data) {
+        base.Obtain(data);
 
         PlayerMove = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>().Player.GetComponent<EntityMove>();
         PlayerMove.SpeedModifier /= 1.5f;
     }
-    public override void Destroy() {
+    public override void Lose() {
         PlayerMove.SpeedModifier *= 1.5f;
-        base.Destroy();
+        base.Lose();
 
     }
+
+
+}
+
+public class ItemWeaponRebar : ItemWeapon {
+
+    
 
 
 }
@@ -71,8 +85,7 @@ public class ItemSpeedUp : Item {
 
 public class ItemCollection : MonoBehaviour
 {
-    const int TEMPSLOT = 0;
-
+    public event Action OnItemCollectionInitialized;
     public event Action<Item[]> OnRefreshItems;
     public event Action<int> OnChangeItemSlotAvailability;
     InstructionCollection OC;
@@ -85,29 +98,22 @@ public class ItemCollection : MonoBehaviour
     PlayerController PC;
     ClockManager CM;
     private void Awake() {
+        for(int i=0;i<MaximumItemCount;i++)
+        Items.Add(null);
         PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
         CM = PC.GetComponent<ClockManager>();
         //CM.OnClockModified += CM_OnClockModified;
         OC = GameObject.FindGameObjectWithTag("OperatorRack").GetComponent<InstructionCollection>();
         
     }
-
-    /*
-    private void CM_OnClockModified(float obj) {
-        for (int i = 0; i < IsItemFrameActivated.Length; i++) {
-            if (Items[i] != null&& IsItemFrameActivated[i]) {
-                Items[i].EffectByTime(obj);
-                ItemUIs[i].Refresh(Items[i]);
-            }
-        }
-    }
-    */
-
+    
     // Start is called before the first frame update
     void Start()
     {
         ChangeActivatedSlots(3);
         OnRefreshItems(Items.ToArray());
+        AddItem("WeaponRebar");
+        OnItemCollectionInitialized?.Invoke();
     }
     /// <summary>
     /// Adds the item corresponding to the name to the inventory.
@@ -119,55 +125,17 @@ public class ItemCollection : MonoBehaviour
         ItemData AddedItemData;
 
         AddedItem = new Item();//If the item class for the specific item is not defined, we will just use the base class.
-        if (typeof(Item).Namespace != null)
-            if(Type.GetType(typeof(Item).Namespace + ".Item" + name)!=null)
-            AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name));
-        else {
+        if (typeof(Item).Namespace != null) {
+            if (Type.GetType(typeof(Item).Namespace + ".Item" + name) != null)
+                AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name));
+        } else {
             if (Type.GetType("Item" + name) != null)
-            AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name));
+                AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name));
         }
             AddedItemData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
-
-
-        if (Items.Count<ActivatedSlots) {
-            Items.Add(AddedItem);
-            AddedItem.Activate(AddedItemData);
-            
-            OnRefreshItems(Items.ToArray());
-            SetDestroyCallback(AddedItem, Items.Count - 1);
-            
-
-        }
-           else {
-            //No Itemslot available
-            /*
-            PC.DisableInput(PlayerInputFlag.PLAYERITEM);
-            ItemDestroyPrompt.Activate(testItD);
-            ItemDestroyPrompt.OnDestroyButtonClicked += (i) => {
-                if (i != -1) {
-
-                    Items[i].Destroy();
-
-                    Items[i] = testIt;
-                    testIt.Activate(testItD, (ItemSlot)i);
-                    SetDestroyCallback(testIt, i);
-                    ItemUIs[i].Refresh(testIt);
-                }
-                ItemDestroyPrompt.gameObject.SetActive(false);
-                PC.EnableInput(PlayerInputFlag.PLAYERITEM);
-
-            };
-            */
-            //Instead of opening Item destroy prompt, the item in the temporary slot will be overwritten without prompt.
-            var i = TEMPSLOT;//Temporary slot
-                Items[i].Destroy();
-                Items[i] = AddedItem;
-                AddedItem.Activate(AddedItemData);
-                SetDestroyCallback(AddedItem, i);
-                OnRefreshItems(Items.ToArray());
-            }
-            
-        
+       
+        AddedItem.Obtain(AddedItemData);
+        PushItem(AddedItem);
 
     }
     /// <summary>
@@ -176,7 +144,7 @@ public class ItemCollection : MonoBehaviour
     /// <param name="i"></param>
     /// <param name="position"></param>
     public void SetDestroyCallback(Item i, int position) {
-        i.OnDestroy += () => {
+        i.OnLose += () => {
             Items[position] = null;
             OnRefreshItems(Items.ToArray());
         };
@@ -185,12 +153,54 @@ public class ItemCollection : MonoBehaviour
         ActivatedSlots = after;
         if (ActivatedSlots < Items.Count) {
             for (int i = ActivatedSlots; i < Items.Count; i++) {
-                Items[i].Destroy();
+                Items[i]?.Lose();
             }
             Items.RemoveRange(after, Items.Count - after - 1);
         }
         OnChangeItemSlotAvailability?.Invoke(after);
         OnRefreshItems(Items.ToArray());
+    }
+    /// <summary>
+    /// This method is used to move an item from inventory to somewhere else.
+    /// Notice that Destroy() is still called.
+    /// </summary>
+    /// <param name="index"></param>
+    public Item PopItem(int index) {
+        var i = Items[index];
+        i.Lose(); Items[index] = null;
+
+        OnRefreshItems?.Invoke(Items.ToArray());
+        return i;
+    }
+    /// <summary>
+    /// This method is used to move an item into inventory.
+    /// </summary>
+    /// <param name="item"></param>
+    public void PushItem(Item item) {
+
+       
+        bool flag = true;
+        for (int i = 1; i < Items.Count; i++) {
+            if (Items[i] == null) {
+                Items[i] = item;
+
+                OnRefreshItems(Items.ToArray());
+                SetDestroyCallback(item, Items.Count - 1);
+                flag = false;
+                break;
+            }
+
+        }
+        if (flag) {
+
+            //Instead of opening Item destroy prompt, the item in the temporary slot will be overwritten without prompt.
+            var i = 0;//Temporary slot
+            Items[i]?.Lose();
+            Items[i] = item;
+            SetDestroyCallback(item, i);
+            OnRefreshItems(Items.ToArray());
+        }
+        OnRefreshItems?.Invoke(Items.ToArray());
     }
     // Update is called once per frame
     void Update()

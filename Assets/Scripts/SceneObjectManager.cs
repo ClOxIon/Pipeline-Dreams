@@ -25,7 +25,7 @@ public class SceneObjectManager : MonoBehaviour
         mManager = GetComponent<MapManager>();
         cMovement = GetComponent<PlayerController>();
         EM = GetComponent<EntityManager>();
-        if (EM != null) EM.OnPlayerInit += CalculateVisibility;
+        if (EM != null) EM.OnPlayerInitPosition += CalculateVisibility;
         else Debug.Log("Event manager not found");
         if (cMovement != null) cMovement.OnPlayerTranslation += (v) => { CalculateVisibility(); };
         else Debug.Log("Player controller not found");

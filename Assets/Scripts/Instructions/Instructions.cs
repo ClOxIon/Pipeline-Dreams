@@ -22,7 +22,7 @@ public abstract class Instruction {
         public float StartClock { get; set; }
 
         public IEnumerator Run() {
-            
+
             Op.Player.GetComponent<EntityWeapon>().TryAttack(Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.EM.Player.IdealRotation), Op.EM.Player), StartClock, Op.OpData.meleeCoef, Op.OpData.rangeCoef, Op.OpData.fieldCoef);
             if (Op.gun != null)
                 Op.gun.trigger = true;

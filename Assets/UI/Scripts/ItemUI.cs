@@ -6,7 +6,7 @@ public class ItemUI : MonoBehaviour {
     [SerializeField]Image Icon;
     Text text;
     Item item;
-    private void Awake() {
+    protected virtual void Awake() {
         Icon.enabled = false;
         text = GetComponentInChildren<Text>();
     }
@@ -17,6 +17,7 @@ public class ItemUI : MonoBehaviour {
             Clear();
             return;
         }
+        Debug.Log(text.text);
         text.text = testIt.ItData.Name;
         Icon.sprite = testIt.ItData.Icon;
         Icon.color = new Color(1,1,1,0.7f);

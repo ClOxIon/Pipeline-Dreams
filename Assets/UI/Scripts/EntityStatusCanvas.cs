@@ -31,7 +31,7 @@ public class EntityStatusCanvas : MonoBehaviour
 
 
         };
-        EM.OnPlayerInit += () => {
+        EM.OnPlayerReferenceSet += () => {
             EM.Player.GetComponent<EntityDeath>().OnEntityDeath += (e) => {
                 foreach (var obj in ESBList)
                     obj.enabled = false;

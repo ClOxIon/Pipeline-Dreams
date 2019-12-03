@@ -17,79 +17,119 @@ MonoBehaviour:
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 28f10292b85333a4093d63d6c55de696, type: 3}
     value1: 0
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: SpeedUp
     Description: Speed Up!
     Icon: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0
   - Name: Disk
     Description: For debug purposes only.
     Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
-    value1: 2000
-  - Name: Disk
+    value1: 10
+    value2: 10
+    value3: 10
+  - Name: WeaponRebar
     Description: For debug purposes only.
-    Icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
+    Icon: {fileID: 21300000, guid: bb0ea7fc60dd8e545b79d06a3d575a05, type: 3}
     value1: 2000
+    value2: 0
+    value3: 0

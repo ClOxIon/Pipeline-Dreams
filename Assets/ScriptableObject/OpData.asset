@@ -19,6 +19,9 @@ MonoBehaviour:
     Direction: 1
     Commands: 04000000
     Variants: []
+    meleeCoef: 1
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
@@ -34,6 +37,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 1
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 46ccd97705f002046827828ca9845891, type: 3}
@@ -48,6 +54,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 1
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -66,6 +75,9 @@ MonoBehaviour:
     - RU
     - DL
     - DR
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -80,6 +92,9 @@ MonoBehaviour:
     - R
     - D
     - S
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -89,6 +104,9 @@ MonoBehaviour:
     Direction: 0
     Commands: 04000000
     Variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -104,6 +122,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -118,6 +139,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -132,6 +156,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -150,6 +177,9 @@ MonoBehaviour:
     - RU
     - DR
     - DL
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -164,6 +194,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -177,6 +210,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -192,6 +228,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -205,6 +244,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -219,6 +261,9 @@ MonoBehaviour:
     - R
     - D
     - S
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -233,6 +278,9 @@ MonoBehaviour:
     - R
     - D
     - S
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -243,6 +291,9 @@ MonoBehaviour:
     Direction: 0
     Commands: 04000000040000000400000004000000
     Variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -258,6 +309,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -269,6 +323,9 @@ MonoBehaviour:
     Direction: 1
     Commands: 04000000
     Variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -280,6 +337,9 @@ MonoBehaviour:
     Direction: 1
     Commands: 04000000
     Variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -293,6 +353,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -306,6 +369,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -319,6 +385,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -333,6 +402,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -347,6 +419,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -361,6 +436,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -375,6 +453,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -389,6 +470,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -403,6 +487,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
@@ -417,6 +504,9 @@ MonoBehaviour:
     - U
     - R
     - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
     Value1: 2
     Value2: 0
     Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}

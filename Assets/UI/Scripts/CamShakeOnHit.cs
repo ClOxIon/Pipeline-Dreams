@@ -6,7 +6,7 @@ public class CamShakeOnHit : MonoBehaviour
 {
     private void Awake() {
         var EM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>();
-        EM.OnPlayerInit+=()=>EM.Player.GetComponent<EntityHealth>().OnDamagedAmount += CamShakeOnHit_OnDamaged;
+        EM.OnPlayerInitPosition+=()=>EM.Player.GetComponent<EntityHealth>().OnDamagedAmount += CamShakeOnHit_OnDamaged;
     }
 
     private void CamShakeOnHit_OnDamaged(int obj, int max,  Entity e) {
