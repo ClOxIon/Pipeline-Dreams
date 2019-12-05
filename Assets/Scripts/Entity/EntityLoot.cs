@@ -13,8 +13,8 @@ public class EntityLoot : MonoBehaviour
     }
 
     private void EntityLoot_OnEntityDeath(Entity obj) {
-        if(Random.Range(0,1)<entity.Data.lootChance)
-        PI.AddItem(entity.Data.loot);
+        if(Random.Range(0,1)<entity.Data.FindParameterFloat("LootChance"))
+        PI.AddItem(entity.Data.FindParameterString("Loot"));
     }
 
     // Start is called before the first frame update

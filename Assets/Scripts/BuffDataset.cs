@@ -8,11 +8,7 @@ public class BuffDataset : ScriptableObject {
 
 }
 [System.Serializable]
-public struct BuffData {
-    public string Name;
-    [TextArea(5, 10)]
-    public string Description;
-    public Sprite Icon;
+public class BuffData : Data {
     public float baseDuration;
 
 

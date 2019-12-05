@@ -31,7 +31,7 @@ public class UIPanelController : MonoBehaviour
                 OUI.HideDialogue();
                 MUI.HideDialogue();
                 DUI.HideDialogue();
-                PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
+                PC.SetInputEnabled(PlayerInputFlag.UIPANEL, true);
             } else if (Input.GetKeyDown(KeyCode.F2)) {
                 HUD.SetActive(false);
                 IUI.ShowDialogue();

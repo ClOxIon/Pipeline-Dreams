@@ -46,7 +46,7 @@ public class DialogueUI : MonoBehaviour
 
     private void ShowTileDialogue(TileData data) {
         TitleText.text = data.Name;
-        if (data.HasDialogue)
+        if (data.FindParameterString("HasDialogue")!=null)
             FindObjectOfType<DialogueRunner>().StartDialogue(data.Name);
         else {
             DescriptionText.text = "Nothing special with this " + data.Name + ".";
@@ -56,7 +56,7 @@ public class DialogueUI : MonoBehaviour
 
     private void ShowEntityDialogue(EntityData data) {
         TitleText.text = data.Name;
-        if (data.HasDialogue)
+        if (data.FindParameterString("HasDialogue") != null)
             FindObjectOfType<DialogueRunner>().StartDialogue(data.Name);
         else {
             DescriptionText.text = "This " + data.Name + " does not seem to want to talk with me....";

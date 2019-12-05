@@ -8,18 +8,10 @@ public class EntityDataset : ScriptableObject {
 
 }
 [System.Serializable]
-public struct EntityData {
-    public string Name;
-    [TextArea(5,10)]
-    public string Description;
+public class EntityData : Data {
+    
     public int MaxHP;
     public int Damage;
-    public int Value1;
-    public int Value2;
     public EntityType Type;
-    public bool HasDialogue;
-    public Sprite Icon;
     public Entity Prefab;
-    public string loot;
-    public float lootChance;
 }

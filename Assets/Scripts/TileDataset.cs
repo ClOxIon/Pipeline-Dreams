@@ -8,15 +8,8 @@ public class TileDataset : ScriptableObject {
 
 }
 [System.Serializable]
-public struct TileData {
-    public string Name;
+public class TileData : Data {
     public Tile Type;
-    [TextArea(5, 10)]
-    public string Description;
-    public bool HasDialogue;
-    public int Value1;
-    public int Value2;
-
     public SceneObject Prefab;
 
 }

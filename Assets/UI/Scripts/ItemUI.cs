@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ItemUI : MonoBehaviour {
     [SerializeField]Image Icon;
     Text text;
-    Item item;
+    protected Item item;
     protected virtual void Awake() {
         Icon.enabled = false;
         text = GetComponentInChildren<Text>();

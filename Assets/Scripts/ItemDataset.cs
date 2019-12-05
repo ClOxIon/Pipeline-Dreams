@@ -8,16 +8,46 @@ public class ItemDataset : ScriptableObject {
 
 }
 [System.Serializable]
-public struct ItemData {
+public class Data {
     public string Name;
     [TextArea(5, 10)]
-    public string Description;    
+    public string Description;
     public Sprite Icon;
-    public float value1;
-
-    public float value2;
-
-    public float value3;
-
-
+    [SerializeField] List<Parameter> Parameters;
+    public bool HasParameter(string Name) {
+        foreach (var x in Parameters)
+            if (x.Name == Name)
+                return true;
+        return false;
+    }
+    public float FindParameterFloat(string Name) {
+        foreach (var x in Parameters)
+            if (x.Name == Name)
+                return float.Parse(x.Value);
+        Debug.LogError("No Float Parameter Found: " + GetType());
+        return 0;
+    }
+    public int FindParameterInt(string Name) {
+        foreach (var x in Parameters)
+            if (x.Name == Name)
+                return int.Parse(x.Value);
+        Debug.LogError("No Integer Parameter Found: " + GetType());
+        return 0;
+    }
+    public string FindParameterString(string Name) {
+        foreach (var x in Parameters)
+            if (x.Name == Name)
+                return x.Value;
+        Debug.LogError("No String Parameter Found: " + GetType());
+        return null;
+    }
+}
+[System.Serializable]
+public class ItemData : Data {
+    
+}
+[System.Serializable]
+public struct Parameter {
+    public string Name;
+    public string Value;
 }

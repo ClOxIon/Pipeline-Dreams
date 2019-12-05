@@ -30,10 +30,9 @@ public class InstructionDataset : ScriptableObject
     }
 }
 [System.Serializable]
-public struct InstructionData {
-    public string Name;
-    [TextArea(5, 10)]
-    public string Description;
+public class InstructionData : Data {
+
+    public int Time;
     public OpDirection Direction;
     public List<Command> Commands;
     public List<string> Variants;
@@ -42,8 +41,5 @@ public struct InstructionData {
     public float rangeCoef;
 
     public float fieldCoef;
-    public int Value1;
-    public int Value2;
-    public Sprite Icon;
-    public int Time;
+    
 }

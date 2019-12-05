@@ -6,11 +6,16 @@ public class ItemCollectionUI : MonoBehaviour
 {
     List<ItemUI> ItemUIs;
     ItemCollection PI;
+    
     private void Awake() {
         PI = (ItemCollection)FindObjectOfType(typeof(ItemCollection));
         ItemUIs = new List<ItemUI>(GetComponentsInChildren<ItemUI>());
         PI.OnRefreshItems += PI_OnRefreshUI;
         PI.OnChangeItemSlotAvailability += PI_OnRefreshItemSlotUI;
+    }
+    private void Start() {
+
+        PI.InvokeUIRefresh();
     }
 
     private void PI_OnRefreshItemSlotUI(int num) {
@@ -28,9 +33,5 @@ public class ItemCollectionUI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

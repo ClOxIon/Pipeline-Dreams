@@ -202,9 +202,13 @@ public class ItemCollection : MonoBehaviour
         }
         OnRefreshItems?.Invoke(Items.ToArray());
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Item GetItem(int index) {
+        return Items[index];
+    }
+
+    internal void InvokeUIRefresh() {
+        OnChangeItemSlotAvailability?.Invoke(ActivatedSlots);
+        OnRefreshItems?.Invoke(Items.ToArray());
+
     }
 }
