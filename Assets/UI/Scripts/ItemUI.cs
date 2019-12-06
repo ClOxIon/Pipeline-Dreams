@@ -17,7 +17,7 @@ public class ItemUI : MonoBehaviour {
             Clear();
             return;
         }
-        Debug.Log(text.text);
+
         text.text = testIt.ItData.Name;
         Icon.sprite = testIt.ItData.Icon;
         Icon.color = new Color(1,1,1,0.7f);

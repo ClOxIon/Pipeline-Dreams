@@ -25,6 +25,7 @@ public class ItemCollectionUI : MonoBehaviour
     }
 
     private void PI_OnRefreshUI(Item[] obj) {
+
         for (int i = ItemUIs.Count-1; i >= obj.Length; i--) {
             ItemUIs[i].Clear();
         }

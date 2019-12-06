@@ -7,13 +7,13 @@ public class EntityStatusCanvas : MonoBehaviour
     [SerializeField] EntityStatusBar ESBPrefab;
     List<EntityStatusBar> ESBList = new List<EntityStatusBar>();
     EntityManager EM;
-    PlayerController PC;
+    PlayerMove PC;
     ClockManager CM;
     MapManager mManager;
     // Start is called before the first frame update
     private void Awake() {
         EM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>();
-        PC = EM.GetComponent<PlayerController>();
+        PC = EM.GetComponent<PlayerMove>();
         CM = EM.GetComponent<ClockManager>();
         mManager = EM.GetComponent<MapManager>();
         EM.OnNewEntitySpawn += (e) => {
@@ -31,13 +31,13 @@ public class EntityStatusCanvas : MonoBehaviour
 
 
         };
-        EM.OnPlayerReferenceSet += () => {
+        
             EM.Player.GetComponent<EntityDeath>().OnEntityDeath += (e) => {
                 foreach (var obj in ESBList)
                     obj.enabled = false;
                 Debug.Log("hide!");
             };
-        };
+        
 
         
         CM.OnTaskEnd += ESBVisibilityRefresh;

@@ -13,7 +13,7 @@ public class SceneObjectManager : MonoBehaviour
     bool[,,] GridVisibility;
     List<SceneObject> SceneObjects;
     MapManager mManager;
-    PlayerController cMovement;
+    PlayerMove cMovement;
     EntityManager EM;
     // Start is called before the first frame update
     private void Awake()
@@ -23,7 +23,7 @@ public class SceneObjectManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Player").Length != 0) Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         else Debug.Log("Player object not found");
         mManager = GetComponent<MapManager>();
-        cMovement = GetComponent<PlayerController>();
+        cMovement = GetComponent<PlayerMove>();
         EM = GetComponent<EntityManager>();
         if (EM != null) EM.OnPlayerInitPosition += CalculateVisibility;
         else Debug.Log("Event manager not found");

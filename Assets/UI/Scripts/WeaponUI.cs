@@ -7,12 +7,13 @@ public class WeaponUI : ItemUI
     EntityWeapon PW;
     protected override void Awake() {
         base.Awake();
-        FindObjectOfType<EntityManager>().OnPlayerReferenceSet += WeaponUI_OnPlayerInit;
+        PW = FindObjectOfType<EntityManager>().Player.GetComponent<EntityWeapon>();
+        PW.OnRefreshWeapon += PW_OnRefreshWeapon;
+        
     }
 
     private void WeaponUI_OnPlayerInit() {
-        PW = FindObjectOfType<EntityManager>().Player.GetComponent<EntityWeapon>();
-        PW.OnRefreshWeapon += PW_OnRefreshWeapon;
+        
     }
 
     private void PW_OnRefreshWeapon(ItemWeapon obj) {

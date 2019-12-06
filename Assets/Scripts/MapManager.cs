@@ -45,13 +45,13 @@ public class MapManager : MonoBehaviour
     public event Action OnMapLoadComplete;
     public event Action OnMapCreateComplete;
     MapBundle m;
-    PlayerController cMovement;
+    PlayerMove cMovement;
     [SerializeField] public TileDataset Dataset;
     //public Vector3Int CurrentPosition;
     private void Awake()
     {
 
-        cMovement = GetComponent<PlayerController>();
+        cMovement = GetComponent<PlayerMove>();
 
 
 

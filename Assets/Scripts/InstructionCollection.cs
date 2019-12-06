@@ -8,21 +8,21 @@ public class InstructionCollection : MonoBehaviour {
     public event Action<Instruction[]> OnRefreshItems;
     [SerializeField]public InstructionDataset DataContainer;
     public List<Instruction> Instructions = new List<Instruction>();
-    PlayerController PC;
     int MaxInstruction = 6;
     ClockManager CM;
     EntityManager EM;
     private void Awake() {
-        PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
-        CM = PC.GetComponent<ClockManager>();
-        EM = PC.GetComponent<EntityManager>();
-        EM.OnPlayerReferenceSet+=()=>PC.OnOperatorKeyPressed += (i) => {
-            if(Instructions[i]!=null)
+        CM = FindObjectOfType<ClockManager>();
+        EM = FindObjectOfType<EntityManager>();
+        FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);
+    }
+    public void OnInstruction(object value) {
+        var i = (int)value;
+        if (Instructions.Count > i && Instructions[i] != null)
             if (Instructions[i].CheckCommand()) {
                 CM.AddSequentialTask(Instructions[i].Operation(CM.Clock));
-                EM.Player.GetComponent<PlayerAI>().EntityClock+=Instructions[i].OpData.Time * 12.5f;
+                EM.Player.GetComponent<PlayerAI>().EntityClock += Instructions[i].OpData.Time * 12.5f;
             }
-            };
     }
     public void AddInst(string cname) {
         Instruction testOp;

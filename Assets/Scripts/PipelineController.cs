@@ -20,7 +20,7 @@ public class PipelineController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake() {
        
-        GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>().OnCommandKeyPressed += PushCommand;
+        GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerMove>().OnCommandKeyPressed += PushCommand;
         LengthChange(6);
     }
     void Start()

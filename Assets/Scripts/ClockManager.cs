@@ -7,7 +7,7 @@ using System.Linq;
 public class ClockManager : MonoBehaviour
 {
 
-    PlayerController PC;
+    PlayerInputBroadcaster PC;
     public float Clock { get; private set; } = 0;
     float AccumulatedClock = 0;
 
@@ -26,7 +26,7 @@ public class ClockManager : MonoBehaviour
     bool[] TaskEndFlag;
     // Start is called before the first frame update
     private void Awake() {
-        PC = GetComponent<PlayerController>();
+        PC = FindObjectOfType<PlayerInputBroadcaster>();
     }
     private void Start() {
         AddTime(0);//Alert all event receivers.
@@ -55,7 +55,7 @@ public class ClockManager : MonoBehaviour
     */
 
     IEnumerator RunTasks() {
-        PC.SetInputEnabled(PlayerInputFlag.CLOCKMANAGER,false);
+        PC.SetPlayerInputEnabled(PlayerInputFlag.CLOCKMANAGER,false);
         /*
         TaskEndFlag = new bool[ImmediateTasks.Count];
         var Tasks = new List<IClockTask>(ImmediateTasks);
@@ -109,7 +109,7 @@ public class ClockManager : MonoBehaviour
 
         //ImmediateTasks.Clear();
         SequentialTasks.Clear();
-        PC.SetInputEnabled(PlayerInputFlag.CLOCKMANAGER, true);
+        PC.SetPlayerInputEnabled(PlayerInputFlag.CLOCKMANAGER, true);
     }
     IEnumerator RunTaskAndRaiseFlag(IClockTask f, int i) {
         yield return f.Run();

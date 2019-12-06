@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ItemWeapon : Item
 {
+    public override string[] ItemActions => base.ItemActions.Concat(new string[] {"Equip","UnEquip" }).ToArray();
     public int MeleeDamage { get; protected set; }
 
     public int RangeDamage { get; protected set; }

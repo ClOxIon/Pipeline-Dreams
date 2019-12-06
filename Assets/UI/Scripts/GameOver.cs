@@ -15,7 +15,7 @@ public class GameOver : MonoBehaviour
         
     }
     void EndGame(Entity Player) {
-        GetComponent<PlayerController>().SetInputEnabled(PlayerInputFlag.GAMEOVER, false);
+        FindObjectOfType<PlayerInputBroadcaster>().SetPlayerInputEnabled(PlayerInputFlag.GAMEOVER, false);
         GameOverPanel.SetActive(true);
 
     }

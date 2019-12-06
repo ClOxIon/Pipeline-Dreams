@@ -6,8 +6,12 @@ using UnityEngine;
 public class EntityManager : MonoBehaviour
 {
     public event Action OnPlayerInitPosition;
-    public event Action OnPlayerReferenceSet;
-    public Entity Player { get; private set; }
+    public Entity Player { get {
+            if(_player==null)
+            _player=GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+            return _player;
+        }  }
+    Entity _player;
     public event Action<Entity> OnNewEntitySpawn;
     public event Action<Entity> OnEntityDeath;
     [SerializeField] EntityDataset EDataContainer;
@@ -21,15 +25,12 @@ public class EntityManager : MonoBehaviour
         
 
     }
-    private void OnLevelWasLoaded(int level) {
-        OnPlayerReferenceSet?.Invoke();
-    }
     private void Awake() {
         mManager = GetComponent<MapManager>();
         GetComponent<ClockManager>().OnClockModified += (f)=> { while (f - spawntimer >= 100) { SpawnRandomEnemy(); spawntimer += 100; } };
         GetComponent<MapManager>().OnMapCreateComplete += ()=> { InitPlayerPosition(); InitEntities(); };
         GetComponent<MapManager>().OnMapLoadComplete += () => { LoadPlayer(); LoadEntities(); };
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        
         
         EntitiesInScene.Add(Player);
     }

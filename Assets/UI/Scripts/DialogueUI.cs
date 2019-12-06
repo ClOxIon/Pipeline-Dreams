@@ -15,7 +15,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] Text TitleText;
     [SerializeField] Text DescriptionText;
     [Range(0,1)][SerializeField] float LerpSpeed;
-    PlayerController PC;
+    PlayerInputBroadcaster PC;
     EntityManager EM;
     Camera FrontCam;
     MapManager mManager;
@@ -23,9 +23,9 @@ public class DialogueUI : MonoBehaviour
     bool isMoving = true;
     // Start is called before the first frame update
     private void Awake() {
-        PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
-        EM = PC.GetComponent<EntityManager>();
-        mManager = PC.GetComponent<MapManager>();
+        PC = FindObjectOfType<PlayerInputBroadcaster>();
+        EM = FindObjectOfType<EntityManager>();
+        mManager = FindObjectOfType<MapManager>();
         FrontCam = Camera.main;
     }
 
@@ -66,14 +66,14 @@ public class DialogueUI : MonoBehaviour
     public void HideDialogue() {
         isMoving = true;
         visible = false;
-        PC.SetInputEnabled(PlayerInputFlag.UIPANEL, true);
+        PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, true);
         FindObjectOfType<DialogueRunner>()?.Stop();
         DialoguePanel.SetActive(false);
     }
     public void ShowDialogue() {
         isMoving = true;
         visible = true;
-        PC.SetInputEnabled(PlayerInputFlag.UIPANEL, false);
+        PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
 
 
 
@@ -87,6 +87,7 @@ public class DialogueUI : MonoBehaviour
                 var t = mManager.GetTileRelative(Vector3Int.zero, Util.LHQToFace(EM.Player.IdealRotation), EM.Player);
                 ShowTileDialogue(mManager.Dataset.Dataset.Find((x) => x.Type == t));
             }
+        
         
     }  
 }

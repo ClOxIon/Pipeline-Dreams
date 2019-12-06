@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ItemCollectionInfoUI : MonoBehaviour
 {
-    public event Action<string> OnButtonPressed;
+    public event Action<Item, string> OnButtonPressed;
     public event Action<int> OnItemSelected;
     [SerializeField] Text DescriptionText;
 
@@ -15,11 +16,15 @@ public class ItemCollectionInfoUI : MonoBehaviour
     ItemCollection IC;
     [SerializeField] Text TitleText;
 
-    [SerializeField] List<Button> ItemButtons;
-    Item Selected;
+    [SerializeField] Button ItemActionButtonPrefab;
+    [SerializeField] Transform ItemActionButtonPanel;
+    List<Button> ItemActionButtons= new List<Button>();
+    ItemData SelectedItemData;
+    int SelectedItemIndex;
     private void Awake() {
         IC = FindObjectOfType<ItemCollection>();
         OnItemSelected += RefreshSelectionMarker;
+        FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);
         ItemUIs = new List<SelectableItemUI>(GetComponentsInChildren<SelectableItemUI>());
         
     }
@@ -28,14 +33,14 @@ public class ItemCollectionInfoUI : MonoBehaviour
         OnItemSelected?.Invoke(0);
     }
     void RefreshInfo() {
-        if (Selected == null) {
+        if (SelectedItemData == null) {
             DescriptionText.text = "";
             AdditionalDescriptionText.text = "";
             TitleText.text = "Please Select an Item to Examine It.";
         } else {
 
-            DescriptionText.text = Selected.ItData.Description;
-            TitleText.text = Selected.ItData.Name;
+            DescriptionText.text = SelectedItemData.Description;
+            TitleText.text = SelectedItemData.Name;
         }
         SetItemButtons();
     }
@@ -45,71 +50,34 @@ public class ItemCollectionInfoUI : MonoBehaviour
 
     }
     void SetItemButtons() {
-        if (Selected == null) {
-            for (int i = 0; i < ItemButtons.Count; i++) {
+        if (SelectedItemData == null) {
+            for (int i = 0; i < ItemActionButtons.Count; i++) {
 
-                ItemButtons[i].gameObject.SetActive(false);
+                ItemActionButtons[i].gameObject.SetActive(false);
             }
             return;
+        } else {
+            if (ItemActionButtons.Count < SelectedItemData.ItemActions.Length)
+                for (int i = ItemActionButtons.Count; i < SelectedItemData.ItemActions.Length; i++)
+                    ItemActionButtons.Add(Instantiate(ItemActionButtonPrefab, ItemActionButtonPanel));
+            for (int i = 0; i < SelectedItemData.ItemActions.Length; i++) {
+                ItemActionButtons[i].gameObject.SetActive(true);
+                var t = SelectedItemData.ItemActions[i];
+                ItemActionButtons[i].onClick.AddListener(() => IC.InvokeItemAction(SelectedItemIndex, t));
+                ItemActionButtons[i].GetComponentInChildren<Text>().text = t;
+
+                
+            }
+            for (int i = SelectedItemData.ItemActions.Length; i < ItemActionButtons.Count; i++) {
+                ItemActionButtons[i].gameObject.SetActive(false);
+            }
         }
-        else
-        for (int i = 0; i < ItemButtons.Count; i++)
-            if (Selected.ItData.HasParameter("Button" + i)) {
-                ItemButtons[i].gameObject.SetActive(true);
-                var t = Selected.ItData.FindParameterString("Button" + i);
-                ItemButtons[i].onClick.AddListener(() => OnButtonPressed?.Invoke(t));
-                ItemButtons[i].GetComponentInChildren<Text>().text = t;
-            } else
-                ItemButtons[i].gameObject.SetActive(false);
     }
-    void OnItemSlot0() {
-        Selected = IC.GetItem(0);
-        OnItemSelected?.Invoke(0);
-        RefreshInfo();
-    }
-    void OnItemSlot1() {
-        Selected = IC.GetItem(1);
-        OnItemSelected?.Invoke(1);
-        RefreshInfo();
-    }
-    void OnItemSlot2() {
-        Selected = IC.GetItem(2);
-        OnItemSelected?.Invoke(2);
-        RefreshInfo();
-    }
-    void OnItemSlot3() {
-        Selected = IC.GetItem(3);
-        OnItemSelected?.Invoke(3);
-        RefreshInfo();
-    }
-    void OnItemSlot4() {
-        Selected = IC.GetItem(4);
-        OnItemSelected?.Invoke(4);
-        RefreshInfo();
-    }
-    void OnItemSlot5() {
-        Selected = IC.GetItem(5);
-        OnItemSelected?.Invoke(5);
-        RefreshInfo();
-    }
-    void OnItemSlot6() {
-        Selected = IC.GetItem(6);
-        OnItemSelected?.Invoke(6);
-        RefreshInfo();
-    }
-    void OnItemSlot7() {
-        Selected = IC.GetItem(7);
-        OnItemSelected?.Invoke(7);
-        RefreshInfo();
-    }
-    void OnItemSlot8() {
-        Selected = IC.GetItem(8);
-        OnItemSelected?.Invoke(8);
-        RefreshInfo();
-    }
-    void OnItemSlot9() {
-        Selected = IC.GetItem(9);
-        OnItemSelected?.Invoke(9);
+    void OnItemSlot(object value) {
+        var i = (int)value;
+        SelectedItemIndex = i;
+        SelectedItemData = IC.GetItemInfo(i);
+        OnItemSelected?.Invoke(i);
         RefreshInfo();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "ItData", menuName = "ScriptableObjects/ItemData", order = 3)]
@@ -24,27 +25,29 @@ public class Data {
         foreach (var x in Parameters)
             if (x.Name == Name)
                 return float.Parse(x.Value);
-        Debug.LogError("No Float Parameter Found: " + GetType());
+        Debug.LogWarning("No Float Parameter Found: " + GetType());
         return 0;
     }
     public int FindParameterInt(string Name) {
         foreach (var x in Parameters)
             if (x.Name == Name)
                 return int.Parse(x.Value);
-        Debug.LogError("No Integer Parameter Found: " + GetType());
+        Debug.LogWarning("No Integer Parameter Found: " + GetType());
         return 0;
     }
     public string FindParameterString(string Name) {
         foreach (var x in Parameters)
             if (x.Name == Name)
                 return x.Value;
-        Debug.LogError("No String Parameter Found: " + GetType());
+        Debug.LogWarning("No String Parameter Found: " + GetType());
         return null;
     }
 }
 [System.Serializable]
 public class ItemData : Data {
-    
+    [NonSerialized]public string[] ItemActions;
+    [NonSerialized] public string DefaultAction;
+
 }
 [System.Serializable]
 public struct Parameter {

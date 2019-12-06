@@ -29,7 +29,7 @@ public class UIDirectionInform : MonoBehaviour
     MapManager mManager;
     Quaternion rotation;
     private void Awake() {
-        var CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
+        var CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerMove>();
        
 
         var clock = CM.GetComponent<ClockManager>();

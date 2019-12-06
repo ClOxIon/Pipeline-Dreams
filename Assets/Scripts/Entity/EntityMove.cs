@@ -8,14 +8,14 @@ public class EntityMove : MonoBehaviour
     public float SpeedModifier = 1;
     Entity entity;
     ClockManager CM;
-    PlayerController PC;
+    PlayerMove PC;
     MapManager mManager;
     EntityManager EM;
     private void Awake() {
         entity = GetComponent<Entity>();
         CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
         mManager = CM.GetComponent<MapManager>();
-        PC = CM.GetComponent<PlayerController>();
+        PC = CM.GetComponent<PlayerMove>();
         EM = CM.GetComponent<EntityManager>();
     }
     public bool CanMove(Vector3Int UVector) {

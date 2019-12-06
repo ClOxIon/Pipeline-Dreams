@@ -33,7 +33,7 @@ public class EntityWeapon : MonoBehaviour
 
         weapon = (ItemWeapon)i;
         
-        Debug.Log("Weaponname: " + weapon.ItData.Name);
+
         weapon.Equip();
         OnRefreshWeapon.Invoke(weapon);
     }

@@ -4,10 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Item {
     public ItemData ItData;
-    public event Action OnLose;
+    public event Action OnRemove;
     protected ClockManager CM;
+    
     public Item() {
        
+    }
+    public virtual string[] ItemActions { get {
+
+            return new string[] {"Destroy"};
+        } }
+    public virtual string DefaultAction {
+        get {
+
+            return null;
+        }
     }
     /// <summary>
     /// Called when the item is moved into player's inventory.
@@ -15,14 +26,22 @@ public class Item {
     /// <param name="data"></param>
     public virtual void Obtain(ItemData data) {
         ItData = data;
+        ItData.ItemActions = ItemActions;
+        ItData.DefaultAction = DefaultAction;
         CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
     }
     public virtual void EffectByTime(float time) { }
     /// <summary>
     /// Called when the item is removed from player's inventory.
     /// </summary>
-    public virtual void Lose() {
-        OnLose?.Invoke();
+    public virtual void Remove() {
+        OnRemove?.Invoke();
+    }
+    public virtual void InvokeItemAction(string actionName) {
+        if (actionName == "DEFAULT" && DefaultAction != null)
+            InvokeItemAction(DefaultAction);
+        if (actionName == "Destroy")
+            Remove();
     }
 }
 
@@ -66,9 +85,10 @@ public class ItemSpeedUp : Item {
         PlayerMove = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>().Player.GetComponent<EntityMove>();
         PlayerMove.SpeedModifier /= 1.5f;
     }
-    public override void Lose() {
+    public override void Remove() {
+        base.Remove();
         PlayerMove.SpeedModifier *= 1.5f;
-        base.Lose();
+        
 
     }
 
@@ -95,12 +115,13 @@ public class ItemCollection : MonoBehaviour
     int MaximumItemCount = 10;
     int ActivatedSlots;
     
-    PlayerController PC;
+    PlayerMove PC;
     ClockManager CM;
     private void Awake() {
+        
         for(int i=0;i<MaximumItemCount;i++)
         Items.Add(null);
-        PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerController>();
+        PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerMove>();
         CM = PC.GetComponent<ClockManager>();
         //CM.OnClockModified += CM_OnClockModified;
         OC = GameObject.FindGameObjectWithTag("OperatorRack").GetComponent<InstructionCollection>();
@@ -143,8 +164,9 @@ public class ItemCollection : MonoBehaviour
     /// </summary>
     /// <param name="i"></param>
     /// <param name="position"></param>
-    public void SetDestroyCallback(Item i, int position) {
-        i.OnLose += () => {
+    public void SetRemoveCallback(Item i, int position) {
+        i.OnRemove += () => {
+            
             Items[position] = null;
             OnRefreshItems(Items.ToArray());
         };
@@ -153,7 +175,7 @@ public class ItemCollection : MonoBehaviour
         ActivatedSlots = after;
         if (ActivatedSlots < Items.Count) {
             for (int i = ActivatedSlots; i < Items.Count; i++) {
-                Items[i]?.Lose();
+                Items[i]?.Remove();
             }
             Items.RemoveRange(after, Items.Count - after - 1);
         }
@@ -167,9 +189,8 @@ public class ItemCollection : MonoBehaviour
     /// <param name="index"></param>
     public Item PopItem(int index) {
         var i = Items[index];
-        i.Lose(); Items[index] = null;
-
-        OnRefreshItems?.Invoke(Items.ToArray());
+        i.Remove(); 
+        
         return i;
     }
     /// <summary>
@@ -185,7 +206,7 @@ public class ItemCollection : MonoBehaviour
                 Items[i] = item;
 
                 OnRefreshItems(Items.ToArray());
-                SetDestroyCallback(item, Items.Count - 1);
+                SetRemoveCallback(item, i);
                 flag = false;
                 break;
             }
@@ -195,20 +216,24 @@ public class ItemCollection : MonoBehaviour
 
             //Instead of opening Item destroy prompt, the item in the temporary slot will be overwritten without prompt.
             var i = 0;//Temporary slot
-            Items[i]?.Lose();
+            Items[i]?.Remove();
             Items[i] = item;
-            SetDestroyCallback(item, i);
+            SetRemoveCallback(item, i);
             OnRefreshItems(Items.ToArray());
         }
         OnRefreshItems?.Invoke(Items.ToArray());
     }
-    public Item GetItem(int index) {
-        return Items[index];
+    public ItemData GetItemInfo(int index) {
+        return Items[index].ItData;
     }
 
     internal void InvokeUIRefresh() {
         OnChangeItemSlotAvailability?.Invoke(ActivatedSlots);
         OnRefreshItems?.Invoke(Items.ToArray());
 
+    }
+    internal void InvokeItemAction(int itemIndex, string actionName) {
+        if (itemIndex < Items.Count && Items[itemIndex] != null)
+            Items[itemIndex].InvokeItemAction(actionName);
     }
 }

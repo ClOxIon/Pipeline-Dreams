@@ -12,7 +12,7 @@ public class DamageIndicatorUI : MonoBehaviour
     private void Awake() {
         EM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>();
 
-        EM.OnPlayerReferenceSet += () => { EM.Player.GetComponent<EntityHealth>().OnDamagedAmount += DamageIndicatorUI_OnDamaged; };
+        EM.Player.GetComponent<EntityHealth>().OnDamagedAmount += DamageIndicatorUI_OnDamaged;
     }
 
     private void DamageIndicatorUI_OnDamaged(int arg1,int MaxHP, Entity arg2) {
