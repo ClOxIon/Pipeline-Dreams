@@ -8,13 +8,13 @@ using UnityEngine;
 public class EntityWeapon : MonoBehaviour
 {
     protected Entity entity;
-    protected ClockManager CM;
+    protected TaskManager CM;
     protected ItemWeapon weapon;
     private ItemCollection IC;
     public event Action<ItemWeapon> OnRefreshWeapon;
     private void Awake() {
         entity = GetComponent<Entity>();
-        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
+        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<TaskManager>();
         IC = (ItemCollection)FindObjectOfType(typeof(ItemCollection));
         IC.OnItemCollectionInitialized += IC_OnItemCollectionInitialized;
     }
@@ -60,5 +60,6 @@ public class EntityWeapon : MonoBehaviour
         e.GetComponent<EntityHealth>()?.RecieveDamage((int)(weapon.MeleeDamage * meleeCoef+ weapon.RangeDamage * rangeCoef+ weapon.FieldDamage * fieldCoef), entity);
         
     }
+    public ItemData WeaponData => weapon?.ItData;
     
 }

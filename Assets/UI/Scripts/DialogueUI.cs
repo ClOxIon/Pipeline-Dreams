@@ -8,14 +8,13 @@ using Yarn.Unity;
 
 public class DialogueUI : MonoBehaviour
 {
-    
-    [SerializeField] GameObject DialoguePanel;
+
+    PanelUI p;
     [SerializeField] int FOVDialogue;
     [SerializeField] int FOVNormal;
     [SerializeField] Text TitleText;
     [SerializeField] Text DescriptionText;
     [Range(0,1)][SerializeField] float LerpSpeed;
-    PlayerInputBroadcaster PC;
     EntityManager EM;
     Camera FrontCam;
     MapManager mManager;
@@ -23,10 +22,18 @@ public class DialogueUI : MonoBehaviour
     bool isMoving = true;
     // Start is called before the first frame update
     private void Awake() {
-        PC = FindObjectOfType<PlayerInputBroadcaster>();
+        p = GetComponent<PanelUI>();
+        p.OnVisibilityChange += P_OnVisibilityChange;
         EM = FindObjectOfType<EntityManager>();
         mManager = FindObjectOfType<MapManager>();
         FrontCam = Camera.main;
+    }
+
+    private void P_OnVisibilityChange(bool obj) {
+        if (obj)
+            ShowDialogue();
+        else
+            HideDialogue();
     }
 
     // Update is called once per frame
@@ -66,19 +73,17 @@ public class DialogueUI : MonoBehaviour
     public void HideDialogue() {
         isMoving = true;
         visible = false;
-        PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, true);
+        
         FindObjectOfType<DialogueRunner>()?.Stop();
-        DialoguePanel.SetActive(false);
     }
     public void ShowDialogue() {
         isMoving = true;
         visible = true;
-        PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
+        
 
 
 
-
-        DialoguePanel.SetActive(visible);
+        
         
             var e = EM.FindEntityInLine(Util.LHQToFace(EM.Player.IdealRotation), EM.Player);
             if (e != null)

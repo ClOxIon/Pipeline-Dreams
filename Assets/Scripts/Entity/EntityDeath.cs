@@ -12,7 +12,7 @@ public class EntityDeath : MonoBehaviour
     void Death() {
         OnEntityDeath?.Invoke(GetComponent<Entity>());
         GetComponent<Entity>().IsActive = false;
-        Destroy(gameObject);
+        GetComponent<EntityAnimator>().InvokeAnimation("Death", true);
     }
 
     // Start is called before the first frame update

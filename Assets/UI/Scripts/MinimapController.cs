@@ -12,7 +12,7 @@ public class MinimapController : MonoBehaviour
     GameObject minimapPlayerMarker;
     MapManager mManager;
     EntityManager EM;
-    ClockManager CM;
+    TaskManager CM;
     Entity player;
     Quaternion offset = Quaternion.Euler(0,0,0);
     List<GameObject> RenderedObjects = new List<GameObject>();
@@ -20,7 +20,7 @@ public class MinimapController : MonoBehaviour
         mManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<MapManager>();
         EM = mManager.GetComponent<EntityManager>();
         EM.OnPlayerInitPosition += Render;
-        CM = mManager.GetComponent<ClockManager>();
+        CM = mManager.GetComponent<TaskManager>();
         CM.OnTaskEnd += Render;
         minimapPlayerMarker = Instantiate(playerPrefab, gameObject.transform,false);
     }

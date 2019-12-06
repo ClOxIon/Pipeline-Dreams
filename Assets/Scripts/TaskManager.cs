@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class ClockManager : MonoBehaviour
+public class TaskManager : MonoBehaviour
 {
 
     PlayerInputBroadcaster PC;
@@ -55,7 +55,7 @@ public class ClockManager : MonoBehaviour
     */
 
     IEnumerator RunTasks() {
-        PC.SetPlayerInputEnabled(PlayerInputFlag.CLOCKMANAGER,false);
+        PC.SetPlayerInputEnabled(PlayerInputFlag.TASKMANAGER,false);
         /*
         TaskEndFlag = new bool[ImmediateTasks.Count];
         var Tasks = new List<IClockTask>(ImmediateTasks);
@@ -109,7 +109,7 @@ public class ClockManager : MonoBehaviour
 
         //ImmediateTasks.Clear();
         SequentialTasks.Clear();
-        PC.SetPlayerInputEnabled(PlayerInputFlag.CLOCKMANAGER, true);
+        PC.SetPlayerInputEnabled(PlayerInputFlag.TASKMANAGER, true);
     }
     IEnumerator RunTaskAndRaiseFlag(IClockTask f, int i) {
         yield return f.Run();

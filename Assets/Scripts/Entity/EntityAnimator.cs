@@ -7,6 +7,7 @@ public class EntityAnimator : MonoBehaviour
 {
     Animator an;
     public event Action<string, bool> OnAnimate;
+    public Action OnDeathClipExit;
     private void Awake() {
         an = GetComponent<Animator>();
         

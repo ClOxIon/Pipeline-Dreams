@@ -8,13 +8,13 @@ public class ClockUI : MonoBehaviour
     [SerializeField]Image Fill;
     [SerializeField]GameObject Needle;
     [SerializeField] GameObject Hourglass;
-    ClockManager CM;
+    TaskManager CM;
     float targetPos = 0;
     float currentPos = 0;
     bool enemyTurnTrigger = false;
     [Range(0,1000)][SerializeField] float speed;
     private void Awake() {
-        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
+        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<TaskManager>();
         CM.OnClockModified += (f) => { targetPos = f ;};
         //CM.OnPlayerTurnEnd += () => { Hourglass.SetActive(true); Fill.enabled = false; Needle.SetActive(false); };
         //Hourglass.GetComponent<Animator>().Play("HourglassRotation", -1, 0f);

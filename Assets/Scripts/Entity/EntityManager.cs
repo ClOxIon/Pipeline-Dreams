@@ -27,7 +27,7 @@ public class EntityManager : MonoBehaviour
     }
     private void Awake() {
         mManager = GetComponent<MapManager>();
-        GetComponent<ClockManager>().OnClockModified += (f)=> { while (f - spawntimer >= 100) { SpawnRandomEnemy(); spawntimer += 100; } };
+        GetComponent<TaskManager>().OnClockModified += (f)=> { while (f - spawntimer >= 100) { SpawnRandomEnemy(); spawntimer += 100; } };
         GetComponent<MapManager>().OnMapCreateComplete += ()=> { InitPlayerPosition(); InitEntities(); };
         GetComponent<MapManager>().OnMapLoadComplete += () => { LoadPlayer(); LoadEntities(); };
         

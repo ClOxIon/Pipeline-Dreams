@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class UIPanelController : MonoBehaviour
 {
     [SerializeField] GameObject HUD;
-    [SerializeField]DialogueUI DUI;
-    [SerializeField] ItemPanelUI IUI;
-    [SerializeField] InstructionPanelUI OUI;
-    [SerializeField] MapPanelUI MUI;
+    [SerializeField] PanelUI DUI;
+    [SerializeField] PanelUI IUI;
+    [SerializeField] PanelUI OUI;
+    [SerializeField] PanelUI MUI;
     PlayerInput PI;
     PlayerInputBroadcaster PC;
     private void Awake() {

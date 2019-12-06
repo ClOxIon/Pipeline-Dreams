@@ -7,13 +7,13 @@ public class EntityMove : MonoBehaviour
 {
     public float SpeedModifier = 1;
     Entity entity;
-    ClockManager CM;
+    TaskManager CM;
     PlayerMove PC;
     MapManager mManager;
     EntityManager EM;
     private void Awake() {
         entity = GetComponent<Entity>();
-        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
+        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<TaskManager>();
         mManager = CM.GetComponent<MapManager>();
         PC = CM.GetComponent<PlayerMove>();
         EM = CM.GetComponent<EntityManager>();

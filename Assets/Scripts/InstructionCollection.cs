@@ -9,10 +9,10 @@ public class InstructionCollection : MonoBehaviour {
     [SerializeField]public InstructionDataset DataContainer;
     public List<Instruction> Instructions = new List<Instruction>();
     int MaxInstruction = 6;
-    ClockManager CM;
+    TaskManager CM;
     EntityManager EM;
     private void Awake() {
-        CM = FindObjectOfType<ClockManager>();
+        CM = FindObjectOfType<TaskManager>();
         EM = FindObjectOfType<EntityManager>();
         FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);
     }

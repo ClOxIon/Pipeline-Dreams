@@ -6,7 +6,7 @@ public abstract class Instruction {
     public InstructionData OpData;
     protected PipelineController PC;
     EntityManager EM;
-    ClockManager CM;
+    TaskManager CM;
     Entity Player;
     public string Variant;
     List<Command> Commands;
@@ -38,7 +38,7 @@ public abstract class Instruction {
     }
     public Instruction() {
         EM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>();
-        CM = EM.GetComponent<ClockManager>();
+        CM = EM.GetComponent<TaskManager>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         PC = GameObject.FindGameObjectWithTag("Pipeline").GetComponent<PipelineController>();
     }

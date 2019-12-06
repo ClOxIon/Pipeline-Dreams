@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item {
     public ItemData ItData;
     public event Action OnRemove;
-    protected ClockManager CM;
+    protected TaskManager CM;
     
     public Item() {
        
@@ -28,7 +28,7 @@ public class Item {
         ItData = data;
         ItData.ItemActions = ItemActions;
         ItData.DefaultAction = DefaultAction;
-        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
+        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<TaskManager>();
     }
     public virtual void EffectByTime(float time) { }
     /// <summary>
@@ -108,23 +108,18 @@ public class ItemCollection : MonoBehaviour
     public event Action OnItemCollectionInitialized;
     public event Action<Item[]> OnRefreshItems;
     public event Action<int> OnChangeItemSlotAvailability;
-    InstructionCollection OC;
     //[SerializeField]ItemPromptUI ItemDestroyPrompt;
     [SerializeField]ItemDataset DataContainer;
     List<Item> Items = new List<Item>();
     int MaximumItemCount = 10;
     int ActivatedSlots;
     
-    PlayerMove PC;
-    ClockManager CM;
     private void Awake() {
         
         for(int i=0;i<MaximumItemCount;i++)
         Items.Add(null);
-        PC = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerMove>();
-        CM = PC.GetComponent<ClockManager>();
         //CM.OnClockModified += CM_OnClockModified;
-        OC = GameObject.FindGameObjectWithTag("OperatorRack").GetComponent<InstructionCollection>();
+        
         
     }
     
@@ -154,7 +149,10 @@ public class ItemCollection : MonoBehaviour
                 AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name));
         }
             AddedItemData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
-       
+        if (AddedItemData == null) {
+            Debug.LogError("ItemCollection.Additem(): Cannot find item named "+name);
+            return;
+        }
         AddedItem.Obtain(AddedItemData);
         PushItem(AddedItem);
 
@@ -224,7 +222,9 @@ public class ItemCollection : MonoBehaviour
         OnRefreshItems?.Invoke(Items.ToArray());
     }
     public ItemData GetItemInfo(int index) {
-        return Items[index].ItData;
+        if(index<Items.Count)
+        return Items[index]?.ItData;
+        return null;
     }
 
     internal void InvokeUIRefresh() {
@@ -235,5 +235,11 @@ public class ItemCollection : MonoBehaviour
     internal void InvokeItemAction(int itemIndex, string actionName) {
         if (itemIndex < Items.Count && Items[itemIndex] != null)
             Items[itemIndex].InvokeItemAction(actionName);
+    }
+    internal void SwapItem(int index1, int index2) {
+        var tmp = Items[index1];
+        Items[index1] = Items[index2];
+        Items[index2] = tmp;
+        InvokeUIRefresh();
     }
 }

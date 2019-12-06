@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ItemDefaultActionUI : MonoBehaviour {
-    public event Action<int> OnButtonPressed;
     ItemCollection IC;
+    ItemCollectionUI ICU;
     private void Awake() {
         FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);
         IC = FindObjectOfType<ItemCollection>();
+        ICU = GetComponent<ItemCollectionUI>();
+        ICU.OnItemUIClick += (x)=>OnItemUse(x);
     }
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class ItemDefaultActionUI : MonoBehaviour {
         
     }
 
-    void OnItemSlot(object value) {
+    void OnItemUse(object value) {
         var i = (int)value;
         IC.InvokeItemAction(i, "DEFAULT");
 

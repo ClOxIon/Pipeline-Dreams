@@ -15,53 +15,49 @@ MonoBehaviour:
   Dataset:
   - Name: Spider
     Description: It sucks.
+    Icon: {fileID: 0}
+    Parameters:
+    - Name: Loot
+      Value: SpeedUp
+    - Name: LootChance
+      Value: 1
     MaxHP: 5
     Damage: 5
-    Value1: 0
-    Value2: 0
     Type: 1
-    HasDialogue: 0
-    Icon: {fileID: 0}
     Prefab: {fileID: 8056400577095368730, guid: 52ada8c7a2fc2ae4b9feac8f69b0bed3,
       type: 3}
-    loot: SpeedUp
-    lootChance: 1
   - Name: Green-eyed Spider
     Description: It sucks a bit more.
+    Icon: {fileID: 0}
+    Parameters:
+    - Name: Loot
+      Value: SpeedUp
+    - Name: LootChance
+      Value: 1
     MaxHP: 8
     Damage: 3
-    Value1: 0
-    Value2: 0
     Type: 1
-    HasDialogue: 0
-    Icon: {fileID: 0}
     Prefab: {fileID: 1665931868677219845, guid: 9e9cfae9395853a4e9cd27dfe5c8e663,
       type: 3}
-    loot: SpeedUp
-    lootChance: 1
   - Name: Blue-eyed Spider
     Description: Ouch!
+    Icon: {fileID: 0}
+    Parameters:
+    - Name: Loot
+      Value: SpeedUp
+    - Name: LootChance
+      Value: 1
     MaxHP: 5
     Damage: 20
-    Value1: 0
-    Value2: 0
     Type: 1
-    HasDialogue: 0
-    Icon: {fileID: 0}
     Prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
       type: 3}
-    loot: SpeedUp
-    lootChance: 1
   - Name: Player
     Description: Who are you?
+    Icon: {fileID: 0}
+    Parameters: []
     MaxHP: 250
     Damage: 0
-    Value1: 0
-    Value2: 0
     Type: 0
-    HasDialogue: 0
-    Icon: {fileID: 0}
     Prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
       type: 3}
-    loot: 
-    lootChance: 0

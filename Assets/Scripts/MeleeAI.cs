@@ -13,7 +13,7 @@ public enum EntityAIState {
 public abstract class EntityAI : MonoBehaviour {
     public EntityEmotion emotion { get; protected set; }
     protected Entity entity;
-    protected ClockManager CM;
+    protected TaskManager CM;
     protected MapManager mManager;
     protected EntityManager EM;
     protected EntitySight ES;
@@ -29,7 +29,7 @@ public abstract class EntityAI : MonoBehaviour {
     protected void Awake() {
         entity = GetComponent<Entity>();
         ES = GetComponent<EntitySight>();
-        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
+        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<TaskManager>();
         mManager = CM.GetComponent<MapManager>();
         EM = CM.GetComponent<EntityManager>();
         

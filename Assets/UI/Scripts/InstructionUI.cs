@@ -50,6 +50,9 @@ public class InstructionUI : MonoBehaviour {
 
 
     }
-    
-    
+    public void AssignHotkeyUI(string keypath) {
+
+        Hotkey.text = keypath.Split('/')[1].Substring(0, 1).ToUpper();
+    }
+
 }

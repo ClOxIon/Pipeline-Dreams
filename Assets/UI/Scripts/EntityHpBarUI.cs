@@ -10,6 +10,7 @@ public class EntityHpBarUI : MonoBehaviour {
         var esb = GetComponentInParent<EntityStatusBar>();
         esb.OnInit += () => {
             esb.entity.GetComponent<EntityHealth>().OnHpModified += (v) => {
+                v = Mathf.Clamp01(v);
                 var s = HPBarFull.rect; HPBar.sizeDelta = new Vector2(s.width * v, 0);
                 HPBarBackground.sizeDelta = new Vector2(s.width * (1 - v), 0); HPBar.gameObject.SetActive(v != 1);
             };

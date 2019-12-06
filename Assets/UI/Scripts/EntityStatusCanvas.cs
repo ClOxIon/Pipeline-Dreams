@@ -8,13 +8,13 @@ public class EntityStatusCanvas : MonoBehaviour
     List<EntityStatusBar> ESBList = new List<EntityStatusBar>();
     EntityManager EM;
     PlayerMove PC;
-    ClockManager CM;
+    TaskManager CM;
     MapManager mManager;
     // Start is called before the first frame update
     private void Awake() {
         EM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EntityManager>();
         PC = EM.GetComponent<PlayerMove>();
-        CM = EM.GetComponent<ClockManager>();
+        CM = EM.GetComponent<TaskManager>();
         mManager = EM.GetComponent<MapManager>();
         EM.OnNewEntitySpawn += (e) => {
             var obj = Instantiate(ESBPrefab,transform,true);
@@ -25,10 +25,11 @@ public class EntityStatusCanvas : MonoBehaviour
 
         };
         EM.OnEntityDeath += (e) => {
-            var obj = ESBList.Find((x) => { return x.entity == e; });
-            ESBList.Remove(obj);
-            Destroy(obj.gameObject);
-
+            e.GetComponent<EntityAnimator>().OnDeathClipExit += () => {
+                var obj = ESBList.Find((x) => { return x.entity == e; });
+                ESBList.Remove(obj);
+                Destroy(obj.gameObject);
+            };
 
         };
         

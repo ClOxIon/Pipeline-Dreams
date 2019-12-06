@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Buff {
     public BuffData BuData;
-    protected ClockManager CM;
+    protected TaskManager CM;
     protected Entity Subject;
     public event Action OnDestroy;
     public Buff(Entity subject, BuffData buffData) {
         Subject = subject;
         BuData = buffData;
-        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<ClockManager>();
+        CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<TaskManager>();
         CM.OnClockModified += EffectByTime;
         
     }
@@ -50,13 +50,13 @@ public class EntityBuff : MonoBehaviour
     BuffDataset DataContainer;
     List<Buff> Buffs;
     EntityManager EM;
-    ClockManager CM;
+    TaskManager CM;
     public event Action<Buff[]> OnRefreshBuffs;
     private void Awake() {
         Buffs = new List<Buff>();
         EM = (EntityManager)FindObjectOfType(typeof(EntityManager));
 
-        CM = (ClockManager)FindObjectOfType(typeof(ClockManager));
+        CM = (TaskManager)FindObjectOfType(typeof(TaskManager));
         
         CM.OnClockModified += CM_OnClockModified;
         DataContainer = EM.BDataContainer;

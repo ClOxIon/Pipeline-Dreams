@@ -32,7 +32,7 @@ public class UIDirectionInform : MonoBehaviour
         var CM = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerMove>();
        
 
-        var clock = CM.GetComponent<ClockManager>();
+        var clock = CM.GetComponent<TaskManager>();
         clock.OnTaskEnd += UpdateUIInfo;
         
         EM = CM.GetComponent<EntityManager>();

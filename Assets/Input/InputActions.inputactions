@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ItemSlot",
+                    "name": "ItemUse",
                     "type": "Button",
                     "id": "b7baef12-09f9-4ee9-ac23-9543eb6eead3",
                     "expectedControlType": "Button",
@@ -60,9 +60,28 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "WeaponUse",
+                    "type": "Button",
+                    "id": "52fa3a22-7f33-44d1-ac7e-0955a11e186a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "9b4719f3-2cc2-4ad9-ac57-5e87677afc13",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "ButtonIndexer",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "",
                     "id": "055bd3b6-2c9b-46f6-921d-35f5df4130f9",
@@ -70,7 +89,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=1)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -81,7 +100,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=2)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -92,7 +111,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=3)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -103,7 +122,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=4)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -114,7 +133,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=5)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -125,7 +144,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=6)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -136,7 +155,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=7)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,7 +166,7 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=8)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -301,18 +320,18 @@
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=9)",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "9b4719f3-2cc2-4ad9-ac57-5e87677afc13",
-                    "path": "<Keyboard>/0",
+                    "id": "4b94e7e1-d4e7-4d07-b28f-5fadaa80c569",
+                    "path": "<Keyboard>/backquote",
                     "interactions": "",
-                    "processors": "ButtonIndexer",
-                    "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "ItemSlot",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "WeaponUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -327,6 +346,14 @@
                     "type": "Value",
                     "id": "21a0d5eb-b5b8-44c0-840c-0d92504df067",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ItemSelect",
+                    "type": "Button",
+                    "id": "5ff768d3-d1e6-42f7-a58e-df99358da674",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -406,6 +433,14 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "a87a7d1e-616c-4754-afcb-cc09433ddd2e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "WeaponSelect",
+                    "type": "Button",
+                    "id": "d0e5b6f4-0db8-4ecd-b992-9cd33cb6d06b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
@@ -530,6 +565,127 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cc34dcd-9909-4130-97b7-c08a4fa4788a",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "ButtonIndexer",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d70778a-a166-4b96-b706-2849bf91ea2c",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=1)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa2462f9-8d2c-4a5a-9222-c359ec84add0",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=2)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4669641-9756-4660-9b10-d364dc655657",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=3)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e33da98-8ff8-4be9-8c07-5bc2f74460dd",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=4)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b6c9420-7910-4d44-b4d0-aedf957682f0",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=5)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc45cce3-67f3-4307-a38f-c51b0eb1adfe",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=6)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1ec228f-b196-4eed-9a0f-8040add16d35",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=7)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36d7a582-e5a6-4c10-85d3-b3701efe2c81",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=8)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c70a764-61d6-4309-9264-9d5bb0cdebc3",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=9)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "ItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e4d8a04-5c5f-4d37-9ad8-ac1ff034ced0",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "WeaponSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

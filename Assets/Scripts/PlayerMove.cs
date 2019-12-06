@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour {
     /// </summary>
     public event Action<Command> OnCommandKeyPressed;
     MapManager mManager;
-    ClockManager CM;
+    TaskManager CM;
     EntityManager EM;
     Entity Player;
 
@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour {
     private void Awake() {
         EM = GetComponent<EntityManager>();
         mManager = GetComponent<MapManager>();
-        CM = GetComponent<ClockManager>();
+        CM = GetComponent<TaskManager>();
         FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
