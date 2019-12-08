@@ -87,11 +87,9 @@ public class ItemCollectionInfoUI : MonoBehaviour
         if (SwapMode) {
             StopSwap();
             IC.SwapItem(SelectedItemIndex, i);
-            return;
         } 
             SelectedItemData = IC.GetItemInfo(i);
-        if (SelectedItemData == null)
-            return;
+        
             SelectedItemIndex = i;
             
             OnItemSelected?.Invoke(i);  

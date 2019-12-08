@@ -175,7 +175,7 @@ public class ItemCollection : MonoBehaviour
             for (int i = ActivatedSlots; i < Items.Count; i++) {
                 Items[i]?.Remove();
             }
-            Items.RemoveRange(after, Items.Count - after - 1);
+            Items.RemoveRange(after, Items.Count - after);
         }
         OnChangeItemSlotAvailability?.Invoke(after);
         OnRefreshItems(Items.ToArray());
