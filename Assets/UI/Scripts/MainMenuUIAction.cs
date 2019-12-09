@@ -1,26 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MainMenuUIAction : MonoBehaviour
-{
-    [SerializeField] GameObject ContinueButton;
-    // Start is called before the first frame update
-    void Start()
-    {
-        ContinueButton.SetActive(GameManager.Instance.IsSaveFileExist());
-    }
+namespace PipelineDreams {
+    public class MainMenuUIAction : MonoBehaviour {
+        [SerializeField] GameObject ContinueButton;
+        // Start is called before the first frame update
+        void Start() {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void StartButtonClicked() {
-        GameManager.Instance.StartNewGame();
-    }
-    public void ContinueButtonClicked() {
-        GameManager.Instance.LoadGame();
+        }
 
+        // Update is called once per frame
+        void Update() {
+
+        }
+        public void StartButtonClicked() {
+
+        }
+        public void ContinueButtonClicked() {
+
+        }
     }
 }

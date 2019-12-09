@@ -2,12 +2,12 @@
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-
-[CustomEditor(typeof(SceneObjectManager))]
+using PipelineDreams;
+[CustomEditor(typeof(TileContainer))]
 public class SceneEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        SceneObjectManager scene = target as SceneObjectManager;
+        TileContainer scene = target as TileContainer;
     }
 }

@@ -1,15 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "TiData", menuName = "ScriptableObjects/TileData", order = 4)]
-public class TileDataset : ScriptableObject {
 
-    public List<TileData> Dataset;
+namespace PipelineDreams {
+    [CreateAssetMenu(fileName = "TiData", menuName = "ScriptableObjects/TileData", order = 4)]
+    public class TileDataset : ScriptableObject {
 
-}
-[System.Serializable]
-public class TileData : Data {
-    public Tile Type;
-    public SceneObject Prefab;
+        public List<TileData> Dataset;
 
+    }
+    [System.Serializable]
+    public class TileData : Data {
+        public Tile Type;
+        public TileObject Prefab;
+
+    }
 }

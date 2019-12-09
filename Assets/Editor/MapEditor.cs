@@ -2,8 +2,10 @@
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using PipelineDreams;
+using System.Collections.Generic;
 
-[CustomEditor(typeof(MapManager))]
+[CustomEditor(typeof(MapDataContainer))]
 public class MapEditor : Editor
 {
     //SerializedProperty damageProp;
@@ -15,7 +17,7 @@ public class MapEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        MapManager map = target as MapManager;
+        MapDataContainer map = target as MapDataContainer;
         if (GUILayout.Button("Generate Map"))
         {
             map.CreateNewMap();

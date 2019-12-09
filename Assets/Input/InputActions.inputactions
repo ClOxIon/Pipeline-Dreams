@@ -444,6 +444,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "InstructionSelect",
+                    "type": "Button",
+                    "id": "7f9d4535-75c0-427e-b16e-47a718e2f3d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -686,6 +694,94 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "WeaponSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ce19ceb-9e6a-47de-92ac-921ab62f9779",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "ButtonIndexer",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7d07d29-bee5-4470-a5de-94e87905f466",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=1)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b742265a-b442-4820-b412-b85b245f24b0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=2)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43d9446f-974b-4d35-aba5-c18ce3ac1c05",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=3)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dce54275-82fb-4e86-8c5c-395a28ff0bd5",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=4)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f093b45-4ae1-4769-ba7c-4148f1ad71fe",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=5)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8c827f1-18b8-46fa-b93d-f7ec3fd4703c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=6)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f418d64-7776-4999-bd60-1b0f30712fc1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "ButtonIndexer(Index=7)",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "InstructionSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
