@@ -30,6 +30,7 @@ public enum Tile
 }
 public struct MapBundle
 {
+    public Util.Graph<MapBoxel> graph;
     //saves states of six direction(x+,x-,y+,y-,z+,z-) at every point.
     public MapBoxel[,,] v;
 
