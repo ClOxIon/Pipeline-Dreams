@@ -2,48 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PipelineDreams {
-    public class Buff {
-        public BuffData BuData;
-        [SerializeField] protected TaskManager CM;
-        protected Entity Subject;
-        public event Action OnDestroy;
-        public Buff(Entity subject, BuffData buffData) {
-            Subject = subject;
-            BuData = buffData;
-
-            CM.OnClockModified += EffectByTime;
-
-        }
-        protected virtual void EffectByTime(float Time) {
-
-        }
-        public virtual void Destroy() {
-            OnDestroy?.Invoke();
-        }
-    }
-    public class BuffTargeted : Buff {
-        public BuffTargeted(Entity subject, BuffData buffData) : base(subject, buffData) {
-            Subject.GetComponent<EntityHealth>().DamageRecieveCoef *= 2f;
-        }
-        public override void Destroy() {
-            base.Destroy();
-
-            Subject.GetComponent<EntityHealth>().DamageRecieveCoef /= 2f;
-        }
-    }
-    public class TimedBuff : Buff {
-        public float TimeLeft { get; private set; }
-        protected float initialTime;
-        public TimedBuff(Entity subject, BuffData buffData) : base(subject, buffData) {
-            initialTime = CM.Clock;
-        }
-        protected override void EffectByTime(float Time) {
-            TimeLeft = initialTime + BuData.baseDuration - Time;
-            if (TimeLeft < 0)
-                Destroy();
-        }
-    }
+namespace PipelineDreams
+{
 
 
     public class EntityBuff : MonoBehaviour, IDataContainer<Buff> {
@@ -86,10 +46,29 @@ namespace PipelineDreams {
             Buffs.Add(AddedBuff);
             OnRefreshItems?.Invoke(Buffs.ToArray());
         }
+        /// <summary>
+        /// Return true when success.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool RemoveItem(string name) {
+            var b = Buffs.Find((x) => x.BuData.Name == "Buff" + name);
+            if (b == null)
+                return false;
+            b.Destroy();
+            Buffs.Remove(b);
+            return true;
+        }
+        public void Clear() {
+            foreach (var x in Buffs) {
+                x.Destroy();
+            }
+            Buffs.Clear();
+        }
 
 
         public void SwapItem(int index1, int index2) {
-            Debug.LogError("SwapItem Called at EntityBuff");
+            Debug.LogError("SwapItem Called at EntityBuff. This would be ignored.");
         }
 
         public void InvokeUIRefresh() {
@@ -102,16 +81,16 @@ namespace PipelineDreams {
 
         public Buff PopItem(int index) {
 
-            Debug.LogError("PopItem Called at EntityBuff");
+            Debug.LogError("PopItem Called at EntityBuff. This would be ignored.");
             return null;
         }
 
         public void PushItem(Buff item) {
-            Debug.LogError("PushItem Called at EntityBuff");
+            Debug.LogError("PushItem Called at EntityBuff. This would be ignored.");
         }
 
         public void ChangeActivatedSlots(int after) {
-            Debug.LogError("ChangeActivatedSlots Called at EntityBuff");
+            Debug.LogError("ChangeActivatedSlots Called at EntityBuff. This would be ignored.");
         }
     }
 }

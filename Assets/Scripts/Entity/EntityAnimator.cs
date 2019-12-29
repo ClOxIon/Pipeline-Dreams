@@ -18,8 +18,8 @@ namespace PipelineDreams {
             var x = GetComponent<EntityMove>();
             if (x != null)
             {
-                x.AddMoveTask(AnimateTranslation);
-                x.AddRotateTask(AnimateRotation);
+                x.SubscribeOnMove(AnimateTranslation);
+                x.SubscribeOnRotate(AnimateRotation);
             }
 
         }
@@ -34,6 +34,8 @@ namespace PipelineDreams {
         /// </summary>
         /// <returns></returns>
         bool IsSeenByPlayer() {
+            if(entity.Type==EntityType.PLAYER)
+                return true;
             bool flag = false;
             foreach (var x in EC.FindEntitiesOfType(EntityType.PLAYER))
                 flag |= x.GetComponent<EntitySight>().IsVisible(entity);

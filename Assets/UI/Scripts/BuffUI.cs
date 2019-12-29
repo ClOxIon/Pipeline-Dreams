@@ -31,8 +31,8 @@ namespace PipelineDreams {
             Icon.sprite = item.BuData.Icon;
             Icon.color = new Color(1, 1, 1, 0.7f);
             Icon.enabled = true;
-            if (typeof(Item) == typeof(TimedBuff))
-                Icon.fillAmount = ((TimedBuff)item).TimeLeft / item.BuData.baseDuration;
+            if (typeof(Item) == typeof(BuffWithDuration))
+                Icon.fillAmount = ((BuffWithDuration)item).TimeLeft / item.BuData.baseDuration;
         }
 
         public void SetVisible(bool b) {

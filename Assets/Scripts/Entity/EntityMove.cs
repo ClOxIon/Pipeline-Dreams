@@ -11,17 +11,17 @@ namespace PipelineDreams {
         EntityDataContainer EM;
         MapDataContainer mManager;
         List<Func<Vector3Int, Vector3Int, IEnumerator>> OnMove = new List<Func<Vector3Int, Vector3Int, IEnumerator>>();
-        public void AddMoveTask(Func<Vector3Int, Vector3Int, IEnumerator> x) {
+        public void SubscribeOnMove(Func<Vector3Int, Vector3Int, IEnumerator> x) {
             OnMove.Add(x);
         }
-        public void DelMoveTask(Func<Vector3Int, Vector3Int, IEnumerator> x) {
+        public void UnsubscribeOnMove(Func<Vector3Int, Vector3Int, IEnumerator> x) {
             OnMove.Remove(x);
         }
         List<Func<Quaternion, Quaternion, IEnumerator>> OnRotate = new List<Func<Quaternion, Quaternion, IEnumerator>>();
-        public void AddRotateTask(Func<Quaternion, Quaternion, IEnumerator> x) {
+        public void SubscribeOnRotate(Func<Quaternion, Quaternion, IEnumerator> x) {
             OnRotate.Add(x);
         }
-        public void DelRotateTask(Func<Quaternion, Quaternion, IEnumerator> x) {
+        public void UnsubscribeOnRotate(Func<Quaternion, Quaternion, IEnumerator> x) {
             OnRotate.Remove(x);
         }
 

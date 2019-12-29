@@ -9,6 +9,7 @@ namespace PipelineDreams
 
         public override IClockTask Operation(float startClock)
         {
+            Subject.GetComponent<EntityBuff>().AddItem("InstManipulate");
             return new DirectionalFieldInstructionTask(){ Op = this, StartClock = startClock, Priority = Priority.PLAYER };
         }
     }
@@ -28,9 +29,9 @@ namespace PipelineDreams
             float Duration = 1f;
             public IEnumerator Run()
             {
-                var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Player.IdealRotation), Op.Player);
+                var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject);
                 if (_entity != null)
-                    Op.Player.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, 0, Op.OpData.fieldCoef, Accuracy);
+                    Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, 0, Op.OpData.fieldCoef, Accuracy);
                 if (Op.gun != null)
                     Op.gun.trigger = true;
                 float time = 0;

@@ -8,10 +8,14 @@ namespace PipelineDreams
         public InstructionData OpData;
         protected CommandsContainer PC;
         EntityDataContainer EM;
-        Entity Player;
+
+        /// <summary>
+        /// The entity which performs this instruction
+        /// </summary>
+        protected Entity Subject;
         public string Variant;
         List<Command> Commands;
-        [SerializeField] GunController gun;
+        GunController gun;
         public abstract IClockTask Operation(float startClock);
         /// <summary>
         /// The most basic example of melee instruction task.
@@ -26,9 +30,9 @@ namespace PipelineDreams
             /// </summary>
             float Duration = 1f;
             public IEnumerator Run() {
-                var _entity = Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.Player.IdealRotation), Op.Player);
-                if (_entity != null && _entity == Op.EM.FindEntityInLine(Util.LHQToFace(Op.Player.IdealRotation), Op.Player))
-                    Op.Player.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, Op.OpData.meleeCoef, 0, 0, Accuracy);
+                var _entity = Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.Subject.IdealRotation), Op.Subject);
+                if (_entity != null && _entity == Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject))
+                    Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, Op.OpData.meleeCoef, 0, 0, Accuracy);
                 if (Op.gun != null)
                     Op.gun.trigger = true;
                 float time = 0;
@@ -57,9 +61,9 @@ namespace PipelineDreams
             float Duration = 1f;
             public IEnumerator Run()
             {
-                var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Player.IdealRotation), Op.Player);
+                var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject);
                 if (_entity != null)
-                Op.Player.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, Op.OpData.rangeCoef, 0, Accuracy);
+                Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, Op.OpData.rangeCoef, 0, Accuracy);
                 if (Op.gun != null)
                     Op.gun.trigger = true;
                 float time = 0;
@@ -84,7 +88,7 @@ namespace PipelineDreams
         /// <param name="variant"></param>
         public Instruction(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) {
             EM = eM;
-            Player = player;
+            Subject = player;
             PC = pC;
             OpData = data;
             Variant = variant;

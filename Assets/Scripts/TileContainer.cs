@@ -76,7 +76,7 @@ namespace PipelineDreams {
             try {
                 var b = m[i, j, k];
             }
-            catch (IndexOutOfRangeException e) {
+            catch (IndexOutOfRangeException) {
 
                 return true;
             }
