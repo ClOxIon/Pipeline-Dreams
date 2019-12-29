@@ -9,15 +9,22 @@ namespace PipelineDreams {
         public event Action<Instruction[]> OnRefreshItems;
         public event Action<int> OnChangeItemSlotAvailability;
         //[SerializeField]InstructionPromptUI InstructionDestroyPrompt;
-        [SerializeField] InstructionDataset DataContainer;
-        [SerializeField] EntityDataContainer EM;
-        [SerializeField] CommandsContainer PC;
-        Entity Player;
-        List<Instruction> Instructions = new List<Instruction>();
-        TaskManager TM;
+        [SerializeField]InstructionDataset DataContainer;
+        [SerializeField]EntityDataContainer EM;
+        [SerializeField]CommandsContainer PC;
+        protected Entity Player;
+        protected List<Instruction> Instructions = new List<Instruction>();
+        protected TaskManager TM;
 
         int MaximumInstructionCount = 10;
         int ActivatedSlots;
+
+        public void UseInstructionByName(string name)
+        {
+            var inst = Instructions.Find((x) => x.OpData.Name == name);
+            if (inst != null)
+                TM.AddSequentialTask(inst.Operation(TM.Clock));
+        }
 
 
         public void Init(TaskManager tm, Entity player) {
@@ -33,7 +40,7 @@ namespace PipelineDreams {
 
         public void UseInstructionAt(int i) {
             if (Instructions.Count > i && Instructions[i] != null)
-                if (Instructions[i].CheckCommand()) {
+                if (Instructions[i].ReadCommand()) {
                     TM.AddSequentialTask(Instructions[i].Operation(TM.Clock));
                     Player.GetComponent<PlayerAI>().EntityClock += Instructions[i].OpData.Time * 12.5f;
 
@@ -53,21 +60,21 @@ namespace PipelineDreams {
             if (s.Length > 1)
                 variant = s[1];
 
-
-
-            if (typeof(Instruction).Namespace != null) {
-                if (Type.GetType(typeof(Instruction).Namespace + ".Instruction" + name0) != null)
-                    AddedInstruction = (Instruction)Activator.CreateInstance(Type.GetType(typeof(Instruction).Namespace + ".Instruction" + name0), EM, Player, PC);
-            } else {
-                if (Type.GetType("Instruction" + name0) != null)
-                    AddedInstruction = (Instruction)Activator.CreateInstance(Type.GetType("Instruction" + name0), EM, Player, PC);
-            }
             AddedInstructionData = DataContainer.Dataset.Find((x) => { return x.Name == name0; });
-            if (AddedInstructionData == null) {
+            if (AddedInstructionData == null)
+            {
                 Debug.LogError("InstructionCollection.AddInstruction(): Cannot find Instruction named " + name0);
                 return;
             }
-            AddedInstruction.Activate(AddedInstructionData, variant);
+
+            if (typeof(Instruction).Namespace != null) {
+                if (Type.GetType(typeof(Instruction).Namespace + ".Instruction" + name0) != null)
+                    AddedInstruction = (Instruction)Activator.CreateInstance(Type.GetType(typeof(Instruction).Namespace + ".Instruction" + name0), EM, Player, PC, AddedInstructionData, variant);
+            } else {
+                if (Type.GetType("Instruction" + name0) != null)
+                    AddedInstruction = (Instruction)Activator.CreateInstance(Type.GetType("Instruction" + name0), EM, Player, PC, AddedInstructionData, variant);
+            }
+            
             PushItem(AddedInstruction);
 
         }

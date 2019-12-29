@@ -11,7 +11,7 @@ namespace PipelineDreams {
         Texture m_Texture;
 
         // make it such that unity will trigger our ui element to redraw whenever we change the texture in the inspector
-        public Texture texture {
+        public Texture Texture {
             get {
                 return m_Texture;
             }

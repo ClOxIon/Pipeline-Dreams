@@ -19,11 +19,6 @@ namespace PipelineDreams {
         public event Action<int, int> OnDelCommandAt;
         public event Action OnFlush;
         public event Action<int> OnLengthChange;
-        // Start is called before the first frame update
-        private void Awake() {
-
-
-        }
         public void Init(PlayerMove pm) {
             PM = pm;
             PM.OnCommandKeyPressed += PushCommand;

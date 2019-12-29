@@ -2,61 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PipelineDreams {
-
-    /// <summary>
-    /// This item is not used anymore.
-    /// </summary>
-    public class ItemDisk : Item {
-        public event Action<string> OnDecode;
-        public float InitTime;
-        public float decode;
-        public string Opdata;
-
-        public ItemDisk(Entity p, TaskManager cM) : base(p, cM) {
-
-        }
-        public override void EffectByTime(float time) {
-            base.EffectByTime(time);
-            /*
-            if (Slot == ItemSlot.Analyzer1 || Slot == ItemSlot.Analyzer2) {
-                decode = time-InitTime; if (decode >= ItData.value1) { OnDecode?.Invoke(Opdata); Destroy(); }
-            }
-            */
-        }
-
-
-    }
-    /// <summary>
-    /// Debug Item.
-    /// </summary>
-    public class ItemSpeedUp : Item {
-
-        EntityMove PlayerMove;
-        public ItemSpeedUp(Entity p, TaskManager cM) : base(p, cM) {
-
-        }
-
-        public override void Obtain(ItemData data) {
-            base.Obtain(data);
-
-            PlayerMove = Player.GetComponent<EntityMove>();
-            PlayerMove.SpeedModifier /= 1.5f;
-        }
-        public override void Remove() {
-            base.Remove();
-            PlayerMove.SpeedModifier *= 1.5f;
-
-
-        }
-
-
-    }
-
-    public class ItemWeaponRebar : ItemWeapon {
-        public ItemWeaponRebar(Entity player, TaskManager cM) : base(player, cM) {
-        }
-    }
+namespace PipelineDreams
+{
 
     [CreateAssetMenu(fileName = "ItemContainer", menuName = "ScriptableObjects/Manager/ItemContainer")]
     public class ItemContainer : ScriptableObject, IDataContainer<Item> {
@@ -71,12 +18,6 @@ namespace PipelineDreams {
         int MaximumItemCount = 10;
         int ActivatedSlots;
 
-        private void Awake() {
-
-            //CM.OnClockModified += CM_OnClockModified;
-
-
-        }
         public void Init(TaskManager tm, Entity player) {
             TM = tm;
             Player = player;
@@ -96,21 +37,21 @@ namespace PipelineDreams {
             var Disktest = name.Split(' ')[0];
             Item AddedItem;
             ItemData AddedItemData;
-
-            AddedItem = new Item(Player, TM);//If the item class for the specific item is not defined, we will just use the base class.
-            if (typeof(Item).Namespace != null) {
-                if (Type.GetType(typeof(Item).Namespace + ".Item" + name) != null)
-                    AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name), Player, TM);
-            } else {
-                if (Type.GetType("Item" + name) != null)
-                    AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name), Player, TM);
-            }
             AddedItemData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
-            if (AddedItemData == null) {
+            if (AddedItemData == null)
+            {
                 Debug.LogError("ItemCollection.Additem(): Cannot find item named " + name);
                 return;
             }
-            AddedItem.Obtain(AddedItemData);
+            AddedItem = new Item(Player, TM, AddedItemData);//If the item class for the specific item is not defined, we will just use the base class.
+            if (typeof(Item).Namespace != null) {
+                if (Type.GetType(typeof(Item).Namespace + ".Item" + name) != null)
+                    AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name), Player, TM, AddedItemData);
+            } else {
+                if (Type.GetType("Item" + name) != null)
+                    AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name), Player, TM, AddedItemData);
+            }
+            
             PushItem(AddedItem);
 
         }
@@ -174,6 +115,8 @@ namespace PipelineDreams {
                 SetRemoveCallback(item, i);
 
             }
+
+            item.Obtain();
             OnRefreshItems?.Invoke(Items.ToArray());
         }
         public Data GetItemInfo(int index) {

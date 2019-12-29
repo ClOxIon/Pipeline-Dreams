@@ -7,9 +7,7 @@ namespace PipelineDreams {
     public class TileContainer : ScriptableObject {
         MapDataContainer mManager;
         [SerializeField] TileDataset Dataset;
-        public const float worldscale = 10;
         public const int sightscale = 12;
-        public const int despawnscale = 9;
 
         bool[,,] GridVisibility = new bool[2 * sightscale + 1, 2 * sightscale + 1, 2 * sightscale + 1];
         List<TileObject> SceneObjects;

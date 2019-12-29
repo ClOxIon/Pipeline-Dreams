@@ -267,7 +267,7 @@ MonoBehaviour:
   Time2: {fileID: 751240017194074742}
   Time3: {fileID: 751240016566740218}
   Time4: {fileID: 751240016591565487}
-  Direction: {fileID: 751240017140177772}
+  Direction: {fileID: 0}
   Hotkey: {fileID: 751240016478313493}
   OpName: {fileID: 3207260568584877016}
 --- !u!114 &6453222628651983462

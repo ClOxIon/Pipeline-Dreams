@@ -2,7 +2,7 @@
 
 namespace PipelineDreams {
     public class ItemWeapon : Item {
-        public ItemWeapon(Entity player, TaskManager cM) : base(player, cM) {
+        public ItemWeapon(Entity player, TaskManager cM, ItemData data) : base(player, cM, data) {
         }
 
         public override string[] ItemActions => base.ItemActions.Concat(new string[] { "Equip", "UnEquip" }).ToArray();
@@ -12,11 +12,11 @@ namespace PipelineDreams {
 
         public int FieldDamage { get; protected set; }
         // Start is called before the first frame update
-        public override void Obtain(ItemData data) {
-            base.Obtain(data);
-            MeleeDamage = data.FindParameterInt("MeleeDamage");
-            RangeDamage = data.FindParameterInt("RangeDamage");
-            FieldDamage = data.FindParameterInt("FieldDamage");
+        public override void Obtain() {
+            base.Obtain();
+            MeleeDamage = ItData.FindParameterInt("MeleeDamage");
+            RangeDamage = ItData.FindParameterInt("RangeDamage");
+            FieldDamage = ItData.FindParameterInt("FieldDamage");
         }
         /// <summary>
         /// Called when the weapon is equipped.

@@ -12,16 +12,15 @@ namespace PipelineDreams {
 
     }
     public abstract class EntityAI : MonoBehaviour {
-        public EntityEmotion emotion { get; protected set; }
+        public EntityEmotion Emotion { get; protected set; }
         protected Entity entity;
-        [SerializeField] protected TaskManager CM;
-        [SerializeField] protected MapDataContainer mManager;
-        [SerializeField] protected EntityDataContainer EM;
-        [SerializeField] protected Entity Player;
+        protected TaskManager CM;
+        protected MapDataContainer mManager;
+        protected EntityDataContainer EM;
         protected EntitySight ES;
         protected EntityMove move;
-        public EntityAIState state { get; protected set; } = EntityAIState.Wander;
-        protected EntityWeapon EW;
+        public EntityAIState State { get; protected set; } = EntityAIState.Wander;
+        protected EntityAbility EA;
         /// <summary>
         /// 
         /// </summary>
@@ -36,9 +35,8 @@ namespace PipelineDreams {
 
 
             move = GetComponent<EntityMove>();
-            EW = GetComponent<EntityWeapon>();
-            entity.OnInit += () => EntityClock = CM.Clock;
-            entity.OnInit += () => Act();
+            EA = GetComponent<EntityAbility>();
+            entity.OnInit += (tm, mc, ec) => { EntityClock = CM.Clock; Act(); mManager = mc; EM = ec; };
         }
 
     }
@@ -50,18 +48,18 @@ namespace PipelineDreams {
         bool IsRecentlyDamaged = false;
         Vector3Int LastTargetPositionSeen;
         int DamagedDirection;
-        Entity Attacker;
         Entity Target;
         int memoryTime;
         //Vector3Int Target;
         protected new void Awake() {
             base.Awake();
-            GetComponent<EntityHealth>().OnDamagedAmount += (x, y, e) => { if (x > 0) IsRecentlyDamaged = true; Attacker = e; DamagedDirection = Util.LHUnitVectorToFace(Util.Normalize(e.IdealPosition - entity.IdealPosition)); };
+            GetComponent<EntityHealth>().OnDamagedAmount += (x, y, e) => { if (x > 0) IsRecentlyDamaged = true; DamagedDirection = Util.LHUnitVectorToFace(Util.Normalize(e.IdealPosition - entity.IdealPosition)); };
         }
 
         protected override void Act() {
+            
             CM.AddSequentialTask(new MeleeAITask() {
-                AI = this, StartClock = EntityClock, Priority = (int)entity.Type, Act = () => {
+                AI = this, StartClock = EntityClock, Priority = Priority.ENEMY, Act = () => {
                     if (!entity.IsActive)
                         return;
                     memoryTime++;
@@ -72,36 +70,37 @@ namespace PipelineDreams {
 
                     }
                     //Debug.Log(state.ToString());
-                    emotion = EntityEmotion.None;
-                    switch (state) {
+                    Emotion = EntityEmotion.None;
+                    switch (State) {
                     case EntityAIState.Attack:
                         if (Target == null || !Target.enabled) {
                             Target = null;
-                            state = EntityAIState.Wander;
-                            emotion = EntityEmotion.Confused;
+                            State = EntityAIState.Wander;
+                            Emotion = EntityEmotion.Confused;
                             break;
                         }
-                        if (!EW.CanAttack(Target))
+                        var dv = Target.IdealPosition - entity.IdealPosition;
+                            if (dv.magnitude <= 1 && Util.LHQToFace(entity.IdealRotation) == Util.LHUnitVectorToFace(dv))
                             if (IsTargetSeen) {
-                                state = EntityAIState.Chase;
+                                State = EntityAIState.Chase;
                             } else {
-                                state = EntityAIState.Wander;
-                                emotion = EntityEmotion.Confused;
+                                State = EntityAIState.Wander;
+                                Emotion = EntityEmotion.Confused;
                                 Target = null;
                             }
                         break;
                     case EntityAIState.Chase:
                         if (Target == null || !Target.enabled) {
                             Target = null;
-                            state = EntityAIState.Wander;
+                            State = EntityAIState.Wander;
                             break;
                         }
-
-                        if (EW.CanAttack(Target))
-                            state = EntityAIState.Attack;
+                        dv = Target.IdealPosition - entity.IdealPosition;
+                            if (dv.magnitude <= 1 && Util.LHQToFace(entity.IdealRotation) == Util.LHUnitVectorToFace(dv))
+                            State = EntityAIState.Attack;
                         if (entity.IdealPosition == LastTargetPositionSeen && !ES.IsVisible(Target)) {
-                            state = EntityAIState.Wander;
-                            emotion = EntityEmotion.Confused;
+                            State = EntityAIState.Wander;
+                            Emotion = EntityEmotion.Confused;
                             Target = null;
                         }
                         break;
@@ -109,16 +108,17 @@ namespace PipelineDreams {
                         if (IsRecentlyDamaged) {
                             //Target = EM.FindEntityInLine(DamagedDirection, entity, 6);
 
-                            state = EntityAIState.Confused;
-                            emotion = EntityEmotion.Angry;
+                            State = EntityAIState.Confused;
+                            Emotion = EntityEmotion.Angry;
                             break;
                         }
-                        if (ES.IsVisible(Player)) {
+                            var players = ES.VisibleEntitiesOfType(EntityType.PLAYER);
+                        if (players.Length!=0) {
                             IsTargetSeen = true;
                             memoryTime = 0;
-                            Target = Player;
-                            state = EntityAIState.Chase;
-                            emotion = EntityEmotion.Surprised;
+                            Target = players[0];
+                            State = EntityAIState.Chase;
+                            Emotion = EntityEmotion.Surprised;
                             break;
                         }
                         break;
@@ -128,11 +128,11 @@ namespace PipelineDreams {
                             if (Target != null) {
                                 IsTargetSeen = true;
                                 memoryTime = 0;
-                                state = EntityAIState.Chase;
-                                emotion = EntityEmotion.Surprised;
+                                State = EntityAIState.Chase;
+                                Emotion = EntityEmotion.Surprised;
                             } else {
-                                state = EntityAIState.Wander;
-                                emotion = EntityEmotion.Confused;
+                                State = EntityAIState.Wander;
+                                Emotion = EntityEmotion.Confused;
                             }
                         }
                         break;
@@ -141,9 +141,9 @@ namespace PipelineDreams {
 
                     }
 
-                    switch (state) {
+                    switch (State) {
                     case EntityAIState.Attack:
-                        EW.TryAttack(Target, EntityClock, 1, 0, 0);//Attempts melee attack
+                        EA.AbilityContainer.UseInstructionByName("MeleeAttack_Mob");
                         IsTargetSeen = true;
                         memoryTime = 0;
                         break;
@@ -170,8 +170,8 @@ namespace PipelineDreams {
                     IsRecentlyDamaged = false;
                     Act();
                     void RandomWalk() {
-                        if (UnityEngine.Random.Range(0f, 1f) < 0.5f) { emotion = EntityEmotion.None; move.MoveToward(Util.LHQToLHUnitVector(entity.IdealRotation), EntityClock); } else {
-                            emotion = EntityEmotion.None; move.Face(Util.LHQToFace(TurnRandom()), EntityClock);
+                        if (UnityEngine.Random.Range(0f, 1f) < 0.5f) { Emotion = EntityEmotion.None; move.MoveToward(Util.LHQToLHUnitVector(entity.IdealRotation), EntityClock); } else {
+                            Emotion = EntityEmotion.None; move.Face(Util.LHQToFace(TurnRandom()), EntityClock);
                         }
 
                     }
@@ -180,7 +180,7 @@ namespace PipelineDreams {
            );
         }
         class MeleeAITask : IClockTask {
-            public int Priority { get; set; }
+            public Priority Priority { get; set; }
             public MeleeAI AI;
             public float StartClock { get; set; }
             public Action Act;
@@ -202,14 +202,6 @@ namespace PipelineDreams {
                 return Quaternion.identity;
             }
         }
-        // Start is called before the first frame update
-        void Start() {
-
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
+        
     }
 }

@@ -7,59 +7,50 @@ namespace PipelineDreams {
     /// </summary>
     public class EntityWeapon : MonoBehaviour {
         protected Entity entity;
-        [SerializeField] protected TaskManager CM;
+        protected TaskManager CM;
         protected ItemWeapon weapon;
-        [SerializeField] private ItemContainer IC;
         public event Action<ItemWeapon> OnRefreshWeapon;
-        private void Awake() {
+        protected virtual void Awake() {
             entity = GetComponent<Entity>();
-            IC.OnItemCollectionInitialized += IC_OnItemCollectionInitialized;
+            entity.OnInit += Entity_OnInit;
         }
 
-        private void IC_OnItemCollectionInitialized() {
-            if (entity.Type == EntityType.PLAYER)
-                SetWeapon(1);
+        private void Entity_OnInit(TaskManager arg1, MapDataContainer arg2, EntityDataContainer arg3)
+        {
+            CM = arg1;
         }
 
         public void InvokeRefresh() {
             OnRefreshWeapon?.Invoke(weapon);
         }
-
-        void SetWeapon(int index) {
-            if (weapon != null) {
-                weapon.Unequip();
-                IC.PushItem(weapon);
-            }
-            var i = IC.PopItem(index);
-
-            weapon = (ItemWeapon)i;
-
-
-            weapon.Equip();
-            OnRefreshWeapon?.Invoke(weapon);
-        }
         /// <summary>
-        /// For the player entity, this function is not used, since it is only used for AI state machines.
+        /// Changes current weapon to new weapon. Returns unequiped weapon.
         /// </summary>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        public virtual bool CanAttack(Entity e) {
-            return true;
+        /// <param name="newWeapon"></param>
+        /// <returns>Unequiped weapon</returns>
+        public ItemWeapon SetWeapon(ItemWeapon newWeapon)
+        {
+            ItemWeapon tmp = weapon;
+            if (weapon != null)
+                weapon.Unequip();      
+            weapon = newWeapon;
+            weapon.Equip();
+            return tmp;
         }
         /// <summary>
-        /// Tries to attack a target
+        /// Attacks the target specified.
         /// </summary>
         /// <param name="e">Target entity</param>
         /// <param name="startClock">start clock of the action</param>
         /// <param name="meleeCoef">melee damage coefficient</param>
         /// <param name="rangeCoef">range damage coefficient</param>
         /// <param name="fieldCoef">field damage coefficient</param>
-        public virtual void TryAttack(Entity e, float startClock, float meleeCoef, float rangeCoef, float fieldCoef) {
-            if (e == null) {//Failed to find a target
+        public virtual void PerformAttack(Entity e, float startClock, float meleeCoef, float rangeCoef, float fieldCoef, float accuracy) {
+            if (e == null|| e.GetComponent<EntityHealth>()==null) {//Failed to find a target
                 return;
             }
             if (weapon != null)
-                e.GetComponent<EntityHealth>()?.RecieveDamage((int)(weapon.MeleeDamage * meleeCoef + weapon.RangeDamage * rangeCoef + weapon.FieldDamage * fieldCoef), entity);
+                e.GetComponent<EntityHealth>().RecieveDamage(new DamagePacket() { damage = (int)(weapon.MeleeDamage * meleeCoef + weapon.RangeDamage * rangeCoef + weapon.FieldDamage * fieldCoef), subject=entity, accuracy = accuracy});
 
         }
         public ItemData WeaponData => weapon?.ItData;

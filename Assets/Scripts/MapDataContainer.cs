@@ -79,7 +79,6 @@ namespace PipelineDreams {
                 return false;
             var m = v.magnitude;
             v.Clamp(Vector3Int.one * (-1), Vector3Int.one);
-            var f = Util.LHUnitVectorToFace(v);
             for (int i = 0; i < m; i++)
                 if (IsLineOfSight(observer, line2 + v * i))
                     return true;
@@ -159,7 +158,8 @@ namespace PipelineDreams {
             try {
                 var b = m.v[i, j, k];
             }
-            catch (IndexOutOfRangeException e) {
+            catch (IndexOutOfRangeException)
+            {
 
                 return true;
             }
@@ -171,7 +171,7 @@ namespace PipelineDreams {
             try {
                 var b = m.v[v.x, v.y, v.z];
             }
-            catch (IndexOutOfRangeException e) {
+            catch (IndexOutOfRangeException) {
 
                 return true;
             }

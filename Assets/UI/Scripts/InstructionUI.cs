@@ -20,7 +20,6 @@ namespace PipelineDreams {
         [SerializeField] Image Time2;
         [SerializeField] Image Time3;
         [SerializeField] Image Time4;
-        [SerializeField] Image Direction;
         [SerializeField] Text Hotkey;
         [SerializeField] Text OpName;
         Button b;
@@ -46,7 +45,7 @@ namespace PipelineDreams {
 
                 CommandImages.Add(Instantiate(CommandImagePrefabs[(int)c], CommandImagesContainer.transform, false));
             }
-            Direction.sprite = DirectionPrefabs[(int)d.Direction];
+            
             Time1.fillAmount = Mathf.Clamp(d.Time / 8f, 0, 1);
             Time2o.SetActive(d.Time > 8);
             Time2.fillAmount = Mathf.Clamp(d.Time / 8f - 1, 0, 1);

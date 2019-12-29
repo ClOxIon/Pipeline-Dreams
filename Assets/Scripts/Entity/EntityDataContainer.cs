@@ -11,15 +11,12 @@ namespace PipelineDreams {
         List<Entity> EntitiesInScene = new List<Entity>();
         // Start is called before the first frame update
         [SerializeField] MapDataContainer mManager;
-        private void Awake() {
-
-        }
-
+        
         public EntityData GetEntityDataFromName(string name) {
             return EDataContainer.Dataset.Find((x) => { return x.Name == name; });
 
         }
-        /*
+        /*This codebase will be moved.
         void SpawnEnemy(string name, Vector3Int Position, Quaternion Rotation) {
 
             try {
@@ -68,6 +65,9 @@ namespace PipelineDreams {
                     return e;
             }
             return null;
+        }
+        public Entity[] FindEntitiesOfType(EntityType type) {
+            return EntitiesInScene.FindAll((x) => x.Type == type).ToArray();
         }
 
     }

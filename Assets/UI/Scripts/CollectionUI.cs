@@ -11,8 +11,11 @@ namespace PipelineDreams {
         public event Action<int> OnItemUIClick;
         protected virtual void Awake() {
             SerializeItemUIs();
-            ItemUIs.Remove(_TemporarySlot);
-            ItemUIs.Insert(0, _TemporarySlot);
+            if (_TemporarySlot != null)
+            {
+                ItemUIs.Remove(_TemporarySlot);
+                ItemUIs.Insert(0, _TemporarySlot);
+            }
             for (int i = 0; i < ItemUIs.Count; i++)
                 ItemUIs[i].OnClick += () => OnItemUIClick?.Invoke(i);
             PI.OnRefreshItems += PI_OnRefreshUI;

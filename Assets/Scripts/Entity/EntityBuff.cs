@@ -24,12 +24,12 @@ namespace PipelineDreams {
     }
     public class BuffTargeted : Buff {
         public BuffTargeted(Entity subject, BuffData buffData) : base(subject, buffData) {
-            Subject.GetComponent<EntityHealth>().damageRecieveCoef *= 2f;
+            Subject.GetComponent<EntityHealth>().DamageRecieveCoef *= 2f;
         }
         public override void Destroy() {
             base.Destroy();
 
-            Subject.GetComponent<EntityHealth>().damageRecieveCoef /= 2f;
+            Subject.GetComponent<EntityHealth>().DamageRecieveCoef /= 2f;
         }
     }
     public class TimedBuff : Buff {
