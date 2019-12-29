@@ -35,7 +35,7 @@ namespace PipelineDreams {
         /// <returns></returns>
         bool IsSeenByPlayer() {
             if(entity.Type==EntityType.PLAYER)
-                return true;
+                return true;//Player can 'see' itself
             bool flag = false;
             foreach (var x in EC.FindEntitiesOfType(EntityType.PLAYER))
                 flag |= x.GetComponent<EntitySight>().IsVisible(entity);
