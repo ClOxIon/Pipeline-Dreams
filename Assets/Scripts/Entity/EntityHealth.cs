@@ -5,9 +5,8 @@ namespace PipelineDreams {
     public class EntityHealth : MonoBehaviour {
         int MaxHP;
         int CurrentHP;
-        public float DamageRecieveCoef { get; set; } = 1f;
         public event Action<float> OnHpModified;
-
+        public event Action<DamagePacket> OnDamagePacketEvaluation;
         public event Action<int, int, Entity> OnDamagedAmount;
         public event Action OnZeroHP;
         Entity entity;
@@ -23,10 +22,11 @@ namespace PipelineDreams {
 
         }
         public virtual void RecieveDamage(DamagePacket dp) {
-            var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy ? dp.damage : 0;
-            CurrentHP -= (int)(DamageRecieveCoef * dp.damage);
+            OnDamagePacketEvaluation?.Invoke(dp);
+            var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy.Value ? dp.damage.Value : 0;
+            CurrentHP -= (int)(dp.damage.Value);
 
-            OnDamagedAmount?.Invoke((int)(DamageRecieveCoef * dp.damage), MaxHP, dp.subject);
+            OnDamagedAmount?.Invoke((int)(dp.damage.Value), MaxHP, dp.subject);
             OnHpModified?.Invoke((float)CurrentHP / MaxHP);
             if (CurrentHP <= 0) {
                 CurrentHP = 0;

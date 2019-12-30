@@ -10,6 +10,10 @@ namespace PipelineDreams {
         protected TaskManager CM;
         protected ItemWeapon weapon;
         public event Action<ItemWeapon> OnRefreshWeapon;
+        /// <summary>
+        /// Subscribe to this event to modify damage packet.
+        /// </summary>
+        public event Action<DamagePacket> OnDamagePacketDepart;
         protected virtual void Awake() {
             entity = GetComponent<Entity>();
             entity.OnInit += Entity_OnInit;
@@ -49,8 +53,15 @@ namespace PipelineDreams {
             if (e == null|| e.GetComponent<EntityHealth>()==null) {//Failed to find a target
                 return;
             }
-            if (weapon != null)
-                e.GetComponent<EntityHealth>().RecieveDamage(new DamagePacket() { damage = (int)(weapon.MeleeDamage * meleeCoef + weapon.RangeDamage * rangeCoef + weapon.FieldDamage * fieldCoef), subject=entity, accuracy = accuracy});
+            if (weapon != null) {
+                var damage = new MutableValue.FunctionChainSingleUse();
+                damage.AddFunction(new MutableValue.Constant() { Value = weapon.MeleeDamage * meleeCoef + weapon.RangeDamage * rangeCoef + weapon.FieldDamage * fieldCoef });
+                var acc = new MutableValue.FunctionChainSingleUse();
+                acc.AddFunction(new MutableValue.Constant() { Value = accuracy });
+                var dp = new DamagePacket() { damage = damage, subject = entity, accuracy = acc };
+                OnDamagePacketDepart?.Invoke(dp);
+                e.GetComponent<EntityHealth>().RecieveDamage(dp);
+            }
 
         }
         public ItemData WeaponData => weapon?.ItData;
