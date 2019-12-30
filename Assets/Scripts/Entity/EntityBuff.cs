@@ -32,7 +32,10 @@ namespace PipelineDreams
         /// </summary>
         /// <param name="name"></param>
         public void AddItem(string name) {
-
+            
+            if (Buffs.Find((x) => x.BuData.Name == "Buff" + name) != null)
+                return;
+            
             Buff AddedBuff;
 
             BuffData AddedBuffData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
@@ -44,6 +47,35 @@ namespace PipelineDreams
             }
 
             Buffs.Add(AddedBuff);
+            OnRefreshItems?.Invoke(Buffs.ToArray());
+        }
+        /// <summary>
+        /// Add Item with specific arguments.
+        /// Float duration is always at the 0th, if the inflicted buff is BuffWithDuration.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="duration"></param>
+        public void AddItem(string name, params object[] args)
+        {
+            var b = Buffs.Find((x) => x.BuData.Name == "Buff" + name);
+            if (b != null)
+            {
+                b.ReInflict(args);
+                return;
+            }
+            Buff AddedBuff;
+
+            BuffData AddedBuffData = DataContainer.Dataset.Find((x) => { return x.Name == name; });
+            if (typeof(Buff).Namespace != null)
+                AddedBuff = (Buff)Activator.CreateInstance(Type.GetType(typeof(Buff).Namespace + ".Buff" + name), GetComponent<Entity>(), AddedBuffData, args);
+            else
+            {
+
+                AddedBuff = (Buff)Activator.CreateInstance(Type.GetType("Buff" + name), GetComponent<Entity>(), AddedBuffData, args);
+            }
+
+            Buffs.Add(AddedBuff);
+            SetRemoveCallback(AddedBuff);
             OnRefreshItems?.Invoke(Buffs.ToArray());
         }
         /// <summary>
@@ -65,7 +97,19 @@ namespace PipelineDreams
             }
             Buffs.Clear();
         }
+        /// <summary>
+        /// Subscribe to the destroy event of an item.
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="position"></param>
+        private void SetRemoveCallback(Buff i)
+        {
+            i.OnDestroy += () => {
 
+                Buffs.Remove(i);
+                OnRefreshItems?.Invoke(Buffs.ToArray());
+            };
+        }
 
         public void SwapItem(int index1, int index2) {
             Debug.LogError("SwapItem Called at EntityBuff. This would be ignored.");

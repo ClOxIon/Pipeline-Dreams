@@ -60,10 +60,10 @@ namespace PipelineDreams
         /// </summary>
         /// <param name="i"></param>
         /// <param name="position"></param>
-        private void SetRemoveCallback(Item i, int position) {
+        private void SetRemoveCallback(Item i) {
             i.OnRemove += () => {
 
-                Items[position] = null;
+                Items[Items.IndexOf(i)] = null;
                 OnRefreshItems?.Invoke(Items.ToArray());
             };
         }
@@ -100,7 +100,7 @@ namespace PipelineDreams
             for (int i = 1; i < Items.Count; i++) {
                 if (Items[i] == null) {
                     Items[i] = item;
-                    SetRemoveCallback(item, i);
+                    SetRemoveCallback(item);
                     flag = false;
                     break;
                 }
@@ -112,7 +112,7 @@ namespace PipelineDreams
                 var i = 0;//Temporary slot
                 Items[i]?.Remove();
                 Items[i] = item;
-                SetRemoveCallback(item, i);
+                SetRemoveCallback(item);
 
             }
 

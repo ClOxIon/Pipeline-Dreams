@@ -71,7 +71,7 @@ namespace PipelineDreams {
                 case EntityType.PLAYER: _p = Priority.PLAYER; break;
             }
             CM.AddSequentialTask(new RotateTask() { Entity = entity, deltaQ = Util.RotateToFace(f, entity.IdealRotation), StartClock = startClock, Priority = _p});
-            GetComponent<EntityAI>().EntityClock += 50 * SpeedModifier;
+            GetComponent<EntityAI>().EntityClock += entity.Data.FindParameterFloat("RotationTime") * SpeedModifier;
 
         }
         public virtual void MoveToward(Vector3Int v, float startClock) {
@@ -85,7 +85,7 @@ namespace PipelineDreams {
                 case EntityType.PLAYER: _p = Priority.PLAYER; break;
             }
             CM.AddSequentialTask(new MoveTask() { Entity = entity, Face = Util.LHQToFace(entity.IdealRotation), StartClock = startClock, Priority = _p });
-            GetComponent<EntityAI>().EntityClock += 100 * SpeedModifier;
+            GetComponent<EntityAI>().EntityClock += entity.Data.FindParameterFloat("TranslationTime") * SpeedModifier;
         }
         public class MoveTask : IClockTask {
             public Priority Priority { get; set; }

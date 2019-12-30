@@ -20,6 +20,7 @@ namespace PipelineDreams
         {
             protected override void OnRunStart()
             {
+                Op.Subject.GetComponent<EntityBuff>().AddItem("Shield", Op.OpData.FindParameterInt("Shield"));
             }
         }
     }
