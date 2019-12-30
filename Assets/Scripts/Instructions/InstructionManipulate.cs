@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace PipelineDreams
+﻿namespace PipelineDreams
 {
     public class InstructionManipulate : Instruction {
         public InstructionManipulate(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
@@ -9,42 +6,22 @@ namespace PipelineDreams
 
         public override IClockTask Operation(float startClock)
         {
-            Subject.GetComponent<EntityBuff>().AddItem("InstManipulate");
-            return new DirectionalFieldInstructionTask(){ Op = this, StartClock = startClock, Priority = Priority.PLAYER };
+            return new DirectionalFieldInstructionTask(){ Op = this, StartClock = startClock, Priority = Priority.PLAYER, EffectDuration = OpData.effectDuration };
         }
     }
     public abstract partial class Instruction {
         /// <summary>
         /// Field instruction task used above.
         /// </summary>
-        protected class DirectionalFieldInstructionTask : IClockTask
+        protected class DirectionalFieldInstructionTask : InstructionTask
         {
-            public Priority Priority { get; set; }
-            public Instruction Op;
-            public float StartClock { get; set; }
-            public float Accuracy = 0;
-            /// <summary>
-            /// Duration of the animation, seconds
-            /// </summary>
-            float Duration = 1f;
-            public IEnumerator Run()
+            protected override void OnRunStart()
             {
                 var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject);
                 if (_entity != null)
                     Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, 0, Op.OpData.fieldCoef, Accuracy);
-                if (Op.gun != null)
-                    Op.gun.trigger = true;
-                float time = 0;
-                //Animation events could be called here.
-                while (time < Duration)
-                {
-
-                    yield return null;
-                    time += Time.deltaTime;
-                }
+                Op.Subject.GetComponent<EntityBuff>().AddItem("InstManipulate");
             }
-
-
         }
     }
 }

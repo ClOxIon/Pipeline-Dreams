@@ -6,7 +6,21 @@ namespace PipelineDreams
 
         public override IClockTask Operation(float startClock)
         {
-            throw new System.NotImplementedException();
+
+            return new InstructionDisintegrationTask();
+        }
+        
+    }
+    public abstract partial class Instruction
+    {
+        /// <summary>
+        /// Field instruction task used above.
+        /// </summary>
+        protected class InstructionDisintegrationTask : InstructionTask
+        {
+            protected override void OnRunStart()
+            {
+            }
         }
     }
 

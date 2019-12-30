@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace PipelineDreams {
-    public class GunController : MonoBehaviour {
+    public class EffectVisualizer : MonoBehaviour {
 
         public GunDefinition[] guns;
         public int selectedGun;
@@ -27,7 +27,6 @@ namespace PipelineDreams {
             if (trigger) {
                 guns[4].launcher.LaunchRay();
 
-                trigger = false;
             }
         }
     }

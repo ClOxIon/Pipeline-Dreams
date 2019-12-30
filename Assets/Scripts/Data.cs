@@ -5,6 +5,7 @@ namespace PipelineDreams {
     [System.Serializable]
     public class Data {
         public string Name;
+        public string NameInGame;
         [TextArea(5, 10)]
         public string Description;
         public Sprite Icon;

@@ -41,5 +41,7 @@ namespace PipelineDreams {
 
         public float fieldCoef;
 
+        public EffectVisualizer gun;
+        public float effectDuration;
     }
 }

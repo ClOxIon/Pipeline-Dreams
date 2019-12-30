@@ -42,6 +42,7 @@ namespace PipelineDreams {
             StartCoroutine(RunTasks());
         }
         public void AddSequentialTask(IClockTask f) {
+            if(f!=null)
             UndoneTasks.Add(f);
 
         }

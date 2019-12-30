@@ -14,22 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OperatorDataset
   Dataset:
   - Name: Momentum
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uCDA9\uB3CC \uD53C\uD574\uB97C
-      \uC8FC\uACE0 \uAC10\uC804\uC2DC\uD0B5\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 1
     Commands: 04000000
     Variants: []
     meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Inertia
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uC9C1\uD6C4 \uAC19\uC740 \uBC29\uD5A5\uC73C\uB85C \uD55C\uBC88 \uB354 \uD68C\uC804\uD560
-      \uB54C\uC5D0\uB294 \uD589\uB3D9\uB825\uC744 \uC18C\uBAA8\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
+    NameInGame: 
+    Description: 'Attempts range attack to the direction you are heading. '
+    Icon: {fileID: 21300000, guid: 46ccd97705f002046827828ca9845891, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 2
     Commands: 00000000
     Variants:
@@ -40,13 +43,14 @@ MonoBehaviour:
     meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 46ccd97705f002046827828ca9845891, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Damages enemy in front and back of you
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -57,13 +61,15 @@ MonoBehaviour:
     meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Manipulate
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uC57D\uC810\uC744 \uACF5\uACA9\uD560 \uACBD\uC6B0 \uD53C\uD574\uAC00 50% \uC99D\uAC00\uD569\uB2C8\uB2E4.\r\n\n"
+    NameInGame: 
+    Description: Attempts field attack to the direction you are heading. OB increased
+      100% for one turn
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 1
     Commands: 0000000001000000
     Variants:
@@ -78,12 +84,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Rearrange
-    Description: "\uB9E8 \uB4A4\uC5D0 \uD574\uB2F9 \uAE30\uD638\uB97C \uCD94\uAC00\r\n"
+    NameInGame: 
+    Description: Moves the symbol to the back
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 2
     Commands: 00000000
     Variants:
@@ -95,26 +103,29 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Circuit Breaker
-    Description: "\uBCF4\uD638\uB9C9\uC744 \uC5BB\uC2B5\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Gains shield
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 0
     Commands: 04000000
     Variants: []
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Trace
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uC0AC\uAC70\uB9AC = 2 \uC9C1\uD6C4 S\uB294 \uD589\uB3D9\uB825\uC744 \uC18C\uBAA8\uD558\uC9C0
-      \uC54A\uC2B5\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Attempts range attack to the direction you are heading. Moving forward
+      right after does not cost time
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 1
     Commands: 0000000004000000
     Variants:
@@ -125,13 +136,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Oscillate
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      U/R/L/D \uBC29\uD5A5 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Attempts field attack to all adjacent enemy.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 1
     Commands: 0000000002000000
     Variants:
@@ -142,13 +154,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Orbit
-    Description: "\uD68C\uC804 \uBC29\uD5A5\uC758 \uBAA8\uB4E0 \uC778\uC811\uD55C
-      \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 'Damages all adjacent enemy '
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 1
     Commands: 00000000
     Variants:
@@ -159,13 +172,15 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Spatial Rotation '
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uB2E4\uC74C \uC5F0\uC0B0\uC790\uC758 \uC2DC\uC804 \uC2DC\uAC04\uC774 50% \uAC10\uC18C\uD569\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Attempts range attack to the direction you are heading. Rotating
+      right after does not cost time
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 2
     Direction: 1
     Commands: 000000000100000002000000
     Variants:
@@ -180,13 +195,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 2
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Charge '
-    Description: "\uB2E4\uC74C \uC5F0\uC0B0\uC790\uC758 \uD53C\uD574\uB7C9\uC774 50%
-      \uC99D\uAC00\uD569\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: For the instruction right after, 50% increased Damage
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 2
     Direction: 0
     Commands: 0000000000000000
     Variants:
@@ -197,12 +213,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 2
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Gradual Charge '
-    Description: "10\uD134\uAC04 \uD53C\uD574\uB7C9\uC774 20% \uC99D\uAC00\uD569\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 20% Damage Bonus for 10 turns.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 2
     Direction: 0
     Commands: 00000000000000000000000000000000
     Variants:
@@ -213,14 +231,15 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 2
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Warp '
-    Description: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC758 \uC774\uB3D9 \uAC00\uB2A5\uD55C
-      \uCE78\uC73C\uB85C \uC21C\uAC04\uC774\uB3D9\uD569\uB2C8\uB2E4. \uC0AC\uAC70\uB9AC
-      = 2\r\n"
+    NameInGame: 
+    Description: Attempts teleporting to the direction you are heading. Maximal 2
+      grids.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 0
     Commands: 00000000
     Variants:
@@ -231,12 +250,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Rotational Charge '
-    Description: "5\uD134\uAC04 \uD68C\uC804\uC774 \uC2DC\uAC04\uC744 50%\uB9CC \uC18C\uBAA8\uD569\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: For 5 turns, rotating is 50% faster.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 0
     Commands: 0000000000000000
     Variants:
@@ -247,12 +268,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Bypass '
-    Description: "\uB9E8 \uC55E\uC5D0 \uD574\uB2F9 \uAE30\uD638\uB97C \uCD94\uAC00\r\n"
+    NameInGame: 
+    Description: Moves the symbol to the front
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 2
     Commands: 00000000
     Variants:
@@ -264,12 +287,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Recursion '
-    Description: "\uB9E8 \uB4A4\uC5D0 \uD574\uB2F9 \uAE30\uD638\uB97C \uCD94\uAC00\r\n"
+    NameInGame: 
+    Description: Adds a symbol S/U/R/L/D to the back
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 0
     Commands: 00000000
     Variants:
@@ -281,27 +306,28 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Restore '
-    Description: "\uBC30\uD130\uB9AC\uB97C \uC18C\uBAA8\uD558\uC5EC \uADF8\uB9CC\uD07C
-      \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Spends energy, healing
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 16
     Direction: 0
     Commands: 04000000040000000400000004000000
     Variants: []
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 16
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Fluctuation '
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      U/R/L/D \uBC29\uD5A5 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uAC10\uC804\uC2DC\uD0B5\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Damages all visible enemy
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 1
     Commands: 0000000002000000
     Variants:
@@ -312,40 +338,44 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Eject '
-    Description: "\uB4A4\uB85C \uC774\uB3D9\uD569\uB2C8\uB2E4. \uC774 \uACFC\uC815\uC5D0\uC11C
-      \uCDA9\uB3CC \uC2DC \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uB294 \uB300\uC2E0 \uC790\uC2E0\uC640
-      \uC0C1\uB300\uBC29\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Move back. If there is an enemy there, damages you and the enemy
+      instead.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 1
     Commands: 04000000
     Variants: []
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Translate '
-    Description: "\uC55E\uC73C\uB85C \uC774\uB3D9\uD569\uB2C8\uB2E4. \uC774 \uACFC\uC815\uC5D0\uC11C
-      \uCDA9\uB3CC \uC2DC \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uB294 \uB300\uC2E0 \uC790\uC2E0\uC640
-      \uC0C1\uB300\uBC29\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Move front. If there is an enemy there, damages you and the enemy
+      instead.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 0
     Direction: 1
     Commands: 04000000
     Variants: []
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 0
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Conversion '
-    Description: "S\uB97C \uB4A4\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4.\r\n\n"
+    NameInGame: 
+    Description: Adds S at the back
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 0
     Direction: 1
     Commands: 00000000
     Variants:
@@ -356,12 +386,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 0
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Merge '
-    Description: "\uD574\uB2F9 \uC704\uCE58\uC5D0 L/U/R/D\uB97C \uD55C \uAC1C \uB0A8\uAE41\uB2C8\uB2E4.\r\n\n"
+    NameInGame: 
+    Description: Leaves only one symbol.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -372,12 +404,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: 'Clone '
-    Description: "\uD574\uB2F9 \uC704\uCE58\uC5D0 L/U/R/D\uB97C \uB450 \uAC1C \uB0A8\uAE41\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: Duplicates the symbol there.
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 4
     Direction: 2
     Commands: 00000000
     Variants:
@@ -388,13 +422,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 4
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -405,13 +440,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -422,13 +458,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -439,13 +476,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -456,13 +494,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -473,13 +512,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -490,13 +530,14 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0
   - Name: Thrust
-    Description: "\uC804\uBC29\uC758 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.
-      \uD6C4\uBC29\uC758 \uC801\uC5D0\uAC8C\uB3C4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\r\n"
+    NameInGame: 
+    Description: 
+    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    Parameters: []
+    Time: 8
     Direction: 2
     Commands: 0000000000000000
     Variants:
@@ -507,7 +548,5 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
-    Value1: 2
-    Value2: 0
-    Icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
-    Time: 8
+    gun: {fileID: 0}
+    effectDuration: 0

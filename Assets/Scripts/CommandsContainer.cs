@@ -29,7 +29,7 @@ namespace PipelineDreams {
 
             OnLengthChange?.Invoke(Length);
         }
-        void PushCommand(Command i) {
+        public void PushCommand(Command i) {
 
             Commands.Enqueue(i);
             if (Commands.Count > Length) {

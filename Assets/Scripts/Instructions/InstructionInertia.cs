@@ -7,7 +7,7 @@
         }
         public override IClockTask Operation(float startClock)
         {
-            return new RangedInstructionTask() { Op = this, StartClock = startClock, Priority = (int)EntityType.PLAYER };
+            return new InstructionBasicRangedTask() { Op = this, StartClock = startClock, Priority = Priority.PLAYER , EffectDuration = OpData.effectDuration };
         }
     }
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace PipelineDreams
@@ -15,69 +14,8 @@ namespace PipelineDreams
         protected Entity Subject;
         public string Variant;
         List<Command> Commands;
-        GunController gun;
+        EffectVisualizer _instance;
         public abstract IClockTask Operation(float startClock);
-        /// <summary>
-        /// The most basic example of melee instruction task.
-        /// </summary>
-        protected class MeleeInstructionTask : IClockTask {
-            public Priority Priority { get; set; }
-            public Instruction Op;
-            public float StartClock { get; set; }
-            public float Accuracy = 0;
-            /// <summary>
-            /// Duration of the animation, seconds
-            /// </summary>
-            float Duration = 1f;
-            public IEnumerator Run() {
-                var _entity = Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.Subject.IdealRotation), Op.Subject);
-                if (_entity != null && _entity == Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject))
-                    Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, Op.OpData.meleeCoef, 0, 0, Accuracy);
-                if (Op.gun != null)
-                    Op.gun.trigger = true;
-                float time = 0;
-                //Animation events could be called here.
-                while (time < Duration) {
-
-                    yield return null;
-                    time += Time.deltaTime;
-                }
-            }
-
-
-        }
-        /// <summary>
-        /// The most basic example of ranged instruction task.
-        /// </summary>
-        protected class RangedInstructionTask : IClockTask
-        {
-            public Priority Priority { get; set; }
-            public Instruction Op;
-            public float StartClock { get; set; }
-            public float Accuracy = 0;
-            /// <summary>
-            /// Duration of the animation, seconds
-            /// </summary>
-            float Duration = 1f;
-            public IEnumerator Run()
-            {
-                var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject);
-                if (_entity != null)
-                Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, Op.OpData.rangeCoef, 0, Accuracy);
-                if (Op.gun != null)
-                    Op.gun.trigger = true;
-                float time = 0;
-                //Animation events could be called here.
-                while (time < Duration)
-                {
-
-                    yield return null;
-                    time += Time.deltaTime;
-                }
-            }
-
-
-        }
         /// <summary>
         /// Called when this instruction is added to an instructionContainer.
         /// </summary>
@@ -103,33 +41,40 @@ namespace PipelineDreams
                 return OpData.Commands;
             if (Variant == "S")
                 return new List<Command>() { Command.space };
-            int d = TC(Variant[0]) - OpData.Commands[0];
+            int d = InstUtil.TC(Variant[0]) - OpData.Commands[0];
             var r = new List<Command>();
             foreach (var x in OpData.Commands)
-                r.Add(RC(x, d));
+                r.Add(InstUtil.RC(x, d));
             if (Variant.Length == 1) {
                 return r;
             } else {//Variant.length == 2
-                if (TC(Variant[1]) != r[1]) {
+                if (InstUtil.TC(Variant[1]) != r[1]) {
                     r.Clear();
                     foreach (var x in OpData.Commands)
-                        r.Add(RC(MC(x), d));
+                        r.Add(InstUtil.RC(InstUtil.MC(x), d));
                 }
                 return r;
 
             }
-            Command RC(Command c, int i) {
+            
+        }
+        protected static class InstUtil
+        {
+            public static Command RC(Command c, int i)
+            {
                 if (c == Command.space) return c;
                 return (Command)(((int)c + i + 4) % 4);
             }
-            Command MC(Command c) {
+            public static Command MC(Command c)
+            {
                 if (c == Command.space || c == Command.left || c == Command.right) return c;
                 return (Command)(((int)c + 2) % 4);
             }
-            Command TC(char c) {
-                 switch(c)
+            public static Command TC(char c)
+            {
+                switch (c)
                 {
-                    case 'L': 
+                    case 'L':
                         return Command.left;
                     case 'R':
                         return Command.right;
@@ -185,6 +130,22 @@ namespace PipelineDreams
                 return false;
             }
 
+        }
+        protected void TriggerEffect(bool b) {
+            if (b) {
+                if (OpData.gun != null)
+                {
+                    _instance = GameObject.Instantiate(OpData.gun, Subject.transform);
+                    _instance.trigger = b;
+                }
+            }
+            else if (_instance != null)
+            {
+                
+                GameObject.Destroy(_instance.gameObject);
+                _instance.trigger = b;
+                _instance = null;
+            }
         }
     }
 
