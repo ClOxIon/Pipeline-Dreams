@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace PipelineDreams {
-    public enum Priority
+    public enum TaskPriority
     {
         PLAYER, ENEMY = 100, NPC = 200
     }
@@ -94,7 +94,7 @@ namespace PipelineDreams {
 
     }
     public interface IClockTask {
-        Priority Priority { get; }
+        TaskPriority Priority { get; }
         float StartClock { get; }
         IEnumerator Run();
     }

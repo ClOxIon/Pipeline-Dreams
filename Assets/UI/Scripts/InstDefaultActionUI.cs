@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace PipelineDreams {
     public class InstDefaultActionUI : MonoBehaviour {
-        [SerializeField] InstructionContainer IC;
+        [SerializeField] InstructionContainerPlayer IC;
         InstructionCollectionUI ICU;
         private void Awake() {
             FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);

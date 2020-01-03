@@ -8,5 +8,10 @@ public struct DamagePacket
     public Entity subject;
     public FunctionChainSingleUse damage;
     public FunctionChainSingleUse accuracy;
+    public DamageCause damageCause;
 }
+    public enum DamageCause {
+    Instruction, Item, Environment
+    
+    }
 }

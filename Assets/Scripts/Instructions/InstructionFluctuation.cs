@@ -1,15 +1,14 @@
 namespace PipelineDreams
 {
-    public class InstructionFluctuation : Instruction {
-        public InstructionFluctuation(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
+    public class InstructionFluctuation : Instruction
+    {
 
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionFluctuationTask();
+            return PassParam(new InstructionFluctuationTask());
         }
-        
+
     }
     public abstract partial class Instruction
     {

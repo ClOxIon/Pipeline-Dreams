@@ -8,7 +8,7 @@ namespace PipelineDreams {
         [SerializeField] Text DescriptionText;
         [SerializeField] Text TitleText;
         [SerializeField] Image Icon;
-        InstructionContainer OC;
+        InstructionContainerPlayer OC;
         Button destroyButton;
         InstructionData defaultData;
         int Selection;
@@ -18,7 +18,7 @@ namespace PipelineDreams {
             ShowOperatorInfo(data);
         }
         private void Awake() {
-            OC = GetComponentInParent<InstructionContainer>();
+            OC = GetComponentInParent<InstructionContainerPlayer>();
             destroyButton = GetComponentInChildren<Button>();
             destroyButton.onClick.AddListener(() => OnDestroyButtonClicked(Selection));
         }

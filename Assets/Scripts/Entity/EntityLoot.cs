@@ -3,11 +3,11 @@
 namespace PipelineDreams {
     public class EntityLoot : MonoBehaviour {
         Entity entity;
-        ItemContainer PI;
+        ItemContainerPlayer PI;
         private void Awake() {
             GetComponent<EntityDeath>().OnEntityDeath += EntityLoot_OnEntityDeath;
             entity = GetComponent<Entity>();
-            PI = (ItemContainer)FindObjectOfType(typeof(ItemContainer));
+            PI = (ItemContainerPlayer)FindObjectOfType(typeof(ItemContainerPlayer));
         }
 
         private void EntityLoot_OnEntityDeath(Entity obj) {

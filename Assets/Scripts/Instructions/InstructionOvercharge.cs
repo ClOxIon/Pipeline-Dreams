@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionOvercharge : Instruction {
-        public InstructionOvercharge(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
 
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionOverchargeTask();
+            return PassParam(new InstructionOverchargeTask());
         }
         
     }

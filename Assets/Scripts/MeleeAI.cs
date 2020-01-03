@@ -24,7 +24,7 @@ namespace PipelineDreams
         protected override void Act() {
             
             CM.AddSequentialTask(new MeleeAITask() {
-                AI = this, StartClock = EntityClock, Priority = Priority.ENEMY, Act = () => {
+                AI = this, StartClock = EntityClock, Priority = TaskPriority.ENEMY, Act = () => {
                     if (!entity.IsActive)
                         return;
                     memoryTime++;
@@ -118,7 +118,7 @@ namespace PipelineDreams
                             IsTargetSeen = true;
                             memoryTime = 0;
                             LastTargetPositionSeen = Target.IdealPosition;
-                            move.MoveToward(Target.IdealPosition, EntityClock);
+                            move.MoveToward(Target.IdealPosition, EntityClock);//Note that most mobs will only go forward when MoveToward is called.
                         } else {
                             move.MoveToward(LastTargetPositionSeen, EntityClock);
                         }
@@ -145,7 +145,7 @@ namespace PipelineDreams
            );
         }
         class MeleeAITask : IClockTask {
-            public Priority Priority { get; set; }
+            public TaskPriority Priority { get; set; }
             public MeleeAI AI;
             public float StartClock { get; set; }
             public Action Act;

@@ -13,26 +13,18 @@ namespace PipelineDreams {
             var entity = GetComponent<Entity>();
             entity.OnInit += (tm, mc, ec) =>
           {
-              Item AddedItem;
+              Item AddedItem = null;
               ItemData AddedItemData;
-              AddedItemData = DataContainer.Dataset.Find((x) => { return x.Name == InitialWeaponName; });
+              AddedItemData = DataContainer.DataSet.Find((x) => { return x.Name == InitialWeaponName; }) as ItemData;
               if (AddedItemData == null)
               {
                   Debug.LogError("ItemCollection.Additem(): Cannot find item named " + InitialWeaponName);
                   return;
               }
-              AddedItem = new Item(entity, tm, AddedItemData);//If the item class for the specific item is not defined, we will just use the base class.
-            if (typeof(Item).Namespace != null)
-              {
-                  if (Type.GetType(typeof(Item).Namespace + ".Item" + name) != null)
-                      AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + ".Item" + name), entity, tm, AddedItemData);
-              }
-              else
-              {
+            
                   if (Type.GetType("Item" + name) != null)
                       AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name), entity, tm, AddedItemData);
-              }
-
+              
               GetComponent<EntityWeapon>().SetWeapon((ItemWeapon)AddedItem);
 
             };

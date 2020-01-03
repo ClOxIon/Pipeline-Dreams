@@ -32,6 +32,9 @@ namespace PipelineDreams.MutableValue
             if (x != null)
                 Functions.Add(x);
         }
+        /// <summary>
+        /// Getting this field immidiately evaluates the functionchain and clears it.
+        /// </summary>
         public virtual float Value
         {
             get
@@ -57,6 +60,16 @@ namespace PipelineDreams.MutableValue
     {
         public FunctionChainPriority Priority { get; set; } = FunctionChainPriority.Addition;
         public float Value;
+
+        public Addition()
+        {
+        }
+
+        public Addition(float value)
+        {
+            Value = value;
+        }
+
         public float Func(float x)
         {
             return x + Value;
@@ -66,6 +79,16 @@ namespace PipelineDreams.MutableValue
     {
         public FunctionChainPriority Priority { get; set; } = FunctionChainPriority.Multiplication;
         public float Value;
+
+        public Multiplication()
+        {
+        }
+
+        public Multiplication(float value)
+        {
+            Value = value;
+        }
+
         public float Func(float x)
         {
             return x * Value;
@@ -75,6 +98,16 @@ namespace PipelineDreams.MutableValue
     {
         public FunctionChainPriority Priority { get; set; } = FunctionChainPriority.Constant;
         public float Value;
+
+        public Constant()
+        {
+        }
+
+        public Constant(float value)
+        {
+            Value = value;
+        }
+
         public float Func(float x)
         {
             return Value;

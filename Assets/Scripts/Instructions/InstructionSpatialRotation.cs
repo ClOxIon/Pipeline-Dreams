@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionSpatialRotation : Instruction {
-        public InstructionSpatialRotation(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
-
+        
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionSpatialRotationTask();
+            return PassParam(new InstructionSpatialRotationTask());
         }
         
     }
@@ -16,10 +14,13 @@ namespace PipelineDreams
         /// <summary>
         /// Field instruction task used above.
         /// </summary>
-        protected class InstructionSpatialRotationTask : InstructionTask
+        protected class InstructionSpatialRotationTask : InstructionBasicRangedTask
         {
             protected override void OnRunStart()
             {
+                var b = Op.Holder.GetComponent<EntityBuff>();
+                if (b != null)
+                    b.BuffContainer.AddItem("BuffFreeTranslation");
             }
         }
     }

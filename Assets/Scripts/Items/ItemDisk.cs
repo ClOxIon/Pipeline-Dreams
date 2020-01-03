@@ -11,9 +11,6 @@ namespace PipelineDreams
         public float decode;
         public string Opdata;
 
-        public ItemDisk(Entity p, TaskManager cM, ItemData data) : base(p, cM, data) {
-
-        }
         public override void EffectByTime(float time) {
             base.EffectByTime(time);
             /*

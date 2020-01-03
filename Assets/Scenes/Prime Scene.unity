@@ -286,75 +286,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3380338}
   m_CullTransparentMesh: 0
---- !u!1 &8494961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8494963}
-  - component: {fileID: 8494962}
-  m_Layer: 0
-  m_Name: PlasmaRayLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &8494962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8494961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: 3222c8fd29eaeec428a530ab1044832a, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 1000
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &8494963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8494961}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000074505806, y: 0, z: 0.11938006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &14890102
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,75 +439,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20388891}
   m_CullTransparentMesh: 0
---- !u!1 &26243625
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 26243627}
-  - component: {fileID: 26243626}
-  m_Layer: 0
-  m_Name: RainbowLaserLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &26243626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26243625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: 3bd6eac8cec3fb346a7d550fa5d7b124, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &26243627
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26243625}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.119380966}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &69890876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4925,75 +4787,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429156816}
   m_CullTransparentMesh: 0
---- !u!1 &438147897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 438147898}
-  - component: {fileID: 438147899}
-  m_Layer: 0
-  m_Name: LightingRayLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &438147898
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438147897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000074505806, y: 0, z: 0.11938006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &438147899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438147897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: 3e8ab71e0f0ecb947815913b80380012, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 1
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
 --- !u!1 &448150075
 GameObject:
   m_ObjectHideFlags: 0
@@ -6111,75 +5904,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 554245428}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &559193604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 559193606}
-  - component: {fileID: 559193605}
-  m_Layer: 0
-  m_Name: IceRayLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &559193605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559193604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 160990, guid: 80d4d966b23dabb4f969ddfb5ab1e417, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 200
-  PropagationSpeed: 20
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967293
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 2
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &559193606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559193604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.119}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561784105
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,75 +8513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!1 &816758088
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 816758090}
-  - component: {fileID: 816758089}
-  m_Layer: 0
-  m_Name: PlasmaOscillatingLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &816758089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816758088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 160990, guid: abe3b316c386f1349ad182a6957dbcd8, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 30
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967293
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 2
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &816758090
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816758088}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.11938095}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &828279635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3797fe6706ab8f94ea0d9bb1c31048b5,
@@ -9339,6 +8994,8 @@ GameObject:
   - component: {fileID: 865417991}
   - component: {fileID: 865417992}
   - component: {fileID: 865417988}
+  - component: {fileID: 865417993}
+  - component: {fileID: 865417994}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9456,7 +9113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949f40fbac57573408c4dd2060a1b922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedModifier: 1
 --- !u!114 &865417988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9481,7 +9137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665a8211ed12f0d4fbd0d9a8b3e54dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataContainer: {fileID: 11400000, guid: 69b6c9f2ae9f5ee4bbf4ea25073c5934, type: 2}
+  BuffContainer: {fileID: 11400000, guid: 14cf4d5c15e121240976fc60863c749d, type: 2}
+  KeepPrefab: 1
 --- !u!114 &865417990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9523,6 +9180,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RSpeed: 2
   TSpeed: 2
+--- !u!114 &865417993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865417979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2860020c7878047b88e35e1a0fe40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityContainer: {fileID: 11400000, guid: afbd5ff6e02fdc54c98eec0ff8cd0510, type: 2}
+  KeepPrefab: 1
+--- !u!114 &865417994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865417979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda0474c09d5fa643b672ac3ea3b22ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemContainer: {fileID: 11400000, guid: ec2af9e33f5a20c42b6d9fe0461fad04, type: 2}
+  KeepPrefab: 1
 --- !u!1001 &871507566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9915,11 +9600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EM: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
   mManager: {fileID: 11400000, guid: 1d2ad003e9bb68046972dcab63043d0e, type: 2}
-  itemC: {fileID: 11400000, guid: ec2af9e33f5a20c42b6d9fe0461fad04, type: 2}
-  instC: {fileID: 11400000, guid: afbd5ff6e02fdc54c98eec0ff8cd0510, type: 2}
   PC: {fileID: 11400000, guid: 3ee161df31fe5724ca45d5a1c691b7fe, type: 2}
   SC: {fileID: 11400000, guid: 57410af3468cfe84699b32736c8bca66, type: 2}
-  TM: {fileID: 885259648}
   Player: {fileID: 865417985}
   PM: {fileID: 885259647}
   PI: {fileID: 865417991}
@@ -10967,75 +10649,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938603974}
   m_CullTransparentMesh: 0
---- !u!1 &945800924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 945800926}
-  - component: {fileID: 945800925}
-  m_Layer: 0
-  m_Name: FireRayLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &945800925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945800924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 160990, guid: 7f555c05cdcf2e84e8c6e83e2c2f4dc4, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 30
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967293
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 2
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &945800926
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945800924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.11938095}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956696259
 GameObject:
   m_ObjectHideFlags: 0
@@ -13280,75 +12893,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 097b51d400f87c24193f3686d4e2478f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3797fe6706ab8f94ea0d9bb1c31048b5, type: 3}
---- !u!1 &1232113251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1232113253}
-  - component: {fileID: 1232113252}
-  m_Layer: 0
-  m_Name: RedEnergyRayLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1232113252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232113251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: b5b754e63a6f4254f979c5a9b2676883, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 200
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &1232113253
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232113251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.119380966}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1236143350
 GameObject:
   m_ObjectHideFlags: 0
@@ -15255,213 +14799,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441723690}
   m_CullTransparentMesh: 0
---- !u!1 &1442600664
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1442600665}
-  - component: {fileID: 1442600667}
-  - component: {fileID: 1442600666}
-  m_Layer: 0
-  m_Name: GunBoxModel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1442600665
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442600664}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.097}
-  m_LocalScale: {x: 0.8, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1442600666
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442600664}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1442600667
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442600664}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1445162099
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1445162103}
-  - component: {fileID: 1445162102}
-  - component: {fileID: 1445162101}
-  - component: {fileID: 1445162100}
-  m_Layer: 0
-  m_Name: Gun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1445162100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445162099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eed8302c1185fc4faab784214c5ae1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guns:
-  - launcher: {fileID: 0}
-    rechargeTime: 0
-    currentRechargeTimeLeft: 0
-    continuous: 0
-    keycode: 0
-  - launcher: {fileID: 0}
-    rechargeTime: 0
-    currentRechargeTimeLeft: 0
-    continuous: 0
-    keycode: 0
-  - launcher: {fileID: 0}
-    rechargeTime: 0
-    currentRechargeTimeLeft: 0
-    continuous: 0
-    keycode: 0
-  - launcher: {fileID: 0}
-    rechargeTime: 0
-    currentRechargeTimeLeft: 0
-    continuous: 0
-    keycode: 0
-  - launcher: {fileID: 1985979697}
-    rechargeTime: 0
-    currentRechargeTimeLeft: 0
-    continuous: 0
-    keycode: 0
-  selectedGun: 5
-  trigger: 0
---- !u!23 &1445162101
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445162099}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2cf65705bdbcfdb4d97f8f5a0200ee9f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1445162102
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445162099}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1445162103
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445162099}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.3, z: 0.3}
-  m_LocalScale: {x: 0.19999999, y: 0.2000001, z: 1}
-  m_Children:
-  - {fileID: 1442600665}
-  - {fileID: 945800926}
-  - {fileID: 1496354835}
-  - {fileID: 1616797418}
-  - {fileID: 2078938638}
-  - {fileID: 1985979698}
-  - {fileID: 8494963}
-  - {fileID: 1232113253}
-  - {fileID: 26243627}
-  - {fileID: 559193606}
-  - {fileID: 816758090}
-  - {fileID: 438147898}
-  m_Father: {fileID: 1758045282}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1446871294
 GameObject:
   m_ObjectHideFlags: 0
@@ -15733,75 +15070,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493907809}
   m_CullTransparentMesh: 0
---- !u!1 &1496354833
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1496354835}
-  - component: {fileID: 1496354834}
-  m_Layer: 0
-  m_Name: LaserContinuousLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1496354834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496354833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: 3aadab60cf2413e45b2639ee6a7b39de, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967293
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 2
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &1496354835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496354833}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000074505806, y: 0, z: 0.11938006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1504290505
 GameObject:
   m_ObjectHideFlags: 0
@@ -16784,7 +16052,7 @@ MonoBehaviour:
   Fill: {fileID: 1963514409}
   Needle: {fileID: 1016321687}
   Hourglass: {fileID: 1717044344}
-  speed: 250
+  speed: 2.5
 --- !u!1001 &1571754844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17535,75 +16803,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615972303}
   m_CullTransparentMesh: 0
---- !u!1 &1616797416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1616797418}
-  - component: {fileID: 1616797417}
-  m_Layer: 0
-  m_Name: ProtonPackLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1616797417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616797416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 160990, guid: dd6af410e65cb9447b82b14d269bebc7, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 1
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &1616797418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616797416}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000014901161, y: 0, z: 0.11938095}
-  m_LocalScale: {x: 1.0000005, y: 0.99999994, z: 1.0000005}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1638002659
 GameObject:
   m_ObjectHideFlags: 0
@@ -18835,7 +18034,6 @@ Transform:
   - {fileID: 313903886}
   - {fileID: 333152524}
   - {fileID: 1668782095}
-  - {fileID: 1445162103}
   m_Father: {fileID: 865417981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20994,75 +20192,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1974810169}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1985979696
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1985979698}
-  - component: {fileID: 1985979697}
-  m_Layer: 0
-  m_Name: LightingPulseLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1985979697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985979696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: 65892b8e90c174047af5617380d97366, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 200
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 1
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &1985979698
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985979696}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000074505806, y: 0, z: 0.11938006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1986019142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21398,75 +20527,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059488556}
   m_CullTransparentMesh: 0
---- !u!1 &2078938636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2078938638}
-  - component: {fileID: 2078938637}
-  m_Layer: 0
-  m_Name: LaserLauncher2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2078938637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078938636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74922679efb7e64da460a0825d58bb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arcPrefab: {fileID: 100000, guid: 39f6e5e9a2e9a3842823588d32e531ee, type: 3}
-  helperPrefab: {fileID: 0}
-  launchMethod: 0
-  Distance: 100
-  PropagationSpeed: 10000
-  layers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  startBehaviour: 1
-  endBehaviour: 2
-  SendMessageToHitObjects: 0
-  SendMessageToTouchedObjects: 0
-  touchLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  reflectionSettings:
-    reflections: 0
-    reflectors: []
-    reflectLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    thickness: 0.05
-    reflectionCountLimit: 0
-    sendMessageToReflectors: 0
-  globalSpaceTransform: {fileID: 0}
-  currentCameraTransform: {fileID: 0}
---- !u!4 &2078938638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078938636}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000074505806, y: 0, z: 0.11938006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1445162103}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084503709
 GameObject:
   m_ObjectHideFlags: 0

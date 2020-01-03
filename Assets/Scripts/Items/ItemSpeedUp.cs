@@ -6,22 +6,24 @@
     public class ItemSpeedUp : Item {
 
         EntityMove PlayerMove;
-        public ItemSpeedUp(Entity p, TaskManager cM, ItemData data) : base(p, cM, data) {
-
-        }
-
-        public override void Obtain() {
-            base.Obtain();
-
+        public override void SetEnabled(bool enabled)
+        {
+            base.SetEnabled(enabled);
             PlayerMove = Holder.GetComponent<EntityMove>();
-            PlayerMove.SpeedModifier /= 1.5f;
+
+            if (PlayerMove != null)
+                if(enabled)
+                PlayerMove.TTimeModifier.OnValueRequested += TTimeModifier_OnValueRequested;
+            else
+                    PlayerMove.TTimeModifier.OnValueRequested -= TTimeModifier_OnValueRequested;
         }
-        public override void Remove() {
-            base.Remove();
-            PlayerMove.SpeedModifier *= 1.5f;
 
 
+        private void TTimeModifier_OnValueRequested()
+        {
+            PlayerMove.TTimeModifier.AddFunction(new MutableValue.Multiplication() { Value = 0.666f });
         }
+
 
 
     }

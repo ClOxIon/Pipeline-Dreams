@@ -13,46 +13,46 @@ MonoBehaviour:
   m_Name: TiData
   m_EditorClassIdentifier: 
   Dataset:
-  - Name: Nothing
+  - name: Nothing
     Type: 0
-    Description: Nothing.
+    description: Nothing.
     HasDialogue: 0
     Value1: 11
     Value2: 0
     Prefab: {fileID: 0}
-  - Name: Wall
+  - name: Wall
     Type: 256
-    Description: Wall!
+    description: Wall!
     HasDialogue: 0
     Value1: 0
     Value2: 0
     Prefab: {fileID: -7249113832552977919, guid: b5d55d46a0ecf0c42845ef576121c6bf,
       type: 3}
-  - Name: Hole
+  - name: Hole
     Type: 512
-    Description: Hole!
+    description: Hole!
     HasDialogue: 0
     Value1: 0
     Value2: 0
     Prefab: {fileID: 408165017825399319, guid: d0208f0061402134784283d11a4ba9b7, type: 3}
-  - Name: Station
+  - name: Station
     Type: 1
-    Description: Station.
+    description: Station.
     HasDialogue: 0
     Value1: 0
     Value2: 0
     Prefab: {fileID: 5231939666227689914, guid: 2e9ee105375cf0b41a7d019349aab6e1,
       type: 3}
-  - Name: Station
+  - name: Station
     Type: 513
-    Description: Station.
+    description: Station.
     HasDialogue: 0
     Value1: 0
     Value2: 0
     Prefab: {fileID: 0}
-  - Name: VendingMachine
+  - name: VendingMachine
     Type: 2
-    Description: Vending Machine.
+    description: Vending Machine.
     HasDialogue: 0
     Value1: 0
     Value2: 0

@@ -7,8 +7,8 @@ namespace PipelineDreams {
             Player.GetComponent<EntityHealth>().OnDamagedAmount += CamShakeOnHit_OnDamaged;
         }
 
-        private void CamShakeOnHit_OnDamaged(int obj, int max, Entity e) {
-            var r = (float)obj / max;
+        private void CamShakeOnHit_OnDamaged(float obj, float max, Entity e) {
+            var r = obj / max;
             EZCameraShake.CameraShaker.Instance.ShakeOnce(r * 10, 1f, 0.2f, 2 * r);
         }
 

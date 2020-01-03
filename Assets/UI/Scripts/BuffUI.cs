@@ -28,11 +28,11 @@ namespace PipelineDreams {
                 Clear();
                 return;
             }
-            Icon.sprite = item.BuData.Icon;
+            Icon.sprite = item.Data.Icon;
             Icon.color = new Color(1, 1, 1, 0.7f);
             Icon.enabled = true;
             if (typeof(Item) == typeof(BuffWithDuration))
-                Icon.fillAmount = ((BuffWithDuration)item).TimeLeft / item.BuData.baseDuration;
+                Icon.fillAmount = ((BuffWithDuration)item).TimeLeft / (item.Data as BuffData).BaseDuration;
         }
 
         public void SetVisible(bool b) {

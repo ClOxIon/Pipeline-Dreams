@@ -1,8 +1,6 @@
 namespace PipelineDreams
 {
     public class InstructionCircuitBreaker : Instruction {
-        public InstructionCircuitBreaker(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
 
         public override IClockTask Operation(float startClock)
         {
@@ -20,7 +18,9 @@ namespace PipelineDreams
         {
             protected override void OnRunStart()
             {
-                Op.Subject.GetComponent<EntityBuff>().AddItem("Shield", Op.OpData.FindParameterInt("Shield"));
+                var b = Op.Holder.GetComponent<EntityBuff>();
+                if(b!=null)
+                b.BuffContainer.AddItem("Shield", Op.Data.FindParameterInt("Shield"));
             }
         }
     }

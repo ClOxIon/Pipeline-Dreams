@@ -13,7 +13,7 @@ namespace PipelineDreams {
         [SerializeField] MapDataContainer mManager;
         
         public EntityData GetEntityDataFromName(string name) {
-            return EDataContainer.Dataset.Find((x) => { return x.Name == name; });
+            return EDataContainer.DataSet.Find((x) => { return x.Name.Equals(name); }) as EntityData;
 
         }
         /*This codebase will be moved.

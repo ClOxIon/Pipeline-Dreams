@@ -64,7 +64,7 @@ namespace PipelineDreams {
             }
 
         }
-        public ItemData WeaponData => weapon?.ItData;
+        public ItemData WeaponData => weapon?.Data as ItemData;
 
     }
 }

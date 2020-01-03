@@ -7,9 +7,9 @@
         protected class InstructionBasicMeleeTask : InstructionTask {
             protected override void OnRunStart()
             {
-                var _entity = Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.Subject.IdealRotation), Op.Subject);
-                if (_entity != null && _entity == Op.EM.FindEntityInLine(Util.LHQToFace(Op.Subject.IdealRotation), Op.Subject))
-                    Op.Subject.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, Op.OpData.meleeCoef, 0, 0, Accuracy);
+                var _entity = Op.EM.FindEntityInRelativePosition(Util.LHQToLHUnitVector(Op.Holder.IdealRotation), Op.Holder);
+                if (_entity != null && _entity == Op.EM.FindEntityInLine(Util.LHQToFace(Op.Holder.IdealRotation), Op.Holder))
+                    Op.Holder.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, (Op.Data as InstructionData).MeleeCoef, 0, 0, Accuracy);
             }
 
 

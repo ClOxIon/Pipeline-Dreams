@@ -3,57 +3,62 @@ using UnityEngine;
 
 namespace PipelineDreams
 {
-    public abstract partial class Instruction {
-        public InstructionData OpData;
+    public abstract partial class Instruction : PDObject {
         protected CommandsContainer PC;
-        EntityDataContainer EM;
-
+        protected EntityDataContainer EM;
+        protected MapDataContainer MDC;
         /// <summary>
-        /// The entity which performs this instruction
+        /// Type conversion macro
         /// </summary>
-        protected Entity Subject;
+        protected InstructionData OpData => Data as InstructionData;
         public string Variant;
-        List<Command> Commands;
+        Command[] Commands;
         EffectVisualizer _instance;
+        public MutableValue.FunctionChain TimeCost { get; } = new MutableValue.FunctionChain();
         public abstract IClockTask Operation(float startClock);
         /// <summary>
-        /// Called when this instruction is added to an instructionContainer.
+        /// Called when this instruction is added to an instructionContainer. To make the factory pattern less wordy, we use this function instead of a constructor to initialize objects.
         /// </summary>
         /// <param name="eM"></param>
-        /// <param name="player"></param>
         /// <param name="pC"></param>
         /// <param name="data"></param>
         /// <param name="variant"></param>
-        public Instruction(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) {
-            EM = eM;
-            Subject = player;
+        public virtual void Obtain(Entity holder, TaskManager cM, EntityDataContainer eM, CommandsContainer pC, MapDataContainer mDC) {
+            Obtain(holder, cM);
             PC = pC;
-            OpData = data;
-            Variant = variant;
+            EM = eM;
+            MDC = mDC;
+        }
+        public override void Init(PDData data, params object[] args) {
+            base.Init(data, args);
+            Variant = args[0] as string;
             Commands = GetCommandsVariant();
+
+            TimeCost.OnValueRequested += () => { TimeCost.AddFunction(new MutableValue.Constant() { Value = (Data as InstructionData).Time }); };
         }
         /// <summary>
         /// Inteprets variant string.
         /// </summary>
         /// <returns></returns>
-        public List<Command> GetCommandsVariant() {
+        public Command[] GetCommandsVariant() {
+            InstructionData OpData = Data as InstructionData;
             if (Variant == "")
                 return OpData.Commands;
             if (Variant == "S")
-                return new List<Command>() { Command.space };
+                return new Command[] { Command.space };
             int d = InstUtil.TC(Variant[0]) - OpData.Commands[0];
             var r = new List<Command>();
             foreach (var x in OpData.Commands)
                 r.Add(InstUtil.RC(x, d));
             if (Variant.Length == 1) {
-                return r;
+                return r.ToArray();
             } else {//Variant.length == 2
                 if (InstUtil.TC(Variant[1]) != r[1]) {
                     r.Clear();
                     foreach (var x in OpData.Commands)
                         r.Add(InstUtil.RC(InstUtil.MC(x), d));
                 }
-                return r;
+                return r.ToArray();
 
             }
             
@@ -95,11 +100,11 @@ namespace PipelineDreams
         public virtual bool ReadCommand() {
             var v = PC.CurrentPipeline();
             var VL = v.Length;
-            var OC = OpData.Commands.Count;
+            var OC = (Data as InstructionData).Commands.Length;
 
             if (VL < OC)
                 return false;
-            switch (OpData.Direction) {
+            switch ((Data as InstructionData).Direction) {
             case OpDirection.Front:
                 for (int i = 0; i < OC; i++)
                     if (v[i] != Commands[i])
@@ -133,9 +138,9 @@ namespace PipelineDreams
         }
         protected void TriggerEffect(bool b) {
             if (b) {
-                if (OpData.gun != null)
+                if ((Data as InstructionData).Gun != null)
                 {
-                    _instance = GameObject.Instantiate(OpData.gun, Subject.transform);
+                    _instance = GameObject.Instantiate((Data as InstructionData).Gun, Holder.transform);
                     _instance.trigger = b;
                 }
             }
@@ -146,6 +151,25 @@ namespace PipelineDreams
                 _instance.trigger = b;
                 _instance = null;
             }
+        }
+        /// <summary>
+        /// In favor of the factory pattern, this substitute InstructionTask's constructor.
+        /// </summary>
+        protected InstructionTask PassParam(InstructionTask x) {
+            x.Op = this;
+            TaskPriority _p = TaskPriority.ENEMY;
+            switch (Holder.Type)
+            {
+                case EntityType.ENEMY: _p = TaskPriority.ENEMY; break;
+
+                case EntityType.NPC: _p = TaskPriority.NPC; break;
+
+                case EntityType.PLAYER: _p = TaskPriority.PLAYER; break;
+            }
+            x.Priority = _p;
+            x.EffectDuration = (Data as InstructionData).EffectDuration;
+            x.Accuracy = (Data as InstructionData).BaseAccuracy;
+            return x;
         }
     }
 

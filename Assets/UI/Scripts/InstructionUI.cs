@@ -34,7 +34,7 @@ namespace PipelineDreams {
                 return;
             }
             SetVisible(true);
-            var d = _o.OpData;
+            var d = _o.Data as InstructionData;
             _operator = _o;
             OpIcon.sprite = d.Icon;
             OpName.text = d.Name + " " + _o.Variant;

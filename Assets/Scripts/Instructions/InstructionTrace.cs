@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionTrace : Instruction {
-        public InstructionTrace(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
-
+        
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionTraceTask();
+            return PassParam(new InstructionTraceTask());
         }
         
     }
@@ -16,10 +14,13 @@ namespace PipelineDreams
         /// <summary>
         /// Field instruction task used above.
         /// </summary>
-        protected class InstructionTraceTask : InstructionTask
+        protected class InstructionTraceTask : InstructionBasicRangedTask
         {
-            protected override void OnRunStart()
+            protected override void OnRunEnd()
             {
+                var b = Op.Holder.GetComponent<EntityBuff>();
+                if (b != null)
+                b.BuffContainer.AddItem("BuffFreeTranslation");
             }
         }
     }

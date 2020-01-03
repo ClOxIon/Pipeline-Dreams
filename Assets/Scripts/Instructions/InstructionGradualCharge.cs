@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionGradualCharge : Instruction {
-        public InstructionGradualCharge(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
-
+        
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionGradualChargeTask();
+            return PassParam(new InstructionGradualChargeTask());
         }
         
     }
@@ -20,6 +18,9 @@ namespace PipelineDreams
         {
             protected override void OnRunStart()
             {
+                var b = Op.Holder.GetComponent<EntityBuff>();
+                if (b != null)
+                    b.BuffContainer.AddItem("BuffInstDamage",0.2f,10f);
             }
         }
     }

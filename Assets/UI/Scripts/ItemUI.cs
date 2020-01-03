@@ -24,8 +24,8 @@ namespace PipelineDreams {
                 return;
             }
 
-            Name.text = testIt.ItData.Name;
-            Icon.sprite = testIt.ItData.Icon;
+            Name.text = testIt.Data.Name;
+            Icon.sprite = testIt.Data.Icon;
             Icon.color = new Color(1, 1, 1, 0.7f);
             Icon.enabled = true;
             Name.enabled = true;

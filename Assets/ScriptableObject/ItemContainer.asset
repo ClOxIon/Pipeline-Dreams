@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24689627f7582149a3f73f6b9142ab9, type: 3}
   m_Name: ItemContainer
   m_EditorClassIdentifier: 
-  DataContainer: {fileID: 11400000, guid: 400516b54dc83c44eb83006f555d7c0b, type: 2}
-  TM: {fileID: 0}
-  Player: {fileID: 0}
+  dataObj: {fileID: 11400000, guid: 400516b54dc83c44eb83006f555d7c0b, type: 2}
+  EM: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
+  MDC: {fileID: 11400000, guid: 1d2ad003e9bb68046972dcab63043d0e, type: 2}

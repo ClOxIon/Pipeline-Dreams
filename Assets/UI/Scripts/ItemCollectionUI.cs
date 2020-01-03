@@ -2,9 +2,9 @@
 using UnityEngine.InputSystem;
 
 namespace PipelineDreams {
-    public class ItemCollectionUI : CollectionUI<Item> {
+    public class ItemCollectionUI : ObjectContainerUILimitedCapacity<Item> {
         [SerializeField] ItemUI TemporaryUI;
-        [SerializeField] ItemContainer ItemContainer;
+        [SerializeField] ItemContainerPlayer ItemContainer;
         protected override void Awake() {
             _TemporarySlot = TemporaryUI as IIndividualUI<Item>;
             PI = ItemContainer;

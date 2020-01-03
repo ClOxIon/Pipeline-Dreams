@@ -5,22 +5,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace PipelineDreams {
-    public class CollectionInfoUI<T> : MonoBehaviour, ICollectionInfoUI {
+    public class CollectionInfoUI<T> : MonoBehaviour, ICollectionInfoUI where T:PDObject {
         public event Action<int> OnItemSelected;
         [SerializeField] Text DescriptionText;
         [SerializeField] Text DirectionText;
 
         [SerializeField] Text AdditionalDescriptionText;
         List<ISelectableIndividualUI<T>> ItemUIs = new List<ISelectableIndividualUI<T>>();
-        protected IDataContainer<T> IC;
-        protected CollectionUI<T> ICU;
+        protected PDObjectContainer<T> IC;
+        protected ObjectContainerUI<T> ICU;
         [SerializeField] Text TitleText;
 
-        protected Data SelectedItemData;
+        protected PDData SelectedItemData;
         protected int SelectedItemIndex;
         bool SwapMode = false;
         protected virtual void Awake() {
-            ICU = GetComponent<CollectionUI<T>>();
+            ICU = GetComponent<ObjectContainerUI<T>>();
             SerializeItemUIs();
             OnItemSelected += RefreshSelectionMarker;
             FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);
@@ -55,13 +55,12 @@ namespace PipelineDreams {
         }
 
         protected void OnSelection(int i) {
+            
             if (SwapMode) {
                 StopSwap();
                 IC.SwapItem(SelectedItemIndex, i);
             }
-            var info = IC.GetItemInfo(i);
-            if (info!=null)
-            SelectedItemData = info as Data;
+            SelectedItemData = IC.GetItemInfo(i);
 
             SelectedItemIndex = i;
 
@@ -72,7 +71,7 @@ namespace PipelineDreams {
 
         public void OnItemSwap() {
             SwapMode = true;
-            DirectionText.text = "SELECT AN ITEM SLOT TO SWAP";
+            DirectionText.text = "SELECT A SLOT TO SWAP";
         }
         private void StopSwap() {
             SwapMode = false;

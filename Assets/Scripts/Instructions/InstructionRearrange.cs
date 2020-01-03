@@ -1,13 +1,10 @@
 namespace PipelineDreams
 {
     public class InstructionRearrange : Instruction {
-        public InstructionRearrange(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
-
+        
         public override IClockTask Operation(float startClock)
         {
-
-            return new InstructionRearrangeTask();
+            return PassParam(new InstructionRearrangeTask());
         }
         
     }
@@ -20,7 +17,7 @@ namespace PipelineDreams
         {
             protected override void OnRunStart()
             {
-                Op.PC.PushCommand(Op.OpData.Commands[0]);
+                Op.PC.PushCommand((Op.Data as InstructionData).Commands[0]);
             }
         }
     }

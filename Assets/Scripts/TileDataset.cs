@@ -9,7 +9,7 @@ namespace PipelineDreams {
 
     }
     [System.Serializable]
-    public class TileData : Data {
+    public class TileData : PDData {
         public Tile Type;
         public TileObject Prefab;
 

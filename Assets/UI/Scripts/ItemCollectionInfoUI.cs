@@ -7,7 +7,7 @@ namespace PipelineDreams {
 
     public class ItemCollectionInfoUI : CollectionInfoUI<Item> {
         [SerializeField] Entity Player;
-        [SerializeField] ItemContainer ItemContainer;
+        [SerializeField] ItemContainerPlayer ItemContainer;
         protected override void Awake() {
             base.Awake();
 
@@ -51,7 +51,7 @@ namespace PipelineDreams {
                 for (int i = 0; i < data.ItemActions.Length; i++) {
                     ItemActionButtons[i].gameObject.SetActive(true);
                     var t = data.ItemActions[i];
-                    ItemActionButtons[i].onClick.AddListener(() => (IC as ItemContainer).InvokeItemAction(SelectedItemIndex, t));
+                    ItemActionButtons[i].onClick.AddListener(() => (IC as ItemContainerPlayer).InvokeItemAction(SelectedItemIndex, t));
                     ItemActionButtons[i].GetComponentInChildren<Text>().text = t;
 
 
@@ -61,6 +61,10 @@ namespace PipelineDreams {
                 }
             }
         }
+        /// <summary>
+        /// Receives input.
+        /// </summary>
+        /// <param name="value"></param>
         void OnItemSelect(object value) {
             OnSelection((int)value);
         }

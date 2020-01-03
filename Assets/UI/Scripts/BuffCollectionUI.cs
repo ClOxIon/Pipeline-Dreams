@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 namespace PipelineDreams {
-    public class BuffCollectionUI : CollectionUI<Buff> {
+    public class BuffCollectionUI : ObjectContainerUI<Buff> {
 
         [SerializeField] Entity Player;
         [SerializeField] BuffUI BuffUIPrefab;
         protected override void Awake() {
-            PI = Player.GetComponent<EntityBuff>();
+            PI = Player.GetComponent<EntityBuff>().BuffContainer;
             PI.OnRefreshItems += PI_OnRefreshUI;
         }
 

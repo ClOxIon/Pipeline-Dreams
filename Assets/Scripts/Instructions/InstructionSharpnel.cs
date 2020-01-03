@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionSharpnel : Instruction {
-        public InstructionSharpnel(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
 
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionSharpnelTask();
+            return PassParam(new InstructionSharpnelTask());
         }
         
     }

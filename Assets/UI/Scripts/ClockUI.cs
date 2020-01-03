@@ -29,7 +29,7 @@ namespace PipelineDreams {
                 currentPos += speed * Time.deltaTime;
             else
                 currentPos = targetPos;
-            Needle.transform.localRotation = Quaternion.Euler(0, 0, -3.60f * currentPos); Fill.fillAmount = currentPos / 100 - (int)(currentPos / 100);
+            Needle.transform.localRotation = Quaternion.Euler(0, 0, -360f * currentPos); Fill.fillAmount = currentPos - (int)(currentPos);
         }
     }
 }

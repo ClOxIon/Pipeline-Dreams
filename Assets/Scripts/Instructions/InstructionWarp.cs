@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionWarp : Instruction {
-        public InstructionWarp(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
 
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionWarpTask();
+            return PassParam(new InstructionWarpTask() {MDC = MDC });
         }
         
     }
@@ -18,8 +16,18 @@ namespace PipelineDreams
         /// </summary>
         protected class InstructionWarpTask : InstructionTask
         {
+            public MapDataContainer MDC;
+            public int WarpLength;
             protected override void OnRunStart()
             {
+                /*
+                var m = Op.Subject.GetComponent<EntityMove>();
+                if (m == null)
+                    return;
+                for (int i = WarpLength;i>0;i--)
+                    if(m.CanStay()
+                Op.Subject.GetComponent<EntityMove>().MoveWarp()
+                */
             }
         }
     }

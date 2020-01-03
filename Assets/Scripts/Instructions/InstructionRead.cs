@@ -1,13 +1,11 @@
 namespace PipelineDreams
 {
     public class InstructionRead : Instruction {
-        public InstructionRead(EntityDataContainer eM, Entity player, CommandsContainer pC, InstructionData data, string variant) : base(eM, player, pC, data, variant) {
-        }
 
         public override IClockTask Operation(float startClock)
         {
 
-            return new InstructionReadTask();
+            return PassParam(new InstructionReadTask());
         }
         
     }

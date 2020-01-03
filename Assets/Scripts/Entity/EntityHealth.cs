@@ -3,22 +3,23 @@ using UnityEngine;
 
 namespace PipelineDreams {
     public class EntityHealth : MonoBehaviour {
-        int MaxHP;
-        int CurrentHP;
+        MutableValue.FunctionChain MaxHP = new MutableValue.FunctionChain();
+        float CurrentHP;
         public event Action<float> OnHpModified;
         public event Action<DamagePacket> OnDamagePacketEvaluation;
-        public event Action<int, int, Entity> OnDamagedAmount;
+        public event Action<float, float, Entity> OnDamagedAmount;
         public event Action OnZeroHP;
         Entity entity;
         // Start is called before the first frame update
         private void Awake() {
 
             entity = GetComponent<Entity>();
-            entity.OnInit += (tm, mc, ec) => { MaxHP = entity.Data.MaxHP; CurrentHP = MaxHP; OnHpModified?.Invoke((float)CurrentHP / MaxHP); };
-
-        }
-        void Start() {
-            OnHpModified?.Invoke((float)CurrentHP / MaxHP);
+            entity.OnInit += (tm, mc, ec) => 
+            {
+                MaxHP.OnValueRequested += () => { MaxHP.AddFunction(new MutableValue.Constant(entity.Data.MaxHP)); };
+                CurrentHP = MaxHP.Value; 
+                OnHpModified?.Invoke(CurrentHP / MaxHP.Value); 
+            };
 
         }
         public virtual void RecieveDamage(DamagePacket dp) {
@@ -26,8 +27,8 @@ namespace PipelineDreams {
             var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy.Value ? dp.damage.Value : 0;
             CurrentHP -= (int)(dp.damage.Value);
 
-            OnDamagedAmount?.Invoke((int)(dp.damage.Value), MaxHP, dp.subject);
-            OnHpModified?.Invoke((float)CurrentHP / MaxHP);
+            OnDamagedAmount?.Invoke(dp.damage.Value, MaxHP.Value, dp.subject);
+            OnHpModified?.Invoke(CurrentHP / MaxHP.Value);
             if (CurrentHP <= 0) {
                 CurrentHP = 0;
                 OnZeroHP?.Invoke();

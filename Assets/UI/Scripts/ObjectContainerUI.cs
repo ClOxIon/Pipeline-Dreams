@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace PipelineDreams {
-    public abstract class CollectionUI<T> : MonoBehaviour {
+namespace PipelineDreams
+{
+    public abstract class ObjectContainerUI<T> : MonoBehaviour where T: PDObject{
         protected List<IIndividualUI<T>> ItemUIs = new List<IIndividualUI<T>>();
-        protected IDataContainer<T> PI;
-        protected IIndividualUI<T> _TemporarySlot;
+        protected PDObjectContainer<T> PI;
         public event Action<int> OnItemUIClick;
         protected virtual void Awake() {
-            SerializeItemUIs();
-            if (_TemporarySlot != null)
-            {
-                ItemUIs.Remove(_TemporarySlot);
-                ItemUIs.Insert(0, _TemporarySlot);
-            }
+            FindItemUIs();
             for (int i = 0; i < ItemUIs.Count; i++)
                 ItemUIs[i].OnClick += () => OnItemUIClick?.Invoke(i);
             PI.OnRefreshItems += PI_OnRefreshUI;
-            PI.OnChangeItemSlotAvailability += PI_OnRefreshItemSlotUI;
         }
-        private void SerializeItemUIs() {
+        private void FindItemUIs() {
 
             foreach (var x in GetComponentsInChildren<MonoBehaviour>().ToList()) {
                 if (x is IIndividualUI<T> l)

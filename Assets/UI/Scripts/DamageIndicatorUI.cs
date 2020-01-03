@@ -12,7 +12,7 @@ namespace PipelineDreams {
             Player.GetComponent<EntityHealth>().OnDamagedAmount += DamageIndicatorUI_OnDamaged;
         }
 
-        private void DamageIndicatorUI_OnDamaged(int arg1, int MaxHP, Entity arg2) {
+        private void DamageIndicatorUI_OnDamaged(float arg1, float MaxHP, Entity arg2) {
             var v = Vector3Int.RoundToInt(Quaternion.Inverse(Player.IdealRotation) * (arg2.IdealPosition - Player.IdealPosition));
             var f = Util.LHUnitVectorToFace(v);
             Texts[f].text = arg1.ToString();

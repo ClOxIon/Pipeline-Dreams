@@ -3,18 +3,16 @@ using UnityEngine;
 
 namespace PipelineDreams
 {
-    public abstract class Buff {
-        public BuffData BuData;
-        protected TaskManager CM;
-        protected Entity Subject;
-        public event Action OnDestroy;
-        public Buff(Entity subject, BuffData buffData, TaskManager tm) {
-            Subject = subject;
-            BuData = buffData;
-            CM = tm;
-            CM.OnClockModified += EffectByTime;
-
+    public abstract class Buff : PDObject {
+        public override void SetEnabled(bool enabled) {
+            base.SetEnabled(enabled);
+            if (enabled)
+                CM.OnClockModified += EffectByTime;
+            else
+                CM.OnClockModified -= EffectByTime;
         }
+
+        
         /// <summary>
         /// Called by taskmanager.
         /// </summary>
@@ -22,9 +20,7 @@ namespace PipelineDreams
         protected virtual void EffectByTime(float Time) {
 
         }
-        public virtual void Destroy() {
-            OnDestroy?.Invoke();
-        }
+        
         /// <summary>
         /// When the same kind of buff is inflicted when a buff is already active, this method of already existing buff is called instead of instantiating new buff.
         /// </summary>

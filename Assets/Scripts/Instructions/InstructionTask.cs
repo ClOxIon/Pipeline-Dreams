@@ -6,7 +6,7 @@ namespace PipelineDreams
     public abstract partial class Instruction {
         protected abstract class InstructionTask : IClockTask
         {
-            public Priority Priority { get; set; }
+            public TaskPriority Priority { get; set; }
             public Instruction Op;
             public float StartClock { get; set; }
             public float Accuracy = 0;
@@ -29,8 +29,16 @@ namespace PipelineDreams
                 }
                 Op.TriggerEffect(false);
             }
+            /// <summary>
+            /// Called immidiately after this task is called. Do not call bask method when overridden.
+            /// </summary>
             protected abstract void OnRunStart();
-
+            /// <summary>
+            /// Called after any animation. Do not call bask method when overridden.
+            /// </summary>
+            protected virtual void OnRunEnd() { 
+            
+            }
         }
     }
 
