@@ -155,7 +155,7 @@ namespace PipelineDreams
         /// <summary>
         /// In favor of the factory pattern, this substitute InstructionTask's constructor.
         /// </summary>
-        protected InstructionTask PassParam(InstructionTask x) {
+        protected InstructionTask PassParam(InstructionTask x, float startClock) {
             x.Op = this;
             TaskPriority _p = TaskPriority.ENEMY;
             switch (Holder.Type)
@@ -169,6 +169,7 @@ namespace PipelineDreams
             x.Priority = _p;
             x.EffectDuration = (Data as InstructionData).EffectDuration;
             x.Accuracy = (Data as InstructionData).BaseAccuracy;
+            x.StartClock = startClock;
             return x;
         }
     }

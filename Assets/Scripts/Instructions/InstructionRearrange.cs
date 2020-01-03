@@ -4,7 +4,7 @@ namespace PipelineDreams
         
         public override IClockTask Operation(float startClock)
         {
-            return PassParam(new InstructionRearrangeTask());
+            return PassParam(new InstructionRearrangeTask(), startClock);
         }
         
     }

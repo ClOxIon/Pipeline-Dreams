@@ -5,7 +5,7 @@
 
         public override IClockTask Operation(float startClock)
         {
-            return PassParam(new DirectionalFieldInstructionTask());
+            return PassParam(new DirectionalFieldInstructionTask(), startClock);
         }
     }
     public abstract partial class Instruction {

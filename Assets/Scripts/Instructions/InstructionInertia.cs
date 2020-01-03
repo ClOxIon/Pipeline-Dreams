@@ -3,7 +3,7 @@
     public class InstructionInertia : Instruction {
         public override IClockTask Operation(float startClock)
         {
-            return PassParam(new InstructionBasicRangedTask());
+            return PassParam(new InstructionBasicRangedTask(), startClock);
         }
     }
 

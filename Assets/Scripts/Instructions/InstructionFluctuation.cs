@@ -6,7 +6,7 @@ namespace PipelineDreams
         public override IClockTask Operation(float startClock)
         {
 
-            return PassParam(new InstructionFluctuationTask());
+            return PassParam(new InstructionFluctuationTask(), startClock);
         }
 
     }
