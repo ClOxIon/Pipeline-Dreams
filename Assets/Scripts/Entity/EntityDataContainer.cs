@@ -55,10 +55,10 @@ namespace PipelineDreams {
 
             return FindEntityInRelativePosition(new Vector3Int(x, y, z), origin);
         }
-        public Entity FindEntityInLine(int f, Entity origin, int Sightscale = TileContainer.sightscale) {
+        public Entity FindEntityInLine(int f, Entity origin, int Sightscale = TileRenderer.sightscale) {
             Entity e;
             for (int i = 1; i <= Sightscale; i++) {
-                if (mManager.GetTileRelative(Vector3Int.zero + Util.FaceToLHVector(f) * (i - 1), f, origin) == Tile.wall)
+                if (mManager.GetTileRelative(Vector3Int.zero + Util.FaceToLHVector(f) * (i - 1), f, origin) == TileAttribute.wall)
                     return null;
                 e = FindEntityInRelativePosition(Util.FaceToLHVector(f) * i, origin);
                 if (e != null)

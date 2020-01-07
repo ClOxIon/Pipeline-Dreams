@@ -2,6 +2,9 @@
 
 namespace PipelineDreams
 {
+    /// <summary>
+    /// the base class of every object in this game that is held by some container, namely, item, instruction, buff.
+    /// </summary>
     public abstract class PDObject
     {
 

@@ -31,7 +31,7 @@ namespace PipelineDreams {
                 for (int j = 0; j < m.v.GetLength(1); j++)
                     for (int k = 0; k < m.v.GetLength(2); k++) {
                         m.v[i, j, k].b = Block.nothing;
-                        m.v[i, j, k].t = new Tile[6]; //Figure out what the tile obj is supposed to do???
+                        m.v[i, j, k].t = new TileAttribute[6]; //Figure out what the tile obj is supposed to do???
                     }
             //Then mark the ones on the path as full
             foreach (var v in Path)
@@ -94,22 +94,22 @@ namespace PipelineDreams {
         protected void GenerateCyclePathTopology(MapBundle m, List<Vector3Int> Path) {
             var p0 = Path[0];
             var f01 = Util.LHUnitVectorToFace(Path[Path.Count - 1] - Path[0]);
-            m.v[p0.x, p0.y, p0.z].t[f01] = Tile.hole;
+            m.v[p0.x, p0.y, p0.z].t[f01] = TileAttribute.hole;
             var f02 = Util.LHUnitVectorToFace(Path[1] - Path[0]);
-            m.v[p0.x, p0.y, p0.z].t[f02] = Tile.hole;
+            m.v[p0.x, p0.y, p0.z].t[f02] = TileAttribute.hole;
             for (int i = 1; i < Path.Count - 1; i++) {
                 var p = Path[i];
                 var f1 = Util.LHUnitVectorToFace(Path[i - 1] - Path[i]);
-                m.v[p.x, p.y, p.z].t[f1] = Tile.hole;
+                m.v[p.x, p.y, p.z].t[f1] = TileAttribute.hole;
                 var f2 = Util.LHUnitVectorToFace(Path[i + 1] - Path[i]);
-                m.v[p.x, p.y, p.z].t[f2] = Tile.hole;
+                m.v[p.x, p.y, p.z].t[f2] = TileAttribute.hole;
 
             }
             var pf = Path[Path.Count - 1];
             var ff1 = Util.LHUnitVectorToFace(Path[Path.Count - 2] - Path[Path.Count - 1]);
-            m.v[pf.x, pf.y, pf.z].t[ff1] = Tile.hole;
+            m.v[pf.x, pf.y, pf.z].t[ff1] = TileAttribute.hole;
             var ff2 = Util.LHUnitVectorToFace(Path[0] - Path[Path.Count - 1]);
-            m.v[pf.x, pf.y, pf.z].t[ff2] = Tile.hole;
+            m.v[pf.x, pf.y, pf.z].t[ff2] = TileAttribute.hole;
         }
         /// <summary>
         /// Add a new loop extending out of the main loop
@@ -136,20 +136,20 @@ namespace PipelineDreams {
             GenerateTrivialTopology(m, Path.GetRange(0, Path.Count - 1));
             var p0 = Path[0];
             var f02 = Util.LHUnitVectorToFace(Path[1] - Path[0]);
-            m.v[p0.x, p0.y, p0.z].t[f02] = Tile.hole;
-            m.v[p0.x, p0.y, p0.z].t[2 * (f02 / 2) + 1 - f02 % 2] = Tile.vendingMachine;
+            m.v[p0.x, p0.y, p0.z].t[f02] = TileAttribute.hole;
+            m.v[p0.x, p0.y, p0.z].t[2 * (f02 / 2) + 1 - f02 % 2] = TileAttribute.vendingMachine;
 
             for (int i = 1; i < Path.Count - 1; i++) {
                 var p = Path[i];
                 var f1 = Util.LHUnitVectorToFace(Path[i - 1] - Path[i]);
-                m.v[p.x, p.y, p.z].t[f1] = Tile.hole;
+                m.v[p.x, p.y, p.z].t[f1] = TileAttribute.hole;
                 var f2 = Util.LHUnitVectorToFace(Path[i + 1] - Path[i]);
-                m.v[p.x, p.y, p.z].t[f2] = Tile.hole;
+                m.v[p.x, p.y, p.z].t[f2] = TileAttribute.hole;
 
             }
             var pf = Path[Path.Count - 1];
             var ff1 = Util.LHUnitVectorToFace(Path[Path.Count - 2] - Path[Path.Count - 1]);
-            m.v[pf.x, pf.y, pf.z].t[ff1] = Tile.hole;
+            m.v[pf.x, pf.y, pf.z].t[ff1] = TileAttribute.hole;
             return Path;
         }
         /// <summary>
@@ -162,11 +162,11 @@ namespace PipelineDreams {
                     for (int k = 0; k < m.v.GetLength(2); k++)
                         if (m.v[i, j, k].b == Block.nothing)
                             for (int f = 0; f < 6; f++)
-                                m.v[i, j, k].t[f] = Tile.nothing;
+                                m.v[i, j, k].t[f] = TileAttribute.nothing;
                         else {
                             for (int f = 0; f < 6; f++) {
 
-                                m.v[i, j, k].t[f] = Tile.wall;
+                                m.v[i, j, k].t[f] = TileAttribute.wall;
                             }
                         }
         }
@@ -179,11 +179,11 @@ namespace PipelineDreams {
             foreach (var x in domain)
                 if (m.v[x.x, x.y, x.z].b == Block.nothing)
                     for (int f = 0; f < 6; f++)
-                        m.v[x.x, x.y, x.z].t[f] = Tile.nothing;
+                        m.v[x.x, x.y, x.z].t[f] = TileAttribute.nothing;
                 else {
                     for (int f = 0; f < 6; f++) {
 
-                        m.v[x.x, x.y, x.z].t[f] = Tile.wall;
+                        m.v[x.x, x.y, x.z].t[f] = TileAttribute.wall;
                     }
                 }
 
@@ -198,10 +198,10 @@ namespace PipelineDreams {
             foreach (var x in Path)
                 if (x.y < infPoint.y)
                     infPoint = x;
-            m.v[infPoint.x, infPoint.y, infPoint.z].t[3] = Tile.hole;
+            m.v[infPoint.x, infPoint.y, infPoint.z].t[3] = TileAttribute.hole;
             m.v[infPoint.x, infPoint.y - 1, infPoint.z].b = Block.pipe;
-            m.v[infPoint.x, infPoint.y - 1, infPoint.z].t[3] = Tile.station;
-            m.v[infPoint.x, infPoint.y - 1, infPoint.z].t[2] = Tile.stationHole;
+            m.v[infPoint.x, infPoint.y - 1, infPoint.z].t[3] = TileAttribute.station;
+            m.v[infPoint.x, infPoint.y - 1, infPoint.z].t[2] = TileAttribute.stationHole;
         }
         /// <summary>
         /// Place a upper entrace on the highest node in the map
@@ -213,10 +213,10 @@ namespace PipelineDreams {
             foreach (var x in Path)
                 if (x.y > supPoint.y)
                     supPoint = x;
-            m.v[supPoint.x, supPoint.y, supPoint.z].t[2] = Tile.hole;
+            m.v[supPoint.x, supPoint.y, supPoint.z].t[2] = TileAttribute.hole;
             m.v[supPoint.x, supPoint.y + 1, supPoint.z].b = Block.pipe;
-            m.v[supPoint.x, supPoint.y + 1, supPoint.z].t[2] = Tile.station;
-            m.v[supPoint.x, supPoint.y + 1, supPoint.z].t[3] = Tile.stationHole;
+            m.v[supPoint.x, supPoint.y + 1, supPoint.z].t[2] = TileAttribute.station;
+            m.v[supPoint.x, supPoint.y + 1, supPoint.z].t[3] = TileAttribute.stationHole;
         }
 
 

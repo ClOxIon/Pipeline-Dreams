@@ -4,14 +4,14 @@ namespace PipelineDreams {
         [SerializeField] EntityDataContainer EM;
         [SerializeField] MapDataContainer mManager;
         [SerializeField] CommandsContainer PC;
-        [SerializeField] TileContainer SC;
+        [SerializeField] TileRenderer SC;
         [SerializeField] Entity Player;
         [SerializeField] PlayerMove PM;
         [SerializeField] PlayerInitializer PI;
         private void Awake() {
             mManager.CreateNewMap();
             PC.Init(PM);
-            SC.Init(mManager);
+            SC.Init();
             PI.InitPlayer(Player, mManager, EM.GetEntityDataFromName("Player"));
         }
     }

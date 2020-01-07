@@ -46,7 +46,7 @@ namespace PipelineDreams {
             if (LHQToFace(q0 * TurnRight) == f) return TurnRight;
             return TurnUp;
         }
-        public static bool CompareTiles(Tile t1, Tile t2) {
+        public static bool CompareTiles(TileAttribute t1, TileAttribute t2) {
             return (uint)(t1 ^ t2) >> 8 == 0;
         }
         public static bool CompareBlocks(Block t1, Block t2) {

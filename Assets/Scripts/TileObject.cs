@@ -1,16 +1,8 @@
 ﻿using UnityEngine;
 
 namespace PipelineDreams {
-    public class TileObject : MonoBehaviour {
+    public class Tile : PDObject {
         public Vector3Int Position;
-        // Start is called before the first frame update
-        void Start() {
-
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
+        
     }
 }
