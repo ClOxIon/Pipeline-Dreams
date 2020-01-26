@@ -19,12 +19,21 @@ namespace PipelineDreams {
     /// </summary>
     [Flags]
     public enum TileAttribute {
-        nothing = 0,
-        wall = 0x0100,
-        hole = 0x0200,
-        stationHole = 0x0201,
-        station = 1,
-        vendingMachine = 2
+        Nothing = 0,
+        /// <summary>
+        /// Wheter entities with normal eyes could see through it/Optic weapons could penetrate through it.
+        /// </summary>
+        
+        BlockLight= 1,
+        /// <summary>
+        /// Whether entities could move through it.
+        /// </summary>
+        BlockEntity = 0b10,
+        /// <summary>
+        ///  Whether projectiles could penetrate through it.
+        /// </summary>
+        BlockProj = 0b100,
+        
     }
     public struct MapBundle {
         //saves states of six direction(x+,x-,y+,y-,z+,z-) at every point.
