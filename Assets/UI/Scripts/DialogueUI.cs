@@ -80,12 +80,12 @@ namespace PipelineDreams {
 
 
 
-            var e = EM.FindEntityInLine(Util.LHQToFace(Player.IdealRotation), Player);
+            var e = EM.FindEntityOnAxis(Util.LHQToFace(Player.IdealRotation), Player);
             if (e != null)
                 ShowEntityDialogue(e.Data);
             else {
                 var t = mManager.GetTileRelative(Vector3Int.zero, Util.LHQToFace(Player.IdealRotation), Player);
-                ShowTileDialogue(Dataset.Dataset.Find((x) => x.Type == t));
+                ShowTileDialogue(t.Data as TileData);
             }
 
 

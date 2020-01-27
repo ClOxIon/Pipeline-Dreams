@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace PipelineDreams {
     public class MapGenerator {
+        /*
         const int margin = 3;
         public virtual MapBundle CreateMap() {
             //Initialize the voxel array and find the pipe scale
@@ -231,6 +232,7 @@ namespace PipelineDreams {
             return IsOutofRange(m, v.x, v.y, v.z);
 
         }
-
+*/
     }
+
 }

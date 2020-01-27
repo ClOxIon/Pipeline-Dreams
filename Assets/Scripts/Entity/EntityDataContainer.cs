@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PipelineDreams {
+namespace PipelineDreams
+{
     [CreateAssetMenu(fileName = "EntityDataContainer", menuName = "ScriptableObjects/Manager/EntityDataContainer")]
     public class EntityDataContainer : ScriptableObject {
         public event Action<Entity> OnNewEntitySpawn;
@@ -55,11 +56,9 @@ namespace PipelineDreams {
 
             return FindEntityInRelativePosition(new Vector3Int(x, y, z), origin);
         }
-        public Entity FindEntityInLine(int f, Entity origin, int Sightscale = TileRenderer.sightscale) {
+        public Entity FindEntityOnAxis(int f, Entity origin, int searchlength = TileRenderer.sightscale) {
             Entity e;
-            for (int i = 1; i <= Sightscale; i++) {
-                if (mManager.GetTileRelative(Vector3Int.zero + Util.FaceToLHVector(f) * (i - 1), f, origin) == TileAttribute.wall)
-                    return null;
+            for (int i = 1; i <= searchlength; i++) {
                 e = FindEntityInRelativePosition(Util.FaceToLHVector(f) * i, origin);
                 if (e != null)
                     return e;

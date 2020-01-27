@@ -20,7 +20,7 @@ public class MapEditor : Editor
         MapDataContainer map = target as MapDataContainer;
         if (GUILayout.Button("Generate Map"))
         {
-            map.CreateNewMap();
+            //map.CreateNewMap();
         }
     }
 }

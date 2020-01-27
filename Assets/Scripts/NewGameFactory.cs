@@ -9,7 +9,7 @@ namespace PipelineDreams {
         [SerializeField] PlayerMove PM;
         [SerializeField] PlayerInitializer PI;
         private void Awake() {
-            mManager.CreateNewMap();
+            //mManager.CreateNewMap();
             PC.Init(PM);
             SC.Init();
             PI.InitPlayer(Player, mManager, EM.GetEntityDataFromName("Player"));

@@ -16,7 +16,7 @@
         {
             protected override void OnRunStart()
             {
-                var _entity = Op.EM.FindEntityInLine(Util.LHQToFace(Op.Holder.IdealRotation), Op.Holder);
+                var _entity = Op.EM.FindEntityOnAxis(Util.LHQToFace(Op.Holder.IdealRotation), Op.Holder);
                 if (_entity != null)
                     Op.Holder.GetComponent<EntityWeapon>().PerformAttack(_entity, StartClock, 0, 0, (Op.Data as InstructionData).FieldCoef, Accuracy);
                 var b = Op.Holder.GetComponent<EntityBuff>();
