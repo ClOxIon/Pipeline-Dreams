@@ -27,6 +27,7 @@ namespace PipelineDreams {
             minimapPlayerMarker.transform.localRotation = offset * q;
         }
         private void Render() {
+            /*
             if (player == null) player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
             foreach (var g in RenderedObjects)
                 Destroy(g);
@@ -40,7 +41,7 @@ namespace PipelineDreams {
 
                     }
             RotatePlayer(player.IdealRotation);
-
+            */
         }
         // Update is called once per frame
         void Update() {

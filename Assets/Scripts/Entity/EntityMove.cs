@@ -83,7 +83,7 @@ namespace PipelineDreams {
         /// <returns></returns>
         public bool CanStay(Vector3Int UVector) {
 
-            if (!Util.CompareTiles(mManager.GetTileRelative(Vector3Int.zero, Util.LHQToFace(entity.IdealRotation), entity), TileAttribute.hole)) return false;
+            if ((mManager.GetTileRelative(Vector3Int.zero, Util.LHQToFace(entity.IdealRotation), entity).Attribute|TileAttribute.EntityStay)==0) return false;
             return true;
         }
 

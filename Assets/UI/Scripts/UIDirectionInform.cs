@@ -43,13 +43,13 @@ namespace PipelineDreams {
             var q = Player.IdealRotation;
             CenterText.text = Directions[Util.LHQToFace(q)];
             var f = Vector3Int.RoundToInt(q * new Vector3(0, 0, 1));
-            var entity = EM.FindEntityInLine(Util.LHUnitVectorToFace(f), Player, TileRenderer.sightscale);
-            if (entity == null || mManager.GetTileRelative(Vector3Int.zero, Util.LHUnitVectorToFace(f), Player) == TileAttribute.wall) {
+            var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(f), Player, TileRenderer.sightscale);
+            if (entity == null) {
                 CenterInfoText.text = "HEADING";
                 CenterText.color = new Color(0, 1, 0, 170f / 255);
                 CenterBar.color = new Color(0, 1, 0, 200f / 255);
                 CenterInfoText.color = new Color(0, 1, 0, 240f / 255);
-            } else {
+            } else if (Player.GetComponent<EntitySight>().IsVisible(entity)){
                 CenterInfoText.text = "ENEMY";
                 CenterText.color = new Color(1, 0, 0, 170f / 255);
                 CenterBar.color = new Color(1, 0, 0, 200f / 255);
@@ -78,9 +78,9 @@ namespace PipelineDreams {
         }
 
         void UpdateInfoText(Vector3Int e, Text t, Text m, Image i) {
-            var entity = EM.FindEntityInLine(Util.LHUnitVectorToFace(e), Player, TileRenderer.sightscale);
+            var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(e), Player, TileRenderer.sightscale);
             var wall = mManager.GetTileRelative(Vector3Int.zero, Util.LHUnitVectorToFace(e), Player);
-            if (wall == TileAttribute.wall) {
+            if ((wall.Attribute|TileAttribute.BlockEntity)!=0) {
                 t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);
                 m.color = new Color(0, 1, 0, 180f / 255);
                 i.color = new Color(0, 1, 0, 180f / 255);
