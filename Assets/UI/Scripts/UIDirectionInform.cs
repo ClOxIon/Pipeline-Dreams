@@ -43,7 +43,7 @@ namespace PipelineDreams {
             var q = Player.IdealRotation;
             CenterText.text = Directions[Util.LHQToFace(q)];
             var f = Vector3Int.RoundToInt(q * new Vector3(0, 0, 1));
-            var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(f), Player, TileRenderer.sightscale);
+            var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(f), Player);
             if (entity == null) {
                 CenterInfoText.text = "HEADING";
                 CenterText.color = new Color(0, 1, 0, 170f / 255);
@@ -78,7 +78,7 @@ namespace PipelineDreams {
         }
 
         void UpdateInfoText(Vector3Int e, Text t, Text m, Image i) {
-            var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(e), Player, TileRenderer.sightscale);
+            var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(e), Player);
             var wall = mManager.GetTileRelative(Vector3Int.zero, Util.LHUnitVectorToFace(e), Player);
             if ((wall.Attribute|TileAttribute.BlockEntity)!=0) {
                 t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);

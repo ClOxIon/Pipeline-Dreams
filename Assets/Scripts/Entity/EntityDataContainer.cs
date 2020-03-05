@@ -56,7 +56,7 @@ namespace PipelineDreams
 
             return FindEntityInRelativePosition(new Vector3Int(x, y, z), origin);
         }
-        public Entity FindEntityOnAxis(int f, Entity origin, int searchlength = TileRenderer.sightscale) {
+        public Entity FindEntityOnAxis(int f, Entity origin, int searchlength = 12) {
             Entity e;
             for (int i = 1; i <= searchlength; i++) {
                 e = FindEntityInRelativePosition(Util.FaceToLHVector(f) * i, origin);
