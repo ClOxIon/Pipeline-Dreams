@@ -26,7 +26,6 @@ namespace PipelineDreams {
         string[] Directions = { "E", "W", "U", "D", "N", "S" };
         [SerializeField] EntityDataContainer EM;
         [SerializeField] Entity Player;
-        [SerializeField] MapDataContainer mManager;
         [SerializeField] TaskManager CM;
         Quaternion rotation;
         private void Awake() {
@@ -79,16 +78,17 @@ namespace PipelineDreams {
 
         void UpdateInfoText(Vector3Int e, Text t, Text m, Image i) {
             var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(e), Player);
-            var wall = mManager.GetTileRelative(Vector3Int.zero, Util.LHUnitVectorToFace(e), Player);
-            if ((wall.Attribute|TileAttribute.BlockEntity)!=0) {
-                t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);
-                m.color = new Color(0, 1, 0, 180f / 255);
-                i.color = new Color(0, 1, 0, 180f / 255);
-            } else if (entity != null) {
-                t.text = entity.Type.ToString();
-                t.color = new Color(1, 0, 0, 240f / 255);
-                m.color = new Color(1, 0, 0, 180f / 255);
-                i.color = new Color(1, 0, 0, 180f / 255);
+            if (entity != null) {
+                if (entity.Data.Type == EntityType.TILE) {
+                    t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);
+                    m.color = new Color(0, 1, 0, 180f / 255);
+                    i.color = new Color(0, 1, 0, 180f / 255);
+                } else { 
+                    t.text = entity.Data.Type.ToString();
+                    t.color = new Color(1, 0, 0, 240f / 255);
+                    m.color = new Color(1, 0, 0, 180f / 255);
+                    i.color = new Color(1, 0, 0, 180f / 255);
+                }
             } else {
                 t.text = "CLEAR";
                 t.color = new Color(0, 1, 0, 240f / 255);

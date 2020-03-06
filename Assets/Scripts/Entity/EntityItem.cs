@@ -9,7 +9,7 @@ namespace PipelineDreams {
         [Tooltip("Share the assigned container, rather than copying it.")] public bool KeepPrefab;
         private void Awake()
         {
-            GetComponent<Entity>().OnInit += (tm, mc, ec) =>
+            GetComponent<Entity>().OnInit += (tm, ec) =>
             {
                 if (!KeepPrefab)
                     ItemContainer = Instantiate(ItemContainer);

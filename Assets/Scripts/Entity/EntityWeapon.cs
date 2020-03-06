@@ -19,7 +19,7 @@ namespace PipelineDreams {
             entity.OnInit += Entity_OnInit;
         }
 
-        private void Entity_OnInit(TaskManager arg1, MapDataContainer arg2, EntityDataContainer arg3)
+        private void Entity_OnInit(TaskManager arg1, EntityDataContainer arg3)
         {
             CM = arg1;
         }

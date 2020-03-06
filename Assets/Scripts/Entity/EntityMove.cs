@@ -17,7 +17,6 @@ namespace PipelineDreams {
         Entity entity;
         TaskManager CM;
         EntityDataContainer EM;
-        MapDataContainer mManager;
         /// <summary>
         /// Position before, Position after, Coroutine
         /// </summary>
@@ -47,10 +46,9 @@ namespace PipelineDreams {
             TTimeModifier.OnValueRequested += () => { TTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("TranslationTime") }); };//Base value of the TTimeModifier.
         }
 
-        private void EntityMove_OnInit(TaskManager arg1, MapDataContainer arg2, EntityDataContainer arg3)
+        private void EntityMove_OnInit(TaskManager arg1, EntityDataContainer arg3)
         {
             CM = arg1;
-            mManager = arg2;
             EM = arg3;
         }
 
@@ -62,7 +60,7 @@ namespace PipelineDreams {
         public bool CanMove(Vector3Int UVector) {
             if (UVector != Util.LHQToLHUnitVector(entity.IdealRotation)) return false;
             if (!CanStay(UVector)) return false;
-            if (EM.FindEntityInRelativePosition(UVector, entity) != null) return false;
+            if (EM.FindEntityRelative(UVector, entity) != null) return false;
             return true;
         }
         /// <summary>
@@ -82,8 +80,10 @@ namespace PipelineDreams {
         /// <param name="UVector"></param>
         /// <returns></returns>
         public bool CanStay(Vector3Int UVector) {
-
-            if ((mManager.GetTileRelative(Vector3Int.zero, Util.LHQToFace(entity.IdealRotation), entity).Attribute|TileAttribute.EntityStay)==0) return false;
+            if(entity.Data.HasParameter("OccupySpace"))
+            foreach (var x in EM.FindEntities((x) =>  x.IdealPosition == UVector ) ){
+                    if (x.Data.HasParameter("OccupySpace")) return false;
+            }
             return true;
         }
 
@@ -95,7 +95,7 @@ namespace PipelineDreams {
 
         public virtual void Face(int f, float startClock) {
             TaskPriority _p = TaskPriority.PLAYER;
-            switch (entity.Type) {
+            switch (entity.Data.Type) {
                 case EntityType.ENEMY: _p = TaskPriority.ENEMY; break;
 
                 case EntityType.NPC: _p = TaskPriority.NPC; break;
@@ -108,7 +108,7 @@ namespace PipelineDreams {
         }
         public virtual void MoveToward(Vector3Int v, float startClock) {
             TaskPriority _p = TaskPriority.PLAYER;
-            switch (entity.Type)
+            switch (entity.Data.Type)
             {
                 case EntityType.ENEMY: _p = TaskPriority.ENEMY; break;
 
@@ -127,7 +127,7 @@ namespace PipelineDreams {
         public virtual void MoveWarp(Vector3Int dest, float startClock)
         {
             TaskPriority _p = TaskPriority.PLAYER;
-            switch (entity.Type)
+            switch (entity.Data.Type)
             {
                 case EntityType.ENEMY: _p = TaskPriority.ENEMY; break;
 

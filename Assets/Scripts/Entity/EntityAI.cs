@@ -14,7 +14,6 @@ namespace PipelineDreams
         public EntityEmotion Emotion { get; protected set; }
         protected Entity entity;
         protected TaskManager CM;
-        protected MapDataContainer mManager;
         protected EntityDataContainer EM;
         protected EntitySight ES;
         protected EntityMove move;
@@ -31,7 +30,7 @@ namespace PipelineDreams
             ES = GetComponent<EntitySight>();
             move = GetComponent<EntityMove>();
             EA = GetComponent<EntityAbility>();
-            entity.OnInit += (tm, mc, ec) => { CM = tm; EntityClock = CM.Clock; Act(); mManager = mc; EM = ec; };
+            entity.OnInit += (tm, ec) => { CM = tm; EntityClock = CM.Clock; Act(); EM = ec; };
         }
 
     }

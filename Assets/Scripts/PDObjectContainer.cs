@@ -7,7 +7,6 @@ namespace PipelineDreams
     public abstract class PDObjectContainer<T> : ScriptableObject where T:PDObject {
         [SerializeField] protected ScriptableObject dataObj;
         [SerializeField] protected EntityDataContainer EM;
-        [SerializeField] protected MapDataContainer MDC;
         protected Entity Holder;
         protected TaskManager TM;
         protected List<T> objs = new List<T>();

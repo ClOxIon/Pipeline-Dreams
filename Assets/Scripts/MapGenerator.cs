@@ -30,15 +30,21 @@ namespace PipelineDreams
 
         Graph<MapMetaData> Stages = new Graph<MapMetaData>();
         public void GenerateStages(int seed) {
-            Stages.MakeNewVertex();
+           // Stages.MakeNewVertex();
         }
     }
-    public abstract class MapGenerator
+    
+    public abstract class MapGenerator : ScriptableObject
     {
         public abstract MapFeatData GenerateMap(int seed, int scale = 1);
 
 
     }
+    /// <summary>
+    /// A simple implementation of mapgenerator.
+    /// </summary>
+    [CreateAssetMenu]
+    
     public class CubeGenerator : MapGenerator
     {
         public override MapFeatData GenerateMap(int seed, int scale = 1) {
@@ -59,14 +65,23 @@ namespace PipelineDreams
             return tpData;
         }
     }
-    public abstract class MapRenderer
+    
+    public abstract class MapRenderer : ScriptableObject
     {
+        [SerializeField] protected Entity Station;
+        [SerializeField] protected EntityDataContainer enDataContainer;
         public abstract void RenderMap(MapFeatData data);
 
 
     }
+    /// <summary>
+    /// A simple implementation of maprenderer.
+    /// </summary>
+    [CreateAssetMenu]
     public class CubeRenderer : MapRenderer
     {
+        [SerializeField] Entity RoomWall;
+        
         public override void RenderMap(MapFeatData data) {
             
         }

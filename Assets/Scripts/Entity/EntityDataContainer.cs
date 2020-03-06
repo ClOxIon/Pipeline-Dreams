@@ -11,7 +11,6 @@ namespace PipelineDreams
         [SerializeField] EntityDataset EDataContainer;
         List<Entity> EntitiesInScene = new List<Entity>();
         // Start is called before the first frame update
-        [SerializeField] MapDataContainer mManager;
         
         public EntityData GetEntityDataFromName(string name) {
             return EDataContainer.DataSet.Find((x) => { return x.Name.Equals(name); }) as EntityData;
@@ -37,37 +36,85 @@ namespace PipelineDreams
             }
         }
         */
-        public Entity FindEntityInPosition(Vector3Int v) {
+        public List<Entity> FindEntities(Predicate<Entity> match) {
+            return EntitiesInScene.FindAll(match);
+        }
+        public Entity FindEntityRelative(Vector3Int v, int face, Entity origin) {
 
-            foreach (var e in EntitiesInScene)
-                if (e.IdealPosition == v) return e;
-            return null;
+            return FindEntity(origin.IdealPosition + v, face);
         }
-        public Entity FindEntityInPosition(int x, int y, int z) {
-            return FindEntityInPosition(new Vector3Int(x, y, z));
-        }
-        public Entity FindEntityInRelativePosition(Vector3Int v, Entity origin) {
+        public Entity FindEntityRelative(Vector3Int v, int face, EntityType type, Entity origin) {
 
-            foreach (var e in EntitiesInScene)
-                if (e.IdealPosition == v + origin.IdealPosition) return e;
-            return null;
+            return FindEntity(origin.IdealPosition + v, face, type);
         }
-        public Entity FindEntityInRelativePosition(int x, int y, int z, Entity origin) {
+        public Entity FindEntityRelative(Vector3Int v, EntityType type, Entity origin) {
 
-            return FindEntityInRelativePosition(new Vector3Int(x, y, z), origin);
+            return FindEntity(origin.IdealPosition + v, type);
         }
-        public Entity FindEntityOnAxis(int f, Entity origin, int searchlength = 12) {
-            Entity e;
-            for (int i = 1; i <= searchlength; i++) {
-                e = FindEntityInRelativePosition(Util.FaceToLHVector(f) * i, origin);
-                if (e != null)
-                    return e;
+        public Entity FindEntityRelative(Vector3Int v, Entity origin) {
+
+            return FindEntity(origin.IdealPosition + v);
+        }
+        
+        public Entity FindEntityOnAxis(int f, Entity origin, int searchDistance = 100) {
+           
+            for (int i = 1; i <= searchDistance; i++) {
+                foreach (var x in FindEntities((x) => x.IdealPosition == origin.IdealPosition+Util.FaceToLHVector(f)*i)) {
+                    //Check if the entities in between are invisible in our axis of interest.
+                    if (!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
+                        return x;
+                }
             }
             return null;
         }
+        
         public Entity[] FindEntitiesOfType(EntityType type) {
-            return EntitiesInScene.FindAll((x) => x.Type == type).ToArray();
+            return EntitiesInScene.FindAll((x) => x.Data.Type == type).ToArray();
         }
+        public bool IsLineOfSight(Vector3Int v1, Vector3Int v2) {
+            var v = v1 - v2;
 
+
+            if (v.x * v.y != 0 || v.y * v.z != 0 || v.z * v.x != 0)
+                return false;
+            var m = v.magnitude;
+            v.Clamp(Vector3Int.one * (-1), Vector3Int.one);
+            var f = Util.LHUnitVectorToFace(v);
+            for (int i = 1; i < m; i++)
+                foreach (var x in FindEntities((x) => x.IdealPosition == v2 + v * i)) {
+                    //Check if the entities in between are invisible in our axis of interest.
+                    if(!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
+                    return false;
+                }
+            return true;
+
+        }
+        
+
+        public Entity FindEntity(Vector3Int v) {
+            return FindEntity(v.x, v.y, v.z);
+        }
+        public Entity FindEntity(Vector3Int v, int f) {
+            return FindEntity(v.x, v.y, v.z, f);
+        }
+        public Entity FindEntity(Vector3Int v, EntityType type) {
+            return FindEntity(v.x, v.y, v.z, type);
+        }
+        public Entity FindEntity(Vector3Int v, int f, EntityType type) {
+            return FindEntity(v.x, v.y, v.z, f, type);
+        }
+        public Entity FindEntity(int i, int j, int k, EntityType type) {
+            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k) && x.Data.Type == type);
+        }
+        public Entity FindEntity(int i, int j, int k, int f, EntityType type) {
+            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f && x.Data.Type == type);
+        }
+        public Entity FindEntity(int i, int j, int k, int f) {
+            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f);
+        }
+        public Entity FindEntity(int i, int j, int k) {
+            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k));
+        }
+        
     }
 }

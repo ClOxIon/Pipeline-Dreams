@@ -14,7 +14,7 @@ namespace PipelineDreams {
         private void Awake() {
 
             entity = GetComponent<Entity>();
-            entity.OnInit += (tm, mc, ec) => 
+            entity.OnInit += (tm, ec) => 
             {
                 MaxHP.OnValueRequested += () => { MaxHP.AddFunction(new MutableValue.Constant(entity.Data.MaxHP)); };
                 CurrentHP = MaxHP.Value; 

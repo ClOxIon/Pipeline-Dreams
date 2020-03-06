@@ -8,10 +8,8 @@ namespace PipelineDreams {
         [SerializeField] EntityDataContainer EM;
         [SerializeField] TaskManager CM;
         [SerializeField] Entity Player;
-        MapDataContainer mManager;
         // Start is called before the first frame update
         private void Awake() {
-            mManager = FindObjectOfType<MapDataContainer>();
             EM.OnNewEntitySpawn += (e) => {
                 var obj = Instantiate(ESBPrefab, transform, true);
                 ESBList.Add(obj);
@@ -44,7 +42,7 @@ namespace PipelineDreams {
         private void ESBVisibilityRefresh() {
             foreach (var obj in ESBList) {
 
-                obj.Show(mManager.IsLineOfSight(obj.entity.IdealPosition, Player.IdealPosition));//line of sight
+                obj.Show(EM.IsLineOfSight(obj.entity.IdealPosition, Player.IdealPosition));//line of sight
             }
         }
 

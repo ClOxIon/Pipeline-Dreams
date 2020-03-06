@@ -6,7 +6,6 @@ namespace PipelineDreams
     public abstract partial class Instruction : PDObject {
         protected CommandsContainer PC;
         protected EntityDataContainer EM;
-        protected MapDataContainer MDC;
         /// <summary>
         /// Type conversion macro
         /// </summary>
@@ -23,11 +22,10 @@ namespace PipelineDreams
         /// <param name="pC"></param>
         /// <param name="data"></param>
         /// <param name="variant"></param>
-        public virtual void Obtain(Entity holder, TaskManager cM, EntityDataContainer eM, CommandsContainer pC, MapDataContainer mDC) {
+        public virtual void Obtain(Entity holder, TaskManager cM, EntityDataContainer eM, CommandsContainer pC) {
             Obtain(holder, cM);
             PC = pC;
             EM = eM;
-            MDC = mDC;
         }
         public override void Init(PDData data, params object[] args) {
             base.Init(data, args);
@@ -158,7 +156,7 @@ namespace PipelineDreams
         protected InstructionTask PassParam(InstructionTask x, float startClock) {
             x.Op = this;
             TaskPriority _p = TaskPriority.ENEMY;
-            switch (Holder.Type)
+            switch (Holder.Data.Type)
             {
                 case EntityType.ENEMY: _p = TaskPriority.ENEMY; break;
 

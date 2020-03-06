@@ -9,7 +9,6 @@ namespace PipelineDreams {
         [SerializeField] GameObject pipePrefab;
         [SerializeField] GameObject playerPrefab;
         GameObject minimapPlayerMarker;
-        [SerializeField] MapDataContainer mManager;
         [SerializeField] TaskManager CM;
         Entity player;
         Quaternion offset = Quaternion.Euler(0, 0, 0);

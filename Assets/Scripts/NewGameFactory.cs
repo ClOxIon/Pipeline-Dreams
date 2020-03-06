@@ -2,7 +2,6 @@
 namespace PipelineDreams {
     public class NewGameFactory : MonoBehaviour {
         [SerializeField] EntityDataContainer EM;
-        [SerializeField] MapDataContainer mManager;
         [SerializeField] CommandsContainer PC;
         [SerializeField] Entity Player;
         [SerializeField] PlayerMove PM;
@@ -10,7 +9,7 @@ namespace PipelineDreams {
         private void Awake() {
             //mManager.CreateNewMap();
             PC.Init(PM);
-            PI.InitPlayer(Player, mManager, EM.GetEntityDataFromName("Player"));
+            PI.InitPlayer(Player, EM.GetEntityDataFromName("Player"));
         }
     }
 }

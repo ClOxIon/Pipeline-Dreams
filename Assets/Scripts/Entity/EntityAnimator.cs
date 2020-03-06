@@ -24,7 +24,7 @@ namespace PipelineDreams {
 
         }
 
-        private void Entity_OnInit(TaskManager tm, MapDataContainer mc, EntityDataContainer ec) {
+        private void Entity_OnInit(TaskManager tm, EntityDataContainer ec) {
             EC = ec;
             transform.localPosition = GraphicalConstants.WORLDSCALE * (Vector3)entity.IdealPosition;
             transform.localRotation = entity.IdealRotation;
@@ -34,7 +34,7 @@ namespace PipelineDreams {
         /// </summary>
         /// <returns></returns>
         bool IsSeenByPlayer() {
-            if(entity.Type==EntityType.PLAYER)
+            if(entity.Data.Type==EntityType.PLAYER)
                 return true;//Player can 'see' itself
             bool flag = false;
             foreach (var x in EC.FindEntitiesOfType(EntityType.PLAYER))

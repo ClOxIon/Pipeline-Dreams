@@ -13,8 +13,6 @@ namespace PipelineDreams {
         [Range(0, 1)] [SerializeField] float LerpSpeed;
         [SerializeField] EntityDataContainer EM;
         [SerializeField] Entity Player;
-        [SerializeField] TileDataset Dataset;
-        [SerializeField] MapDataContainer mManager;
         Camera FrontCam;
         bool visible = false;
         bool isMoving = true;
@@ -46,15 +44,6 @@ namespace PipelineDreams {
 
         }
 
-        private void ShowTileDialogue(TileData data) {
-            TitleText.text = data.Name;
-            if (data.FindParameterString("HasDialogue") != null)
-                FindObjectOfType<DialogueRunner>().StartDialogue(data.Name);
-            else {
-                DescriptionText.text = "Nothing special with this " + data.Name + ".";
-            }
-
-        }
 
         private void ShowEntityDialogue(EntityData data) {
             TitleText.text = data.Name;
@@ -83,10 +72,7 @@ namespace PipelineDreams {
             var e = EM.FindEntityOnAxis(Util.LHQToFace(Player.IdealRotation), Player);
             if (e != null)
                 ShowEntityDialogue(e.Data);
-            else {
-                var t = mManager.GetTileRelative(Vector3Int.zero, Util.LHQToFace(Player.IdealRotation), Player);
-                ShowTileDialogue(t.Data as TileData);
-            }
+            
 
 
         }

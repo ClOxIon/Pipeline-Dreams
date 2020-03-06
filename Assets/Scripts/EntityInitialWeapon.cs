@@ -11,7 +11,7 @@ namespace PipelineDreams {
         void Start()
         {
             var entity = GetComponent<Entity>();
-            entity.OnInit += (tm, mc, ec) =>
+            entity.OnInit += (tm, ec) =>
           {
               Item AddedItem = null;
               ItemData AddedItemData;

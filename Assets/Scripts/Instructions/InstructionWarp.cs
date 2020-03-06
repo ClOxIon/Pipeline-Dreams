@@ -5,7 +5,7 @@ namespace PipelineDreams
         public override IClockTask Operation(float startClock)
         {
 
-            return PassParam(new InstructionWarpTask() {MDC = MDC }, startClock);
+            return PassParam(new InstructionWarpTask(), startClock);
         }
         
     }
@@ -16,10 +16,11 @@ namespace PipelineDreams
         /// </summary>
         protected class InstructionWarpTask : InstructionTask
         {
-            public MapDataContainer MDC;
+            
             public int WarpLength;
             protected override void OnRunStart()
             {
+                
                 /*
                 var m = Op.Subject.GetComponent<EntityMove>();
                 if (m == null)
