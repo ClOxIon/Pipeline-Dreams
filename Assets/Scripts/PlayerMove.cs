@@ -49,7 +49,7 @@ namespace PipelineDreams {
         /// </summary>
         /// <param name="value"></param>
         private void OnMoveForward(object value) {
-            if (Player.GetComponent<EntityMove>().CanMove(Util.LHQToLHUnitVector(Player.IdealRotation))) {
+            if (Player.GetComponent<EntityMove>().CanMove(Player.IdealPosition+Util.LHQToLHUnitVector(Player.IdealRotation))) {
 
                 PlayerTranslateForward();
                 OnCommandKeyPressed(Command.space);

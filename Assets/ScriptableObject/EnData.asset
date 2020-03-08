@@ -4,8 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_prefabInstance: {fileID: 0}
-  m_prefabAsset: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -22,10 +22,14 @@ MonoBehaviour:
       Value: SpeedUp
     - Name: LootChance
       Value: 1
-    maxHP: 5
-    type: 1
-    prefab: {fileID: 8056400577095368730, guid: 52ada8c7a2fc2ae4b9feac8f69b0bed3,
-      type: 3}
+    maxHP: 0
+    damage: 0
+    type: 0
+    occupySpace: 0
+    invisibleX: 0
+    invisibleZ: 0
+    invisibleY: 0
+    prefab: {fileID: 0}
   - name: Green-eyed Spider
     nameInGame: 
     description: It sucks a bit more.
@@ -35,10 +39,14 @@ MonoBehaviour:
       Value: SpeedUp
     - Name: LootChance
       Value: 1
-    maxHP: 8
-    type: 1
-    prefab: {fileID: 1665931868677219845, guid: 9e9cfae9395853a4e9cd27dfe5c8e663,
-      type: 3}
+    maxHP: 0
+    damage: 0
+    type: 0
+    occupySpace: 0
+    invisibleX: 0
+    invisibleZ: 0
+    invisibleY: 0
+    prefab: {fileID: 0}
   - name: Blue-eyed Spider
     nameInGame: 
     description: Ouch!
@@ -48,10 +56,14 @@ MonoBehaviour:
       Value: SpeedUp
     - Name: LootChance
       Value: 1
-    maxHP: 5
-    type: 1
-    prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
-      type: 3}
+    maxHP: 0
+    damage: 0
+    type: 0
+    occupySpace: 0
+    invisibleX: 0
+    invisibleZ: 0
+    invisibleY: 0
+    prefab: {fileID: 0}
   - name: Player
     nameInGame: 
     description: Who are you?
@@ -61,7 +73,79 @@ MonoBehaviour:
       Value: 0.5
     - Name: TranslationTime
       Value: 0.5
-    maxHP: 250
+    maxHP: 0
+    damage: 0
     type: 0
-    prefab: {fileID: 9124314233241442558, guid: 744c0e6a3665259419deb415ab113af9,
+    occupySpace: 0
+    invisibleX: 0
+    invisibleZ: 0
+    invisibleY: 0
+    prefab: {fileID: 0}
+  - name: RoomWall
+    nameInGame: 
+    description: The wall.
+    icon: {fileID: 0}
+    parameters:
+    - Name: BlockEntity
+      Value: 0
+    maxHP: 0
+    damage: 0
+    type: 3
+    occupySpace: 0
+    invisibleX: 1
+    invisibleZ: 0
+    invisibleY: 1
+    prefab: {fileID: -6320875042876512917, guid: 69516c6301c0dff49bfc1c430d46dda9,
+      type: 3}
+  - name: RoomEntrance
+    nameInGame: 
+    description: The wall.
+    icon: {fileID: 0}
+    parameters:
+    - Name: RotationTime
+      Value: 0.5
+    - Name: TranslationTime
+      Value: 0.5
+    maxHP: 0
+    damage: 0
+    type: 3
+    occupySpace: 0
+    invisibleX: 1
+    invisibleZ: 0
+    invisibleY: 1
+    prefab: {fileID: -4395342450845766009, guid: 04ff00f6628e8924ea956d6aeb143cc6,
+      type: 3}
+  - name: PipePath
+    nameInGame: 
+    description: The wall.
+    icon: {fileID: 0}
+    parameters:
+    - Name: RotationTime
+      Value: 0.5
+    - Name: TranslationTime
+      Value: 0.5
+    maxHP: 0
+    damage: 0
+    type: 3
+    occupySpace: 0
+    invisibleX: 1
+    invisibleZ: 0
+    invisibleY: 1
+    prefab: {fileID: 1585074348643530598, guid: d0208f0061402134784283d11a4ba9b7,
+      type: 3}
+  - name: PipeWall
+    nameInGame: 
+    description: The wall.
+    icon: {fileID: 0}
+    parameters:
+    - Name: BlockEntity
+      Value: 0
+    maxHP: 0
+    damage: 0
+    type: 3
+    occupySpace: 0
+    invisibleX: 1
+    invisibleZ: 0
+    invisibleY: 1
+    prefab: {fileID: 3028442076416918469, guid: b5d55d46a0ecf0c42845ef576121c6bf,
       type: 3}

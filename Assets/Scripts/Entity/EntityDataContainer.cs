@@ -14,15 +14,18 @@ namespace PipelineDreams
         // Start is called before the first frame update
         
         public EntityData GetEntityDataFromName(string name) {
+            if (!EDataContainer.DataSet.Any((x) => { return x.Name.Equals(name); }))
+                Debug.LogWarning($"EntityDataContainer.GetEntityDataFromName: No Entity Named {name}");
             return EDataContainer.DataSet.Find((x) => { return x.Name.Equals(name); }) as EntityData;
 
         }
         public void Initialize() {
             EntitiesInScene = new List<Entity>();
         }
-        public void AddEntityInScene(Entity entityPrefab, Vector3Int pos, Quaternion rot, string name, TaskManager tm) {
-            var e = Instantiate(entityPrefab, GraphicalConstants.WORLDSCALE* (Vector3)pos  , rot);
-            e.Initialize(pos, rot, GetEntityDataFromName(name), tm, this);
+        public void AddEntityInScene(Vector3Int pos, Quaternion rot, string name, TaskManager tm) {
+            var data = GetEntityDataFromName(name);
+            var e = Instantiate(data.Prefab, GraphicalConstants.WORLDSCALE* (Vector3)pos  , rot);
+            e.Initialize(pos, rot, data, tm, this);
             if (EntitiesInScene.Any((x) =>x.IdealPosition == pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(rot)))
                 Debug.LogWarning("Overlapping Tile Detected!:" + e.IdealPosition);
             EntitiesInScene.Add(e);

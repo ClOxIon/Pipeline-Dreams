@@ -20,11 +20,11 @@ namespace PipelineDreams
                         var vf = Vector3Int.RoundToInt(room.Rotation * p + room.Position + Util.FaceToLHVector(f));
                         if (room.UsedEntrances.Any((x) => Vector3Int.RoundToInt(room.Rotation* x.Position+ room.Position) == vf))
                         {
-                            enDataContainer.AddEntityInScene(RoomEntrance, Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomEntrance", TM);
+                            enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomEntrance", TM);
                         }
                         else if (!room.OccupiedCells.Any((x)=> Vector3Int.RoundToInt(room.Rotation * x + room.Position) == vf))
                         {
-                            enDataContainer.AddEntityInScene(RoomWall, Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomWall", TM);
+                            enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomWall", TM);
                         }
                     }
                 List<Vector3Int> entrancePoints = new List<Vector3Int>();
@@ -38,13 +38,13 @@ namespace PipelineDreams
                 for(int f = 0;f<6;f++){
                         if (room.UsedEntrances.Any((x) => Vector3Int.RoundToInt(room.Rotation* x.Position) + room.Position == p && Util.LHQToFace(x.Rotation * room.Rotation) == f))
                         {
-                            enDataContainer.AddEntityInScene(PipePath, p, Util.FaceToLHQ(f), "PipePath", TM);
+                            enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipePath", TM);
                         }
                         else if (data.Paths.Any((path) => (path.Head == p && path.Cells[1] == p + Util.FaceToLHVector(f)) || (path.Tail == p && path.Cells[path.Cells.Count-2] == p + Util.FaceToLHVector(f)))) {
-                            enDataContainer.AddEntityInScene(PipePath, p, Util.FaceToLHQ(f), "PipePath", TM);
+                            enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipePath", TM);
                         }
                         else
-                        enDataContainer.AddEntityInScene(PipeWall, p, Util.FaceToLHQ(f), "PipeWall", TM);
+                        enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipeWall", TM);
                     }
             }
 
@@ -62,11 +62,11 @@ namespace PipelineDreams
                     for (int f = 0; f < 6; f++)
                     {
                         if (path.Cells[i + 1] == path.Cells[i] + Util.FaceToLHVector(f) || (path.Cells[i - 1] == path.Cells[i] + Util.FaceToLHVector(f)))
-                            enDataContainer.AddEntityInScene(PipePath, path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM);
+                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM);
                         else if (PathJoints.Any((joint)=>joint.Position==path.Cells[i]&&Util.LHQToFace(joint.Rotation)==f))
-                            enDataContainer.AddEntityInScene(PipePath, path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM);
+                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM);
                         else
-                            enDataContainer.AddEntityInScene(PipeWall, path.Cells[i], Util.FaceToLHQ(f), "PipeWall", TM);
+                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipeWall", TM);
                     }
                
             }

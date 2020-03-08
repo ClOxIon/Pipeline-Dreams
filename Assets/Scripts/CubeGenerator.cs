@@ -39,7 +39,7 @@ namespace PipelineDreams
             deadend2.Rotation = Util.FaceToLHQ(4);
             tpData.Features.Add(deadend2);
 
-            tpData.Paths = GeneratePaths(new List<MapFeature>() { room }, new List<MapFeature> { room2, room3, deadend1, deadend2 }, pathSimplicity, pathLinearity, 1, 3, () => UnityEngine.Random.value);
+            tpData.Paths = GeneratePaths(new List<MapFeature>(), new List<MapFeature> { room, room2, room3, deadend1, deadend2 }, pathSimplicity, pathLinearity, 1, 3, () => UnityEngine.Random.value);
 
 
             return tpData;
@@ -170,7 +170,7 @@ namespace PipelineDreams
                 }
                 var path = new PDMapPath();
                 MapFeature room = featsToConnect.ElementAt(pathIndex);
-
+                DirectionalFeature addedEnt = new DirectionalFeature();
                 //Set the starting point of the path to a random entrance of the room.
                 //If the path starts in a feature, or the width of the path is large, we should "pull out" the path out of the feature first in order to prevent CheckOccupancy() from halting the generation.
                 //To pull out, if there is a designated entrance, we move out of it. Otherwise, we move in random direction until the path does not overlap with the room
@@ -179,7 +179,7 @@ namespace PipelineDreams
                     var uv = Util.LHQToLHUnitVector(ent.Rotation* room.Rotation);
                     path.Head = Vector3Int.RoundToInt(room.Rotation * ent.Position) + room.Position;
                     room.UsedEntrances.Add(ent);
-
+                    addedEnt = ent;
                 } else {
                     var f = SelectRandom(new int[] { 0, 1, 2, 3, 4, 5 });
                     var uv = Util.FaceToLHVector(f);
@@ -192,7 +192,8 @@ namespace PipelineDreams
 
                     }
                     //New Entrance is created!
-                    room.UsedEntrances.Add(new DirectionalFeature() { Position = p - room.Position, Rotation = Quaternion.Inverse(room.Rotation)*Util.FaceToLHQ(Util.FaceFlip(f)) });
+                    addedEnt = new DirectionalFeature() { Position = p - room.Position, Rotation = Quaternion.Inverse(room.Rotation) * Util.FaceToLHQ(Util.FaceFlip(f)) };
+                    room.UsedEntrances.Add(addedEnt);
                 }
                 path.Cells.Add(path.Head);
                 //Distance Gradient Descent; with some exploration
@@ -245,13 +246,25 @@ namespace PipelineDreams
                                 x.UsedEntrances.Add(new DirectionalFeature() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
                         }
                 //Add joints to the paths connected at the tail:
-               
-                    foreach (var path2 in paths) {
+                //If the path is singleton
+                if (path.Cells.Count == 1) {
+                    foreach (var path2 in paths)
+                    {
                         for (int i = 1; i < path2.Cells.Count - 1; i++)
                             if (path2.Cells[i] == path.Tail)
-                                path2.Joints.Add(new DirectionalFeature() { Position = path2.Cells[i], Rotation = Util.FaceToLHQ(Util.LHUnitVectorToFace(path.Cells[path.Cells.Count-2] - path.Tail))});
+                                path2.Joints.Add(new DirectionalFeature() { Position = path2.Cells[i], Rotation = addedEnt.Rotation });
                     }
-                paths.Add(path);
+                }
+                else
+                {
+                    foreach (var path2 in paths)
+                    {
+                        for (int i = 1; i < path2.Cells.Count - 1; i++)
+                            if (path2.Cells[i] == path.Tail)
+                                path2.Joints.Add(new DirectionalFeature() { Position = path2.Cells[i], Rotation = Util.FaceToLHQ(Util.LHUnitVectorToFace(path.Cells[path.Cells.Count - 2] - path.Tail)) });
+                    }
+                    paths.Add(path);
+                }
                 //Refresh ConnectedCells
                 ConnectedCells.AddRange(path.Cells);
                 if (room.Entrances.Count != 0)

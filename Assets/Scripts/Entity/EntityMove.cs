@@ -55,12 +55,14 @@ namespace PipelineDreams {
         /// <summary>
         /// Can move to that position next turn?
         /// </summary>
-        /// <param name="UVector"></param>
+        /// <param name="WVector">World Position</param>
         /// <returns></returns>
-        public bool CanMove(Vector3Int UVector) {
-            if (UVector != Util.LHQToLHUnitVector(entity.IdealRotation)) return false;
-            if (!CanStay(UVector)) return false;
-            if (EM.FindEntityRelative(UVector, entity) != null) return false;
+        public bool CanMove(Vector3Int WVector) {
+            if (!CanStay(WVector)) return false;
+            //If there are tiles in the same cell as the player, blocking the way.
+            if (EM.FindEntities((x) => x.IdealPosition == entity.IdealPosition &&Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(WVector - entity.IdealPosition) && x.Data.Type == EntityType.TILE&&x.Data.HasParameter("BlockEntity")).Count!=0) return false;
+            //If there are tiles in the cell the player is trying to go, blocking the way.
+            if (EM.FindEntities((x) => x.IdealPosition == WVector && Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(entity.IdealPosition - WVector) && x.Data.Type == EntityType.TILE && x.Data.HasParameter("BlockEntity")).Count != 0) return false;
             return true;
         }
         /// <summary>
@@ -77,12 +79,12 @@ namespace PipelineDreams {
         /// <summary>
         /// Can end turn in that position?
         /// </summary>
-        /// <param name="UVector"></param>
+        /// <param name="WVector"></param>
         /// <returns></returns>
-        public bool CanStay(Vector3Int UVector) {
-            if(entity.Data.HasParameter("OccupySpace"))
-            foreach (var x in EM.FindEntities((x) =>  x.IdealPosition == UVector ) ){
-                    if (x.Data.HasParameter("OccupySpace")) return false;
+        public bool CanStay(Vector3Int WVector) {
+            if(entity.Data.OccupySpace)
+            foreach (var x in EM.FindEntities((x) =>  x.IdealPosition == WVector ) ){
+                    if (x.Data.OccupySpace) return false;
             }
             return true;
         }
@@ -146,7 +148,7 @@ namespace PipelineDreams {
             public IEnumerator Run() {
                 var em = Entity.GetComponent<EntityMove>();
                 var PositionBefore = Entity.IdealPosition;
-                if (!em.CanMove(Util.FaceToLHVector(Face))) yield break;
+                if (!em.CanMove(Entity.IdealPosition+Util.FaceToLHVector(Face))) yield break;
                 Entity.IdealPosition += Util.FaceToLHVector(Face);
                 foreach (var x in em.OnMove) {
                     var r = x?.Invoke(PositionBefore, Entity.IdealPosition);

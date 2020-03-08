@@ -21,14 +21,14 @@ namespace PipelineDreams {
     [System.Serializable]
     public class EntityData : PDData {
 
-        private int maxHP;
-        private int damage;
-        private EntityType type;
-        private bool occupySpace;
-        [Tooltip("The entity has a small cross-section when looked through its X axis; from its sides.")]private bool invisibleX;
-        [Tooltip("The entity has a small cross-section looked through its Z axis; from its front and back.")] private bool invisibleZ;
-        [Tooltip("The entity has a small cross-section when looked through its Y axis; from its up and down.")] private bool invisibleY;
-        private Entity prefab;
+        [SerializeField] private int maxHP;
+        [SerializeField] private int damage;
+        [SerializeField] private EntityType type;
+        [SerializeField] private bool occupySpace;
+        [Tooltip("The entity has a small cross-section when looked through its X axis; from its sides.")] [SerializeField] private bool invisibleX;
+        [Tooltip("The entity has a small cross-section looked through its Z axis; from its front and back.")] [SerializeField] private bool invisibleZ;
+        [Tooltip("The entity has a small cross-section when looked through its Y axis; from its up and down.")] [SerializeField] private bool invisibleY;
+        [SerializeField]private Entity prefab;
 
         public int MaxHP { get => maxHP; set => maxHP = value; }
         public EntityType Type { get => type; set => type = value; }

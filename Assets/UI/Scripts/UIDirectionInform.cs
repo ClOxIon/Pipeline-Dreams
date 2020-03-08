@@ -40,7 +40,9 @@ namespace PipelineDreams {
         }
         void UpdateUIInfo() {
             var q = Player.IdealRotation;
+            
             CenterText.text = Directions[Util.LHQToFace(q)];
+            /*
             var f = Vector3Int.RoundToInt(q * new Vector3(0, 0, 1));
             var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(f), Player);
             if (entity == null) {
@@ -55,6 +57,7 @@ namespace PipelineDreams {
                 CenterInfoText.color = new Color(1, 0, 0, 240f / 255);
 
             }
+            */
             var e = Util.LHUnitVectorToFace(Vector3Int.RoundToInt(q * new Vector3(-1, 0, 0)));
             LeftFrame.sprite = Arrows[e];
             LeftText.text = Directions[e];
@@ -68,6 +71,7 @@ namespace PipelineDreams {
             DownFrame.sprite = Arrows[d];
             DownText.text = Directions[d];
             rotation = q;
+            UpdateInfoText(Vector3Int.RoundToInt(rotation * new Vector3(0, 0, 1)), CenterInfoText, CenterText, CenterBar);
             UpdateInfoText(Vector3Int.RoundToInt(rotation * new Vector3(-1, 0, 0)), LeftInfoText, LeftText, LeftFrame);
             UpdateInfoText(Vector3Int.RoundToInt(rotation * new Vector3(1, 0, 0)), RightInfoText, RightText, RightFrame);
             UpdateInfoText(Vector3Int.RoundToInt(rotation * new Vector3(0, 1, 0)), UpInfoText, UpText, UpFrame);
@@ -77,21 +81,29 @@ namespace PipelineDreams {
         }
 
         void UpdateInfoText(Vector3Int e, Text t, Text m, Image i) {
+            /*
             var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(e), Player);
             if (entity != null) {
                 if (entity.Data.Type == EntityType.TILE) {
-                    t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);
-                    m.color = new Color(0, 1, 0, 180f / 255);
-                    i.color = new Color(0, 1, 0, 180f / 255);
+                   
                 } else { 
                     t.text = entity.Data.Type.ToString();
                     t.color = new Color(1, 0, 0, 240f / 255);
                     m.color = new Color(1, 0, 0, 180f / 255);
                     i.color = new Color(1, 0, 0, 180f / 255);
                 }
-            } else {
+            }
+            */
+            if (Player.GetComponent<EntityMove>().CanMove(Player.IdealPosition + e))
+            {
                 t.text = "CLEAR";
                 t.color = new Color(0, 1, 0, 240f / 255);
+                m.color = new Color(0, 1, 0, 180f / 255);
+                i.color = new Color(0, 1, 0, 180f / 255);
+            }
+            else
+            {
+                t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);
                 m.color = new Color(0, 1, 0, 180f / 255);
                 i.color = new Color(0, 1, 0, 180f / 255);
             }
