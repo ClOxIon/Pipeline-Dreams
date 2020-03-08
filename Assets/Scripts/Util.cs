@@ -10,6 +10,9 @@ namespace PipelineDreams {
         public static Vector3Int FaceToLHVector(int f) {
             return new Vector3Int(f >> 1 == 0 ? 1 : 0, f >> 1 == 1 ? 1 : 0, f >> 1 == 2 ? 1 : 0) * (-((f & 1) << 1) + 1);
         }
+        public static int FaceFlip(int f) {
+            return (f % 2 == 0) ? f + 1 : f - 1;
+        }
 
         public static int LHUnitVectorToFace(Vector3Int v) {
 

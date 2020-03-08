@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
 namespace PipelineDreams
 {
     public enum VertexAnnotation
@@ -40,31 +39,6 @@ namespace PipelineDreams
 
 
     }
-    /// <summary>
-    /// A simple implementation of mapgenerator.
-    /// </summary>
-    [CreateAssetMenu]
-    
-    public class CubeGenerator : MapGenerator
-    {
-        public override MapFeatData GenerateMap(int seed, int scale = 1) {
-            var tpData = new MapFeatData();
-            var room = new SquareRoom(scale * 5);
-            
-            tpData.Features.Add(room);
-
-            var deadend1 = new DeadendFeature();
-            deadend1.Index = 0;
-            deadend1.Position = new Vector3Int(-1, 0, 0);
-            deadend1.Rotation = Quaternion.Euler(0, 0, 180);
-            tpData.Features.Add(deadend1);
-            var deadend2 = new DeadendFeature();
-            deadend2.Index = 1;
-            deadend2.Position = new Vector3Int(scale*5, 0, 0);
-            tpData.Features.Add(deadend2);
-            return tpData;
-        }
-    }
     
     public abstract class MapRenderer : ScriptableObject
     {
@@ -94,7 +68,7 @@ namespace PipelineDreams
     }
     public class MapFeatData {
         public List<MapFeature> Features = new List<MapFeature>();
-        public List<List<Vector3Int>> Paths = new List<List<Vector3Int>>();
+        public List<PDMapPath> Paths = new List<PDMapPath>();
     }
     public class MapFeature {
         public string Name;
@@ -111,7 +85,23 @@ namespace PipelineDreams
         /// The position of the cells that this feature occupies; relative to the feature origin.
         /// </summary>
         public List<Vector3Int> OccupiedCells = new List<Vector3Int>();
+        /// <summary>
+        /// The position of entrances to the feature; if not specified, then every occupied point could be an entrance. All specified entrances should NOT be in OccupiedCells, and point toward an OccupiedCell.
+        /// Multiple entrances could exist in a cell if they all point to different points.
+        /// </summary>
+        public List<DirectionalFeature> Entrances = new List<DirectionalFeature>();
+
+        public List<DirectionalFeature> UsedEntrances = new List<DirectionalFeature>();
         public Quaternion Rotation;
+    }
+    public struct DirectionalFeature {
+        public Vector3Int Position;
+        public Quaternion Rotation;
+    }
+    public class PDMapPath {
+        public Vector3Int Head;
+        public Vector3Int Tail;
+        public List<Vector3Int> Cells = new List<Vector3Int>();
     }
     public class SquareRoom : MapFeature {
         public SquareRoom(int size) : base() {
@@ -129,6 +119,8 @@ namespace PipelineDreams
         public DeadendFeature() : base() {
             Name = "Deadend";
             OccupiedCells.Add(Vector3Int.zero);
+            //The entrance to this feature is heading -z direction.
+            Entrances.Add(new DirectionalFeature() { Position = new Vector3Int(0,0,-1), Rotation = Util.FaceToLHQ(5)});
         }
     }
 }
