@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef284a7d0a56dd4496b139b6dbd01b4, type: 3}
+  m_Name: New Cube Renderer
+  m_EditorClassIdentifier: 
+  Station: {fileID: 7649104115081796856, guid: 2e9ee105375cf0b41a7d019349aab6e1, type: 3}
+  PipePath: {fileID: 1585074348643530598, guid: d0208f0061402134784283d11a4ba9b7,
+    type: 3}
+  PipeWall: {fileID: 3028442076416918469, guid: b5d55d46a0ecf0c42845ef576121c6bf,
+    type: 3}
+  RoomWall: {fileID: -6320875042876512917, guid: 69516c6301c0dff49bfc1c430d46dda9,
+    type: 3}
+  RoomEntrance: {fileID: -4395342450845766009, guid: 04ff00f6628e8924ea956d6aeb143cc6,
+    type: 3}
+  TM: {fileID: 0}
+  enDataContainer: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}

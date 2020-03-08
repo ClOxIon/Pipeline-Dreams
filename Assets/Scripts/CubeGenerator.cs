@@ -14,28 +14,28 @@ namespace PipelineDreams
     {
         [SerializeField] int pathSimplicity;
         [SerializeField] int pathLinearity;
-        public override MapFeatData GenerateMap(int seed, int scale = 1) {
+        public override MapFeatData GenerateMap(int seed, float scale = 1) {
 
             var tpData = new MapFeatData();
-            var room = new SquareRoom(scale * 10);
+            var room = new SquareRoom((int)(scale * 10));
 
             tpData.Features.Add(room);
-            var room2 = new SquareRoom(scale * 5);
-            room2.Position = new Vector3Int(scale * 20, scale * 20, scale * 20);
-            var room3 = new SquareRoom(scale * 5);
-            room3.Position = new Vector3Int(-scale * 20, -scale * 20, -scale * 20);
+            var room2 = new SquareRoom((int)(scale * 5));
+            room2.Position = new Vector3Int((int)(scale * 20), (int)(scale * 20), (int)(scale * 20));
+            var room3 = new SquareRoom((int)(scale * 5));
+            room3.Position = new Vector3Int(-(int)(scale * 20), -(int)(scale * 20), -(int)(scale * 20));
 
             tpData.Features.Add(room2);
 
             tpData.Features.Add(room3);
             var deadend1 = new DeadendFeature();
             deadend1.Index = 0;
-            deadend1.Position = new Vector3Int(0, 0, -scale * 20);
+            deadend1.Position = new Vector3Int(0, 0, -(int)(scale * 20));
             deadend1.Rotation = Util.FaceToLHQ(5);
             tpData.Features.Add(deadend1);
             var deadend2 = new DeadendFeature();
             deadend2.Index = 1;
-            deadend2.Position = new Vector3Int(0, 0, scale * 20);
+            deadend2.Position = new Vector3Int(0, 0, (int)(scale * 20));
             deadend2.Rotation = Util.FaceToLHQ(4);
             tpData.Features.Add(deadend2);
 
@@ -176,7 +176,7 @@ namespace PipelineDreams
                 //To pull out, if there is a designated entrance, we move out of it. Otherwise, we move in random direction until the path does not overlap with the room
                 if (room.Entrances.Count != 0) {
                     var ent = SelectRandom(room.Entrances);
-                    var uv = Util.LHQToLHUnitVector(ent.Rotation * room.Rotation);
+                    var uv = Util.LHQToLHUnitVector(ent.Rotation* room.Rotation);
                     path.Head = Vector3Int.RoundToInt(room.Rotation * ent.Position) + room.Position;
                     room.UsedEntrances.Add(ent);
 
@@ -188,15 +188,15 @@ namespace PipelineDreams
 
                         p = uv + p;
                         path.Head = p;
-                        
-                        
+
+
                     }
                     //New Entrance is created!
                     room.UsedEntrances.Add(new DirectionalFeature() { Position = p - room.Position, Rotation = Quaternion.Inverse(room.Rotation)*Util.FaceToLHQ(Util.FaceFlip(f)) });
                 }
                 path.Cells.Add(path.Head);
                 //Distance Gradient Descent; with some exploration
-                while (GetGrid(DistanceGrid, path.Cells.Last()) > 1) {
+                while (GetGrid(DistanceGrid, path.Cells.Last()) > 0) {
                     var availableNextCells = new List<Vector3Int>();
                     for (int f = 0; f < 6; f++) {
                         var p = path.Cells.Last() + Util.FaceToLHVector(f);
@@ -224,17 +224,35 @@ namespace PipelineDreams
 
                 }
                 //Add the tail to the path
+                path.Tail = path.Cells.Last();
+
+
+                //Add UsedEntrance to the features just connected at the tail;
                 for (int f = 0; f < 6; f++)
-                    if (ConnectedCells.Contains(path.Cells.Last() + Util.FaceToLHVector(f)))
-                        path.Tail = path.Cells.Last() + Util.FaceToLHVector(f);
-                path.Cells.Add(path.Tail);
-                
-                for (int f = 0; f < 6; f++)
-                    foreach(var x in featsToConnect)
-                    if (x.OccupiedCells.Contains(path.Tail + Util.FaceToLHVector(f) - x.Position))
-                        x.UsedEntrances.Add(new DirectionalFeature() { Position = path.Tail - x.Position, Rotation = Quaternion.Inverse(x.Rotation)*Util.FaceToLHQ(f) });
-                
+                    foreach (var x in featsToConnect)
+                        // for rooms do not have fixed entrances.
+                        if (x.Entrances.Count == 0)
+                        {
+                            if (x.OccupiedCells.Contains(Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail + Util.FaceToLHVector(f) - x.Position)))
+                            && !x.UsedEntrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.LHQToFace(x.Rotation * ent.Rotation) == f))
+                                x.UsedEntrances.Add(new DirectionalFeature() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
+                        }
+                        //for rooms of which entrances are fixed
+                        else
+                        {
+                            if (x.Entrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.LHQToFace(x.Rotation * ent.Rotation) == f)
+                                && !x.UsedEntrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.LHQToFace(x.Rotation * ent.Rotation) == f))
+                                x.UsedEntrances.Add(new DirectionalFeature() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
+                        }
+                //Add joints to the paths connected at the tail:
+               
+                    foreach (var path2 in paths) {
+                        for (int i = 1; i < path2.Cells.Count - 1; i++)
+                            if (path2.Cells[i] == path.Tail)
+                                path2.Joints.Add(new DirectionalFeature() { Position = path2.Cells[i], Rotation = Util.FaceToLHQ(Util.LHUnitVectorToFace(path.Cells[path.Cells.Count-2] - path.Tail))});
+                    }
                 paths.Add(path);
+                //Refresh ConnectedCells
                 ConnectedCells.AddRange(path.Cells);
                 if (room.Entrances.Count != 0)
                     ConnectedCells.AddRange(from p in room.Entrances select Vector3Int.RoundToInt(room.Rotation * p.Position) + room.Position);

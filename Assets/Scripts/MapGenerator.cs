@@ -35,7 +35,7 @@ namespace PipelineDreams
     
     public abstract class MapGenerator : ScriptableObject
     {
-        public abstract MapFeatData GenerateMap(int seed, int scale = 1);
+        public abstract MapFeatData GenerateMap(int seed, float scale = 1);
 
 
     }
@@ -43,22 +43,21 @@ namespace PipelineDreams
     public abstract class MapRenderer : ScriptableObject
     {
         [SerializeField] protected Entity Station;
+
+        [SerializeField] protected Entity PipePath;
+
+        [SerializeField] protected Entity PipeWall;
+
+        [SerializeField] protected Entity RoomWall;
+
+        [SerializeField] protected Entity RoomEntrance;
+
+        [SerializeField] protected TaskManager TM;
+
         [SerializeField] protected EntityDataContainer enDataContainer;
         public abstract void RenderMap(MapFeatData data);
+        public void Initialize(TaskManager tm) => TM = tm;
 
-
-    }
-    /// <summary>
-    /// A simple implementation of maprenderer.
-    /// </summary>
-    [CreateAssetMenu]
-    public class CubeRenderer : MapRenderer
-    {
-        [SerializeField] Entity RoomWall;
-        
-        public override void RenderMap(MapFeatData data) {
-            
-        }
     }
     public struct MapMetaData
     {
@@ -71,6 +70,7 @@ namespace PipelineDreams
         public List<PDMapPath> Paths = new List<PDMapPath>();
     }
     public class MapFeature {
+       
         public string Name;
 
         /// <summary>
@@ -92,15 +92,19 @@ namespace PipelineDreams
         public List<DirectionalFeature> Entrances = new List<DirectionalFeature>();
 
         public List<DirectionalFeature> UsedEntrances = new List<DirectionalFeature>();
-        public Quaternion Rotation;
+        public Quaternion Rotation = Quaternion.identity;
     }
-    public struct DirectionalFeature {
+    public class DirectionalFeature {
         public Vector3Int Position;
         public Quaternion Rotation;
     }
     public class PDMapPath {
         public Vector3Int Head;
         public Vector3Int Tail;
+        /// <summary>
+        /// The points where the path branches out
+        /// </summary>
+        public List<DirectionalFeature> Joints = new List<DirectionalFeature>();
         public List<Vector3Int> Cells = new List<Vector3Int>();
     }
     public class SquareRoom : MapFeature {
@@ -119,8 +123,8 @@ namespace PipelineDreams
         public DeadendFeature() : base() {
             Name = "Deadend";
             OccupiedCells.Add(Vector3Int.zero);
-            //The entrance to this feature is heading -z direction.
-            Entrances.Add(new DirectionalFeature() { Position = new Vector3Int(0,0,-1), Rotation = Util.FaceToLHQ(5)});
+            //The entrance to this feature is at -z direction, heading +z direction.
+            Entrances.Add(new DirectionalFeature() { Position = new Vector3Int(0,0,-1), Rotation = Util.FaceToLHQ(4)});
         }
     }
 }
