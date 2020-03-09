@@ -17,7 +17,7 @@ namespace PipelineDreams
         public override MapFeatData GenerateMap(int seed, float scale = 1) {
 
             var tpData = new MapFeatData();
-            var room = new SquareRoom((int)(scale * 10));
+            var room = new SquareRoom((int)(scale * 20));
 
             tpData.Features.Add(room);
             var room2 = new SquareRoom((int)(scale * 5));
@@ -30,12 +30,12 @@ namespace PipelineDreams
             tpData.Features.Add(room3);
             var deadend1 = new DeadendFeature();
             deadend1.Index = 0;
-            deadend1.Position = new Vector3Int(0, 0, -(int)(scale * 20));
+            deadend1.Position = new Vector3Int(0, 0, -(int)(scale * 25));
             deadend1.Rotation = Util.FaceToLHQ(5);
             tpData.Features.Add(deadend1);
             var deadend2 = new DeadendFeature();
             deadend2.Index = 1;
-            deadend2.Position = new Vector3Int(0, 0, (int)(scale * 20));
+            deadend2.Position = new Vector3Int(0, 0, (int)(scale * 25));
             deadend2.Rotation = Util.FaceToLHQ(4);
             tpData.Features.Add(deadend2);
 

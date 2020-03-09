@@ -12,6 +12,8 @@ namespace PipelineDreams
 
         public override void RenderMap(MapFeatData data)
         {
+
+            List<Vector3Int> entrancePoints = new List<Vector3Int>();
             foreach (var room in data.Features)
             {
                 foreach (var p in room.OccupiedCells)
@@ -20,33 +22,41 @@ namespace PipelineDreams
                         var vf = Vector3Int.RoundToInt(room.Rotation * p + room.Position + Util.FaceToLHVector(f));
                         if (room.UsedEntrances.Any((x) => Vector3Int.RoundToInt(room.Rotation* x.Position+ room.Position) == vf))
                         {
-                            enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomEntrance", TM);
+                            if (room.Name != "Deadend")
+                                enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomEntrance", TM);
+                            else
+                                enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "PipePath", TM);
                         }
                         else if (!room.OccupiedCells.Any((x)=> Vector3Int.RoundToInt(room.Rotation * x + room.Position) == vf))
                         {
+                            if(room.Name!="Deadend")
                             enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "RoomWall", TM);
+                            else
+                                enDataContainer.AddEntityInScene(Vector3Int.RoundToInt(room.Rotation * p + room.Position), Util.FaceToLHQ(f), "PipeVendingMachine", TM);
                         }
                     }
-                List<Vector3Int> entrancePoints = new List<Vector3Int>();
 
                 foreach (var ent in room.UsedEntrances)
                     if (!entrancePoints.Contains(Vector3Int.RoundToInt(room.Rotation*ent.Position + room.Position)))
                         entrancePoints.Add(Vector3Int.RoundToInt(room.Rotation * ent.Position + room.Position));
                   
-                //Check room entrance points.
-                foreach (var p in entrancePoints)
-                for(int f = 0;f<6;f++){
-                        if (room.UsedEntrances.Any((x) => Vector3Int.RoundToInt(room.Rotation* x.Position) + room.Position == p && Util.LHQToFace(x.Rotation * room.Rotation) == f))
-                        {
-                            enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipePath", TM);
-                        }
-                        else if (data.Paths.Any((path) => (path.Head == p && path.Cells[1] == p + Util.FaceToLHVector(f)) || (path.Tail == p && path.Cells[path.Cells.Count-2] == p + Util.FaceToLHVector(f)))) {
-                            enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipePath", TM);
-                        }
-                        else
-                        enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipeWall", TM);
-                    }
+                
             }
+            //Check room entrance points.
+            foreach (var p in entrancePoints)
+                for (int f = 0; f < 6; f++)
+                {
+                    if (data.Features.Any((room)=>room.UsedEntrances.Any((x) => Vector3Int.RoundToInt(room.Rotation * x.Position) + room.Position == p && Util.LHQToFace(x.Rotation * room.Rotation) == f)))
+                    {
+                        enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipePath", TM);
+                    }
+                    else if (data.Paths.Any((path) => (path.Head == p && path.Cells[1] == p + Util.FaceToLHVector(f)) || (path.Tail == p && path.Cells[path.Cells.Count - 2] == p + Util.FaceToLHVector(f))))
+                    {
+                        enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipePath", TM);
+                    }
+                    else
+                        enDataContainer.AddEntityInScene(p, Util.FaceToLHQ(f), "PipeWall", TM);
+                }
 
             List<Vector3Int> PathEnds = new List<Vector3Int>();
             List<DirectionalFeature> PathJoints = new List<DirectionalFeature>();

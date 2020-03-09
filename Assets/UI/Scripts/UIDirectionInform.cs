@@ -94,6 +94,7 @@ namespace PipelineDreams {
                 }
             }
             */
+            i.enabled = false;
             if (Player.GetComponent<EntityMove>().CanMove(Player.IdealPosition + e))
             {
                 t.text = "CLEAR";
@@ -106,6 +107,7 @@ namespace PipelineDreams {
                 t.text = "BLOCKED"; t.color = new Color(0, 1, 0, 240f / 255);
                 m.color = new Color(0, 1, 0, 180f / 255);
                 i.color = new Color(0, 1, 0, 180f / 255);
+                i.enabled = false;
             }
         }
 
