@@ -62,7 +62,10 @@ namespace PipelineDreams {
             //If there are tiles in the same cell as the player, blocking the way.
             if (EM.FindEntities((x) => x.IdealPosition == entity.IdealPosition &&Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(WVector - entity.IdealPosition) && x.Data.Type == EntityType.TILE&&x.Data.HasParameter("BlockEntity")).Count!=0) return false;
             //If there are tiles in the cell the player is trying to go, blocking the way.
-            if (EM.FindEntities((x) => x.IdealPosition == WVector && Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(entity.IdealPosition - WVector) && x.Data.Type == EntityType.TILE && x.Data.HasParameter("BlockEntity")).Count != 0) return false;
+            if (EM.FindEntities((x) => x.IdealPosition == WVector &&
+            Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(entity.IdealPosition - WVector) &&
+            x.Data.Type == EntityType.TILE &&
+            x.Data.HasParameter("BlockEntity")).Count != 0) return false;
             return true;
         }
         /// <summary>
