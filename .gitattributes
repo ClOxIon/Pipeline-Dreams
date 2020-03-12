@@ -2,4 +2,5 @@
 * text=auto
 *.meta text eol=lf
 *.unity text eol=lf
+*.prefab text eol=lf
 *.asset text eol=lf
