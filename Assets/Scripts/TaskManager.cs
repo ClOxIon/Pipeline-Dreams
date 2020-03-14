@@ -10,7 +10,7 @@ namespace PipelineDreams {
         PLAYER, ENEMY = 100, NPC = 200
     }
     public class TaskManager : MonoBehaviour {
-
+        public event Action OnTaskDone;
         PlayerInputBroadcaster PC;
         public float Clock { get; private set; } = 0;
         float AccumulatedClock = 0;

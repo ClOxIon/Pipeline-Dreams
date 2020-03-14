@@ -34,7 +34,6 @@ namespace PipelineDreams
         }
         private void V_OnDamagePacketEvaluation(DamagePacket obj)
         {
-            if(obj.damageCause==DamageCause.Instruction)
             obj.damage.AddFunction(new Multiplication(damageBonusAmount + 1f));
         }
 

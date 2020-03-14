@@ -18,7 +18,7 @@ namespace PipelineDreams
         //Vector3Int Target;
         protected new void Awake() {
             base.Awake();
-            GetComponent<EntityHealth>().OnDamagedAmount += (x, y, e) => { if (x > 0) IsRecentlyDamaged = true; DamagedDirection = Util.LHUnitVectorToFace(Util.Normalize(e.IdealPosition - entity.IdealPosition)); };
+            GetComponent<EntityHealth>().OnDamaged += (x, e) => { if (x > 0) IsRecentlyDamaged = true; DamagedDirection = Util.LHUnitVectorToFace(Util.Normalize(e.IdealPosition - entity.IdealPosition)); };
         }
 
         protected override void Act() {

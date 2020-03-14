@@ -94,7 +94,7 @@ namespace PipelineDreams {
                 }
             }
             */
-            i.enabled = false;
+            i.enabled = true;
             if (Player.GetComponent<EntityMove>().CanMove(Player.IdealPosition + e))
             {
                 t.text = "CLEAR";

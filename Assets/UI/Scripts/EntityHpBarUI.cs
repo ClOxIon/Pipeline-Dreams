@@ -9,12 +9,13 @@ namespace PipelineDreams {
         private void Awake() {
             var esb = GetComponentInParent<EntityStatusBar>();
             esb.OnInit += () => {
-                esb.entity.GetComponent<EntityHealth>().OnHpModified += (v) => {
-                    v = Mathf.Clamp01(v);
+                esb.entity.OnParamChange += (name, hp) => {
+                    if (name != "HP") return;
+                    var v = Mathf.Clamp01(hp / esb.entity.Stats["MaxHP"].Value);
                     var s = HPBarFull.rect; HPBar.sizeDelta = new Vector2(s.width * v, 0);
                     HPBarBackground.sizeDelta = new Vector2(s.width * (1 - v), 0); HPBar.gameObject.SetActive(v != 1);
                 };
-                esb.entity.GetComponent<EntityHealth>().OnDamagedAmount += (d, h, e) => 
+                esb.entity.GetComponent<EntityHealth>().OnDamaged += (d, e) => 
                 {
                     var obj = Instantiate(DT, transform, false);
                     obj.Init((int)d);

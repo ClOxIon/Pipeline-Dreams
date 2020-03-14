@@ -4,6 +4,10 @@ using PipelineDreams.MutableValue;
 
 namespace PipelineDreams
 {
+
+    /// <summary>
+    /// Unlike shields in other games, this shield reduces the damage during the calculation.
+    /// </summary>
     public class BuffShield : Buff
     {
         public float TimeLeft { get; private set; }
@@ -23,18 +27,19 @@ namespace PipelineDreams
 
         public override void SetEnabled(bool enabled)
         {
-            var v = Holder.GetComponent<EntityHealth>();
-            if (v != null)
+            var health = Holder.GetComponent<EntityHealth>();
+            if (health != null)
                 if (enabled)
-                    v.OnDamagePacketEvaluation += V_OnDamagePacketEvaluation;
+                    health.OnDamagePacketArrive += V_OnDamagePacketEvaluation;
                 else
-                    v.OnDamagePacketEvaluation -= V_OnDamagePacketEvaluation;
+                    health.OnDamagePacketArrive -= V_OnDamagePacketEvaluation;
 
         }
 
 
         private void V_OnDamagePacketEvaluation(DamagePacket obj)
         {
+           
             obj.damage.AddFunction(new ShieldFunction(this));
         }
 
@@ -66,7 +71,7 @@ namespace PipelineDreams
                 this.b = b;
             }
 
-            public FunctionChainPriority Priority => FunctionChainPriority.Addition;
+            public FunctionChainPriority Priority => FunctionChainPriority.Delayed;
 
             public float Func(float x)
             {

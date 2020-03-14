@@ -54,10 +54,12 @@ namespace PipelineDreams {
                 return;
             }
             if (weapon != null) {
-                var damage = new MutableValue.FunctionChainSingleUse();
+                var damage = new MutableValue.FunctionChain();
                 damage.AddFunction(new MutableValue.Constant() { Value = weapon.MeleeDamage * meleeCoef + weapon.RangeDamage * rangeCoef + weapon.FieldDamage * fieldCoef });
-                var acc = new MutableValue.FunctionChainSingleUse();
+                damage.EvalAtNextGet = true;
+                var acc = new MutableValue.FunctionChain();
                 acc.AddFunction(new MutableValue.Constant() { Value = accuracy });
+                acc.EvalAtNextGet = true;
                 var dp = new DamagePacket() { damage = damage, subject = entity, accuracy = acc };
                 OnDamagePacketDepart?.Invoke(dp);
                 e.GetComponent<EntityHealth>().RecieveDamage(dp);

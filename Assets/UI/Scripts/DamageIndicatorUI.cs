@@ -9,14 +9,14 @@ namespace PipelineDreams {
         [SerializeField] Entity Player;
         private void Awake() {
 
-            Player.GetComponent<EntityHealth>().OnDamagedAmount += DamageIndicatorUI_OnDamaged;
+            Player.GetComponent<EntityHealth>().OnDamaged += DamageIndicatorUI_OnDamaged;
         }
 
-        private void DamageIndicatorUI_OnDamaged(float arg1, float MaxHP, Entity arg2) {
+        private void DamageIndicatorUI_OnDamaged(float arg1, Entity arg2) {
             var v = Vector3Int.RoundToInt(Quaternion.Inverse(Player.IdealRotation) * (arg2.IdealPosition - Player.IdealPosition));
             var f = Util.LHUnitVectorToFace(v);
             Texts[f].text = arg1.ToString();
-            Frames[f].Show(Mathf.Clamp(0.7f + 0.6f * arg1 / MaxHP, 0, 1), Mathf.Clamp(1.0f - 0.6f * arg1 / MaxHP, 0.4f, 1));
+            Frames[f].Show(Mathf.Clamp(0.7f + 0.6f * arg1 / Player.Stats["MaxHP"].Value, 0, 1), Mathf.Clamp(1.0f - 0.6f * arg1 / Player.Stats["MaxHP"].Value, 0.4f, 1));
 
         }
     }

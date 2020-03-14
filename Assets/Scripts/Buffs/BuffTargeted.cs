@@ -11,9 +11,9 @@
             var h = Holder.GetComponent<EntityHealth>();
             if (h != null) 
             if(enabled)
-                    h.OnDamagePacketEvaluation += BuffTargeted_OnDamagePacketEvaluation;
+                    h.OnDamagePacketArrive+= BuffTargeted_OnDamagePacketEvaluation;
             else
-                    h.OnDamagePacketEvaluation -= BuffTargeted_OnDamagePacketEvaluation;
+                    h.OnDamagePacketArrive-= BuffTargeted_OnDamagePacketEvaluation;
         }
     }
 }

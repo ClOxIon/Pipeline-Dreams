@@ -4,11 +4,11 @@ namespace PipelineDreams {
     public class CamShakeOnHit : MonoBehaviour {
         [SerializeField] Entity Player;
         private void Awake() {
-            Player.GetComponent<EntityHealth>().OnDamagedAmount += CamShakeOnHit_OnDamaged;
+            Player.GetComponent<EntityHealth>().OnDamaged += CamShakeOnHit_OnDamaged;
         }
 
-        private void CamShakeOnHit_OnDamaged(float obj, float max, Entity e) {
-            var r = obj / max;
+        private void CamShakeOnHit_OnDamaged(float obj, Entity e) {
+            var r = obj / Player.Stats["MaxHP"].Value;
             EZCameraShake.CameraShaker.Instance.ShakeOnce(r * 10, 1f, 0.2f, 2 * r);
         }
 

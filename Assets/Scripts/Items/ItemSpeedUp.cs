@@ -13,9 +13,9 @@
 
             if (PlayerMove != null)
                 if(enabled)
-                PlayerMove.TTimeModifier.OnValueRequested += TTimeModifier_OnValueRequested;
+                PlayerMove.TTimeModifier.OnEvalRequest += TTimeModifier_OnValueRequested;
             else
-                    PlayerMove.TTimeModifier.OnValueRequested -= TTimeModifier_OnValueRequested;
+                    PlayerMove.TTimeModifier.OnEvalRequest -= TTimeModifier_OnValueRequested;
         }
 
 

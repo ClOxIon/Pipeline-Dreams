@@ -5,7 +5,7 @@ namespace PipelineDreams {
     public class UIPanelController : MonoBehaviour {
         [SerializeField] GameObject HUD;
         [SerializeField] PanelUI DUI;
-        [SerializeField] PanelUI IUI;
+        [SerializeField] PanelUI IUI;//Currently Not Used
         [SerializeField] PanelUI OUI;
         [SerializeField] PanelUI MUI;
         PlayerInput PI;

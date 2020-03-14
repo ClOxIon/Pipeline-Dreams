@@ -42,8 +42,8 @@ namespace PipelineDreams {
         private void Awake() {
             entity = GetComponent<Entity>();
             GetComponent<Entity>().OnInit += EntityMove_OnInit;
-            RTimeModifier.OnValueRequested += () => { RTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("RotationTime") }); };//Base value of the RTimeModifier.
-            TTimeModifier.OnValueRequested += () => { TTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("TranslationTime") }); };//Base value of the TTimeModifier.
+            RTimeModifier.OnEvalRequest += () => { RTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("RotationTime") }); };//Base value of the RTimeModifier.
+            TTimeModifier.OnEvalRequest += () => { TTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("TranslationTime") }); };//Base value of the TTimeModifier.
         }
 
         private void EntityMove_OnInit(TaskManager arg1, EntityDataContainer arg3)

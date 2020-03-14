@@ -6,7 +6,7 @@ namespace PipelineDreams.MutableValue
 {
     public enum FunctionChainPriority
     {
-        Constant = 0, Addition = 10, Multiplication = 20
+        Constant = 0, Addition = 10, Multiplication = 20, Delayed = 50
     }
 
     /// <summary>
@@ -17,7 +17,8 @@ namespace PipelineDreams.MutableValue
         /// <summary>
         /// Subscribe to this event to add functions by calling AddFunction.
         /// </summary>
-        public event Action OnValueRequested;
+        public event Action OnEvalRequest;
+        public event Action<float> OnEvalComplete;
         List<IFunction> Functions = new List<IFunction>();
         public FunctionChain()
         {
@@ -29,25 +30,40 @@ namespace PipelineDreams.MutableValue
         /// <param name="x"></param>
         public void AddFunction(IFunction x)
         {
+
+            //Beware of lambda capture!!
+            //hpVar.CurrentValue.OnValueRequested += () => { hpVar.CurrentValue.AddFunction(new MutableValue.Multiplication() { Value = mhpVar.CurrentValue.Value }); };
             if (x != null)
                 Functions.Add(x);
         }
+        private float value;
+
         /// <summary>
-        /// Getting this field immidiately evaluates the functionchain and clears it.
+        /// Implemented for performance.
+        /// If this variable is marked true, this functionchain is evaluated once at the next value request.
+        /// IT IS THE CHANGERS' RESPONSIBILITY TO EVALUATE THE FUNCTION!
+        /// </summary>
+        public bool EvalAtNextGet = false;
+        /// <summary>
+        /// Getting this field immidiately evaluates the functionchain and clears it, if and only if EvalAtNextGet is true. Otherwise, it returns the value of the last eval.
         /// </summary>
         public virtual float Value
         {
             get
             {
-                OnValueRequested?.Invoke();
-                Functions.OrderBy((x) => x.Priority);
-                float var = 0;
-                foreach (var x in Functions)
-                {
-                    var = x.Func(var);
+                if (EvalAtNextGet) {
+                    OnEvalRequest?.Invoke();
+                    Functions.OrderBy((x) => x.Priority);
+                    float var = 0;
+                    foreach (var x in Functions) {
+                        var = x.Func(var);
+                    }
+                    Functions.Clear();//Functions are only used once. They should be added again at next evaluation.
+                    value = var;
+                    EvalAtNextGet = false;
+                    OnEvalComplete?.Invoke(value);
                 }
-                Functions.Clear();//Functions are only used once. They should be added again at next evaluation.
-                return var;
+                return value;
             }
         }
     }

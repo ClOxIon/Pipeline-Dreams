@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PipelineDreams {
@@ -13,6 +14,13 @@ namespace PipelineDreams {
         public Vector3Int IdealPosition;
         public Quaternion IdealRotation;
         public EntityData Data { get; private set; }
+        public Dictionary<string, float> Parameters = new Dictionary<string, float>();//Active Parameters. Parameters are simple float values, and are intended to be only add/subtracted from current value.
+        public Dictionary<string, MutableValue.FunctionChain> Stats = new Dictionary<string, MutableValue.FunctionChain>();//Active Stats
+
+        /// <summary>
+        /// Name of the parameter, and the final value.
+        /// </summary>
+        public event Action<string, float> OnParamChange;
         public bool IsActive = false;
 
         /// <summary>

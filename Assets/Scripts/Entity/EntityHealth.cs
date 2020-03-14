@@ -1,40 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace PipelineDreams {
-    public class EntityHealth : MonoBehaviour {
-        MutableValue.FunctionChain MaxHP = new MutableValue.FunctionChain();
-        float CurrentHP;
-        public event Action<float> OnHpModified;
-        public event Action<DamagePacket> OnDamagePacketEvaluation;
-        public event Action<float, float, Entity> OnDamagedAmount;
-        public event Action OnZeroHP;
+namespace PipelineDreams
+{
+
+    public class EntityHealth : MonoBehaviour
+    {
+
         Entity entity;
+        /// <summary>
+        /// Called when damaged by another entity. Amount, and the attacker.
+        /// </summary>
+        public event Action<float, Entity> OnDamaged;
+        public event Action OnZeroHP;
+        /// <summary>
+        /// Called whenever a damagePacket arrives. This need not result in actual damage.
+        /// </summary>
+        public event Action<DamagePacket> OnDamagePacketArrive;
         // Start is called before the first frame update
         private void Awake() {
 
             entity = GetComponent<Entity>();
-            entity.OnInit += (tm, ec) => 
-            {
-                MaxHP.OnValueRequested += () => { MaxHP.AddFunction(new MutableValue.Constant(entity.Data.MaxHP)); };
-                CurrentHP = MaxHP.Value; 
-                OnHpModified?.Invoke(CurrentHP / MaxHP.Value); 
+            entity.OnInit += (tm, ec) => {
+                entity.Parameters.Add("HP", entity.Data.MaxHP);
+                var f = new MutableValue.FunctionChain();
+                f.OnEvalRequest += () => f.AddFunction(new MutableValue.Constant() { Value = entity.Data.MaxHP });
+                entity.Stats.Add("MaxHP", f);
+
             };
+            entity.OnParamChange += Entity_OnParamChange;
 
         }
+
+        private void Entity_OnParamChange(string name, float val) {
+            if (name != "HP") return;
+            if (val == 0) OnZeroHP?.Invoke();
+        }
+
         public virtual void RecieveDamage(DamagePacket dp) {
-            OnDamagePacketEvaluation?.Invoke(dp);
+            OnDamagePacketArrive?.Invoke(dp);
             var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy.Value ? dp.damage.Value : 0;
-            CurrentHP -= (int)(dp.damage.Value);
+            entity.Parameters["hp"] -= _damage;
 
-            OnDamagedAmount?.Invoke(dp.damage.Value, MaxHP.Value, dp.subject);
-            OnHpModified?.Invoke(CurrentHP / MaxHP.Value);
-            if (CurrentHP <= 0) {
-                CurrentHP = 0;
-                OnZeroHP?.Invoke();
-            }
+
+            OnDamaged?.Invoke(dp.damage.Value, dp.subject);
+
         }
-
-
     }
 }

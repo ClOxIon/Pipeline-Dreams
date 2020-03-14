@@ -414,14 +414,6 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "ItemMenu",
-                    "type": "Button",
-                    "id": "2add1df1-1a0e-41c7-a2e1-05844d3f21f7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
                     "name": "HUD",
                     "type": "Button",
                     "id": "01a16758-39f8-45e8-ab2a-2fa79a350579",
@@ -518,17 +510,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HUD",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2c8f279c-0820-4459-8081-0d937c3e06a5",
-                    "path": "<Keyboard>/f2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ItemMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

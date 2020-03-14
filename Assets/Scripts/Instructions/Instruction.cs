@@ -32,7 +32,7 @@ namespace PipelineDreams
             Variant = args[0] as string;
             Commands = GetCommandsVariant();
 
-            TimeCost.OnValueRequested += () => { TimeCost.AddFunction(new MutableValue.Constant() { Value = (Data as InstructionData).Time }); };
+            TimeCost.OnEvalRequest += () => { TimeCost.AddFunction(new MutableValue.Constant() { Value = (Data as InstructionData).Time }); };
         }
         /// <summary>
         /// Inteprets variant string.

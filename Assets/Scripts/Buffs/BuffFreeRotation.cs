@@ -7,9 +7,9 @@
             base.SetEnabled(enabled);
             m = Holder.GetComponent<EntityMove>();
             if(enabled)
-            m.RTimeModifier.OnValueRequested += RTimeModifier_OnValueRequested;
+            m.RTimeModifier.OnEvalRequest += RTimeModifier_OnValueRequested;
             else
-                m.RTimeModifier.OnValueRequested -= RTimeModifier_OnValueRequested;
+                m.RTimeModifier.OnEvalRequest -= RTimeModifier_OnValueRequested;
         }
 
         private void RTimeModifier_OnValueRequested()
