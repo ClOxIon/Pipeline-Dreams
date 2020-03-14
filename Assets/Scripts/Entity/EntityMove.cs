@@ -43,7 +43,9 @@ namespace PipelineDreams {
             entity = GetComponent<Entity>();
             GetComponent<Entity>().OnInit += EntityMove_OnInit;
             RTimeModifier.OnEvalRequest += () => { RTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("RotationTime") }); };//Base value of the RTimeModifier.
+            RTimeModifier.EvalAtNextGet = true;
             TTimeModifier.OnEvalRequest += () => { TTimeModifier.AddFunction(new Constant() { Value = entity.Data.FindParameterFloat("TranslationTime") }); };//Base value of the TTimeModifier.
+            TTimeModifier.EvalAtNextGet = true;
         }
 
         private void EntityMove_OnInit(TaskManager arg1, EntityDataContainer arg3)
@@ -108,6 +110,7 @@ namespace PipelineDreams {
                 case EntityType.PLAYER: _p = TaskPriority.PLAYER; break;
             }
             CM.AddSequentialTask(new RotateTask() { Entity = entity, deltaQ = Util.RotateToFace(f, entity.IdealRotation), StartClock = startClock, Priority = _p});
+            
             GetComponent<EntityAI>().EntityClock += RTimeModifier.Value;
 
         }
@@ -122,6 +125,7 @@ namespace PipelineDreams {
                 case EntityType.PLAYER: _p = TaskPriority.PLAYER; break;
             }
             CM.AddSequentialTask(new MoveTask() { Entity = entity, Face = Util.LHQToFace(entity.IdealRotation), StartClock = startClock, Priority = _p });
+            
             GetComponent<EntityAI>().EntityClock += TTimeModifier.Value;
         }
         /// <summary>
