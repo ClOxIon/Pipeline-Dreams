@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PipelineDreams
 {
 
-    public class EntityHealth : MonoBehaviour
+    public class EntityEnergy : MonoBehaviour
     {
 
         Entity entity;
@@ -13,7 +13,7 @@ namespace PipelineDreams
         /// Called when damaged by another entity. Amount, and the attacker.
         /// </summary>
         public event Action<float, Entity> OnDamaged;
-        public event Action OnZeroHP;
+        public event Action OnZeroEnergy;
         /// <summary>
         /// Called whenever a damagePacket arrives. This need not result in actual damage.
         /// </summary>
@@ -23,11 +23,11 @@ namespace PipelineDreams
 
             entity = GetComponent<Entity>();
             entity.OnInit += (tm, ec) => {
-                entity.Parameters.Add("HP", entity.Data.MaxHP);
+                entity.Parameters.Add("Energy", entity.Data.MaxHP);
                 var f = new MutableValue.FunctionChain();
-                f.OnEvalRequest += () => f.AddFunction(new MutableValue.Constant() { Value = entity.Data.MaxHP });
+                f.OnEvalRequest += () => f.AddFunction(new MutableValue.Constant() { Value = entity.Data.FindParameterFloat("MaxEnergy") });
                 f.EvalAtNextGet = true;
-                entity.Stats.Add("MaxHP", f);
+                entity.Stats.Add("MaxEnergy", f);
 
             };
             entity.OnParamChange += Entity_OnParamChange;
@@ -35,14 +35,14 @@ namespace PipelineDreams
         }
 
         private void Entity_OnParamChange(string name, float val) {
-            if (name != "HP") return;
-            if (val == 0) OnZeroHP?.Invoke();
+            if (name != "Energy") return;
+            if (val == 0) OnZeroEnergy?.Invoke();
         }
 
         public virtual void RecieveDamage(DamagePacket dp) {
             OnDamagePacketArrive?.Invoke(dp);
             var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy.Value ? dp.damage.Value : 0;
-            entity.Parameters["hp"] -= _damage;
+            entity.Parameters["Energy"] -= _damage;
 
 
             OnDamaged?.Invoke(dp.damage.Value, dp.subject);

@@ -78,6 +78,8 @@ MonoBehaviour:
       Value: 0.5
     - Name: TranslationTime
       Value: 0.5
+    - Name: MaxEnergy
+      Value: 100
     maxHP: 100
     damage: 0
     type: 0

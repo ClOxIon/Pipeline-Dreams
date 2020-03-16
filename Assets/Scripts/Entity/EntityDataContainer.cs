@@ -10,25 +10,33 @@ namespace PipelineDreams
         public event Action<Entity> OnNewEntitySpawn;
         public event Action<Entity> OnEntityDeath;
         [SerializeField] EntityDataset EDataContainer;
-        List<Entity> EntitiesInScene = new List<Entity>();
+
+        Dictionary<Guid, Entity> EntitiesInScene = new Dictionary<Guid, Entity>();
         // Start is called before the first frame update
         
         public EntityData GetEntityDataFromName(string name) {
             if (!EDataContainer.DataSet.Any((x) => { return x.Name.Equals(name); }))
                 Debug.LogWarning($"EntityDataContainer.GetEntityDataFromName: No Entity Named {name}");
             return EDataContainer.DataSet.Find((x) => { return x.Name.Equals(name); }) as EntityData;
-
+            
         }
         public void Initialize() {
-            EntitiesInScene = new List<Entity>();
+            EntitiesInScene = new Dictionary<Guid, Entity>();
+        }
+        /// <summary>
+        /// Add already initialized player to the list
+        /// </summary>
+        /// <param name="Player"></param>
+        public void AddPlayer(Entity Player) {
+            EntitiesInScene.Add(Guid.NewGuid(), Player);
         }
         public void AddEntityInScene(Vector3Int pos, Quaternion rot, string name, TaskManager tm) {
             var data = GetEntityDataFromName(name);
             var e = Instantiate(data.Prefab, GraphicalConstants.WORLDSCALE* (Vector3)pos  , rot);
             e.Initialize(pos, rot, data, tm, this);
-            if (EntitiesInScene.Any((x) =>x.IdealPosition == pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(rot)))
+            if (EntitiesInScene.Values.Any((x) =>x.IdealPosition == pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(rot)))
                 Debug.LogWarning("Overlapping Tile Detected!:" + e.IdealPosition);
-            EntitiesInScene.Add(e);
+            EntitiesInScene.Add(Guid.NewGuid(), e);
            
         }
         /*This codebase will be moved.
@@ -52,7 +60,7 @@ namespace PipelineDreams
         }
         */
         public List<Entity> FindEntities(Predicate<Entity> match) {
-            return EntitiesInScene.FindAll(match);
+            return EntitiesInScene.Values.ToList().FindAll(match);
         }
         public Entity FindEntityRelative(Vector3Int v, int face, Entity origin) {
 
@@ -84,7 +92,7 @@ namespace PipelineDreams
         }
         
         public Entity[] FindEntitiesOfType(EntityType type) {
-            return EntitiesInScene.FindAll((x) => x.Data.Type == type).ToArray();
+            return EntitiesInScene.Values.Where((x) => x.Data.Type == type).ToArray();
         }
         public bool IsLineOfSight(Vector3Int v1, Vector3Int v2) {
             var v = v1 - v2;
@@ -119,16 +127,16 @@ namespace PipelineDreams
             return FindEntity(v.x, v.y, v.z, f, type);
         }
         public Entity FindEntity(int i, int j, int k, EntityType type) {
-            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k) && x.Data.Type == type);
+            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k) && x.Data.Type == type);
         }
         public Entity FindEntity(int i, int j, int k, int f, EntityType type) {
-            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f && x.Data.Type == type);
+            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f && x.Data.Type == type);
         }
         public Entity FindEntity(int i, int j, int k, int f) {
-            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f);
+            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f);
         }
         public Entity FindEntity(int i, int j, int k) {
-            return EntitiesInScene.Find((x) => x.IdealPosition == new Vector3Int(i, j, k));
+            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k));
         }
         
     }

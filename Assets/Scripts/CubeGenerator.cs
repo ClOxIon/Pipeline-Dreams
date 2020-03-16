@@ -8,7 +8,8 @@ namespace PipelineDreams
     /// <summary>
     /// A simple implementation of mapgenerator.
     /// </summary>
-    [CreateAssetMenu]
+
+    [CreateAssetMenu(fileName = "CubeGenerator", menuName = "ScriptableObjects/Generator/CubeGenerator")]
 
     public class CubeGenerator : MapGenerator
     {

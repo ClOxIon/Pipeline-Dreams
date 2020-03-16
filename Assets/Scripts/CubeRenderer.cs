@@ -6,7 +6,8 @@ namespace PipelineDreams
     /// <summary>
     /// A simple implementation of maprenderer.
     /// </summary>
-    [CreateAssetMenu]
+
+    [CreateAssetMenu(fileName = "CubeRenderer", menuName = "ScriptableObjects/Renderer/CubeRenderer")]
     public class CubeRenderer : MapRenderer
     {
 

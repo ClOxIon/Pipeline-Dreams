@@ -8,6 +8,7 @@ namespace PipelineDreams {
         [SerializeField] PanelUI IUI;//Currently Not Used
         [SerializeField] PanelUI OUI;
         [SerializeField] PanelUI MUI;
+        [SerializeField] PanelUI CUI;
         PlayerInput PI;
         PlayerInputBroadcaster PC;
         private void Awake() {
@@ -22,53 +23,64 @@ namespace PipelineDreams {
 
 
             //We sequancially activate all UI panels to initialize them.
-            IUI.ShowDialogue();
-            OUI.ShowDialogue();
-            DUI.ShowDialogue();
-            MUI.ShowDialogue();
+            IUI.ShowPanel();
+            OUI.ShowPanel();
+            DUI.ShowPanel();
+            MUI.ShowPanel();
+            CUI.ShowPanel();
+            CUI.HidePanel();
             OnHUD();
         }
 
 
         void OnHUD() {
             HUD.SetActive(true);
-            IUI.HideDialogue();
-            OUI.HideDialogue();
-            MUI.HideDialogue();
-            DUI.HideDialogue();
+            IUI.HidePanel();
+            OUI.HidePanel();
+            MUI.HidePanel();
+            DUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, true);
         }
         void OnItemMenu() {
             HUD.SetActive(false);
-            IUI.ShowDialogue();
-            OUI.HideDialogue();
-            MUI.HideDialogue();
-            DUI.HideDialogue();
+            IUI.ShowPanel();
+            OUI.HidePanel();
+            MUI.HidePanel();
+            DUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
         }
         void OnInstructionMenu() {
             HUD.SetActive(false);
-            IUI.HideDialogue();
-            OUI.ShowDialogue();
-            MUI.HideDialogue();
-            DUI.HideDialogue();
+            IUI.HidePanel();
+            OUI.ShowPanel();
+            MUI.HidePanel();
+            DUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
         }
         void OnMinimap() {
             HUD.SetActive(false);
-            IUI.HideDialogue();
-            OUI.HideDialogue();
-            MUI.ShowDialogue();
-            DUI.HideDialogue();
+            IUI.HidePanel();
+            OUI.HidePanel();
+            MUI.ShowPanel();
+            DUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
         }
         void OnInteraction() {
             HUD.SetActive(false);
-            IUI.HideDialogue();
-            OUI.HideDialogue();
-            MUI.HideDialogue();
-            DUI.ShowDialogue();
+            IUI.HidePanel();
+            OUI.HidePanel();
+            MUI.HidePanel();
+            DUI.ShowPanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
+        }
+        void OnConsole() {
+
+            if (CUI.visible)
+                CUI.HidePanel();
+            else
+                CUI.ShowPanel();
+
+            PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, !CUI.visible);
         }
     }
 }

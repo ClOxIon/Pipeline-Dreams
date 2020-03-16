@@ -444,6 +444,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Console",
+                    "type": "Button",
+                    "id": "b7a10ae2-2fc6-449a-bb1f-49ed2e399e72",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -763,6 +771,17 @@
                     "processors": "ButtonIndexer(Index=7)",
                     "groups": "Keyboard&Mouse;Gamepad",
                     "action": "InstructionSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2804a3ad-6010-4228-b929-d603261a3f8b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Console",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
