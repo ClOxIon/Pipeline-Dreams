@@ -280,7 +280,6 @@ GameObject:
   - component: {fileID: 1665931868677219845}
   - component: {fileID: 1665931868677219844}
   - component: {fileID: 1665931868677219842}
-  - component: {fileID: 1665931868677219841}
   - component: {fileID: 1665931868677219840}
   - component: {fileID: 9001610998126569492}
   - component: {fileID: 3092763677752697777}
@@ -380,18 +379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RSpeed: 0
   TSpeed: 0
---- !u!114 &1665931868677219841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665931868921238110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f84a265b4481994ca4f481256ee7643, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1665931868677219840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2860020c7878047b88e35e1a0fe40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilityContainer: {fileID: 11400000, guid: afbd5ff6e02fdc54c98eec0ff8cd0510, type: 2}
+  AbilityContainer: {fileID: 11400000, guid: 3c1b2907b92dfba4a839408784365e40, type: 2}
   KeepPrefab: 0
 --- !u!114 &3683797015348546969
 MonoBehaviour:

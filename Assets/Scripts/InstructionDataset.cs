@@ -25,7 +25,7 @@ namespace PipelineDreams {
     [System.Serializable]
     public class InstructionData : PDData {
 
-        [SerializeField] private int time;
+        [SerializeField] private float time;
         [SerializeField] private OpDirection direction;
         [SerializeField] private List<Command> commands;
         [SerializeField] private List<string> variants;
@@ -39,7 +39,7 @@ namespace PipelineDreams {
         [SerializeField] private EffectVisualizer gun;
         [SerializeField] private float effectDuration;
 
-        public int Time => time;
+        public float Time => time;
         public OpDirection Direction => direction;
         public Command[] Commands => commands.ToArray();
         public string[] Variants => variants.ToArray();

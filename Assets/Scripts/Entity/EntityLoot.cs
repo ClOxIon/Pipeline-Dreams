@@ -12,6 +12,11 @@ namespace PipelineDreams {
         }
 
         private void EntityLoot_OnEntityDeath(Entity obj) {
+            if (PI == null)
+            {
+                Debug.LogWarning("PlayerItem is not Assigned!");
+                return;
+            }
             if (Random.Range(0, 1) < entity.Data.FindParameterFloat("LootChance"))
                 PI.AddItem(entity.Data.FindParameterString("Loot"));
         }

@@ -32,7 +32,7 @@ namespace PipelineDreams
             AddedItemData = (dataObj as IPDDataSet).DataSet.Find((x) => { return x.Name.Equals(name0); });
             if (AddedItemData == null)
             {
-                Debug.LogError("InstructionCollection.AddInstruction(): Cannot find Instruction named " + name0);
+                Debug.LogError("InstructionCollection.AddInstruction(): Cannot find Item Data named " + name0);
                 return;
             }
 
@@ -40,6 +40,8 @@ namespace PipelineDreams
             var tp = Type.GetType(typeof(T).Namespace + "." + typeof(T).Name + name0);
             if (tp != null)
                 AddedItem = (T)Activator.CreateInstance(tp);
+            else
+                Debug.LogError("InstructionCollection.AddInstruction(): Cannot find Class named " + typeof(T).Namespace + "." + typeof(T).Name + name0);
 
             AddedItem.Init(AddedItemData, args);
             PushItem(AddedItem);

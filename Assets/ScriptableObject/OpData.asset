@@ -466,20 +466,16 @@ MonoBehaviour:
     baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
-  - name: Thrust
+  - name: MeleeAttack_Mob
     nameInGame: 
     description: 
     icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
     parameters: []
-    time: 8
+    time: 0.5
     direction: 2
-    commands: 0000000000000000
-    variants:
-    - L
-    - U
-    - R
-    - D
-    meleeCoef: 0
+    commands: 
+    variants: []
+    meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
     baseAccuracy: 0

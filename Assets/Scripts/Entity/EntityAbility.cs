@@ -4,7 +4,7 @@ using UnityEngine;
 namespace PipelineDreams {
     public class EntityAbility : MonoBehaviour
     {
-        [Tooltip("every entity, normally activated, will hold a unique copy of this Instruction Container.")] public InstructionContainerPlayer AbilityContainer;
+        [Tooltip("every entity, normally activated, will hold a unique copy of this Instruction Container.")] public InstructionContainer AbilityContainer;
 
         [Tooltip("Share the assigned container, rather than copying it.")] public bool KeepPrefab;
         private void Awake()

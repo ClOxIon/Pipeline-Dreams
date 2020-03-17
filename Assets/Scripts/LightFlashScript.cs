@@ -17,6 +17,8 @@ public class LightFlashScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (time == 0)
+            return;
         since += Time.deltaTime;
         if (since > time) {
             since -= time;

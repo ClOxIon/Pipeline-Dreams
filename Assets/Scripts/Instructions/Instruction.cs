@@ -29,8 +29,14 @@ namespace PipelineDreams
         }
         public override void Init(PDData data, params object[] args) {
             base.Init(data, args);
-            Variant = args[0] as string;
-            Commands = GetCommandsVariant();
+            if (args.Length > 0)
+            {
+                Variant = args[0] as string;
+                Commands = GetCommandsVariant();
+            }
+            else
+                Debug.LogWarning($"No Variant Argument Passed!: {data.Name}");
+            
 
             TimeCost.OnEvalRequest += () => { TimeCost.AddFunction(new MutableValue.Constant() { Value = (Data as InstructionData).Time }); };
             TimeCost.EvalAtNextGet = true;
