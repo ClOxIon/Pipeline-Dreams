@@ -26,11 +26,10 @@ namespace PipelineDreams {
                 };
 
             };
-
-            Player.GetComponent<EntityDeath>().OnEntityDeath += (e) => {
+            ///Hides all ESB when the player is dead, since it will cause exceptions.
+            Player.OnEntityDeath += (e) => {
                 foreach (var obj in ESBList)
                     obj.enabled = false;
-                Debug.Log("hide!");
             };
 
 

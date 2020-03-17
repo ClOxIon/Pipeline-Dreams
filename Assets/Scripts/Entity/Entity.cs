@@ -23,6 +23,7 @@ namespace PipelineDreams {
         public event Action<string, float> OnParamChange;
         public bool IsActive = false;
 
+        public event Action<Entity> OnEntityDeath;
         /// <summary>
         /// 
         /// </summary>
@@ -36,6 +37,12 @@ namespace PipelineDreams {
             IsActive = true;
             OnInit?.Invoke(tm, ec);
             Parameters.InvokeAllParamChange();
+        }
+        public void Death()
+        {
+            OnEntityDeath?.Invoke(GetComponent<Entity>());
+            GetComponent<Entity>().IsActive = false;
+            GetComponent<EntityAnimator>()?.InvokeAnimation("Death", true);
         }
         public class EntityParameterDictionary
         {

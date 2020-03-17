@@ -14,84 +14,168 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataSet:
   - name: Test
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 28f10292b85333a4093d63d6c55de696, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: SpeedUp
+    nameInGame: 
     description: Speed Up!
     icon: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: Disk
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
     parameters: []
-  - name: Disk
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
+  - name: WeaponSpiderClaw
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
-    parameters: []
+    parameters:
+    - Name: MeleeDamage
+      Value: 10
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 
   - name: WeaponRebar
+    nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: bb0ea7fc60dd8e545b79d06a3d575a05, type: 3}
     parameters:
     - Name: MeleeDamage
       Value: 10
+    - Name: RangeDamage
+      Value: 10
+    doNotInherit: 0
+    itemActions: []
+    defaultAction: 

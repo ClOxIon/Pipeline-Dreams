@@ -7,6 +7,9 @@ namespace PipelineDreams
 {
     [CreateAssetMenu(fileName = "EntityDataContainer", menuName = "ScriptableObjects/Manager/EntityDataContainer")]
     public class EntityDataContainer : ScriptableObject {
+        /// <summary>
+        /// This is not called for player entity.
+        /// </summary>
         public event Action<Entity> OnNewEntitySpawn;
         public event Action<Entity> OnEntityDeath;
         [SerializeField] EntityDataset EDataContainer;
@@ -37,28 +40,37 @@ namespace PipelineDreams
             if (EntitiesInScene.Values.Any((x) =>x.IdealPosition == pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(rot)))
                 Debug.LogWarning("Overlapping Tile Detected!:" + e.IdealPosition);
             EntitiesInScene.Add(Guid.NewGuid(), e);
+            OnNewEntitySpawn?.Invoke(e);
+            e.OnEntityDeath += EntityDataContainer_OnEntityDeath;
            
         }
-        /*This codebase will be moved.
-        void SpawnEnemy(string name, Vector3Int Position, Quaternion Rotation) {
 
-            try {
-
-
-                if (FindEntityInPosition(Position) != null) return;
-                var dt = GetEntityDataFromName(name);
-                var mob = Instantiate(dt.Prefab);
-                mob.Initialize(Position, Rotation, dt);
-                EntitiesInScene.Add(mob);
-                OnNewEntitySpawn?.Invoke(mob);
-                var d = mob.GetComponent<EntityDeath>();
-                if (d != null) d.OnEntityDeath += (e) => { EntitiesInScene.Remove(e); OnEntityDeath?.Invoke(e); };
-            }
-            catch (ArgumentOutOfRangeException e) {
-
-            }
+        private void EntityDataContainer_OnEntityDeath(Entity obj)
+        {
+            var id = EntitiesInScene.First((x) => x.Value == obj).Key;
+            EntitiesInScene.Remove(id);
         }
-        */
+
+        /*This codebase will be moved.
+void SpawnEnemy(string name, Vector3Int Position, Quaternion Rotation) {
+
+   try {
+
+
+       if (FindEntityInPosition(Position) != null) return;
+       var dt = GetEntityDataFromName(name);
+       var mob = Instantiate(dt.Prefab);
+       mob.Initialize(Position, Rotation, dt);
+       EntitiesInScene.Add(mob);
+       OnNewEntitySpawn?.Invoke(mob);
+       var d = mob.GetComponent<EntityDeath>();
+       if (d != null) d.OnEntityDeath += (e) => { EntitiesInScene.Remove(e); OnEntityDeath?.Invoke(e); };
+   }
+   catch (ArgumentOutOfRangeException e) {
+
+   }
+}
+*/
         public List<Entity> FindEntities(Predicate<Entity> match) {
             return EntitiesInScene.Values.ToList().FindAll(match);
         }

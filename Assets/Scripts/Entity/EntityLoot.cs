@@ -5,8 +5,9 @@ namespace PipelineDreams {
         Entity entity;
         ItemContainerPlayer PI;
         private void Awake() {
-            GetComponent<EntityDeath>().OnEntityDeath += EntityLoot_OnEntityDeath;
+            
             entity = GetComponent<Entity>();
+            entity.OnEntityDeath += EntityLoot_OnEntityDeath;
             PI = (ItemContainerPlayer)FindObjectOfType(typeof(ItemContainerPlayer));
         }
 

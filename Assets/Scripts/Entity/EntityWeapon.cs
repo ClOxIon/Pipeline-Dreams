@@ -53,7 +53,8 @@ namespace PipelineDreams {
             if (e == null|| e.GetComponent<EntityHealth>()==null) {//Failed to find a target
                 return;
             }
-            if (weapon != null) {
+            if (weapon != null)
+            {
                 var damage = new MutableValue.FunctionChain();
                 damage.AddFunction(new MutableValue.Constant() { Value = weapon.MeleeDamage * meleeCoef + weapon.RangeDamage * rangeCoef + weapon.FieldDamage * fieldCoef });
                 damage.EvalAtNextGet = true;
@@ -64,6 +65,8 @@ namespace PipelineDreams {
                 OnDamagePacketDepart?.Invoke(dp);
                 e.GetComponent<EntityHealth>().RecieveDamage(dp);
             }
+            else
+                Debug.LogWarning("Attack performed without a weapon: " + entity.Data.Name);
 
         }
         public ItemData WeaponData => weapon?.Data as ItemData;

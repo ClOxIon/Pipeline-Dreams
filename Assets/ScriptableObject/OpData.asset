@@ -25,6 +25,7 @@ MonoBehaviour:
     meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Inertia
@@ -40,9 +41,10 @@ MonoBehaviour:
     - U
     - R
     - D
-    meleeCoef: 1
-    rangeCoef: 0
+    meleeCoef: 0
+    rangeCoef: 1
     fieldCoef: 0
+    baseAccuracy: 1
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -61,6 +63,7 @@ MonoBehaviour:
     meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Manipulate
@@ -84,6 +87,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Rearrange
@@ -103,6 +107,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Circuit Breaker
@@ -117,6 +122,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Trace
@@ -136,6 +142,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Oscillate
@@ -154,6 +161,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Orbit
@@ -172,6 +180,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Spatial Rotation '
@@ -195,6 +204,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Charge '
@@ -213,6 +223,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Gradual Charge '
@@ -231,6 +242,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Warp '
@@ -250,6 +262,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Rotational Charge '
@@ -268,6 +281,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Bypass '
@@ -287,6 +301,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Recursion '
@@ -306,6 +321,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Restore '
@@ -320,6 +336,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Fluctuation '
@@ -338,6 +355,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Eject '
@@ -353,6 +371,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Translate '
@@ -368,6 +387,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Conversion '
@@ -386,6 +406,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Merge '
@@ -404,6 +425,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: 'Clone '
@@ -422,6 +444,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -440,6 +463,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -458,6 +482,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -476,6 +501,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -494,6 +520,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -512,6 +539,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -530,6 +558,7 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust
@@ -548,5 +577,6 @@ MonoBehaviour:
     meleeCoef: 0
     rangeCoef: 0
     fieldCoef: 0
+    baseAccuracy: 0
     gun: {fileID: 0}
     effectDuration: 0

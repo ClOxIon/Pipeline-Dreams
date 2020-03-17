@@ -30,7 +30,11 @@ namespace PipelineDreams
             ES = GetComponent<EntitySight>();
             move = GetComponent<EntityMove>();
             EA = GetComponent<EntityAbility>();
-            entity.OnInit += (tm, ec) => { CM = tm; EntityClock = CM.Clock; Act(); EM = ec; };
+            entity.OnInit += (tm, ec) => { 
+                CM = tm; 
+                EntityClock = tm.Clock; 
+                Act(); 
+                EM = ec; };
         }
 
     }

@@ -32,6 +32,7 @@ namespace PipelineDreams
             };
             entity.OnParamChange += Entity_OnParamChange;
 
+            OnZeroHP += entity.Death;
         }
 
         private void Entity_OnParamChange(string name, float val) {
@@ -42,7 +43,7 @@ namespace PipelineDreams
         public virtual void RecieveDamage(DamagePacket dp) {
             OnDamagePacketArrive?.Invoke(dp);
             var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy.Value ? dp.damage.Value : 0;
-            entity.Parameters["hp"] -= _damage;
+            entity.Parameters["HP"] -= _damage;
 
 
             OnDamaged?.Invoke(dp.damage.Value, dp.subject);

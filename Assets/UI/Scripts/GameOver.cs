@@ -3,8 +3,9 @@
 namespace PipelineDreams {
     public class GameOver : MonoBehaviour {
         [SerializeField] GameObject GameOverPanel;
+        [SerializeField] Entity Player;
         private void Awake() {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<EntityDeath>().OnEntityDeath += EndGame;
+            Player.OnEntityDeath += EndGame;
         }
         // Start is called before the first frame update
         void Start() {

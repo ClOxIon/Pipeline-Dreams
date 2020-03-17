@@ -6,8 +6,9 @@ namespace PipelineDreams
 {
     
     public class MeleeAI : EntityAI {
+
         /// <summary>
-        /// 적의 위치를 기억하고 있는가?
+        /// Does the entity remember the position of its target?
         /// </summary>
         bool IsTargetSeen = false;
         bool IsRecentlyDamaged = false;
@@ -15,6 +16,7 @@ namespace PipelineDreams
         int DamagedDirection;
         Entity Target;
         int memoryTime;
+
         //Vector3Int Target;
         protected new void Awake() {
             base.Awake();

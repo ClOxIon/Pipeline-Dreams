@@ -10172,6 +10172,7 @@ GameObject:
   - component: {fileID: 865417993}
   - component: {fileID: 865417994}
   - component: {fileID: 865417995}
+  - component: {fileID: 865417996}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10394,6 +10395,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20f5f8a12fff904eaa9a38e58f819d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &865417996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865417979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a495a9e68bd6e49baa4ac746355e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialWeaponName: WeaponRebar
+  DataContainer: {fileID: 11400000, guid: 400516b54dc83c44eb83006f555d7c0b, type: 2}
 --- !u!1001 &871507566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10785,6 +10800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TM: {fileID: 885259648}
   EM: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
+  ICP: {fileID: 11400000, guid: afbd5ff6e02fdc54c98eec0ff8cd0510, type: 2}
   PC: {fileID: 11400000, guid: 3ee161df31fe5724ca45d5a1c691b7fe, type: 2}
   Player: {fileID: 865417985}
   PM: {fileID: 885259647}
@@ -10844,6 +10860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 1573386953}
+  Player: {fileID: 865417985}
 --- !u!114 &885259651
 MonoBehaviour:
   m_ObjectHideFlags: 0

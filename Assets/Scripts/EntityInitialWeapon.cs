@@ -8,7 +8,7 @@ namespace PipelineDreams {
         [SerializeField] string InitialWeaponName;
         [SerializeField] ItemDataset DataContainer;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             var entity = GetComponent<Entity>();
             entity.OnInit += (tm, ec) =>
@@ -21,9 +21,18 @@ namespace PipelineDreams {
                   Debug.LogError("ItemCollection.Additem(): Cannot find item named " + InitialWeaponName);
                   return;
               }
-            
-                  if (Type.GetType("Item" + name) != null)
-                      AddedItem = (Item)Activator.CreateInstance(Type.GetType("Item" + name), entity, tm, AddedItemData);
+
+              if (Type.GetType(typeof(Item).Namespace + "." + "Item" + InitialWeaponName) != null)
+              {
+                  AddedItem = (Item)Activator.CreateInstance(Type.GetType(typeof(Item).Namespace + "." + "Item" + InitialWeaponName));
+                  AddedItem.Init(AddedItemData);
+                  AddedItem.Obtain(entity, tm);
+              }
+              else
+              {
+                  Debug.LogError("ItemCollection.Additem(): Cannot find class named " + typeof(Item).Namespace + "." + "Item" + InitialWeaponName);
+
+              }
               
               GetComponent<EntityWeapon>().SetWeapon((ItemWeapon)AddedItem);
 
