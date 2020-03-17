@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PipelineDreams {
     /// <summary>
-    /// Determines the type of the entity.
+    /// Determines the type of the entity. It is also the search priority of various search functions.
     /// </summary>
     public enum EntityType {
         PLAYER, ENEMY, NPC, TILE

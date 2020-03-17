@@ -33,7 +33,7 @@ MonoBehaviour:
     description: 'Attempts range attack to the direction you are heading. '
     icon: {fileID: 21300000, guid: 46ccd97705f002046827828ca9845891, type: 3}
     parameters: []
-    time: 4
+    time: 1
     direction: 2
     commands: 00000000
     variants:
@@ -478,7 +478,7 @@ MonoBehaviour:
     meleeCoef: 1
     rangeCoef: 0
     fieldCoef: 0
-    baseAccuracy: 0
+    baseAccuracy: 1
     gun: {fileID: 0}
     effectDuration: 0
   - name: Thrust

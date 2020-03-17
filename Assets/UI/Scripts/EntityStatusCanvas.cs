@@ -19,11 +19,11 @@ namespace PipelineDreams {
 
             };
             EM.OnEntityDeath += (e) => {
-                e.GetComponent<EntityAnimator>().OnDeathClipExit += () => {
+               
                     var obj = ESBList.Find((x) => { return x.entity == e; });
                     ESBList.Remove(obj);
                     Destroy(obj.gameObject);
-                };
+                
 
             };
             ///Hides all ESB when the player is dead, since it will cause exceptions.

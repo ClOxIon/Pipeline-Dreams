@@ -49,6 +49,7 @@ namespace PipelineDreams
         {
             var id = EntitiesInScene.First((x) => x.Value == obj).Key;
             EntitiesInScene.Remove(id);
+            OnEntityDeath?.Invoke(obj);
         }
 
         /*This codebase will be moved.
@@ -94,7 +95,8 @@ void SpawnEnemy(string name, Vector3Int Position, Quaternion Rotation) {
         public Entity FindEntityOnAxis(int f, Entity origin, int searchDistance = 100) {
            
             for (int i = 1; i <= searchDistance; i++) {
-                foreach (var x in FindEntities((x) => x.IdealPosition == origin.IdealPosition+Util.FaceToLHVector(f)*i)) {
+                //OrderBy uses type as priority
+                foreach (var x in FindEntities((x) => x.IdealPosition == origin.IdealPosition+Util.FaceToLHVector(f)*i).OrderBy((x)=>x.Data.Type)) {
                     //Check if the entities in between are invisible in our axis of interest.
                     if (!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
                         return x;
