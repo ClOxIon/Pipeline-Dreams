@@ -14,6 +14,11 @@ PDData
 The base class of readonly data object. PDData is a ScriptableObject that could store data to initalize PDObjects.
 
 
+IPDDataSet
+
+Interfaces a collection of PDDatas. 
+
+
 PDObjectContainer<T>
 
 The base class of every object that contains multiple PDObjects of the same kind and hold by the same entity. ItemContainer, AbilityContainer, BuffContainer are derived from this. PDObjectContainer should be held by an entity that holds every PDObject in it.
@@ -21,13 +26,12 @@ The base class of every object that contains multiple PDObjects of the same kind
 
 Entity
 
-The base class of player, monsters, and tile. Entity class only holds variables for the entity and throws general events. Every other functions of the entity is performed by modules under Assets/Scripts/Entity folder. Every entities in the scene is held by EntityDataContainer.
+The base class of player, monsters, and tile. Entity class only holds variables for the entity and throws general events. Every other functions of the entity is performed by modules under Assets/Scripts/Entity folder. Every entities in the scene is held by EntityDataContainer. Note that Entities, despite not being PDObject, still needs PDData at the point of initialization.
 
 
 EntityDataContainer
 
-The container of entities. Could spawn and search entities in the scene through this class.
-
+The container of entities. Could spawn and search entities in the scene through this class. This class is different from EntityDataset, which is an implementation of IPDDataSet and thus readonly.
 
 TaskManager
 

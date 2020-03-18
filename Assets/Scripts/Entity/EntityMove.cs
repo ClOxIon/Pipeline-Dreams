@@ -26,6 +26,11 @@ namespace PipelineDreams {
         /// </summary>
         List<Func<Quaternion, Quaternion, IEnumerator>> OnRotate = new List<Func<Quaternion, Quaternion, IEnumerator>>();
 
+
+        /// <summary>
+        /// It is clumsy, but unity coroutine works in this way.
+        /// </summary>
+        /// <param name="x"></param>
         public void SubscribeOnMove(Func<Vector3Int, Vector3Int, IEnumerator> x) {
             OnMove.Add(x);
         }

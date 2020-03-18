@@ -31,6 +31,7 @@ namespace PipelineDreams
 
             };
             entity.OnParamChange += Entity_OnParamChange;
+            OnZeroEnergy += entity.Death;
 
         }
 

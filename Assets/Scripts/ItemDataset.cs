@@ -7,13 +7,9 @@ namespace PipelineDreams {
     [CreateAssetMenu(fileName = "ItData", menuName = "ScriptableObjects/ItemData")]
     public class ItemDataset : ScriptableObject, IPDDataSet
     {
-        public List<PDData> DataSet { get {
-                var d = new List<PDData>();
-                    foreach (var x in dataSet)
-                    d.Add(x);
-                return d;
-        } }
-        
+        public List<PDData> DataSet => (from x in dataSet
+                                        select (PDData)x).ToList();
+
         [SerializeField] private List<ItemData> dataSet;
     }
     [System.Serializable]

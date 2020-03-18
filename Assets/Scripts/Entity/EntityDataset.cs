@@ -1,20 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PipelineDreams {
     [CreateAssetMenu(fileName = "EnData", menuName = "ScriptableObjects/EntityData", order = 2)]
     public class EntityDataset : ScriptableObject, IPDDataSet {
 
-        public List<PDData> DataSet
-        {
-            get
-            {
-                var d = new List<PDData>();
-                foreach (var x in dataSet)
-                    d.Add(x);
-                return d;
-            }
-        }
+        public List<PDData> DataSet => (from x in dataSet
+                                        select (PDData)x).ToList();
         [SerializeField] private List<EntityData> dataSet;
 
     }

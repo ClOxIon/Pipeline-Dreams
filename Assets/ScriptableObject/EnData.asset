@@ -80,6 +80,10 @@ MonoBehaviour:
       Value: 0.5
     - Name: MaxEnergy
       Value: 100
+    - Name: MoveEnergyConsume
+      Value: 1
+    - Name: RotateEnergyConsume
+      Value: 1
     maxHP: 100
     damage: 0
     type: 0

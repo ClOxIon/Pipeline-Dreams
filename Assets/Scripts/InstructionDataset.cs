@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace PipelineDreams {
@@ -9,16 +10,8 @@ namespace PipelineDreams {
     [CreateAssetMenu(fileName = "OpData", menuName = "ScriptableObjects/OperatorData", order = 1)]
     public class InstructionDataset : ScriptableObject, IPDDataSet
     {
-        public List<PDData> DataSet
-        {
-            get
-            {
-                var d = new List<PDData>();
-                foreach (var x in dataSet)
-                    d.Add(x);
-                return d;
-            }
-        }
+        public List<PDData> DataSet => (from x in dataSet
+                                        select (PDData)x).ToList();
 
         [SerializeField] private List<InstructionData> dataSet;
     }
