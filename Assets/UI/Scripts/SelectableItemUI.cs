@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SelectableItemUI : ItemUI
-{
-    [SerializeField] GameObject SelectionMarker;
-    public void SetSelection(bool b) {
-        SelectionMarker.SetActive(b&&item!=null);
+namespace PipelineDreams {
+    public class SelectableItemUI : ItemUI, ISelectableIndividualUI<Item> {
+        [SerializeField] GameObject SelectionMarker;
+        public void SetSelection(bool b) {
+            SelectionMarker.SetActive(b);
+        }
     }
 }

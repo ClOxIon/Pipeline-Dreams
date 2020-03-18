@@ -9,6 +9,8 @@ TagManager:
   - OperatorRack
   - GameManager
   - ItemPanel
+  - Fire
+  - Light
   layers:
   - Default
   - TransparentFX

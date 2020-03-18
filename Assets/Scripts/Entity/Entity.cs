@@ -1,47 +1,71 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum EntityType {
-PLAYER,ENEMY,NPC
-}
-public class Entity : MonoBehaviour
-{
-    MapManager mManager;
 
+namespace PipelineDreams {
     /// <summary>
-    /// Do not modify this value through script.
+    /// Determines the type of the entity. It is also the search priority of various search functions.
     /// </summary>
-    [SerializeField] public EntityType Type;
-    public event Action OnInit;
-    public Vector3Int IdealPosition;
-    public Quaternion IdealRotation;
-    public EntityData Data { get; private set; }
-    public bool IsActive = false;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="InitPosition">RH VectorInt</param>
-    /// <param name="InitQ">RH Quaternion</param>
-    public void Initialize(Vector3Int InitPosition, Quaternion InitQ, EntityData data) {
-        Type = data.Type;
-        IdealPosition = InitPosition;
-        IdealRotation = InitQ;
-        Data = data;
-        IsActive = true;
-        transform.localPosition = SceneObjectManager.worldscale*(Vector3)IdealPosition ;
-        transform.localRotation = InitQ;
-        
-        OnInit?.Invoke();
+    public enum EntityType {
+        PLAYER, ENEMY, NPC, TILE
     }
-    private void Awake() {
-       
-        //IdealPosition = Vector3Int.RoundToInt(transform.localPosition/SceneObjectManager.worldscale);
-        //IdealRotation = transform.localRotation;
-        mManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<MapManager>();
-        
-    }
-   
+    public class Entity : MonoBehaviour {
+        public event Action<TaskManager, EntityDataContainer> OnInit;
+        public Vector3Int IdealPosition;
+        public Quaternion IdealRotation;
+        public EntityData Data { get; private set; }
+        public EntityParameterDictionary Parameters;//Active Parameters. Parameters are simple float values, and are intended to be only add/subtracted from current value.
+        public Dictionary<string, MutableValue.FunctionChain> Stats = new Dictionary<string, MutableValue.FunctionChain>();//Active Stats
 
+        /// <summary>
+        /// Name of the parameter, and the final value.
+        /// </summary>
+        public event Action<string, float> OnParamChange;
+        public bool IsActive = false;
+
+        public event Action<Entity> OnEntityDeath;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="InitPosition">RH VectorInt</param>
+        /// <param name="InitQ">RH Quaternion</param>
+        public void Initialize(Vector3Int InitPosition, Quaternion InitQ, EntityData data, TaskManager tm, EntityDataContainer ec) {
+            Parameters = new EntityParameterDictionary(this);
+            IdealPosition = InitPosition;
+            IdealRotation = InitQ;
+            Data = data;
+            IsActive = true;
+            OnInit?.Invoke(tm, ec);
+            Parameters.InvokeAllParamChange();
+        }
+        public void Death()
+        {
+            OnEntityDeath?.Invoke(GetComponent<Entity>());
+            GetComponent<Entity>().IsActive = false;
+            GetComponent<EntityAnimator>()?.InvokeAnimation("Death", true);
+        }
+        public class EntityParameterDictionary
+        {
+            private Entity Holder;
+            private readonly IDictionary<string, float> parameters = new Dictionary<string, float>();
+
+            public EntityParameterDictionary(Entity holder) => Holder = holder;
+
+            public float this[string key]
+            {
+                // returns value if exists
+                get { return parameters[key]; }
+
+                // updates if exists, adds if doesn't exist
+                set { parameters[key] = value; Holder.OnParamChange?.Invoke(key, value); }
+            }
+            public void Add(string key, float value) => parameters.Add(key, value);
+            public void InvokeAllParamChange() {
+                foreach (var x in parameters)
+                    Holder.OnParamChange?.Invoke(x.Key, x.Value);
+            }
+        }
+    }
+
+    
 }

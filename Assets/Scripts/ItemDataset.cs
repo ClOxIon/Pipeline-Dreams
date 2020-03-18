@@ -1,56 +1,68 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-[CreateAssetMenu(fileName = "ItData", menuName = "ScriptableObjects/ItemData", order = 3)]
-public class ItemDataset : ScriptableObject {
 
-    public List<ItemData> Dataset;
+namespace PipelineDreams {
+    [CreateAssetMenu(fileName = "ItData", menuName = "ScriptableObjects/ItemData")]
+    public class ItemDataset : ScriptableObject, IPDDataSet
+    {
+        public List<PDData> DataSet { get {
+                var d = new List<PDData>();
+                    foreach (var x in dataSet)
+                    d.Add(x);
+                return d;
+        } }
+        
+        [SerializeField] private List<ItemData> dataSet;
+    }
+    [System.Serializable]
+    public class ItemData : PDData {
+        [Tooltip("Check if the item actions of this item is not inherited.")] [SerializeField] private bool doNotInherit;
+        [SerializeField] private List<string> itemActions;
+        [SerializeField] private string defaultAction;
 
-}
-[System.Serializable]
-public class Data {
-    public string Name;
-    [TextArea(5, 10)]
-    public string Description;
-    public Sprite Icon;
-    [SerializeField] List<Parameter> Parameters;
-    public bool HasParameter(string Name) {
-        foreach (var x in Parameters)
-            if (x.Name == Name)
-                return true;
-        return false;
-    }
-    public float FindParameterFloat(string Name) {
-        foreach (var x in Parameters)
-            if (x.Name == Name)
-                return float.Parse(x.Value);
-        Debug.LogWarning("No Float Parameter Found: " + GetType());
-        return 0;
-    }
-    public int FindParameterInt(string Name) {
-        foreach (var x in Parameters)
-            if (x.Name == Name)
-                return int.Parse(x.Value);
-        Debug.LogWarning("No Integer Parameter Found: " + GetType());
-        return 0;
-    }
-    public string FindParameterString(string Name) {
-        foreach (var x in Parameters)
-            if (x.Name == Name)
-                return x.Value;
-        Debug.LogWarning("No String Parameter Found: " + GetType());
-        return null;
-    }
-}
-[System.Serializable]
-public class ItemData : Data {
-    [NonSerialized]public string[] ItemActions;
-    [NonSerialized] public string DefaultAction;
+        /// <summary>
+        /// This functions as an item action parser, from the name of an item.
+        /// </summary>
+        public string[] ItemActions 
+        { 
+            get{
+                if (doNotInherit)
+                    return itemActions.ToArray();
+                else
+                {
+                    if(Name.StartsWith("ItemWeapon"))
+                    return itemActions.Concat(BaseItemWeaponActions).ToArray();
 
-}
-[System.Serializable]
-public struct Parameter {
-    public string Name;
-    public string Value;
+                    return itemActions.Concat(BaseItemActions).ToArray();
+                }
+            } 
+        }
+        
+        
+        
+        public string DefaultAction
+        {
+            get
+            {
+                if (doNotInherit)
+                    return defaultAction;
+                else
+                {
+                    if (Name.StartsWith("ItemWeapon"))
+                        return BaseItemWeaponDefaultAction;
+
+                    return BaseItemDefaultAction;
+                }
+            }
+        }
+
+
+        static string[] BaseItemActions = { };
+        static string BaseItemDefaultAction = "";
+        static string[] BaseItemWeaponActions = { };
+        static string BaseItemWeaponDefaultAction = "";
+    }
+    
 }

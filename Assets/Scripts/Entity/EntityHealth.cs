@@ -1,39 +1,53 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-public class EntityHealth : MonoBehaviour
+
+namespace PipelineDreams
 {
-    int MaxHP;
-    int CurrentHP;
-    public float damageRecieveCoef { get; set; } = 1f;
-    public event Action<float> OnHpModified;
 
-    public event Action<int, int, Entity> OnDamagedAmount;
-    public event Action OnZeroHP;
-    Entity entity;
-    // Start is called before the first frame update
-    private void Awake() {
-        
-        entity = GetComponent<Entity>();
-        entity.OnInit += () => { MaxHP = entity.Data.MaxHP; CurrentHP = MaxHP; OnHpModified?.Invoke((float)CurrentHP / MaxHP); };
-        
-    }
-    void Start()
+    public class EntityHealth : MonoBehaviour
     {
-        OnHpModified?.Invoke((float)CurrentHP/MaxHP);
 
-    }
-    public virtual void RecieveDamage(int damage, Entity subject) {
-        CurrentHP -= (int)(damageRecieveCoef*damage);
+        Entity entity;
+        /// <summary>
+        /// Called when damaged by another entity. Amount, and the attacker.
+        /// </summary>
+        public event Action<float, Entity> OnDamaged;
+        public event Action OnZeroHP;
+        /// <summary>
+        /// Called whenever a damagePacket arrives. This need not result in actual damage.
+        /// </summary>
+        public event Action<DamagePacket> OnDamagePacketArrive;
+        // Start is called before the first frame update
+        private void Awake() {
 
-        OnDamagedAmount?.Invoke((int)(damageRecieveCoef * damage), MaxHP, subject);
-        OnHpModified?.Invoke((float)CurrentHP / MaxHP);
-        if (CurrentHP <= 0) {
-            CurrentHP = 0;
-            OnZeroHP?.Invoke();
+            entity = GetComponent<Entity>();
+            entity.OnInit += (tm, ec) => {
+                entity.Parameters.Add("HP", entity.Data.MaxHP);
+                var f = new MutableValue.FunctionChain();
+                f.OnEvalRequest += () => f.AddFunction(new MutableValue.Constant() { Value = entity.Data.MaxHP });
+                f.EvalAtNextGet = true;
+                entity.Stats.Add("MaxHP", f);
+
+            };
+            entity.OnParamChange += Entity_OnParamChange;
+
+            OnZeroHP += entity.Death;
+        }
+
+        private void Entity_OnParamChange(string name, float val) {
+            if (name != "HP") return;
+            if (val == 0) OnZeroHP?.Invoke();
+        }
+
+        public virtual void RecieveDamage(DamagePacket dp) {
+            OnDamagePacketArrive?.Invoke(dp);
+            var _damage = UnityEngine.Random.Range(0, 1) < dp.accuracy.Value ? dp.damage.Value : 0;
+            entity.Parameters["HP"] -= _damage;
+
+
+            OnDamaged?.Invoke(dp.damage.Value, dp.subject);
+
         }
     }
-
-    
 }
