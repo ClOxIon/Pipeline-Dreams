@@ -1,45 +1,53 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using UnityEngine;
-using Newtonsoft.Json;
 using System.IO;
+using UnityEngine;
 
-public enum OpDirection {Front, Back, Omni}
+namespace PipelineDreams {
+    public enum OpDirection { Front, Back, Omni }
 
-[CreateAssetMenu(fileName = "OpData", menuName = "ScriptableObjects/OperatorData", order = 1)]
-public class InstructionDataset : ScriptableObject
-{
-
-    public List<InstructionData> Dataset;
-    [ContextMenu("Save To File...")]
-    public void SaveToFile() {
-        using (StreamWriter SW = new StreamWriter(Path.Combine(System.Environment.CurrentDirectory,"OperatorDataset.json"))) {
-            
-            var js = JsonSerializer.Create();
-            js.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            js.ContractResolver.ResolveContract(typeof(Sprite));
-            js.Serialize(SW,Dataset);
+    [CreateAssetMenu(fileName = "OpData", menuName = "ScriptableObjects/OperatorData", order = 1)]
+    public class InstructionDataset : ScriptableObject, IPDDataSet
+    {
+        public List<PDData> DataSet
+        {
+            get
+            {
+                var d = new List<PDData>();
+                foreach (var x in dataSet)
+                    d.Add(x);
+                return d;
+            }
         }
+
+        [SerializeField] private List<InstructionData> dataSet;
     }
-    [ContextMenu("Load From File...")]
-    public void LoadFromFile() {
-        using (StreamReader SW = new StreamReader(Path.Combine(System.Environment.CurrentDirectory, "OperatorDataset.json"))) {
-            Dataset = JsonConvert.DeserializeObject<List<InstructionData>>(SW.ReadToEnd());
+    [System.Serializable]
+    public class InstructionData : PDData {
 
-        }
+        [SerializeField] private float time;
+        [SerializeField] private OpDirection direction;
+        [SerializeField] private List<Command> commands;
+        [SerializeField] private List<string> variants;
+        [SerializeField] private float meleeCoef;
+
+        [SerializeField] private float rangeCoef;
+
+        [SerializeField] private float fieldCoef;
+
+        [SerializeField] private float baseAccuracy;
+        [SerializeField] private EffectVisualizer gun;
+        [SerializeField] private float effectDuration;
+
+        public float Time => time;
+        public OpDirection Direction => direction;
+        public Command[] Commands => commands.ToArray();
+        public string[] Variants => variants.ToArray();
+        public float MeleeCoef => meleeCoef;
+        public float RangeCoef => rangeCoef;
+        public float FieldCoef => fieldCoef;
+        public float BaseAccuracy => baseAccuracy;
+        public EffectVisualizer Gun => gun;
+        public float EffectDuration => effectDuration;
     }
-}
-[System.Serializable]
-public class InstructionData : Data {
-
-    public int Time;
-    public OpDirection Direction;
-    public List<Command> Commands;
-    public List<string> Variants;
-    public float meleeCoef;
-
-    public float rangeCoef;
-
-    public float fieldCoef;
-    
 }

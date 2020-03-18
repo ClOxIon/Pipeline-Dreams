@@ -1,41 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BuffCollectionUI : MonoBehaviour
-{
-    List<BuffUI> BuffUIs;
-    EntityBuff PI;
-    EntityManager EM;
-    [SerializeField] BuffUI BuffUIPrefab;
-    private void Awake() {
-        EM = (EntityManager)FindObjectOfType(typeof(EntityManager));
-        
-        BuffUIs = new List<BuffUI>(GetComponentsInChildren<BuffUI>());
-        
-        
-    }
-    private void Start() {
-        PI = EM.Player.GetComponent<EntityBuff>();
-        PI.OnRefreshBuffs += PI_OnRefreshUI;
-    }
+namespace PipelineDreams {
+    public class BuffCollectionUI : ObjectContainerUI<Buff> {
+
+        [SerializeField] Entity Player;
+        [SerializeField] BuffUI BuffUIPrefab;
+        protected override void Awake() {
+            PI = Player.GetComponent<EntityBuff>().BuffContainer;
+            PI.OnRefreshItems += PI_OnRefreshUI;
+        }
 
 
-    private void PI_OnRefreshUI(Buff[] obj) {
-        Debug.Log("BuffCollection Refreshed");
-        if(BuffUIs.Count>obj.Length)
-            for (int i = obj.Length; i < BuffUIs.Count; i++) {
+        protected override void PI_OnRefreshUI(Buff[] obj) {
 
-                BuffUIs[i].Clear();
+            if (ItemUIs.Count > obj.Length)
+                for (int i = obj.Length; i < ItemUIs.Count; i++) {
+
+                    ItemUIs[i].Clear();
+                }
+            if (ItemUIs.Count < obj.Length)
+                for (int i = ItemUIs.Count; i < obj.Length; i++) {
+
+                    ItemUIs.Add(Instantiate(BuffUIPrefab, transform));
+                }
+
+            for (int i = obj.Length - 1; i >= 0; i--) {
+                ItemUIs[i].Refresh(obj[i]);
             }
-        if (BuffUIs.Count < obj.Length)
-            for (int i = BuffUIs.Count; i < obj.Length; i++) {
-
-                BuffUIs.Add(Instantiate(BuffUIPrefab, transform));
-            }
-
-        for (int i = obj.Length - 1; i >= 0; i--) {
-            BuffUIs[i].Refresh(obj[i]);
         }
     }
 }

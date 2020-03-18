@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977aef860a657244486181c0758340eb, type: 3}
   m_Name: BuData
   m_EditorClassIdentifier: 
-  Dataset:
-  - Name: Targeted
-    Description: Wow! Debugging!
-    Icon: {fileID: 21300000, guid: 9ca135e4b19996e4c94869d682461aef, type: 3}
+  dataSet:
+  - name: Targeted
+    description: Wow! Debugging!
+    icon: {fileID: 21300000, guid: 9ca135e4b19996e4c94869d682461aef, type: 3}
     baseDuration: 0
-  - Name: 
-    Description: 
-    Icon: {fileID: 0}
+  - name: 
+    description: 
+    icon: {fileID: 0}
     baseDuration: 0
-  - Name: 
-    Description: 
-    Icon: {fileID: 0}
+  - name: 
+    description: 
+    icon: {fileID: 0}
     baseDuration: 0
-  - Name: 
-    Description: 
-    Icon: {fileID: 0}
+  - name: 
+    description: 
+    icon: {fileID: 0}
     baseDuration: 0
-  - Name: 
-    Description: 
-    Icon: {fileID: 0}
+  - name: 
+    description: 
+    icon: {fileID: 0}
     baseDuration: 0

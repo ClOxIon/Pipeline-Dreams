@@ -1,35 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WeaponUI : ItemUI
-{
-    EntityWeapon PW;
-    protected override void Awake() {
-        base.Awake();
-        PW = FindObjectOfType<EntityManager>().Player.GetComponent<EntityWeapon>();
-        PW.OnRefreshWeapon += PW_OnRefreshWeapon;
-        
-    }
+namespace PipelineDreams {
+    public class WeaponUI : ItemUI {
+        EntityWeapon PW;
+        [SerializeField] Entity Player;
+        protected override void Awake() {
+            base.Awake();
+            PW = Player.GetComponent<EntityWeapon>();
+            PW.OnRefreshWeapon += PW_OnRefreshWeapon;
+            PW.InvokeRefresh();
+        }
 
-    private void WeaponUI_OnPlayerInit() {
-        
-    }
+        private void WeaponUI_OnPlayerInit() {
 
-    private void PW_OnRefreshWeapon(ItemWeapon obj) {
-        
-        Refresh(obj);
-    }
+        }
 
-    void Start()
-    {
-        
-        
-    }
+        private void PW_OnRefreshWeapon(ItemWeapon obj) {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            Refresh(obj);
+        }
+
+        void Start() {
+
+
+        }
+
+        // Update is called once per frame
+        void Update() {
+
+        }
     }
 }

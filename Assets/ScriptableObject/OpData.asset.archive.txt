@@ -1,0 +1,553 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5d1f15a4c5f424cac278429a29d288, type: 3}
+  m_Name: OpData
+  m_EditorClassIdentifier: Assembly-CSharp::OperatorDataset
+  dataSet:
+  - name: Momentum
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
+    parameters: []
+    time: 4
+    direction: 1
+    commands: 04000000
+    variants: []
+    meleeCoef: 1
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Inertia
+    nameInGame: 
+    description: 'Attempts range attack to the direction you are heading. '
+    icon: {fileID: 21300000, guid: 46ccd97705f002046827828ca9845891, type: 3}
+    parameters: []
+    time: 4
+    direction: 2
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 1
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: Damages enemy in front and back of you
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 1
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Manipulate
+    nameInGame: 
+    description: Attempts field attack to the direction you are heading. OB increased
+      100% for one turn
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 1
+    commands: 0000000001000000
+    variants:
+    - LU
+    - LD
+    - UR
+    - UL
+    - RD
+    - RU
+    - DL
+    - DR
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Rearrange
+    nameInGame: 
+    description: Moves the symbol to the back
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 2
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    - S
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Circuit Breaker
+    nameInGame: 
+    description: Gains shield
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 0
+    commands: 04000000
+    variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Trace
+    nameInGame: 
+    description: Attempts range attack to the direction you are heading. Moving forward
+      right after does not cost time
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 1
+    commands: 0000000004000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Oscillate
+    nameInGame: 
+    description: Attempts field attack to all adjacent enemy.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 1
+    commands: 0000000002000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Orbit
+    nameInGame: 
+    description: 'Damages all adjacent enemy '
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 1
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Spatial Rotation '
+    nameInGame: 
+    description: Attempts range attack to the direction you are heading. Rotating
+      right after does not cost time
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 2
+    direction: 1
+    commands: 000000000100000002000000
+    variants:
+    - LU
+    - LD
+    - UL
+    - UR
+    - RD
+    - RU
+    - DR
+    - DL
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Charge '
+    nameInGame: 
+    description: For the instruction right after, 50% increased Damage
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 2
+    direction: 0
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Gradual Charge '
+    nameInGame: 
+    description: 20% Damage Bonus for 10 turns.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 2
+    direction: 0
+    commands: 00000000000000000000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Warp '
+    nameInGame: 
+    description: Attempts teleporting to the direction you are heading. Maximal 2
+      grids.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 0
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Rotational Charge '
+    nameInGame: 
+    description: For 5 turns, rotating is 50% faster.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 0
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Bypass '
+    nameInGame: 
+    description: Moves the symbol to the front
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 2
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    - S
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Recursion '
+    nameInGame: 
+    description: Adds a symbol S/U/R/L/D to the back
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 0
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    - S
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Restore '
+    nameInGame: 
+    description: Spends energy, healing
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 16
+    direction: 0
+    commands: 04000000040000000400000004000000
+    variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Fluctuation '
+    nameInGame: 
+    description: Damages all visible enemy
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 1
+    commands: 0000000002000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Eject '
+    nameInGame: 
+    description: Move back. If there is an enemy there, damages you and the enemy
+      instead.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 1
+    commands: 04000000
+    variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Translate '
+    nameInGame: 
+    description: Move front. If there is an enemy there, damages you and the enemy
+      instead.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 0
+    direction: 1
+    commands: 04000000
+    variants: []
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Conversion '
+    nameInGame: 
+    description: Adds S at the back
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 0
+    direction: 1
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Merge '
+    nameInGame: 
+    description: Leaves only one symbol.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: 'Clone '
+    nameInGame: 
+    description: Duplicates the symbol there.
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 4
+    direction: 2
+    commands: 00000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+  - name: Thrust
+    nameInGame: 
+    description: 
+    icon: {fileID: 21300000, guid: 4c7e870d07397234f8a017e11e71da3b, type: 3}
+    parameters: []
+    time: 8
+    direction: 2
+    commands: 0000000000000000
+    variants:
+    - L
+    - U
+    - R
+    - D
+    meleeCoef: 0
+    rangeCoef: 0
+    fieldCoef: 0
+    gun: {fileID: 0}
+    effectDuration: 0
+

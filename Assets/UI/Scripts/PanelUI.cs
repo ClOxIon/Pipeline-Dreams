@@ -1,26 +1,28 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelUI : MonoBehaviour
-{
-    bool visible;
-    [SerializeField] GameObject Panel;
-    public event Action<bool> OnVisibilityChange;
-    public void HideDialogue() {
+namespace PipelineDreams {
+    public class PanelUI : MonoBehaviour {
+        public bool visible { get; private set; }
+        [SerializeField] GameObject Panel;
+        public event Action<bool> OnVisibilityChange;
+        public void HidePanel() {
 
-        visible = false;
+            visible = false;
 
-        OnVisibilityChange?.Invoke(visible);
-        Panel.SetActive(visible);
-    }
-    public void ShowDialogue() {
+            //Beware that the event is called before the deactivation.
+            OnVisibilityChange?.Invoke(visible);
+            Panel.SetActive(visible);
 
-        visible = true;
+        }
+        public void ShowPanel() {
 
-        OnVisibilityChange?.Invoke(visible);
-        Panel.SetActive(visible);
+            visible = true;
 
+            Panel.SetActive(visible);
+
+            OnVisibilityChange?.Invoke(visible);
+
+        }
     }
 }
