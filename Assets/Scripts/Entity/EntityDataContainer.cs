@@ -52,26 +52,6 @@ namespace PipelineDreams
             OnEntityDeath?.Invoke(obj);
         }
 
-        /*This codebase will be moved.
-void SpawnEnemy(string name, Vector3Int Position, Quaternion Rotation) {
-
-   try {
-
-
-       if (FindEntityInPosition(Position) != null) return;
-       var dt = GetEntityDataFromName(name);
-       var mob = Instantiate(dt.Prefab);
-       mob.Initialize(Position, Rotation, dt);
-       EntitiesInScene.Add(mob);
-       OnNewEntitySpawn?.Invoke(mob);
-       var d = mob.GetComponent<EntityDeath>();
-       if (d != null) d.OnEntityDeath += (e) => { EntitiesInScene.Remove(e); OnEntityDeath?.Invoke(e); };
-   }
-   catch (ArgumentOutOfRangeException e) {
-
-   }
-}
-*/
         public List<Entity> FindEntities(Predicate<Entity> match) {
             return EntitiesInScene.Values.ToList().FindAll(match);
         }
