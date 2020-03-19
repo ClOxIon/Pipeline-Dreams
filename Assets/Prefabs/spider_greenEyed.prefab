@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 5698684371143346956}
   - component: {fileID: 3683797015348546969}
   - component: {fileID: 611717353907110827}
+  - component: {fileID: 6333965839132333129}
   m_Layer: 0
   m_Name: spider_greenEyed
   m_TagString: Untagged
@@ -427,6 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e20f5621a235d4b9fc66a0488d0a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityDataContainer: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d,
+    type: 2}
 --- !u!114 &5698684371143346956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +470,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialWeaponName: WeaponSpiderClaw
   DataContainer: {fileID: 11400000, guid: 400516b54dc83c44eb83006f555d7c0b, type: 2}
+--- !u!114 &6333965839132333129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665931868921238110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487c83a9a9207614684532cd696b0fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityDataContainer: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d,
+    type: 2}
+  number: 3
 --- !u!1 &1665931868921238112
 GameObject:
   m_ObjectHideFlags: 0
