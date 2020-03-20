@@ -8,17 +8,17 @@ namespace PipelineDreams {
         [SerializeField] Text DescriptionText;
         [SerializeField] Text TitleText;
         [SerializeField] Image Icon;
-        InstructionContainerPlayer OC;
+        Instruction.ContainerPlayer OC;
         Button destroyButton;
-        InstructionData defaultData;
+        Instruction.Data defaultData;
         int Selection;
-        public void Activate(InstructionData data) {
+        public void Activate(Instruction.Data data) {
             gameObject.SetActive(true);
             defaultData = data;
             ShowOperatorInfo(data);
         }
         private void Awake() {
-            OC = GetComponentInParent<InstructionContainerPlayer>();
+            OC = GetComponentInParent<Instruction.ContainerPlayer>();
             destroyButton = GetComponentInChildren<Button>();
             destroyButton.onClick.AddListener(() => OnDestroyButtonClicked(Selection));
         }
@@ -26,7 +26,7 @@ namespace PipelineDreams {
         void Start() {
 
         }
-        private void ShowOperatorInfo(InstructionData data) {
+        private void ShowOperatorInfo(Instruction.Data data) {
             DescriptionText.text = data.Description;
             TitleText.text = data.Name;
             Icon.sprite = data.Icon;
@@ -35,7 +35,7 @@ namespace PipelineDreams {
         void Update() {
             if (Input.GetButtonDown("Item0")) { Selection = 0; ShowOperatorInfo(defaultData); }
             for (int i = 1; i <= 9; i++)
-                if (Input.GetButtonDown("Item" + i)) { Selection = i; ShowOperatorInfo(OC.GetItemInfo(Selection - 1) as InstructionData); }
+                if (Input.GetButtonDown("Item" + i)) { Selection = i; ShowOperatorInfo(OC.GetItemInfo(Selection - 1) as Instruction.Data); }
 
         }
     }

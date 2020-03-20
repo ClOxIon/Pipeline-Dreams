@@ -6,13 +6,13 @@ namespace PipelineDreams {
     public class DamageIndicatorUI : MonoBehaviour {
         [SerializeField] List<DamageIndicatorAnimation> Frames;
         [SerializeField] List<Text> Texts;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
         private void Awake() {
 
-            Player.GetComponent<EntityHealth>().OnDamaged += DamageIndicatorUI_OnDamaged;
+            Player.GetComponent<Entity.Health>().OnDamaged += DamageIndicatorUI_OnDamaged;
         }
 
-        private void DamageIndicatorUI_OnDamaged(float arg1, Entity arg2) {
+        private void DamageIndicatorUI_OnDamaged(float arg1, Entity.Entity arg2) {
             var v = Vector3Int.RoundToInt(Quaternion.Inverse(Player.IdealRotation) * (arg2.IdealPosition - Player.IdealPosition));
             var f = Util.LHUnitVectorToFace(v);
             Texts[f].text = arg1.ToString();

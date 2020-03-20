@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace PipelineDreams {
-    public class BuffUI : MonoBehaviour, IIndividualUI<Buff> {
+    public class BuffUI : MonoBehaviour, IIndividualUI<Buff.Buff> {
         [SerializeField] Image Icon;
 
-        Buff item;
+        Buff.Buff item;
 
         public event Action OnClick;
 
@@ -22,7 +22,7 @@ namespace PipelineDreams {
             Debug.LogError("AssignHotkey Called at BuffUI.");
         }
 
-        void IIndividualUI<Buff>.Refresh(Buff item) {
+        void IIndividualUI<Buff.Buff>.Refresh(Buff.Buff item) {
 
             if (item == null) {
                 Clear();
@@ -31,8 +31,8 @@ namespace PipelineDreams {
             Icon.sprite = item.Data.Icon;
             Icon.color = new Color(1, 1, 1, 0.7f);
             Icon.enabled = true;
-            if (typeof(Item) == typeof(BuffWithDuration))
-                Icon.fillAmount = ((BuffWithDuration)item).TimeLeft / (item.Data as BuffData).BaseDuration;
+            if (item is Buff.BuffWithDuration)
+                Icon.fillAmount = ((Buff.BuffWithDuration)item).TimeLeft / (item.Data as Buff.Data).BaseDuration;
         }
 
         public void SetVisible(bool b) {

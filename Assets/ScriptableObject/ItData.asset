@@ -157,7 +157,7 @@ MonoBehaviour:
     doNotInherit: 0
     itemActions: []
     defaultAction: 
-  - name: WeaponSpiderClaw
+  - name: Weapon.SpiderClaw
     nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: 8cbcaccc834da9549948130c77d3f104, type: 3}
@@ -167,7 +167,7 @@ MonoBehaviour:
     doNotInherit: 0
     itemActions: []
     defaultAction: 
-  - name: WeaponRebar
+  - name: Weapon.Rebar
     nameInGame: 
     description: For debug purposes only.
     icon: {fileID: 21300000, guid: bb0ea7fc60dd8e545b79d06a3d575a05, type: 3}

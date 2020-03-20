@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 namespace PipelineDreams {
-    public class InstructionCollectionInfoUI : CollectionInfoUI<Instruction> {
-        [SerializeField]InstructionContainerPlayer InstructionContainer;
+    public class InstructionCollectionInfoUI : CollectionInfoUI<Instruction.Instruction> {
+        [SerializeField]Instruction.ContainerPlayer InstructionContainer;
         protected override void Awake() {
             base.Awake();
 

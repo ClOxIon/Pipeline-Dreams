@@ -2,7 +2,7 @@
 
 namespace PipelineDreams {
     public class ItemDefaultActionUI : MonoBehaviour {
-        [SerializeField] ItemContainerPlayer IC;
+        [SerializeField] Item.ContainerPlayer IC;
         ItemCollectionUI ICU;
         private void Awake() {
             FindObjectOfType<PlayerInputBroadcaster>().Subscribe(gameObject);

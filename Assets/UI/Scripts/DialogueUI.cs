@@ -11,8 +11,8 @@ namespace PipelineDreams {
         [SerializeField] Text TitleText;
         [SerializeField] Text DescriptionText;
         [Range(0, 1)] [SerializeField] float LerpSpeed;
-        [SerializeField] EntityDataContainer EM;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Container EM;
+        [SerializeField] Entity.Entity Player;
         Camera FrontCam;
         bool visible = false;
         bool isMoving = true;
@@ -45,7 +45,7 @@ namespace PipelineDreams {
         }
 
 
-        private void ShowEntityDialogue(EntityData data) {
+        private void ShowEntityDialogue(Entity.Data data) {
             TitleText.text = data.Name;
             if (data.FindParameterString("HasDialogue") != null)
                 FindObjectOfType<DialogueRunner>().StartDialogue(data.Name);

@@ -7,7 +7,7 @@ namespace PipelineDreams {
     [CreateAssetMenu(fileName = "Executer", menuName = "ScriptableObjects/Manager/Executer")]
     public class Executer : ScriptableObject
     {
-        [SerializeField] EntityDataContainer EDC;
+        [SerializeField] Entity.Container EDC;
         
         // Start is called before the first frame update
         void Start()

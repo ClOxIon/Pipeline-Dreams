@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
 namespace PipelineDreams {
-    public class BuffCollectionUI : ObjectContainerUI<Buff> {
+    public class BuffCollectionUI : ObjectContainerUI<Buff.Buff> {
 
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
         [SerializeField] BuffUI BuffUIPrefab;
         protected override void Awake() {
-            PI = Player.GetComponent<EntityBuff>().BuffContainer;
+            PI = Player.GetComponent<Entity.BuffContainerHolder>().BuffContainer;
             PI.OnRefreshItems += PI_OnRefreshUI;
         }
 
 
-        protected override void PI_OnRefreshUI(Buff[] obj) {
+        protected override void PI_OnRefreshUI(Buff.Buff[] obj) {
 
             if (ItemUIs.Count > obj.Length)
                 for (int i = obj.Length; i < ItemUIs.Count; i++) {

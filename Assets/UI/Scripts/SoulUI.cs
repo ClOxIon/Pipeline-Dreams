@@ -7,7 +7,7 @@ namespace PipelineDreams {
     public class SoulUI : MonoBehaviour
     {
         [SerializeField] Text SoulText;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
         // Start is called before the first frame update
     void Awake()
         {

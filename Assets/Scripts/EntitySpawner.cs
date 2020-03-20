@@ -6,16 +6,16 @@ namespace PipelineDreams {
     public class EntitySpawner : MonoBehaviour
     {
         [SerializeField] string SpawnedEntity;
-        [SerializeField] EntityDataContainer TargetContainer;
+        [SerializeField] Entity.Container TargetContainer;
         [SerializeField] TaskManager tm;
         [SerializeField] Vector3Int SpawnPosition;
         [SerializeField] bool SpawnWhenStart;
-        Entity entity;
+        Entity.Entity entity;
         // Start is called before the first frame update
         void Start() {
             if (SpawnWhenStart)
                 Spawn();
-            entity = GetComponent<Entity>();
+            entity = GetComponent<Entity.Entity>();
         }
         public void Spawn() {
             TargetContainer.AddEntityInScene(SpawnPosition, Quaternion.identity, SpawnedEntity, tm);

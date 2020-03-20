@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PipelineDreams {
+namespace PipelineDreams.Entity {
     /// <summary>
     /// Determines the type of the entity. It is also the search priority of various search functions.
     /// </summary>
@@ -10,10 +10,10 @@ namespace PipelineDreams {
         PLAYER, ENEMY, NPC, TILE
     }
     public class Entity : MonoBehaviour {
-        public event Action<TaskManager, EntityDataContainer> OnInit;
+        public event Action<TaskManager, Container> OnInit;
         public Vector3Int IdealPosition;
         public Quaternion IdealRotation;
-        public EntityData Data { get; private set; }
+        public Data Data { get; private set; }
         public EntityParameterDictionary Parameters;//Active Parameters. Parameters are simple float values, and are intended to be only add/subtracted from current value.
         public Dictionary<string, MutableValue.FunctionChain> Stats = new Dictionary<string, MutableValue.FunctionChain>();//Active Stats
 
@@ -29,7 +29,7 @@ namespace PipelineDreams {
         /// </summary>
         /// <param name="InitPosition">RH VectorInt</param>
         /// <param name="InitQ">RH Quaternion</param>
-        public void Initialize(Vector3Int InitPosition, Quaternion InitQ, EntityData data, TaskManager tm, EntityDataContainer ec) {
+        public void Initialize(Vector3Int InitPosition, Quaternion InitQ, Data data, TaskManager tm, Container ec) {
             Parameters = new EntityParameterDictionary(this);
             IdealPosition = InitPosition;
             IdealRotation = InitQ;
@@ -42,7 +42,7 @@ namespace PipelineDreams {
         {
             OnEntityDeath?.Invoke(GetComponent<Entity>());
             GetComponent<Entity>().IsActive = false;
-            GetComponent<EntityAnimator>()?.InvokeAnimation("Death", true);
+            GetComponent<Animator>()?.InvokeAnimation("Death", true);
         }
         public class EntityParameterDictionary
         {

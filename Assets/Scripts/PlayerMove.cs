@@ -19,7 +19,7 @@ namespace PipelineDreams {
         public event Action<Command> OnCommandKeyPressed;
         [SerializeField] TaskManager CM;
 
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
 
         private void Awake() {
 
@@ -33,12 +33,12 @@ namespace PipelineDreams {
 
         void PlayerRotate(Quaternion deltaQ) {
 
-            Player.GetComponent<EntityMove>().Face(Util.LHQToFace(Player.IdealRotation * deltaQ), CM.Clock);
+            Player.GetComponent<Entity.Move>().Face(Util.LHQToFace(Player.IdealRotation * deltaQ), CM.Clock);
 
         }
 
         void PlayerTranslateForward() {
-            Player.GetComponent<EntityMove>().MoveToward(Util.LHQToLHUnitVector(Player.IdealRotation), CM.Clock);
+            Player.GetComponent<Entity.Move>().MoveToward(Util.LHQToLHUnitVector(Player.IdealRotation), CM.Clock);
 
         }
 
@@ -49,32 +49,32 @@ namespace PipelineDreams {
         /// </summary>
         /// <param name="value"></param>
         private void OnMoveForward(object value) {
-            if (Player.GetComponent<EntityMove>().CanMove(Player.IdealPosition+Util.LHQToLHUnitVector(Player.IdealRotation))) {
+            if (Player.GetComponent<Entity.Move>().CanMove(Player.IdealPosition+Util.LHQToLHUnitVector(Player.IdealRotation))) {
 
                 PlayerTranslateForward();
                 OnCommandKeyPressed(Command.space);
             }
         }
         private void OnTurnLeft(object value) {
-            if (Player.GetComponent<EntityMove>().CanRotate(Player.IdealRotation * Util.TurnLeft)) {
+            if (Player.GetComponent<Entity.Move>().CanRotate(Player.IdealRotation * Util.TurnLeft)) {
                 PlayerRotate(Util.TurnLeft);
                 OnCommandKeyPressed(Command.left);
             }
         }
         private void OnTurnRight(object value) {
-            if (Player.GetComponent<EntityMove>().CanRotate(Player.IdealRotation * Util.TurnRight)) {
+            if (Player.GetComponent<Entity.Move>().CanRotate(Player.IdealRotation * Util.TurnRight)) {
                 PlayerRotate(Util.TurnRight);
                 OnCommandKeyPressed(Command.right);
             }
         }
         private void OnTurnUp(object value) {
-            if (Player.GetComponent<EntityMove>().CanRotate(Player.IdealRotation * Util.TurnUp)) {
+            if (Player.GetComponent<Entity.Move>().CanRotate(Player.IdealRotation * Util.TurnUp)) {
                 PlayerRotate(Util.TurnUp);
                 OnCommandKeyPressed(Command.up);
             }
         }
         private void OnTurnDown(object value) {
-            if (Player.GetComponent<EntityMove>().CanRotate(Player.IdealRotation * Util.TurnDown)) {
+            if (Player.GetComponent<Entity.Move>().CanRotate(Player.IdealRotation * Util.TurnDown)) {
                 PlayerRotate(Util.TurnDown);
                 OnCommandKeyPressed(Command.down);
             }

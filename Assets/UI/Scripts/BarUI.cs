@@ -9,7 +9,7 @@ namespace PipelineDreams
         [SerializeField] Image BarImage;
         [SerializeField] Image BarFrame;
         [SerializeField] RectTransform HPBarFull;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
         [SerializeField] string ParamName;
         [SerializeField] string MaxParamName;
         [SerializeField] Color NormalColor;

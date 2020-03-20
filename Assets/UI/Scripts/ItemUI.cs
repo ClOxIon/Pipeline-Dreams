@@ -3,20 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace PipelineDreams {
-    public class ItemUI : MonoBehaviour, IIndividualUI<Item> {
+    public class ItemUI : MonoBehaviour, IIndividualUI<Item.Item> {
         [SerializeField] Image Icon;
         [SerializeField] Text Hotkey;
         [SerializeField] Text Name;
         public event Action OnClick;
         Button b;
-        protected Item item;
+        protected Item.Item item;
         protected virtual void Awake() {
             Icon.enabled = false;
             b = GetComponentInChildren<Button>();
             b.onClick.AddListener(() => OnClick?.Invoke());
 
         }
-        public void Refresh(Item testIt) {
+        public void Refresh(Item.Item testIt) {
             item = testIt;
 
             if (item == null) {

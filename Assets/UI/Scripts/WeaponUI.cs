@@ -2,11 +2,11 @@
 
 namespace PipelineDreams {
     public class WeaponUI : ItemUI {
-        EntityWeapon PW;
-        [SerializeField] Entity Player;
+        Entity.WeaponHolder PW;
+        [SerializeField] Entity.Entity Player;
         protected override void Awake() {
             base.Awake();
-            PW = Player.GetComponent<EntityWeapon>();
+            PW = Player.GetComponent<Entity.WeaponHolder>();
             PW.OnRefreshWeapon += PW_OnRefreshWeapon;
             PW.InvokeRefresh();
         }
@@ -15,7 +15,7 @@ namespace PipelineDreams {
 
         }
 
-        private void PW_OnRefreshWeapon(ItemWeapon obj) {
+        private void PW_OnRefreshWeapon(Item.Weapon.Weapon obj) {
 
             Refresh(obj);
         }

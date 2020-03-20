@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2cab46cfc8693428fd7787e878edc3, type: 3}
+  m_Name: SingleTileRenderer
+  m_EditorClassIdentifier: 
+  Station: {fileID: 0}
+  PipePath: {fileID: 0}
+  PipeWall: {fileID: 0}
+  RoomWall: {fileID: 0}
+  RoomEntrance: {fileID: 0}
+  TM: {fileID: 0}
+  enDataContainer: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
+  TargetTile: PipeVendingMachine
+

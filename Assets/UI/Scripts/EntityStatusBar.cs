@@ -12,11 +12,11 @@ namespace PipelineDreams {
         [SerializeField] Sprite Angry;
 
         public event Action OnInit;
-        public Entity entity { get; private set; }
+        public Entity.Entity entity { get; private set; }
         Transform eT;
         Transform player;
         Transform t;
-        public void Init(Entity e) {
+        public void Init(Entity.Entity e) {
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
             t = transform;
             entity = e;
@@ -41,20 +41,20 @@ namespace PipelineDreams {
         // Update is called once per frame
         void Update() {
             if (Visible) {
-                switch (entity.GetComponent<EntityAI>().State) {
-                case EntityAIState.Attack:
+                switch (entity.GetComponent<Entity.AI>().State) {
+                case Entity.AIState.Attack:
                     Emoji.sprite = Angry;
                     Emoji.color = Color.red;
                     break;
-                case EntityAIState.Wander:
+                case  Entity.AIState.Wander:
                     Emoji.sprite = None;
                     Emoji.color = new Color(0, 0, 0, 0);
                     break;
-                case EntityAIState.Chase:
+                case Entity.AIState.Chase:
                     Emoji.sprite = Surprised;
                     Emoji.color = Color.yellow;
                     break;
-                case EntityAIState.Confused:
+                case Entity.AIState.Confused:
                     Emoji.sprite = Confused;
                     Emoji.color = Color.green;
                     break;

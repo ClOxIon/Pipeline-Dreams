@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace PipelineDreams {
-    public class SelectableInstructionUI : InstructionUI, ISelectableIndividualUI<Instruction> {
+    public class SelectableInstructionUI : InstructionUI, ISelectableIndividualUI<Instruction.Instruction> {
 
         [SerializeField] GameObject SelectionMarker;
         public void SetSelection(bool b) {

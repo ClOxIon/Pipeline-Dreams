@@ -10,7 +10,7 @@ namespace PipelineDreams
 
         public event Action OnRemove;
         protected TaskManager CM;
-        protected Entity Holder;
+        protected Entity.Entity Holder;
         public bool Enabled { get; private set; }
         public PDData Data { get; protected set; }
 
@@ -25,7 +25,7 @@ namespace PipelineDreams
         /// Called when an object is moved into a container.
         /// </summary>
         /// <param name="data"></param>
-        public virtual void Obtain(Entity holder, TaskManager cM) {
+        public virtual void Obtain(Entity.Entity holder, TaskManager cM) {
             
             CM = cM;
             Holder = holder;

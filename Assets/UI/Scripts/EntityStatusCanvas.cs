@@ -5,9 +5,9 @@ namespace PipelineDreams {
     public class EntityStatusCanvas : MonoBehaviour {
         [SerializeField] EntityStatusBar ESBPrefab;
         List<EntityStatusBar> ESBList = new List<EntityStatusBar>();
-        [SerializeField] EntityDataContainer EM;
+        [SerializeField] Entity.Container EM;
         [SerializeField] TaskManager CM;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
         // Start is called before the first frame update
         private void Awake() {
             EM.OnNewEntitySpawn += (e) => {

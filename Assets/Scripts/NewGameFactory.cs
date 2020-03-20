@@ -2,14 +2,14 @@
 namespace PipelineDreams {
     public class NewGameFactory : MonoBehaviour {
         [SerializeField] TaskManager TM;
-        [SerializeField] EntityDataContainer EM;
-        [SerializeField] InstructionContainerPlayer ICP;
+        [SerializeField] Entity.Container EM;
+        [SerializeField] Instruction.ContainerPlayer ICP;
         [SerializeField] CommandsContainer PC;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Entity Player;
         [SerializeField] PlayerMove PM;
         [SerializeField] PlayerInitializer PI;
-        [SerializeField] MapGenerator MG;
-        [SerializeField] MapRenderer MR;
+        [SerializeField] Map.Generator MG;
+        [SerializeField] Map.Renderer MR;
         private void Awake() {
             //mManager.CreateNewMap();
             EM.Initialize();

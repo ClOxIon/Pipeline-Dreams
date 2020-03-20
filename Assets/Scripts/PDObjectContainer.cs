@@ -6,13 +6,13 @@ namespace PipelineDreams
 {
     public abstract class PDObjectContainer<T> : ScriptableObject where T:PDObject {
         [SerializeField] protected ScriptableObject dataObj;
-        [SerializeField] protected EntityDataContainer EM;
-        protected Entity Holder;
+        [SerializeField] protected Entity.Container EM;
+        protected Entity.Entity Holder;
         protected TaskManager TM;
         protected List<T> objs = new List<T>();
         public event Action<T[]> OnRefreshItems;
         public event Action OnContainerInit;
-        public virtual void Init(TaskManager tm, Entity holder)
+        public virtual void Init(TaskManager tm, Entity.Entity holder)
         {
             TM = tm;
             Holder = holder;
@@ -32,16 +32,16 @@ namespace PipelineDreams
             AddedItemData = (dataObj as IPDDataSet).DataSet.Find((x) => { return x.Name.Equals(name0); });
             if (AddedItemData == null)
             {
-                Debug.LogError("InstructionCollection.AddInstruction(): Cannot find Item Data named " + name0);
+                Debug.LogError("Cannot find Item Data named " + name0);
                 return;
             }
 
             //Should double check here when the namespace is null, but we assume that our namespace is not null.
-            var tp = Type.GetType(typeof(T).Namespace + "." + typeof(T).Name + name0);
+            var tp = Type.GetType(typeof(T).Namespace + "." + name0);
             if (tp != null)
                 AddedItem = (T)Activator.CreateInstance(tp);
             else
-                Debug.LogError("InstructionCollection.AddInstruction(): Cannot find Class named " + typeof(T).Namespace + "." + typeof(T).Name + name0);
+                Debug.LogError("Cannot find Class named " + typeof(T).Namespace + "." + name0);
 
             AddedItem.Init(AddedItemData, args);
             PushItem(AddedItem);

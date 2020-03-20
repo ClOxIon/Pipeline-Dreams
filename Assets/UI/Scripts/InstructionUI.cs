@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace PipelineDreams {
-    public class InstructionUI : MonoBehaviour, IIndividualUI<Instruction> {
+    public class InstructionUI : MonoBehaviour, IIndividualUI<Instruction.Instruction> {
         public event Action OnClick;
 
         [SerializeField] Image OpIcon;
@@ -23,18 +23,18 @@ namespace PipelineDreams {
         [SerializeField] Text Hotkey;
         [SerializeField] Text OpName;
         Button b;
-        protected Instruction _operator;
+        protected Instruction.Instruction _operator;
         private void Awake() {
             b = GetComponent<Button>();
             b.onClick.AddListener(() => OnClick?.Invoke());
         }
-        public void Refresh(Instruction _o) {
+        public void Refresh(Instruction.Instruction _o) {
             if (_o == null) {
                 Clear();
                 return;
             }
             SetVisible(true);
-            var d = _o.Data as InstructionData;
+            var d = _o.Data as Instruction.Data;
             _operator = _o;
             OpIcon.sprite = d.Icon;
             OpName.text = d.Name + " " + _o.Variant;

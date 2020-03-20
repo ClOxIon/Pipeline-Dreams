@@ -33,7 +33,7 @@ MonoBehaviour:
     invisibleX: 0
     invisibleZ: 0
     invisibleY: 0
-    prefab: {fileID: 8056400577095368730, guid: 52ada8c7a2fc2ae4b9feac8f69b0bed3,
+    prefab: {fileID: 1665931868677219845, guid: 9e9cfae9395853a4e9cd27dfe5c8e663,
       type: 3}
   - name: Green-eyed Spider
     nameInGame: 

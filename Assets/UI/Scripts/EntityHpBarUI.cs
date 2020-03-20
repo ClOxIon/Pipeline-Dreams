@@ -15,7 +15,7 @@ namespace PipelineDreams {
                     var s = HPBarFull.rect; HPBar.sizeDelta = new Vector2(s.width * v, 0);
                     HPBarBackground.sizeDelta = new Vector2(s.width * (1 - v), 0); HPBar.gameObject.SetActive(v != 1);
                 };
-                esb.entity.GetComponent<EntityHealth>().OnDamaged += (d, e) => 
+                esb.entity.GetComponent<Entity.Health>().OnDamaged += (d, e) => 
                 {
                     var obj = Instantiate(DT, transform, false);
                     obj.Init((int)d);

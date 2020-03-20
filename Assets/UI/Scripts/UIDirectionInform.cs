@@ -24,8 +24,8 @@ namespace PipelineDreams {
         [SerializeField] Text UpInfoText;
         [SerializeField] Text DownInfoText;
         string[] Directions = { "E", "W", "U", "D", "N", "S" };
-        [SerializeField] EntityDataContainer EM;
-        [SerializeField] Entity Player;
+        [SerializeField] Entity.Container EM;
+        [SerializeField] Entity.Entity Player;
         [SerializeField] TaskManager CM;
         Quaternion rotation;
         private void Awake() {
@@ -95,7 +95,7 @@ namespace PipelineDreams {
             }
             */
             i.enabled = true;
-            if (Player.GetComponent<EntityMove>().CanMove(Player.IdealPosition + e))
+            if (Player.GetComponent<Entity.Move>().CanMove(Player.IdealPosition + e))
             {
                 t.text = "CLEAR";
                 t.color = new Color(0, 1, 0, 240f / 255);

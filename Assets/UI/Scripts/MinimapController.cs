@@ -10,7 +10,7 @@ namespace PipelineDreams {
         [SerializeField] GameObject playerPrefab;
         GameObject minimapPlayerMarker;
         [SerializeField] TaskManager CM;
-        Entity player;
+        Entity.Entity player;
         Quaternion offset = Quaternion.Euler(0, 0, 0);
         List<GameObject> RenderedObjects = new List<GameObject>();
         private void Awake() {

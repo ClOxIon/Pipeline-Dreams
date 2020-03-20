@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 namespace PipelineDreams {
 
-    public class ItemCollectionInfoUI : CollectionInfoUI<Item> {
-        [SerializeField] Entity Player;
-        [SerializeField] ItemContainerPlayer ItemContainer;
+    public class ItemCollectionInfoUI : CollectionInfoUI<Item.Item> {
+        [SerializeField] Entity.Entity Player;
+        [SerializeField] Item.ContainerPlayer ItemContainer;
         protected override void Awake() {
             base.Awake();
 
             IC = ItemContainer;
-            PW = Player.GetComponent<EntityWeapon>();
+            PW = Player.GetComponent<Entity.WeaponHolder>();
         }
-        EntityWeapon PW;
+        Entity.WeaponHolder PW;
 
         List<Button> ItemActionButtons = new List<Button>();
 
@@ -22,7 +22,7 @@ namespace PipelineDreams {
         [SerializeField] Button ItemActionButtonPrefab;
         [SerializeField] Transform ItemActionButtonPanel;
         public event Action OnWeaponSelected;
-        public event Action<Item, string> OnButtonPressed;
+        public event Action<Item.Item, string> OnButtonPressed;
         protected override void RefreshInfo() {
             base.RefreshInfo();
 
@@ -44,14 +44,14 @@ namespace PipelineDreams {
                 }
                 return;
             } else {
-                var data = SelectedItemData as ItemData;
+                var data = SelectedItemData as Item.Data;
                 if (ItemActionButtons.Count < data.ItemActions.Length)
                     for (int i = ItemActionButtons.Count; i < data.ItemActions.Length; i++)
                         ItemActionButtons.Add(Instantiate(ItemActionButtonPrefab, ItemActionButtonPanel));
                 for (int i = 0; i < data.ItemActions.Length; i++) {
                     ItemActionButtons[i].gameObject.SetActive(true);
                     var t = data.ItemActions[i];
-                    ItemActionButtons[i].onClick.AddListener(() => (IC as ItemContainerPlayer).InvokeItemAction(SelectedItemIndex, t));
+                    ItemActionButtons[i].onClick.AddListener(() => (IC as Item.ContainerPlayer).InvokeItemAction(SelectedItemIndex, t));
                     ItemActionButtons[i].GetComponentInChildren<Text>().text = t;
 
 
