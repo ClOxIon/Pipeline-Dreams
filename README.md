@@ -93,6 +93,7 @@ Items are not used anymore in the game; they are instead implemented through ins
 
 Entities that have a module WeaponHolder can hold a single weapon. The weapon determines the damage of the entity's attacks. Such weapons are initialized by InitialWeapon module.  
 
+# Buff
 - Buff.Buff : PDObject
 
 Every entity that can be inflicted a buff has an BuffContainerHolder module, which has a Buff.Container that contains all buff currently inflicted to the entity. 
