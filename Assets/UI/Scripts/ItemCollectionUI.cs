@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 namespace PipelineDreams {
-    public class ItemCollectionUI : ObjectContainerUILimitedCapacity<Item.Item> {
+    public class ItemCollectionUI : CollectionUILimitedCapacity<Item.Item> {
         [SerializeField] ItemUI TemporaryUI;
         [SerializeField] Item.ContainerPlayer ItemContainer;
         protected override void Awake() {

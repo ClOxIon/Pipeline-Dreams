@@ -4,7 +4,7 @@
     /// Collection UI with limited number of objects.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class ObjectContainerUILimitedCapacity<T> : ObjectContainerUI<T> where T: PDObject
+    public abstract class CollectionUILimitedCapacity<T> : ObjectContainerUI<T> where T: PDObject
     {
         protected IIndividualUI<T> _TemporarySlot;
         protected override void Awake()
