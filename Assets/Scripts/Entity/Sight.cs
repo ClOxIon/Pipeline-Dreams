@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace PipelineDreams.Entity {
     public class Sight : MonoBehaviour {
-        Entity entity;
-        
-        Container ec;
+        protected Entity entity;
+        protected TaskManager CM;
+        protected Container ec;
+        /// <summary>
+        /// Normal entities could only see entities in their line of sight.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public virtual bool IsVisible(Entity e) {
             var v = e.IdealPosition - entity.IdealPosition;
-            return ec.IsLineOfSight(entity.IdealPosition, e.IdealPosition) && Util.LHQToLHUnitVector(entity.IdealRotation) == Util.Normalize(v);
+            return ec.IsLineOfSight(entity.IdealPosition, e.IdealPosition)&&Util.LHQToLHUnitVector(entity.IdealRotation)==v;
         }
         public Entity[] VisibleEntitiesOfType(EntityType type)
         {
@@ -22,8 +27,9 @@ namespace PipelineDreams.Entity {
             entity.OnInit += Entity_OnInit;
         }
 
-        private void Entity_OnInit(TaskManager arg1, Container arg3)
+        protected virtual void Entity_OnInit(TaskManager arg1, Container arg3)
         {
+            CM = arg1;
             ec = arg3;
         }
     }

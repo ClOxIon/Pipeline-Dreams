@@ -68,6 +68,38 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "SightTurnLeft",
+                    "type": "Button",
+                    "id": "b0b8fb2c-a175-4f58-87f8-d33fdb9a1f95",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "SightTurnRight",
+                    "type": "Button",
+                    "id": "29190dae-c80a-4fe4-8386-fa86adc1c02c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "SightTurnUp",
+                    "type": "Button",
+                    "id": "f8f00b6d-9acb-4074-9761-888cc0fe7feb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "SightTurnDown",
+                    "type": "Button",
+                    "id": "006f57d9-4b39-4e0f-afc4-5e5f2f7a23bf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -195,7 +227,7 @@
                 {
                     "name": "",
                     "id": "eec34419-056a-4c06-a9ac-157d3d0af038",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "ButtonIndexer",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -206,7 +238,7 @@
                 {
                     "name": "",
                     "id": "1c01bd1e-8690-4b29-a2ed-619f628eebbb",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=1)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -217,7 +249,7 @@
                 {
                     "name": "",
                     "id": "71d39b4d-e8a0-449a-ad7e-54d602d2e54f",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=2)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -228,7 +260,7 @@
                 {
                     "name": "",
                     "id": "540f6577-5d7b-4c4d-bd8e-aff8cb583e4f",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=3)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -239,7 +271,7 @@
                 {
                     "name": "",
                     "id": "1d77dd85-1b7a-4848-a990-a28f46d88489",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=4)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -250,7 +282,7 @@
                 {
                     "name": "",
                     "id": "ccff8bb4-50ef-4e5f-94dc-e5ee69d314e7",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=5)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -261,7 +293,7 @@
                 {
                     "name": "",
                     "id": "897d8490-92f8-446b-ba4b-83bd17a52332",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=6)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -272,7 +304,7 @@
                 {
                     "name": "",
                     "id": "b670b7c3-9150-4c2f-a166-bbd9699e0439",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=7)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -332,6 +364,50 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "WeaponUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b2f9b58-430c-42d0-8e56-bef92c032076",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SightTurnLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55920baf-4477-4489-ac27-5281d1a340ae",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SightTurnRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38c10731-8489-42ab-97d4-258360b85525",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SightTurnUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06dd2354-9085-482b-a42b-3271d62ca3b9",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SightTurnDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

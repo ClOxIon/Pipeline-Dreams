@@ -39,7 +39,7 @@ namespace PipelineDreams {
 
         }
         void UpdateUIInfo() {
-            var q = Player.IdealRotation;
+            var q = Player.GetComponent<Entity.SightWithRotation>().CurrentIdealRotation;
             
             CenterText.text = Directions[Util.LHQToFace(q)];
             /*

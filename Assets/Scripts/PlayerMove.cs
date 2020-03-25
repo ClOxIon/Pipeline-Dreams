@@ -35,6 +35,7 @@ namespace PipelineDreams {
 
             Player.GetComponent<Entity.Move>().Face(Util.LHQToFace(Player.IdealRotation * deltaQ), CM.Clock);
 
+
         }
 
         void PlayerTranslateForward() {
@@ -78,6 +79,27 @@ namespace PipelineDreams {
                 PlayerRotate(Util.TurnDown);
                 OnCommandKeyPressed(Command.down);
             }
+        }
+        
+        private void OnSightTurnLeft(object value)
+        {
+            var sr = Player.GetComponent<Entity.SightWithRotation>();
+            sr.Face(Util.LHQToFace(sr.CurrentIdealRotation * Util.TurnLeft), CM.Clock);
+        }
+        private void OnSightTurnRight(object value)
+        {
+            var sr = Player.GetComponent<Entity.SightWithRotation>();
+            sr.Face(Util.LHQToFace(sr.CurrentIdealRotation * Util.TurnRight), CM.Clock);
+        }
+        private void OnSightTurnUp(object value)
+        {
+            var sr = Player.GetComponent<Entity.SightWithRotation>();
+            sr.Face(Util.LHQToFace(sr.CurrentIdealRotation * Util.TurnUp), CM.Clock);
+        }
+        private void OnSightTurnDown(object value)
+        {
+            var sr = Player.GetComponent<Entity.SightWithRotation>();
+            sr.Face(Util.LHQToFace(sr.CurrentIdealRotation*Util.TurnDown), CM.Clock);
         }
     }
 }

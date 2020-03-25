@@ -99,11 +99,6 @@ namespace PipelineDreams.Entity {
             return true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="f"></param>
-        /// <param name="startClock"></param>
 
         public virtual void Face(int f, float startClock) {
             TaskPriority _p = TaskPriority.PLAYER;
@@ -209,7 +204,7 @@ namespace PipelineDreams.Entity {
                 var em = Entity.GetComponent<Move>();
                 if (!em.CanRotate(Entity.IdealRotation * deltaQ)) yield break;
                 var RotationBefore = Entity.IdealRotation;
-                Entity.IdealRotation = Entity.IdealRotation * deltaQ;
+                Entity.IdealRotation = Entity.IdealRotation * deltaQ;//Do not use *= here!
                 foreach (var x in em.OnRotate) {
                     var r = x?.Invoke(RotationBefore, Entity.IdealRotation);
                     if (r != null)

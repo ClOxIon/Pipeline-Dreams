@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using System.Threading;
 namespace PipelineDreams {
     public enum TaskPriority
     {
@@ -13,7 +13,6 @@ namespace PipelineDreams {
         public event Action OnTaskDone;
         PlayerInputBroadcaster PC;
         public float Clock { get; private set; } = 0;
-        float AccumulatedClock = 0;
 
 
         /// <summary>
@@ -35,6 +34,10 @@ namespace PipelineDreams {
         private void Start() {
             AddTime(0);//Alert all event receivers.
         }
+        /// <summary>
+        /// Warning! AddTime does not lock the main thread; Every function that calls AddTime should be confident that nothing happens after the call and next player input.
+        /// </summary>
+        /// <param name="time"></param>
         public void AddTime(float time) {
             Clock += time;
 

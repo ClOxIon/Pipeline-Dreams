@@ -88,6 +88,12 @@ namespace PipelineDreams.Entity
         public Entity[] FindEntitiesOfType(EntityType type) {
             return EntitiesInScene.Values.Where((x) => x.Data.Type == type).ToArray();
         }
+        /// <summary>
+        /// Returns true if v2 is in line of sight with v1. Note that the line should be axial.
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public bool IsLineOfSight(Vector3Int v1, Vector3Int v2) {
             var v = v1 - v2;
 

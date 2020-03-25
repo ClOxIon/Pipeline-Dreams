@@ -58,9 +58,9 @@ public class OrientationUI : MonoBehaviour
         var rotationMarker = RotationMarkers.Where((x) => x.gameObject.name.Contains(Directions[PipelineDreams.Util.LHQToFace(qi)]) && x.gameObject.name.Contains(Directions[PipelineDreams.Util.LHQToFace(qf)])).FirstOrDefault();
         Debug.Log($"Orientation change is {rotationMarker.gameObject.name}");
         IsRotatingAnimationPlayed = true;
-        if (CurrentRotationMarker != null) CurrentRotationMarker.color = new Color(1f, 1f, 1f, 0f);
+        if (CurrentRotationMarker != null) CurrentRotationMarker.color = new Color(0f, 1f, 0f, 0f);
         CurrentRotationMarker = rotationMarker;
-        CurrentRotationMarker.color = new Color(1f, 1f, 1f, 0.5f);
+        CurrentRotationMarker.color = new Color(0f, 1f, 0f, 0.5f);
         timePassed = 0;
         animatedQi = qi;
         animatedQf = qf;

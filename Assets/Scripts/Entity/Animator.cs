@@ -9,9 +9,9 @@ namespace PipelineDreams.Entity {
         public Action OnDeathClipExit;
         [SerializeField] float RSpeed = 2f;
         [SerializeField] float TSpeed = 2f;
-        Entity entity;
-        Container EC;
-        private void Awake() {
+        protected Entity entity;
+        protected Container EC;
+        protected virtual void Awake() {
             entity = GetComponent<Entity>();
             entity.OnInit += Entity_OnInit;
             an = GetComponent<UnityEngine.Animator>();
@@ -21,6 +21,9 @@ namespace PipelineDreams.Entity {
                 x.SubscribeOnMove(AnimateTranslation);
                 x.SubscribeOnRotate(AnimateRotation);
             }
+            else
+                Debug.LogWarning($"No Entity.Move found on this entity {entity.Data.Name}!");
+            
 
         }
 
@@ -33,7 +36,7 @@ namespace PipelineDreams.Entity {
         /// Animates only when the entity is visible by a player.
         /// </summary>
         /// <returns></returns>
-        bool IsSeenByPlayer() {
+        protected bool IsSeenByPlayer() {
             if(entity.Data.Type==EntityType.PLAYER)
                 return true;//Player can 'see' itself
             bool flag = false;
