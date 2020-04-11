@@ -175,3 +175,19 @@ MonoBehaviour:
     invisibleZ: 0
     invisibleY: 1
     prefab: {fileID: 229959622139198756, guid: a436ead5ea8cbd247ba2972488d2fc14, type: 3}
+  - name: RecoveryVaultManager
+    nameInGame: 
+    description: The manager.
+    icon: {fileID: 0}
+    parameters:
+    - Name: Dialogue
+      Value: RecoveryVaultManager
+    maxHP: 10
+    damage: 0
+    type: 2
+    occupySpace: 1
+    invisibleX: 0
+    invisibleZ: 0
+    invisibleY: 0
+    prefab: {fileID: 1107296618590206912, guid: c522094c1e55bf54cab8c650e6f77e79,
+      type: 3}

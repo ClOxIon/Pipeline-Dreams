@@ -528,6 +528,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DialogueContinue",
+                    "type": "Button",
+                    "id": "39d6244b-622c-4e66-a34b-3e0902ad0e4e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -858,6 +866,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Console",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db5df419-b09d-4397-ac58-b6f8a9ad9b0f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DialogueContinue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

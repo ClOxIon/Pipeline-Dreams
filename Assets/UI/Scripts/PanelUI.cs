@@ -16,7 +16,8 @@ namespace PipelineDreams {
 
         }
         public void ShowPanel() {
-
+            if (visible)
+                return;
             visible = true;
 
             Panel.SetActive(visible);

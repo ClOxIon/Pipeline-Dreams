@@ -41,6 +41,8 @@ namespace PipelineDreams {
         // Update is called once per frame
         void Update() {
             if (Visible) {
+                if(entity.GetComponent<Entity.AI>()!=null)
+                    
                 switch (entity.GetComponent<Entity.AI>().State) {
                 case Entity.AIState.Attack:
                     Emoji.sprite = Angry;

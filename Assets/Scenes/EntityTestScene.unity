@@ -649,6 +649,7 @@ GameObject:
   - component: {fileID: 84322146}
   - component: {fileID: 84322145}
   - component: {fileID: 84322144}
+  - component: {fileID: 84322147}
   m_Layer: 0
   m_Name: Dialogue
   m_TagString: Untagged
@@ -703,14 +704,82 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueContainer: {fileID: 0}
-  lineText: {fileID: 118405708}
-  continuePrompt: {fileID: 637410190}
   textSpeed: 0.025
   optionButtons:
   - {fileID: 1509537806}
   - {fileID: 407767459}
   - {fileID: 1668510271}
-  gameControlsContainer: {fileID: 0}
+  onDialogueStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 637410192}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Press Space To Continue......
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 637410192}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: END OF COMMUNICATION
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLineStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onLineFinishDisplaying:
+    m_PersistentCalls:
+      m_Calls: []
+  onLineUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 118405708}
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLineEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onOptionsStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 637410192}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Waiting for a response......
+          m_BoolArgument: 0
+        m_CallState: 2
+  onOptionsEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onCommand:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &84322146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,16 +792,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceText:
-  - {fileID: 4900000, guid: c76d734350cdfe74f834346146ccf820, type: 3}
-  stringGroups: []
-  shouldOverrideLanguage: 0
-  overrideLanguage: 10
+  yarnScripts:
+  - {fileID: 2480198943629176163, guid: d1ab531b45b09c044a719cbc8c133035, type: 3}
+  textLanguage: en-US
   variableStorage: {fileID: 84322144}
   dialogueUI: {fileID: 84322145}
   startNode: Start
   startAutomatically: 0
-  automaticCommands: 1
+  onNodeComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 84322147}
+        m_MethodName: NodeComplete
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDialogueComplete:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &84322147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84322142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3414bb16e3354487c869122a1d6b873e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 84322146}
 --- !u!1 &86371913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &221248461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3626,6 +3722,11 @@ PrefabInstance:
       propertyPath: tm
       value: 
       objectReference: {fileID: 885259648}
+    - target: {fileID: 8608774105644897873, guid: 9441e1a9110cffe489f24225eb9db0df,
+        type: 3}
+      propertyPath: SpawnedEntity
+      value: RecoveryVaultManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8608774105644897874, guid: 9441e1a9110cffe489f24225eb9db0df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7241,8 +7342,9 @@ GameObject:
   - component: {fileID: 637410191}
   - component: {fileID: 637410193}
   - component: {fileID: 637410192}
+  - component: {fileID: 637410194}
   m_Layer: 5
-  m_Name: PressAnyKeyToContinue
+  m_Name: PressSpaceToContinue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7287,10 +7389,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d81be335b8ce641499d54ecb9b3fb435, type: 3}
-    m_FontSize: 30
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 0
     m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -7298,7 +7400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press any key to continue...
+  m_Text: Press Space To Continue......
 --- !u!222 &637410193
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7307,6 +7409,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637410190}
   m_CullTransparentMesh: 0
+--- !u!114 &637410194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637410190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5b99c7bea2f994a8d7937c09d53037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 84322145}
 --- !u!1 &641388662
 GameObject:
   m_ObjectHideFlags: 0
@@ -8017,7 +8132,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1890422396}
   m_HandleRect: {fileID: 1890422395}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8931,6 +9046,9 @@ MonoBehaviour:
   LerpSpeed: 0.3
   EM: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
   Player: {fileID: 865417985}
+  dialogueRunner: {fileID: 84322146}
+  dialogueUI: {fileID: 84322145}
+  FrontCam: {fileID: 235054200}
 --- !u!114 &759593259
 MonoBehaviour:
   m_ObjectHideFlags: 0
