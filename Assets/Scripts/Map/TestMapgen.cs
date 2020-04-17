@@ -21,28 +21,6 @@ namespace PipelineDreams.Map
         void Update() {
 
         }
-        public void OnDrawGizmos() {
-            if (mapFeatCode != null) {
-                foreach (var room in mapFeatCode.Features) {
-                    Gizmos.color = Color.blue;
-                    foreach (var cell in room.OccupiedCells)
-                        Gizmos.DrawSphere(room.Rotation* cell + room.Position, 0.5f);
-                    Gizmos.color = Color.red;
-                    foreach (var cell in room.UsedEntrances)
-                        Gizmos.DrawSphere(room.Rotation * cell.Position + room.Position, 0.5f);
-                }
-                foreach (var path in mapFeatCode.Paths) {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawLine(path.Head, path.Cells[0]);
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawLine(path.Tail, path.Cells[path.Cells.Count - 1]);
-
-                    Gizmos.color = Color.magenta;
-                    for (int i = 0; i < path.Cells.Count-1; i++)
-
-                        Gizmos.DrawLine(path.Cells[i], path.Cells[i + 1]);
-                }
-            }
-        }
+        
     }
 }

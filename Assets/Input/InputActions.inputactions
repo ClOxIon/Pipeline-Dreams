@@ -536,6 +536,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ZIncrease",
+                    "type": "Button",
+                    "id": "98296f56-b7f3-40ff-a36c-bdcdb3bfbcc9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ZDecrease",
+                    "type": "Button",
+                    "id": "eb1a5a4f-dc95-4fbd-a6ab-718859db39ee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -877,6 +893,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "DialogueContinue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0b845df-c944-439a-98a9-d4e0617f0c4c",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZIncrease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6cc5892-7440-4123-8d6a-64b519f0e2e4",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZDecrease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67caf15c752c3644aa4e984b1bc039d0, type: 3}
   m_Name: Stage1Generator
   m_EditorClassIdentifier: 
-  pathSimplicity: 2
-  pathLinearity: 5
+  pathSimplicity: 10
+  pathLinearity: 1

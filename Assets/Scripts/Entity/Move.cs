@@ -28,7 +28,7 @@ namespace PipelineDreams.Entity {
 
 
         /// <summary>
-        /// It is clumsy, but unity coroutine works in this way.
+        /// It is clumsy, but unity coroutine works in this way. Position before, Position after.
         /// </summary>
         /// <param name="x"></param>
         public void SubscribeOnMove(Func<Vector3Int, Vector3Int, IEnumerator> x) {

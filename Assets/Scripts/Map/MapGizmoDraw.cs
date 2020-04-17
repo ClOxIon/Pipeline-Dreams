@@ -46,7 +46,7 @@ namespace PipelineDreams.Map
                     Gizmos.color = Color.magenta;
                     for (int i = 0; i < path.Cells.Count - 1; i++)
 
-                        Gizmos.DrawLine(scale * (path.Cells[i]), scale * (path.Cells[i + 1]));
+                        Gizmos.DrawLine(scale * path.Cells[i], scale * path.Cells[i + 1]);
                 }
             }
         }
