@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataSet:
   - name: Spider
-    nameInGame: 
+    nameInGame: Spider
     description: It sucks.
     icon: {fileID: 0}
     parameters:
@@ -93,7 +93,7 @@ MonoBehaviour:
     invisibleY: 0
     prefab: {fileID: 0}
   - name: RoomWall
-    nameInGame: 
+    nameInGame: Tile
     description: The wall.
     icon: {fileID: 0}
     parameters:
@@ -109,7 +109,7 @@ MonoBehaviour:
     prefab: {fileID: -6320875042876512917, guid: 69516c6301c0dff49bfc1c430d46dda9,
       type: 3}
   - name: RoomEntrance
-    nameInGame: 
+    nameInGame: Tile
     description: The wall.
     icon: {fileID: 0}
     parameters:
@@ -127,7 +127,7 @@ MonoBehaviour:
     prefab: {fileID: -4395342450845766009, guid: 04ff00f6628e8924ea956d6aeb143cc6,
       type: 3}
   - name: PipePath
-    nameInGame: 
+    nameInGame: Tile
     description: The wall.
     icon: {fileID: 0}
     parameters: []
@@ -141,7 +141,7 @@ MonoBehaviour:
     prefab: {fileID: 1585074348643530598, guid: d0208f0061402134784283d11a4ba9b7,
       type: 3}
   - name: PipeWall
-    nameInGame: 
+    nameInGame: Tile
     description: The wall.
     icon: {fileID: 0}
     parameters:
@@ -157,7 +157,7 @@ MonoBehaviour:
     prefab: {fileID: 3028442076416918469, guid: b5d55d46a0ecf0c42845ef576121c6bf,
       type: 3}
   - name: PipeVendingMachine
-    nameInGame: 
+    nameInGame: Vending Machine
     description: The wall.
     icon: {fileID: 0}
     parameters:
@@ -172,7 +172,7 @@ MonoBehaviour:
     invisibleY: 1
     prefab: {fileID: 229959622139198756, guid: a436ead5ea8cbd247ba2972488d2fc14, type: 3}
   - name: RecoveryVaultManager
-    nameInGame: 
+    nameInGame: Broken Robot
     description: The manager.
     icon: {fileID: 0}
     parameters:
@@ -188,7 +188,7 @@ MonoBehaviour:
     prefab: {fileID: 1107296618590206912, guid: c522094c1e55bf54cab8c650e6f77e79,
       type: 3}
   - name: Station
-    nameInGame: 
+    nameInGame: Tile
     description: Station.
     icon: {fileID: 0}
     parameters: []

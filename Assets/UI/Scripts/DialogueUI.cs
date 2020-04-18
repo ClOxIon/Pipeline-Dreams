@@ -10,12 +10,14 @@ namespace PipelineDreams {
         [SerializeField] int FOVNormal;
         [SerializeField] Text TitleText;
         [SerializeField] Text DescriptionText;
+        [SerializeField] Text PressSpaceToContinue;
         [Range(0, 1)] [SerializeField] float LerpSpeed;
         [SerializeField] Entity.Container EM;
         [SerializeField] Entity.Entity Player;
         [SerializeField] DialogueRunner dialogueRunner;
         [SerializeField] Yarn.Unity.DialogueUI dialogueUI;
         [SerializeField] Camera FrontCam;
+        
         bool visible = false;
         bool isMoving = true;
         // Start is called before the first frame update
@@ -47,13 +49,14 @@ namespace PipelineDreams {
 
 
         private void ShowEntityDialogue(Entity.Data data) {
-            TitleText.text = data.Name;
+            TitleText.text = data.NameInGame;
             if (data.FindParameterString("Dialogue") != null)
                 dialogueRunner.StartDialogue(data.Name);
             else {
-                DescriptionText.text = "This " + data.Name + " does not seem to want to talk with me....";
+                DescriptionText.text = "This " + data.NameInGame + " does not seem to want to talk with me....";
+                PressSpaceToContinue.text = "END OF COMMUNICATION";
             }
-
+            ConsoleUIInput.AppendText($"You conversed with {data.NameInGame}.");
         }
        
         public void HideDialogue() {

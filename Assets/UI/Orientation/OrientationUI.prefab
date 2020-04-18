@@ -3195,8 +3195,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7749158126570941919}
   - component: {fileID: 7749158126570941905}
-  - component: {fileID: 7749158126570941907}
   - component: {fileID: 7749158126570941904}
+  - component: {fileID: 1404687807766954606}
   m_Layer: 5
   m_Name: OrientationUI
   m_TagString: Untagged
@@ -3241,7 +3241,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7749158126570941916}
   m_CullTransparentMesh: 0
---- !u!120 &7749158126570941907
+--- !u!114 &7749158126570941904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749158126570941916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0145e7d98aa58341a6d618019fbba7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthMultiplier: 0.3
+  CM: {fileID: 0}
+  armLength: 250
+  TargetEntity: {fileID: 0}
+  RotationMarkerContainer: {fileID: 7749158126393236329}
+  rotationTime: 0.5
+  Arrow: {fileID: 7100415208266945261}
+  EntitySigns:
+  - {fileID: 1521647785600695560}
+  EntitySignEnemy: {fileID: 0}
+  EntitySignNPC: {fileID: 0}
+  EntitySignInteractionTile: {fileID: 0}
+  EntitySignNormalTile: {fileID: 0}
+  EntitySignObscured: {fileID: 0}
+--- !u!120 &1404687807766954606
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3259,7 +3285,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0c7455e25005824b8c48a9602c64ffa, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3282,16 +3308,16 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 500, z: 0}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.06349182
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -3336,34 +3362,8 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &7749158126570941904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7749158126570941916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0145e7d98aa58341a6d618019fbba7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  widthMultiplier: 0.3
-  CM: {fileID: 0}
-  armLength: 250
-  TargetEntity: {fileID: 0}
-  RotationMarkerContainer: {fileID: 7749158126393236329}
-  rotationTime: 0.5
-  Arrow: {fileID: 7100415208266945261}
-  EntitySigns:
-  - {fileID: 1521647785600695560}
-  EntitySignEnemy: {fileID: 0}
-  EntitySignNPC: {fileID: 0}
-  EntitySignInteractionTile: {fileID: 0}
-  EntitySignNormalTile: {fileID: 0}
-  EntitySignObscured: {fileID: 0}
 --- !u!1 &7749158126573397754
 GameObject:
   m_ObjectHideFlags: 0

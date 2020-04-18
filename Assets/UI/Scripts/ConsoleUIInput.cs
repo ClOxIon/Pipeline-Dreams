@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace PipelineDreams
 {
+    /// <summary>
+    /// Only one instance of this object may exist in the scene. Prints logs and executes commands.
+    /// </summary>
     public class ConsoleUIInput : MonoBehaviour
     {
         [SerializeField] PanelUI UI;
@@ -48,7 +51,6 @@ namespace PipelineDreams
         void OnEndEdit(string text) {
             if (suspend)
                 return;
-            txt.text += IF.text + "\n";
             var commands = IF.text.Split(' ');
             if (commands.Length != 0)
             {
@@ -56,10 +58,17 @@ namespace PipelineDreams
                 for (int i = 0; i < commands.Length - 1; i++)
                     param[i] = commands[i + 1];
                 MethodInfo mi = exe.GetType().GetMethod(commands[0]);
-                mi.Invoke(exe, param);
+                if (mi != null)
+                    mi.Invoke(exe, param);
+                else
+                    AppendText("No Command Found: "+commands[0]);
             }
             IF.text = "";
+            IF.ActivateInputField();
             IF.Select();
+        }
+        public static void AppendText(string text) {
+            FindObjectOfType<ConsoleUIInput>().txt.text += text + "\n";
         }
     }
 }

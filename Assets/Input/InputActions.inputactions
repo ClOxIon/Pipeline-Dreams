@@ -624,7 +624,7 @@
                 {
                     "name": "",
                     "id": "f4a49b2f-9ed7-464b-8dfc-63290f237e76",
-                    "path": "<Keyboard>/f3",
+                    "path": "<Keyboard>/f2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -635,7 +635,7 @@
                 {
                     "name": "",
                     "id": "11d2898e-7453-4132-88d1-a89b82641eff",
-                    "path": "<Keyboard>/f4",
+                    "path": "<Keyboard>/f3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -646,7 +646,7 @@
                 {
                     "name": "",
                     "id": "5b252d2d-6c37-419e-93ee-3369aa4cb756",
-                    "path": "<Keyboard>/f5",
+                    "path": "<Keyboard>/f4",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -789,7 +789,7 @@
                 {
                     "name": "",
                     "id": "3ce19ceb-9e6a-47de-92ac-921ab62f9779",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "ButtonIndexer",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -800,7 +800,7 @@
                 {
                     "name": "",
                     "id": "a7d07d29-bee5-4470-a5de-94e87905f466",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=1)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -811,7 +811,7 @@
                 {
                     "name": "",
                     "id": "b742265a-b442-4820-b412-b85b245f24b0",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=2)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -822,7 +822,7 @@
                 {
                     "name": "",
                     "id": "43d9446f-974b-4d35-aba5-c18ce3ac1c05",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=3)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -833,7 +833,7 @@
                 {
                     "name": "",
                     "id": "dce54275-82fb-4e86-8c5c-395a28ff0bd5",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=4)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -844,7 +844,7 @@
                 {
                     "name": "",
                     "id": "0f093b45-4ae1-4769-ba7c-4148f1ad71fe",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=5)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -855,7 +855,7 @@
                 {
                     "name": "",
                     "id": "d8c827f1-18b8-46fa-b93d-f7ec3fd4703c",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=6)",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -866,7 +866,7 @@
                 {
                     "name": "",
                     "id": "3f418d64-7776-4999-bd60-1b0f30712fc1",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "ButtonIndexer(Index=7)",
                     "groups": "Keyboard&Mouse;Gamepad",

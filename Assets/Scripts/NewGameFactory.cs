@@ -19,6 +19,7 @@ namespace PipelineDreams {
             PI.InitPlayer(Player, EM.GetEntityDataFromName("Player"));
 
             ICP.Init(TM, Player, PC);
+            ConsoleUIInput.AppendText("New Game Started!");
         }
     }
 }
