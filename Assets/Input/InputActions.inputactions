@@ -59,7 +59,7 @@
                     "id": "0faccb2c-e5c0-4722-97bf-f41bd00884ce",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": "Press"
                 },
                 {
                     "name": "WeaponUse",
@@ -67,39 +67,15 @@
                     "id": "52fa3a22-7f33-44d1-ac7e-0955a11e186a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": ""
                 },
                 {
-                    "name": "SightTurnLeft",
+                    "name": "Wait",
                     "type": "Button",
-                    "id": "b0b8fb2c-a175-4f58-87f8-d33fdb9a1f95",
+                    "id": "4fe66236-1e56-4878-aa0f-899915e1c68f",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
-                    "name": "SightTurnRight",
-                    "type": "Button",
-                    "id": "29190dae-c80a-4fe4-8386-fa86adc1c02c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
-                    "name": "SightTurnUp",
-                    "type": "Button",
-                    "id": "f8f00b6d-9acb-4074-9761-888cc0fe7feb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
-                    "name": "SightTurnDown",
-                    "type": "Button",
-                    "id": "006f57d9-4b39-4e0f-afc4-5e5f2f7a23bf",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -369,45 +345,12 @@
                 },
                 {
                     "name": "",
-                    "id": "9b2f9b58-430c-42d0-8e56-bef92c032076",
-                    "path": "<Keyboard>/a",
+                    "id": "5b516e1f-90d4-4f1b-99b0-2d687d178a19",
+                    "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SightTurnLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "55920baf-4477-4489-ac27-5281d1a340ae",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SightTurnRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "38c10731-8489-42ab-97d4-258360b85525",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SightTurnUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "06dd2354-9085-482b-a42b-3271d62ca3b9",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SightTurnDown",
+                    "action": "Wait",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -466,15 +409,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Interaction",
+                    "name": "Exam",
                     "type": "Button",
                     "id": "8424d445-c10c-4bba-81ba-2977701e631e",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": ""
                 },
                 {
-                    "name": "Minimap",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "10bda22a-db51-4b8f-95af-810710618f6e",
                     "expectedControlType": "",
@@ -482,7 +425,7 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "InstructionMenu",
+                    "name": "Minimap",
                     "type": "Button",
                     "id": "68fc85ee-d455-4214-93d8-6c1344adfc45",
                     "expectedControlType": "",
@@ -490,7 +433,7 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "HUD",
+                    "name": "InstructionMenu",
                     "type": "Button",
                     "id": "01a16758-39f8-45e8-ab2a-2fa79a350579",
                     "expectedControlType": "",
@@ -498,7 +441,7 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Pause",
+                    "name": "HUD",
                     "type": "Button",
                     "id": "a87a7d1e-616c-4754-afcb-cc09433ddd2e",
                     "expectedControlType": "",
@@ -506,7 +449,7 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "WeaponSelect",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "d0e5b6f4-0db8-4ecd-b992-9cd33cb6d06b",
                     "expectedControlType": "",
@@ -514,9 +457,17 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "InstructionSelect",
+                    "name": "WeaponSelect",
                     "type": "Button",
                     "id": "7f9d4535-75c0-427e-b16e-47a718e2f3d4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "InstructionSelect",
+                    "type": "Button",
+                    "id": "b7a10ae2-2fc6-449a-bb1f-49ed2e399e72",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -524,7 +475,7 @@
                 {
                     "name": "Console",
                     "type": "Button",
-                    "id": "b7a10ae2-2fc6-449a-bb1f-49ed2e399e72",
+                    "id": "39d6244b-622c-4e66-a34b-3e0902ad0e4e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -532,7 +483,7 @@
                 {
                     "name": "DialogueContinue",
                     "type": "Button",
-                    "id": "39d6244b-622c-4e66-a34b-3e0902ad0e4e",
+                    "id": "98296f56-b7f3-40ff-a36c-bdcdb3bfbcc9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -540,7 +491,7 @@
                 {
                     "name": "ZIncrease",
                     "type": "Button",
-                    "id": "98296f56-b7f3-40ff-a36c-bdcdb3bfbcc9",
+                    "id": "eb1a5a4f-dc95-4fbd-a6ab-718859db39ee",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -548,7 +499,7 @@
                 {
                     "name": "ZDecrease",
                     "type": "Button",
-                    "id": "eb1a5a4f-dc95-4fbd-a6ab-718859db39ee",
+                    "id": "77372b9e-1ac9-4a60-b82f-edc9a627ac94",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -915,6 +866,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ZDecrease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc64cb01-9e6e-4c02-b794-4680dc62a10f",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Exam",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

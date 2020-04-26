@@ -14,10 +14,10 @@ namespace PipelineDreams {
         public event Action OnInit;
         public Entity.Entity entity { get; private set; }
         Transform eT;
-        Transform player;
+        Transform Reference;//The reference transform to show the status bar.
         Transform t;
         public void Init(Entity.Entity e) {
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            Reference = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Entity.SightWithRotation>().SightTransform;
             t = transform;
             entity = e;
             eT = entity.transform;
@@ -62,7 +62,7 @@ namespace PipelineDreams {
                     break;
                 }
                 t.position = eT.position;
-                t.LookAt(player, player.up);
+                t.LookAt(Reference, Reference.up);
             }
         }
     }

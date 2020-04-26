@@ -20,7 +20,7 @@ namespace PipelineDreams.Map
 
             
             for(int f = 0;f<6;f++)
-                enDataContainer.AddEntityInScene(Vector3Int.zero, Util.FaceToLHQ(f), TargetTile, TM);
+                enDataContainer.AddEntityInScene(Vector3Int.zero, Util.FaceToLHQ(f), TargetTile, TM,0);
 
 
         }

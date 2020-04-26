@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8608774105644897874}
-  - component: {fileID: 8608774105644897873}
+  - component: {fileID: 7370045135834629495}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8608774105644897873
+--- !u!114 &7370045135834629495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,11 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8608774105644897872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd8884526c87ad14a96c23421b9ffeb2, type: 3}
+  m_Script: {fileID: 11500000, guid: f9b6442083b70fb4ba72bbf89ed2a7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnedEntity: Spider
-  TargetContainer: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
-  tm: {fileID: 0}
+  SpawnedEntity: RecoveryVaultManager
   SpawnPosition: {x: 1, y: 0, z: 0}
-  SpawnWhenStart: 1
+  EM: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
+  CM: {fileID: 0}

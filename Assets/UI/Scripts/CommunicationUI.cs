@@ -1,25 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
 
 namespace PipelineDreams {
-    public class DialogueUI : MonoBehaviour {
+    public class CommunicationUI : MonoBehaviour {
 
         PanelUI p;
-        [SerializeField] int FOVDialogue;
-        [SerializeField] int FOVNormal;
         [SerializeField] Text TitleText;
         [SerializeField] Text DescriptionText;
         [SerializeField] Text PressSpaceToContinue;
-        [Range(0, 1)] [SerializeField] float LerpSpeed;
         [SerializeField] Entity.Container EM;
         [SerializeField] Entity.Entity Player;
         [SerializeField] DialogueRunner dialogueRunner;
         [SerializeField] Yarn.Unity.DialogueUI dialogueUI;
-        [SerializeField] Camera FrontCam;
-        
-        bool visible = false;
-        bool isMoving = true;
         // Start is called before the first frame update
         private void Awake() {
             p = GetComponent<PanelUI>();
@@ -34,25 +29,26 @@ namespace PipelineDreams {
         }
 
         // Update is called once per frame
-        void Update() {
-            if (isMoving) {
-                FrontCam.fieldOfView = Mathf.Lerp(FrontCam.fieldOfView, visible ? FOVDialogue : FOVNormal, LerpSpeed);
-                if (Mathf.Abs(FrontCam.fieldOfView - (visible ? FOVDialogue : FOVNormal)) < 0.1) {
-                    FrontCam.fieldOfView = visible ? FOVDialogue : FOVNormal;
-                    isMoving = false;
-                }
-            }
-
-
-
-        }
+        
 
 
         private void ShowEntityDialogue(Entity.Data data) {
             TitleText.text = data.NameInGame;
-            if (data.FindParameterString("Dialogue") != null)
-                dialogueRunner.StartDialogue(data.Name);
-            else {
+            if (data.Dialogue != null)
+            {
+                try
+                {
+                    if (!dialogueRunner.Dialogue.allNodes.Contains(data.Dialogue.name))//load yarn program only if it is not already loaded.
+                        dialogueRunner.Add(data.Dialogue);
+                }
+                catch (NullReferenceException) {//When allNodes is null, add anyway.
+                    dialogueRunner.Add(data.Dialogue);
+                }
+                
+                dialogueRunner.StartDialogue(data.Dialogue.name);
+            }
+            else
+            {
                 DescriptionText.text = "This " + data.NameInGame + " does not seem to want to talk with me....";
                 PressSpaceToContinue.text = "END OF COMMUNICATION";
             }
@@ -60,23 +56,19 @@ namespace PipelineDreams {
         }
        
         public void HideDialogue() {
-            isMoving = true;
-            visible = false;
 
             dialogueRunner.Stop();
             foreach (var button in dialogueUI.optionButtons)
                 button.gameObject.SetActive(false);//I feel like dialogueUI should do this automatically when dialogueRunner stops, but it doesn't.
         }
         public void ShowDialogue() {
-            isMoving = true;
-            visible = true;
 
 
 
 
 
 
-            var e = EM.FindEntityOnAxis(Util.LHQToFace(Player.GetComponent<Entity.SightWithRotation>().CurrentIdealRotation), Player);
+            var e = EM.FindVisibleEntityOnAxis(Util.LHQToFace(Player.GetComponent<Entity.SightWithRotation>().IdealRotation), Player);
             if (e != null)
                 ShowEntityDialogue(e.Data);
             

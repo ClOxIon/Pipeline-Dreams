@@ -10,6 +10,7 @@ namespace PipelineDreams {
         [SerializeField] PanelUI OUI;
         [SerializeField] PanelUI MUI;
         [SerializeField] PanelUI CUI;
+        [SerializeField] PanelUI EUI;
         [SerializeField] Image HUDIcon;
         [SerializeField] Text HUDHotkey;
         [SerializeField] Image InstIcon;
@@ -18,6 +19,9 @@ namespace PipelineDreams {
         [SerializeField] Text MapHotkey;
         [SerializeField] Image DialIcon;
         [SerializeField] Text DialHotkey;
+
+        [SerializeField] Image ExamIcon;
+        [SerializeField] Text ExamHotkey;
         [SerializeField] float MoveAmount;
 
         [SerializeField] float Offset;
@@ -37,6 +41,8 @@ namespace PipelineDreams {
             MapIcon.GetComponent<Button>().onClick.AddListener(OnMinimap);
 
             DialIcon.GetComponent<Button>().onClick.AddListener(OnInteraction);
+
+            ExamIcon.GetComponent<Button>().onClick.AddListener(OnExam);
         }
         // Start is called before the first frame update
         void Start() {
@@ -48,6 +54,7 @@ namespace PipelineDreams {
             DUI.ShowPanel();
             MUI.ShowPanel();
             CUI.ShowPanel();
+            EUI.ShowPanel();
             CUI.HidePanel();
             OnHUD();
         }
@@ -59,11 +66,13 @@ namespace PipelineDreams {
             OUI.HidePanel();
             MUI.HidePanel();
             DUI.HidePanel();
+            EUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, true);
             Focus(HUDIcon);
             DeFocus(InstIcon);
             DeFocus(MapIcon);
             DeFocus(DialIcon);
+            DeFocus(ExamIcon);
         }
         void OnItemMenu() {
             HUD.SetActive(false);
@@ -80,11 +89,13 @@ namespace PipelineDreams {
             OUI.ShowPanel();
             MUI.HidePanel();
             DUI.HidePanel();
+            EUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
             DeFocus(HUDIcon);
             Focus(InstIcon);
             DeFocus(MapIcon);
             DeFocus(DialIcon);
+            DeFocus(ExamIcon);
         }
         void OnMinimap() {
             HUD.SetActive(false);
@@ -92,11 +103,13 @@ namespace PipelineDreams {
             OUI.HidePanel();
             MUI.ShowPanel();
             DUI.HidePanel();
+            EUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
             DeFocus(HUDIcon);
             DeFocus(InstIcon);
             Focus(MapIcon);
             DeFocus(DialIcon);
+            DeFocus(ExamIcon);
         }
         void OnInteraction() {
             HUD.SetActive(false);
@@ -104,11 +117,27 @@ namespace PipelineDreams {
             OUI.HidePanel();
             MUI.HidePanel();
             DUI.ShowPanel();
+            EUI.HidePanel();
             PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
             DeFocus(HUDIcon);
             DeFocus(InstIcon);
             DeFocus(MapIcon);
             Focus(DialIcon);
+            DeFocus(ExamIcon);
+        }
+        void OnExam() {
+            HUD.SetActive(false);
+            IUI.HidePanel();
+            OUI.HidePanel();
+            MUI.HidePanel();
+            DUI.HidePanel();
+            EUI.ShowPanel();
+            PC.SetPlayerInputEnabled(PlayerInputFlag.UIPANEL, false);
+            DeFocus(HUDIcon);
+            DeFocus(InstIcon);
+            DeFocus(MapIcon);
+            DeFocus(DialIcon);
+            Focus(ExamIcon);
         }
         void OnConsole() {
 
@@ -139,6 +168,7 @@ namespace PipelineDreams {
             InstHotkey.text = PA.FindAction("InstructionMenu").bindings[0].path.Split('/')[1].ToUpper();
             MapHotkey.text = PA.FindAction("Minimap").bindings[0].path.Split('/')[1].ToUpper();
             DialHotkey.text = PA.FindAction("Interaction").bindings[0].path.Split('/')[1].ToUpper();
+            ExamHotkey.text = PA.FindAction("Exam").bindings[0].path.Split('/')[1].ToUpper();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace PipelineDreams.Entity
@@ -11,6 +12,8 @@ namespace PipelineDreams.Entity
 
     }
     public abstract class AI : MonoBehaviour {
+        //Called before clock initialization.
+        public event Action<TaskManager, Container> OnClockInit;
         public EntityEmotion Emotion { get; protected set; }
         protected Entity entity;
         protected TaskManager CM;
@@ -31,7 +34,8 @@ namespace PipelineDreams.Entity
             move = GetComponent<Move>();
             EA = GetComponent<InstructionContainerHolder>();
             entity.OnInit += (tm, ec) => { 
-                CM = tm; 
+                CM = tm;
+                OnClockInit?.Invoke(tm, ec);
                 EntityClock = tm.Clock; 
                 Act(); 
                 EM = ec; };

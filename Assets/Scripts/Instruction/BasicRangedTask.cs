@@ -8,7 +8,7 @@
         {
             protected override void OnRunStart()
             {
-                var _entity = Op.EM.FindEntityOnAxis(Util.LHQToFace(Op.Holder.IdealRotation), Op.Holder);
+                var _entity = Op.EM.FindVisibleEntityOnAxis(Util.LHQToFace(Op.Holder.IdealRotation), Op.Holder);
                 if (_entity != null)
                     Op.Holder.GetComponent<Entity.WeaponHolder>().PerformAttack(_entity, StartClock, 0, (Op.Data as Data).RangeCoef, 0, Accuracy);
             }

@@ -7,15 +7,17 @@ namespace PipelineDreams {
         [SerializeField] CommandsContainer PC;
         [SerializeField] Entity.Entity Player;
         [SerializeField] PlayerMove PM;
+        [SerializeField] Entity.CommandReader CR;
         [SerializeField] PlayerInitializer PI;
         [SerializeField] Map.Generator MG;
         [SerializeField] Map.Renderer MR;
         private void Awake() {
             //mManager.CreateNewMap();
+            TM.Initialize();
             EM.Initialize();
             MR.Initialize(TM);
             MR.RenderMap(MG.GenerateMap(0, 0.2f));
-            PC.Init(PM);
+            PC.Init(PM, CR);
             PI.InitPlayer(Player, EM.GetEntityDataFromName("Player"));
 
             ICP.Init(TM, Player, PC);

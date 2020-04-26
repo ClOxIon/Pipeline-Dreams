@@ -1,16 +1,18 @@
-﻿using System;
+﻿using PipelineDreams.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace PipelineDreams {
     public enum Command {
-        left = 0, up, right, down, space
+        left = 0, up, right, down, space, rotate, attack, defense
     }
     [CreateAssetMenu(fileName = "CommandsContainer", menuName = "ScriptableObjects/Manager/CommandsContainer")]
     public class CommandsContainer : ScriptableObject {
         int Length = 3;
         PlayerMove PM;
+        CommandReader CR;
         Queue<Command> Commands = new Queue<Command>();
         public event Action<Command> OnPop;
         public event Action<Command> OnPushCommand;
@@ -19,9 +21,11 @@ namespace PipelineDreams {
         public event Action<int, int> OnDelCommandAt;
         public event Action OnFlush;
         public event Action<int> OnLengthChange;
-        public void Init(PlayerMove pm) {
+        public void Init(PlayerMove pm, Entity.CommandReader cr) {
             PM = pm;
+            CR = cr;
             PM.OnCommandKeyPressed += PushCommand;
+            CR.OnCommandKeyPressed += PushCommand;
             LengthChange(6);
         }
         public void LengthChange(int length) {

@@ -193,7 +193,7 @@ namespace PipelineDreams.Map
                     path.Head = Vector3Int.RoundToInt(room.Rotation * ent.Position) + room.Position;
                     room.UsedEntrances.Add(ent);
                     addedEnt = ent;
-                } else {
+                } else {//Create new entrance when there is no designated entrance
                     var f = SelectRandom(new int[] { 0, 1, 2, 3, 4, 5 });
                     var uv = Util.FaceToLHVector(f);
                     Vector3Int p = Vector3Int.RoundToInt(room.Rotation * SelectRandom(room.OccupiedCells)) + room.Position;

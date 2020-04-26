@@ -11,6 +11,7 @@ public class OrientationUI : MonoBehaviour
     [SerializeField] float armLength;
     Quaternion ProjectionMatrix;
     [SerializeField] PipelineDreams.Entity.Entity TargetEntity;
+    [SerializeField] PipelineDreams.Entity.Container EM;
     [SerializeField] GameObject RotationMarkerContainer;
     Image[] RotationMarkers;
     float timePassed = 0;
@@ -82,7 +83,12 @@ public class OrientationUI : MonoBehaviour
     }
     void UpdateEntitySigns(int rings) {
         for (int f = 0; f < 6; f++)
-                EntitySigns[rings].GetChild(f).gameObject.SetActive(TargetEntity.GetComponent<PipelineDreams.Entity.Move>().CanMove(TargetEntity.IdealPosition +  Util.FaceToLHVector(f)));
+        {
+            EntitySigns[rings].GetChild(f).gameObject.SetActive(TargetEntity.GetComponent<PipelineDreams.Entity.Move>().CanMove(TargetEntity.IdealPosition + Util.FaceToLHVector(f)));
+            var entity = EM.FindVisibleEntityOnAxis(f, TargetEntity);
+            EntitySigns[rings + 1].GetChild(f).gameObject.SetActive(entity != null && entity.Data.Type == PipelineDreams.Entity.EntityType.ENEMY);
+            EntitySigns[rings + 2].GetChild(f).gameObject.SetActive(entity != null && entity.Data.Type == PipelineDreams.Entity.EntityType.NPC);
+        }
     }
     // Update is called once per frame
     void Update()

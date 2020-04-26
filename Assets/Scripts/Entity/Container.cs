@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -33,15 +34,8 @@ namespace PipelineDreams.Entity
         public void AddPlayer(Entity Player) {
             EntitiesInScene.Add(Guid.NewGuid(), Player);
         }
-        public void AddEntityInScene(Vector3Int pos, Quaternion rot, string name, TaskManager tm) {
-            var data = GetEntityDataFromName(name);
-            var e = Instantiate(data.Prefab, GraphicalConstants.WORLDSCALE* (Vector3)pos  , rot);
-            e.Initialize(pos, rot, data, tm, this);
-            if (EntitiesInScene.Values.Any((x) =>x.IdealPosition == pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(rot)))
-                Debug.LogWarning("Overlapping Tile Detected!:" + e.IdealPosition);
-            EntitiesInScene.Add(Guid.NewGuid(), e);
-            OnNewEntitySpawn?.Invoke(e);
-            e.OnEntityDeath += EntityDataContainer_OnEntityDeath;
+        public void AddEntityInScene(Vector3Int pos, Quaternion rot, string name, TaskManager tm, float Clock) {
+            tm.AddSequentialTask(new EntityAddTask() { Name = name, Pos = pos, Rot = rot, EM = this, StartClock = Clock, TM = tm });
            
         }
 
@@ -72,17 +66,27 @@ namespace PipelineDreams.Entity
             return FindEntity(origin.IdealPosition + v);
         }
         
-        public Entity FindEntityOnAxis(int f, Entity origin, int searchDistance = 100) {
-           
+        public Entity FindVisibleEntityOnAxis(int f, Entity observer, int searchDistance = 100) {
+            //first examine entities in zero distance
+            foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition && Util.LHQToFace(x.IdealRotation) == f && x != observer).OrderBy((x) => x.Data.Type)) {
+                if (IsEntityVisible(f, x, observer))//You cannot see yourself.
+                    return x;
+            }
+
             for (int i = 1; i <= searchDistance; i++) {
                 //OrderBy uses type as priority
-                foreach (var x in FindEntities((x) => x.IdealPosition == origin.IdealPosition+Util.FaceToLHVector(f)*i).OrderBy((x)=>x.Data.Type)) {
+                foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition+Util.FaceToLHVector(f)*i).OrderBy((x)=>x.Data.Type)) {
                     //Check if the entities in between are invisible in our axis of interest.
-                    if (!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
+                    if (IsEntityVisible(f, x, observer))
                         return x;
                 }
             }
             return null;
+        }
+        bool IsEntityVisible(int f, Entity x, Entity observer) {
+            if (!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
+                return true;
+            return false;
         }
         
         public Entity[] FindEntitiesOfType(EntityType type) {
@@ -138,6 +142,28 @@ namespace PipelineDreams.Entity
         public Entity FindEntity(int i, int j, int k) {
             return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k));
         }
-        
+        class EntityAddTask : IClockTask
+        {
+            public TaskPriority Priority => TaskPriority.SPAWNER;
+            public Container EM;
+            public string Name;
+            public TaskManager TM;
+            public Vector3Int Pos;
+            public Quaternion Rot;
+            public float StartClock { get; set; }
+            
+            public IEnumerator Run()
+            {
+                var data = EM.GetEntityDataFromName(Name);
+                var e = Instantiate(data.Prefab, GraphicalConstants.WORLDSCALE * (Vector3)Pos, Rot);
+                e.Initialize(Pos, Rot, data, TM, EM);
+                if (data.Type == EntityType.TILE && data.OccupySpace && EM.EntitiesInScene.Values.Any((x) => x.IdealPosition == Pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(Rot) && x.Data.Type == EntityType.TILE && x.Data.OccupySpace))
+                    Debug.LogWarning("Overlapping Tile Detected!:" + e.IdealPosition);
+                EM.EntitiesInScene.Add(Guid.NewGuid(), e);
+                EM.OnNewEntitySpawn?.Invoke(e);
+                e.OnEntityDeath += EM.EntityDataContainer_OnEntityDeath;
+                return null;
+            }
+        }
     }
 }

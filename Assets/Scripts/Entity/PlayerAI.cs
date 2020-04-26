@@ -6,8 +6,8 @@
                 return CM.Clock;
             }
             set {
-                if (value != CM.Clock)
-                    CM.AddTime(value - CM.Clock);
+                
+                CM.AddTime(value - CM.Clock);
             }
         }
 

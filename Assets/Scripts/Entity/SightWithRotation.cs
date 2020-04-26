@@ -19,12 +19,12 @@ namespace PipelineDreams.Entity {
         /// </summary>
         public FunctionChain RTimeModifier = new FunctionChain();
         [SerializeField] float rTime;
-        public Quaternion CurrentIdealRotation { get; private set; }
+        public Quaternion IdealRotation { get; private set; }
         protected override void Entity_OnInit(TaskManager arg1, Container arg3)
         {
             CM = arg1;
             ec = arg3;
-            CurrentIdealRotation = entity.IdealRotation;
+            IdealRotation = entity.IdealRotation;
             SightTransform.rotation = entity.IdealRotation;
         }
         public void SubscribeOnRotate(Func<Quaternion, Quaternion, IEnumerator> x)
@@ -50,7 +50,7 @@ namespace PipelineDreams.Entity {
 
                 case EntityType.PLAYER: _p = TaskPriority.PLAYER; break;
             }
-            CM.AddSequentialTask(new SightRotateTask() { Entity = entity, deltaQ = Util.RotateToFace(f, CurrentIdealRotation), StartClock = startClock, Priority = _p });
+            CM.AddSequentialTask(new SightRotateTask() { Entity = entity, deltaQ = Util.RotateToFace(f, IdealRotation), StartClock = startClock, Priority = _p });
 
             GetComponent<AI>().EntityClock += rTime;
 
@@ -76,11 +76,11 @@ namespace PipelineDreams.Entity {
                 if (deltaQ == Quaternion.identity) yield break;
 
                 var sr = Entity.GetComponent<SightWithRotation>();
-                var RotationBefore = sr.CurrentIdealRotation;
-                sr.CurrentIdealRotation = sr.CurrentIdealRotation * deltaQ;//Do not use *= here!
+                var RotationBefore = sr.IdealRotation;
+                sr.IdealRotation = sr.IdealRotation * deltaQ;//Do not use *= here!
                 foreach (var x in sr.OnRotate)
                 {
-                    var r = x?.Invoke(RotationBefore, sr.CurrentIdealRotation);
+                    var r = x?.Invoke(RotationBefore, sr.IdealRotation);
                     if (r != null)
                         yield return r;
                 }

@@ -18,14 +18,16 @@ namespace PipelineDreams.Entity {
         [SerializeField] private int damage;
         [SerializeField] private EntityType type;
         [SerializeField] private bool occupySpace;
+        [SerializeField] private YarnProgram dialogue;
         [Tooltip("The entity has a small cross-section when looked through its X axis; from its sides.")] [SerializeField] private bool invisibleX;
         [Tooltip("The entity has a small cross-section looked through its Z axis; from its front and back.")] [SerializeField] private bool invisibleZ;
         [Tooltip("The entity has a small cross-section when looked through its Y axis; from its up and down.")] [SerializeField] private bool invisibleY;
         [SerializeField]private Entity prefab;
 
-        public int MaxHP { get => maxHP; set => maxHP = value; }
-        public EntityType Type { get => type; set => type = value; }
-        public Entity Prefab { get => prefab; set => prefab = value; }
+        public int MaxHP { get => maxHP; }
+        public EntityType Type { get => type; }
+        public Entity Prefab { get => prefab; }
+        public YarnProgram Dialogue { get => dialogue; }
         public bool InvisibleY { get => invisibleY; set => invisibleY = value; }
         public bool InvisibleZ { get => invisibleZ; set => invisibleZ = value; }
         public bool InvisibleX { get => invisibleX; set => invisibleX = value; }

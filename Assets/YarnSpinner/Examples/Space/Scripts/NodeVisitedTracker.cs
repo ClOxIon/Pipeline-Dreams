@@ -15,7 +15,7 @@ public class NodeVisitedTracker : MonoBehaviour
 
     private HashSet<string> _visitedNodes = new HashSet<string>();
 
-    void Start()
+    void Awake()
     {
         // Register a function on startup called "visited" that lets Yarn
         // scripts query to see if a node has been run before.

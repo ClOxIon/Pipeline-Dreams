@@ -7,10 +7,9 @@ using System.Threading;
 namespace PipelineDreams {
     public enum TaskPriority
     {
-        PLAYER, ENEMY = 100, NPC = 200
+        PLAYER, ENEMY = 100, NPC = 200, SPAWNER = 300, TASKMANAGER = 999
     }
     public class TaskManager : MonoBehaviour {
-        public event Action OnTaskDone;
         PlayerInputBroadcaster PC;
         public float Clock { get; private set; } = 0;
 
@@ -26,9 +25,10 @@ namespace PipelineDreams {
         public event Action OnTaskEnd;
 
         public event Action<float> OnClockModified;
-        bool[] TaskEndFlag;
+        bool IsRunning = false;
+        Action OnRunFinish;
         // Start is called before the first frame update
-        private void Awake() {
+        public void Initialize() {
             PC = FindObjectOfType<PlayerInputBroadcaster>();
         }
         private void Start() {
@@ -40,19 +40,27 @@ namespace PipelineDreams {
         /// <param name="time"></param>
         public void AddTime(float time) {
             Clock += time;
-
             OnClockModified?.Invoke(Clock);
-            StartCoroutine(RunTasks());
+            if (!IsRunning)
+                StartCoroutine(RunTasks());
+            /*
+            else
+                AddSequentialTask(new RunTasksTask() { TM = this, StartClock = Clock });
+                */
+            
         }
         public void AddSequentialTask(IClockTask f) {
             if(f!=null)
             UndoneTasks.Add(f);
 
         }
+        public void RerunTasks() {
+            StartCoroutine(RunTasks());
+        }
 
         IEnumerator RunTasks() {
             PC.SetPlayerInputEnabled(PlayerInputFlag.TASKMANAGER, false);
-
+            IsRunning = true;
             for (int i = 0; i < UndoneTasks.Count; i++) {
                 if (UndoneTasks[i].StartClock <= Clock) {
                     SequentialTasks.Add(UndoneTasks[i]);
@@ -88,17 +96,28 @@ namespace PipelineDreams {
 
             //ImmediateTasks.Clear();
             SequentialTasks.Clear();
+            IsRunning = false;
             PC.SetPlayerInputEnabled(PlayerInputFlag.TASKMANAGER, true);
         }
-        IEnumerator RunTaskAndRaiseFlag(IClockTask f, int i) {
-            yield return f.Run();
-            TaskEndFlag[i] = true;
-        }
+        
 
     }
     public interface IClockTask {
         TaskPriority Priority { get; }
         float StartClock { get; }
         IEnumerator Run();
+    }
+    class RunTasksTask : IClockTask
+    {
+        public TaskManager TM;
+        public TaskPriority Priority => TaskPriority.TASKMANAGER;
+
+        public float StartClock { get; set; }
+
+        public IEnumerator Run()
+        {
+            TM.RerunTasks();
+            return null;
+        }
     }
 }

@@ -109,20 +109,7 @@ namespace PipelineDreams.Instruction
 
             if (VL < OC)
                 return false;
-            switch ((Data as Data).Direction) {
-            case OpDirection.Front:
-                for (int i = 0; i < OC; i++)
-                    if (v[i] != Commands[i])
-                        return false;
-                PC.DeleteCommandFromFront(OC);
-                return true;
-            case OpDirection.Back:
-                for (int i = 0; i < OC; i++)
-                    if (v[VL - OC + i] != Commands[i])
-                        return false;
-                PC.DeleteCommandFromBack(OC);
-                return true;
-            case OpDirection.Omni:
+            
 
                 for (int ch = 0; ch < VL - OC + 1; ch++) {
                     bool b = true;
@@ -135,10 +122,7 @@ namespace PipelineDreams.Instruction
 
                     }
                 }
-                return false;
-            default:
-                return false;
-            }
+            return false;
 
         }
         protected void TriggerEffect(bool b) {
