@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace PipelineDreams.Entity {
     public class Animator : MonoBehaviour {
-        UnityEngine.Animator an;
-        public event Action<string, bool> OnAnimate;
-        public Action OnDeathClipExit;
+        [SerializeField] UnityEngine.Animator an;
+
+        /// <summary>
+        /// animation clips or states could invoke this event during their playback.
+        /// </summary>
+        public Action<string> OnAnimEvent;
         [SerializeField] float RSpeed = 2f;
         [SerializeField] float TSpeed = 2f;
         protected Entity entity;
@@ -14,7 +17,6 @@ namespace PipelineDreams.Entity {
         protected virtual void Awake() {
             entity = GetComponent<Entity>();
             entity.OnInit += Entity_OnInit;
-            an = GetComponent<UnityEngine.Animator>();
             var x = GetComponent<Move>();
             if (x != null)
             {
@@ -82,9 +84,22 @@ namespace PipelineDreams.Entity {
             }
             transform.localPosition = GraphicalConstants.WORLDSCALE * (Vector3)x1;
         }
+        /// <summary>
+        /// To turn on and off animation clip. This does not lock the tackmanager.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="b"></param>
         public void InvokeAnimation(string name, bool b) {
-            OnAnimate?.Invoke(name, b);
             an.SetBool(name, b);
+        }
+        /// <summary>
+        /// To trigger animation. To lock the taskmanager, wait for OnAnimEvent.
+        /// </summary>
+        /// <param name="name"></param>
+        public void InvokeAnimation(string name)
+        {
+            an.SetTrigger(name);
+           
         }
     }
 }

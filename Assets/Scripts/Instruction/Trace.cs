@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace PipelineDreams.Instruction
 {
     public class Trace : Instruction {
@@ -16,11 +18,12 @@ namespace PipelineDreams.Instruction
         /// </summary>
         protected class InstructionTraceTask : BasicRangedTask
         {
-            protected override void OnRunEnd()
+            protected override IEnumerator OnRun()
             {
                 var b = Op.Holder.GetComponent<Entity.BuffContainerHolder>();
                 if (b != null)
                 b.BuffContainer.AddItem("BuffFreeTranslation");
+                return null;
             }
         }
     }

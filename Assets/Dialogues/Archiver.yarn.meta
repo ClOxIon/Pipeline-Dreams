@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 2e69be246cc6ffe41ba1a09e980577cf
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Archiver-RecoveryVaultManager-0
+  - Archiver-RecoveryVaultManager-1
+  - line:a8e70c
+  - line:305cde
+  - line:5d7a7c
+  - line:0a7e39
+  - line:0facf7
+  - line:8c3f98
+  - line:24c418
+  - line:df4eaf
+  - line:60c282
+  - line:d7df49
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []

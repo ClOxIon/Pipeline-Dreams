@@ -138,7 +138,7 @@ namespace PipelineDreams.Entity
                     Act();
                     void RandomWalk() {
                         if (UnityEngine.Random.Range(0f, 1f) < 0.5f) { Emotion = EntityEmotion.None; move.MoveToward(Util.LHQToLHUnitVector(entity.IdealRotation), EntityClock); } else {
-                            Emotion = EntityEmotion.None; move.Face(Util.LHQToFace(TurnRandom()), EntityClock);
+                            Emotion = EntityEmotion.None; move.Face(Util.LHQToFace(entity.IdealRotation * TurnRandom()), EntityClock);
                         }
 
                     }

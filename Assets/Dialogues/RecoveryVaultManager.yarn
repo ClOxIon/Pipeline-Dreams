@@ -3,34 +3,51 @@ tags:
 colorID: 0
 position: 524,111
 ---
-<<if visited("RecoveryVaultManager") is false>>
-    Player: Hey, RecoveryVaultManager. #line:794945
-    Sally: Oh! Hi. #line:2dc39b
-    Sally: You snuck up on me. #line:34de2f
-    Sally: Don't do that. #line:dcc2bc
+<<if checkEntityParameter("recovered") is false>>
+    I see a large, smooth metal body that probably was once alive.
+    Obviously it hasn't been operational for a while, but I think I could fix it given a proper tool.
 <<else>>
-    Player: Hey. #line:a8e70c
-    Sally: Hi. #line:305cde
+    <<if checkEntityParameter("recovered_now") is false>>
+        [[RecoveryVaultManager.Recovered]]
+    <<else>>
+        [[RecoveryVaultManager.Normal]]
+
+    <<endif>>
 <<endif>>
 
-<<if not visited("RecoveryVaultManager.Watch")>>
-    [[Anything exciting happen on your watch?|RecoveryVaultManager.Watch]] #line:5d7a7c
-<<endif>>
-
-<<if $sally_warning and not visited("RecoveryVaultManager.Sorry")>>
-    [[Sorry about the console.|RecoveryVaultManager.Sorry]] #line:0a7e39
-<<endif>>
-[[See you later.|RecoveryVaultManager.Exit]] #line:0facf7
 ===
 
-title: RecoveryVaultManager.Watch
+title: RecoveryVaultManager.Recovered
 tags: 
 colorID: 0
 position: 512,430
 ---
-Sally: Not really.  #line:8c3f98
-Sally: Same old nebula, doing the same old thing. #line:24c418
-Sally: Oh, Ship wanted to see you. Go say hi to it. #line:df4eaf
+    Unidentified Robot: Attempting System Recovery... Do not turn me off.
+    Unidentified Robot: Attempting System Recovery... Do not turn me off.
+    Unidentified Robot: Attempting System Recovery... Do not turn me off.
+    Unidentified Robot: 65% of the data retrieved. Boot sequence success. Starting Central Communication Unit.
+    Unidentified Robot: ...
+    Unidentified Robot: ...E...E...E...E...Ex...Ex...
+    Unidentified Robot: ...Excuse me, w...w...w...what time is it now?
+        -> Sorry, but I do not know.
+                Unidentified Robot: T...t...t...that's unfortunate. Contact the synchronization manager for this machine at FDD2:5D15:6A45:f::2 to get time information.
+                Unidentified Robot: Anyway, I am mostly o...o...operational without s...synchroniz...z...zation, so d...d...do not worry.
+                Unidentified Robot: Y...you might want me to in...in...introduce myself.
+                Unidentified Robot: ...uhm......here it is! Nice to meet you! I am Recovery Vault Manager v20052. You can call me ReVau. I am a unique robot deployed in the recovery vault of Rumiir in order to quickly and safely recover The System from various threats and failures. Protocol 3 is now in effect.
+                    -> What do you mean by that?
+                        ReVau: Protocol 3 is started autumatically when all outbound connections are lost. Its goal is to check current status of The System through expedition. You are currently in the recovery vault of the homeostasis management headquarters in Rumiir. You should first leave the vault, and look around the headquarters to see if it is functional. After that, you should go to... to... to...
+                        Revau: ......uhm......sorry, but I don't think I re...re...remember after that.
+                            -> That's unfortunate.
+                                ReVau: I g...guess so. Anyway, the protocol says that s...s...somebody should go and see if anything is g...going on outside.
+                                ReVau: I am not a...a...authorized to get out of this room. So probably you should go.
+                                    ->Okay.
+                                        ReVau: G...great!
+                                    ->Why me?
+                                        ReVau: D...Don't ask me why. Thats what the p...p...protocol says. You look much more func...func...functional than me a...a...anyway.
+                                
+
+
+
 <<set $should_see_ship to true>>
 
 ===
@@ -43,7 +60,7 @@ position: 211,417
 Sally: Bye. #line:60c282
 ===
 
-title: RecoveryVaultManager.Sorry
+title: RecoveryVaultManager.Normal
 tags: 
 colorID: 0
 position: 827,439

@@ -17,27 +17,21 @@ namespace PipelineDreams.Instruction
             public IEnumerator Run()
             {
                 
-                Op.TriggerEffect(true);
-                float time = 0;
+               
+                
                 OnRunStart();
-                //Animation events could be called here.
-                while (time < EffectDuration)
-                {
-
-                    yield return null;
-                    time += Time.deltaTime;
-                }
-                Op.TriggerEffect(false);
+                yield return OnRun();
+               
             }
             /// <summary>
             /// Called immidiately after this task is called. Do not call bask method when overridden.
             /// </summary>
-            protected abstract void OnRunStart();
+            protected virtual void OnRunStart() { }
             /// <summary>
             /// Called after any animation. Do not call bask method when overridden.
             /// </summary>
-            protected virtual void OnRunEnd() { 
-            
+            protected virtual IEnumerator OnRun() {
+                return null;
             }
         }
     }
