@@ -13,6 +13,10 @@ namespace PipelineDreams.Entity {
         public event Action<TaskManager, Container> OnInit;
         public Vector3Int IdealPosition;
         public Quaternion IdealRotation;
+
+        /// <summary>
+        /// The read-only data of this entity. This data could not be modified but instead could be replaced with another data in EnData, if wanted.
+        /// </summary>
         public Data Data { get; private set; }
         public EntityParameterDictionary Parameters;//Active Parameters. Parameters are simple float values, and are intended to be only add/subtracted from current value.
         public Dictionary<string, MutableValue.FunctionChain> Stats = new Dictionary<string, MutableValue.FunctionChain>();//Active Stats

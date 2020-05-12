@@ -23,7 +23,9 @@ namespace PipelineDreams {
         /// </summary>
         List<IClockTask> UndoneTasks = new List<IClockTask>();
         public event Action OnTaskEnd;
-
+        /// <summary>
+        /// Broadcasts current clock.
+        /// </summary>
         public event Action<float> OnClockModified;
         bool IsRunning = false;
         Action OnRunFinish;

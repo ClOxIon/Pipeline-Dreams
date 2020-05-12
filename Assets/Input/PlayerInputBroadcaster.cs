@@ -38,6 +38,12 @@ public class PlayerInputBroadcaster : MonoBehaviour
         else
             PI.actions.FindActionMap("Player").Disable();
     }
+    public void SetInputEnabledDuringDialogue(bool value) {
+        if(value)
+            PI.actions.FindActionMap("UI").Enable();
+        else
+            PI.actions.FindActionMap("UI").Disable();
+    }
     public void Subscribe(GameObject obj) { if(!Subscribers.Contains(obj))Subscribers.Add(obj); }
 
     private void PI_onActionTriggered(InputAction.CallbackContext obj) {

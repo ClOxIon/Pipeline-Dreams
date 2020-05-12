@@ -24,13 +24,7 @@ public class NodeVisitedTracker : MonoBehaviour
             var nodeName = parameters[0];
             return _visitedNodes.Contains(nodeName.AsString);
         });
-        // Register a function on startup called "entityParameterCheck" that lets Yarn
-        // scripts query to read entities' parameters
-        dialogueRunner.AddFunction("visited", 1, delegate (Yarn.Value[] parameters)
-        {
-            var nodeName = parameters[0];
-            return _visitedNodes.Contains(nodeName.AsString);
-        });
+        
 
     }
 

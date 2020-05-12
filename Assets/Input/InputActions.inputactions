@@ -449,14 +449,6 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "d0e5b6f4-0db8-4ecd-b992-9cd33cb6d06b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
                     "name": "WeaponSelect",
                     "type": "Button",
                     "id": "7f9d4535-75c0-427e-b16e-47a718e2f3d4",
@@ -469,22 +461,6 @@
                     "type": "Button",
                     "id": "b7a10ae2-2fc6-449a-bb1f-49ed2e399e72",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Console",
-                    "type": "Button",
-                    "id": "39d6244b-622c-4e66-a34b-3e0902ad0e4e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "DialogueContinue",
-                    "type": "Button",
-                    "id": "98296f56-b7f3-40ff-a36c-bdcdb3bfbcc9",
-                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -602,17 +578,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "37e7b21f-27ca-47f9-89f7-4a20bf00bea2",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -827,28 +792,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2804a3ad-6010-4228-b929-d603261a3f8b",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Console",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "db5df419-b09d-4397-ac58-b6f8a9ad9b0f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "DialogueContinue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f0b845df-c944-439a-98a9-d4e0617f0c4c",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
@@ -877,6 +820,79 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Exam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "RunDialogue",
+            "id": "201c81fb-108c-4fa7-9723-ca3a554c1faa",
+            "actions": [
+                {
+                    "name": "DialogueContinue",
+                    "type": "Button",
+                    "id": "dae5bc2e-78b1-4578-84eb-7b57e954406e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9b92953d-6717-4d66-9402-2b0a6281c8ab",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DialogueContinue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "System",
+            "id": "48a93d3a-8215-4900-929f-0d235f8a0a5a",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "967ceabd-f0a7-4f58-98f5-0420cd7d6dcd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Console",
+                    "type": "Button",
+                    "id": "fceca8ef-eddc-4cd9-9a14-c9d7c070be02",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c0e205a9-cc63-4a14-bcd1-a653ab1e06c2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45f4f455-6051-43aa-8875-5e3d988c1476",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Console",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

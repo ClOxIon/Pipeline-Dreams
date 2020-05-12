@@ -2,10 +2,13 @@
 using UnityEngine;
 
 namespace PipelineDreams.Entity {
-    public class Sight : MonoBehaviour {
+    public class Sight : MonoBehaviour, ISensoryDevice {
         protected Entity entity;
         protected TaskManager CM;
         protected Container ec;
+
+        public CommunicationMode mode => CommunicationMode.vision;
+
         /// <summary>
         /// Normal entities could only see entities in their line of sight.
         /// </summary>
