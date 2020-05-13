@@ -107,6 +107,12 @@ namespace PipelineDreams.Map
                             enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM,0);
                         else if (PathJoints.Any((joint) => joint.Position == path.Cells[i] && Util.LHQToFace(joint.Rotation) == f))
                             enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM,0);
+                        else if (entrancePoints.Any((point) => 
+                                    point == path.Cells[i] && 
+                                    data.Features.Any((room) => 
+                                        room.UsedEntrances.Any((x) => 
+                                            Vector3Int.RoundToInt(room.Rotation * x.Position) + room.Position == point && Util.LHQToFace(x.Rotation * room.Rotation) == f))) )
+                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM, 0);
                         else
                             enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipeWall", TM,0);
                     }

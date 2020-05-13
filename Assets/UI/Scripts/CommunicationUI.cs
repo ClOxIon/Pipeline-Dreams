@@ -73,6 +73,7 @@ namespace PipelineDreams {
             scrollUI.Refresh();
         }
         private void ShowConnectionPanel(Entity.Entity e) {
+            ConnectionInfoPanel.SetActive(true);
             ConnectionIdentification.text = e.Data.NameInGame;
             OpenDialogueButton.onClick.RemoveAllListeners();
             OpenDialogueButton.onClick.AddListener(() => ShowEntityDialogue(e.Data));
