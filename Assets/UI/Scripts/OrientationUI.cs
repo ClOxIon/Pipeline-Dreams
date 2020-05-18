@@ -85,7 +85,7 @@ public class OrientationUI : MonoBehaviour
         for (int f = 0; f < 6; f++)
         {
             EntitySigns[rings].GetChild(f).gameObject.SetActive(TargetEntity.GetComponent<PipelineDreams.Entity.Move>().CanMove(TargetEntity.IdealPosition + Util.FaceToLHVector(f)));
-            var entity = EM.FindVisibleEntityOnAxis(f, TargetEntity);
+            var entity = EM.FindLineOfSightEntityOnAxis(f, TargetEntity);
             EntitySigns[rings + 1].GetChild(f).gameObject.SetActive(entity != null && entity.Data.Type == PipelineDreams.Entity.EntityType.ENEMY);
             EntitySigns[rings + 2].GetChild(f).gameObject.SetActive(entity != null && entity.Data.Type == PipelineDreams.Entity.EntityType.NPC);
         }

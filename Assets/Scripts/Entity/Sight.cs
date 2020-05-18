@@ -15,8 +15,8 @@ namespace PipelineDreams.Entity {
         /// <param name="e"></param>
         /// <returns></returns>
         public virtual bool IsVisible(Entity e) {
-            var v = e.IdealPosition - entity.IdealPosition;
-            return ec.IsLineOfSight(entity.IdealPosition, e.IdealPosition)&&Util.LHQToLHUnitVector(entity.IdealRotation)==v;
+
+            return ec.FindLineOfSightEntityOnAxis(Util.LHQToFace(entity.IdealRotation), entity) == e;
         }
         public Entity[] VisibleEntitiesOfType(EntityType type)
         {

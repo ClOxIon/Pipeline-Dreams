@@ -27,7 +27,7 @@ namespace PipelineDreams.Entity
         {
             if(targetCB!=null)
                 targetCB.OnCommand -= OnCommandKeyPressed;
-            var e = EC.FindVisibleEntityOnAxis(Util.LHQToFace(entity.IdealRotation), entity);
+            var e = EC.FindLineOfSightEntityOnAxis(Util.LHQToFace(entity.IdealRotation), entity);
             if (e!=null)
             targetCB = e.GetComponent<CommandBroadcast>();
             if (targetCB != null)

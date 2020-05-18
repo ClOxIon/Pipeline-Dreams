@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PipelineDreams.Entity;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PipelineDreams {
@@ -40,8 +41,13 @@ namespace PipelineDreams {
 
         private void ESBVisibilityRefresh() {
             foreach (var obj in ESBList) {
-
-                obj.Show(EM.IsLineOfSight(obj.entity.IdealPosition, Player.IdealPosition));//line of sight
+                foreach (var sensor in Player.GetComponents<ISensoryDevice>())
+                    if (sensor.IsVisible(obj.entity))
+                    {
+                        obj.Show(true);//line of sight
+                        break;
+                    }
+                obj.Show(false);
             }
         }
 

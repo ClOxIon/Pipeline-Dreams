@@ -24,7 +24,7 @@ namespace PipelineDreams {
 
         //Entify Selection-------------------------------------------------------------
         [SerializeField] GameObject EntitySelectionPanel;
-        [SerializeField] DiscreteScrollUI scrollUI;
+        [SerializeField] DiscreteScrollUI EntitySelectionScrollUI;
         [SerializeField] Button EntitySelectionPrefab;
         [SerializeField] Text EntitySelectionSeparatorPrefab;
 
@@ -70,7 +70,14 @@ namespace PipelineDreams {
                     b.onClick.AddListener(() => ShowConnectionPanel(entity));
                 }
             }
-            scrollUI.Refresh();
+
+            //Create dummy buttons to fill the list;
+            for (int i = EntitySelectionPanel.transform.childCount; i < EntitySelectionScrollUI.NumItemsInView; i++)
+            {
+                var b = Instantiate(EntitySelectionPrefab, EntitySelectionPanel.transform);
+                b.GetComponentInChildren<Text>().text = "";
+            }
+            EntitySelectionScrollUI.Refresh();
         }
         private void ShowConnectionPanel(Entity.Entity e) {
             ConnectionInfoPanel.SetActive(true);

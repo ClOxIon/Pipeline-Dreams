@@ -66,10 +66,17 @@ namespace PipelineDreams.Entity
             return FindEntity(origin.IdealPosition + v);
         }
         
-        public Entity FindVisibleEntityOnAxis(int f, Entity observer, int searchDistance = 100) {
+        /// <summary>
+        /// Returns first entity in line of sight.
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="observer"></param>
+        /// <param name="searchDistance"></param>
+        /// <returns></returns>
+        public Entity FindLineOfSightEntityOnAxis(int f, Entity observer, int searchDistance = 100) {
             //first examine entities in zero distance
             foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition && Util.LHQToFace(x.IdealRotation) == f && x != observer).OrderBy((x) => x.Data.Type)) {
-                if (IsEntityVisible(f, x, observer))//You cannot see yourself.
+                if (EntityCrossSection(f, x))//You cannot see yourself.
                     return x;
             }
 
@@ -77,21 +84,27 @@ namespace PipelineDreams.Entity
                 //OrderBy uses type as priority
                 foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition+Util.FaceToLHVector(f)*i).OrderBy((x)=>x.Data.Type)) {
                     //Check if the entities in between are invisible in our axis of interest.
-                    if (IsEntityVisible(f, x, observer))
+                    if (EntityCrossSection(f, x))
                         return x;
                 }
             }
             return null;
         }
-        bool IsEntityVisible(int f, Entity x, Entity observer) {
-            if (!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
-                return true;
-            return false;
-        }
+        /// <summary>
+        /// Does the entity have cross section in that direction?
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        bool EntityCrossSection(int f, Entity x) =>!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f));
+        
         
         public Entity[] FindEntitiesOfType(EntityType type) {
             return EntitiesInScene.Values.Where((x) => x.Data.Type == type).ToArray();
         }
+        /*
+         * Use FindLineOfSightEntityOnAxis instead.
+         * 
         /// <summary>
         /// Returns true if v2 is in line of sight with v1. Note that the line should be axial.
         /// </summary>
@@ -110,13 +123,14 @@ namespace PipelineDreams.Entity
             for (int i = 1; i < m; i++)
                 foreach (var x in FindEntities((x) => x.IdealPosition == v2 + v * i)) {
                     //Check if the entities in between are invisible in our axis of interest.
-                    if(!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f)))
+                    if(EntityCrossSection(f, x))
                     return false;
                 }
             return true;
 
         }
-        
+        */
+
 
         public Entity FindEntity(Vector3Int v) {
             return FindEntity(v.x, v.y, v.z);

@@ -91,7 +91,7 @@ namespace PipelineDreams.Entity
                         break;
                     case AIState.Confused:
                         if (Util.LHQToFace(entity.IdealRotation) == DamagedDirection) {
-                            Target = EM.FindVisibleEntityOnAxis(DamagedDirection, entity);
+                            Target = EM.FindLineOfSightEntityOnAxis(DamagedDirection, entity);
                             if (Target != null) {
                                 IsTargetSeen = true;
                                 memoryTime = 0;
