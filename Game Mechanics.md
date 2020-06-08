@@ -11,3 +11,9 @@ Whenever the player performs an action, energy is spent. This includes moving, r
 
 # Spawn system
 Spawning tiles are generated at the point of mapgen. They spawn enemies constantly. The spawn rate increases as player kills more enemies in the region. The chance of spawning harder enemies increases too. This prevents the player from farming enemies.
+
+# Position & Rotation
+Entities stay in a point of the grid. It can have 24 distinct rotations, since it could look at one of the six directions, and it could rotate in the axis it is looking at.
+
+# Pipeline
+The pipeline is a queue of symbols. Whenever you perform an action, the corresponding symbol is stored in the pipeline. Players could spend symbols according to the instructions they have to perform instruction-specific actions. Enemies could deter the player performing desired action by pushing symbols into the pipeline.
