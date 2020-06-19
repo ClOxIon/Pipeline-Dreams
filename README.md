@@ -3,7 +3,7 @@ Pipeline Dreams is a turn-based 3D roguelike game. The player is a robot which s
 
 - Programmers read [Programming Guide](https://github.com/ClOxIon/Pipeline-Dreams/blob/master/Programming%20Guide.md).
 - UI Programmers read [UI Guide](https://github.com/ClOxIon/Pipeline-Dreams/blob/master/UI%20Guide.md).
-- To better understand the game, read [Game Mechanics](https://github.com/ClOxIon/Pipeline-Dreams/blob/master/Game%20Mechanics.md).
+- To better understand the game, read the [Design Document](https://docs.google.com/presentation/d/1jvoBOegeeA1armoqsm590W9fycOfKQ4MclpVYYEx5Nc/edit?usp=sharing).
 
 Due to the lack of participants, scheduling tools such as trello are currently not being used. To see what is going on, read [TODO List](https://github.com/ClOxIon/Pipeline-Dreams/blob/master/TODO%20List.md).
 
