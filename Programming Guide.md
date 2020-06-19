@@ -96,3 +96,13 @@ Entities that have a module WeaponHolder can hold a single weapon. The weapon de
 - Buff.Buff : PDObject
 
 Every entity that can be inflicted a buff has an BuffContainerHolder module, which has a Buff.Container that contains all buff currently inflicted to the entity. 
+
+#ScriptableObjects
+
+Under Assets/ScriptableObject, you could find various data tables.
+
+EnData: the data table of all entities
+
+OpData: the data table of all instructions
+
+BuData: the data table of all buffs

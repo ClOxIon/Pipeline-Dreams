@@ -24,7 +24,7 @@ namespace PipelineDreams.Entity
         private void Start()
         {
             
-             ec.FindEntitiesOfType(EntityType.PLAYER)[0].GetComponent<Move>().SubscribeOnMove(RendererEnableDisable);
+             //ec.FindEntitiesOfType(EntityType.PLAYER)[0].GetComponent<Move>().SubscribeOnMove(RendererEnableDisable);
         }
         IEnumerator RendererEnableDisable(Vector3Int x, Vector3Int y) {
             

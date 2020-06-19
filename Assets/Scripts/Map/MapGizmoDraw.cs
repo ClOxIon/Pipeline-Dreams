@@ -7,7 +7,7 @@ namespace PipelineDreams.Map
     public class MapGizmoDraw : MonoBehaviour
     {
         [SerializeField] Generator mg;
-        readonly int scale = 10;
+        readonly float scale = GraphicalConstants.WORLDSCALE;
         // Start is called before the first frame update
         void Start()
         {
@@ -46,7 +46,7 @@ namespace PipelineDreams.Map
                     Gizmos.color = Color.magenta;
                     for (int i = 0; i < path.Cells.Count - 1; i++)
 
-                        Gizmos.DrawLine(scale * path.Cells[i], scale * path.Cells[i + 1]);
+                        Gizmos.DrawLine(scale * (Vector3)path.Cells[i], scale * (Vector3)path.Cells[i + 1]);
                 }
             }
         }

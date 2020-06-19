@@ -3,6 +3,6 @@
         /// <summary>
         /// This indicates how many unit lengths in Unity Scene corresponds to a unit length in the game logic.
         /// </summary>
-        public const float WORLDSCALE = 10;
+        public const float WORLDSCALE = 2;
     }
 }

@@ -49,7 +49,7 @@ namespace PipelineDreams {
             
                 DescriptionText.text = data.Description;
             
-            ConsoleUIInput.AppendText($"You examined with {data.NameInGame}.");
+            ConsoleUIInput.AppendText($"You examined {data.NameInGame}.");
         }
        
         public void HideDescription() {

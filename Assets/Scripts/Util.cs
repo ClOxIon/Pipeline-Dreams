@@ -29,7 +29,17 @@ namespace PipelineDreams {
         }
 
         public static Quaternion FaceToLHQ(int f) {
-            return Quaternion.LookRotation(new Vector3Int(f >> 1 == 0 ? 1 : 0, f >> 1 == 1 ? 1 : 0, f >> 1 == 2 ? 1 : 0) * (-((f & 1) << 1) + 1), Vector3.up);
+            return Quaternion.LookRotation(new Vector3Int(f >> 1 == 0 ? 1 : 0, f >> 1 == 1 ? 1 : 0, f >> 1 == 2 ? 1 : 0) * (-((f & 1) << 1) + 1));
+        }
+        /// <summary>
+        /// The quaternion looks at f while its top is aligned to f2.
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="f2"></param>
+        /// <returns></returns>
+        public static Quaternion FaceToLHQ(int f, int f2)
+        {
+            return Quaternion.LookRotation(new Vector3Int(f >> 1 == 0 ? 1 : 0, f >> 1 == 1 ? 1 : 0, f >> 1 == 2 ? 1 : 0) * (-((f & 1) << 1) + 1), new Vector3Int(f2 >> 1 == 0 ? 1 : 0, f2 >> 1 == 1 ? 1 : 0, f2 >> 1 == 2 ? 1 : 0) * (-((f2 & 1) << 1) + 1));
         }
         public static Vector3Int LHQToLHUnitVector(Quaternion q) {
             return Vector3Int.RoundToInt(q * Vector3.forward);

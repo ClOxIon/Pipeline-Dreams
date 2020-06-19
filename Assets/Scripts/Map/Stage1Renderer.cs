@@ -101,21 +101,47 @@ namespace PipelineDreams.Map
             foreach (var path in data.Paths)
             {
                 for (int i = 1; i < path.Cells.Count - 1; i++)
+                {
+                    bool[] IsPath = new bool[6];
                     for (int f = 0; f < 6; f++)
                     {
                         if (path.Cells[i + 1] == path.Cells[i] + Util.FaceToLHVector(f) || (path.Cells[i - 1] == path.Cells[i] + Util.FaceToLHVector(f)))
-                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM,0);
+                            IsPath[f] = true;//enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM, 0);
                         else if (PathJoints.Any((joint) => joint.Position == path.Cells[i] && Util.LHQToFace(joint.Rotation) == f))
-                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM,0);
-                        else if (entrancePoints.Any((point) => 
-                                    point == path.Cells[i] && 
-                                    data.Features.Any((room) => 
-                                        room.UsedEntrances.Any((x) => 
-                                            Vector3Int.RoundToInt(room.Rotation * x.Position) + room.Position == point && Util.LHQToFace(x.Rotation * room.Rotation) == f))) )
-                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM, 0);
+                            IsPath[f] = true;//enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM, 0);
+                        else if (entrancePoints.Any((point) =>
+                                    point == path.Cells[i] &&
+                                    data.Features.Any((room) =>
+                                        room.UsedEntrances.Any((x) =>
+                                            Vector3Int.RoundToInt(room.Rotation * x.Position) + room.Position == point && Util.LHQToFace(x.Rotation * room.Rotation) == f))))
+                            IsPath[f] = true;//enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipePath", TM, 0);
                         else
-                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipeWall", TM,0);
+                            IsPath[f] = false;//enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), "PipeWall", TM, 0);
                     }
+                    if (IsPath[0] && IsPath[1] && !IsPath[2] && !IsPath[3] && !IsPath[4] && !IsPath[5]) {
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(2, 0), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(3, 0), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(4, 0), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(5, 0), "PipeQuadrant", TM, 0);
+                    }
+                    else if (!IsPath[0] && !IsPath[1] && IsPath[2] && IsPath[3] && !IsPath[4] && !IsPath[5])
+                    {
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(0, 2), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(1, 2), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(4, 2), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(5, 2), "PipeQuadrant", TM, 0);
+                    }
+                    else if (!IsPath[0] && !IsPath[1] && !IsPath[2] && !IsPath[3] && IsPath[4] && IsPath[5])
+                    {
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(0, 4), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(1, 4), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(2, 4), "PipeQuadrant", TM, 0);
+                        enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(3, 4), "PipeQuadrant", TM, 0);
+                    }
+                    else
+                        for (int f = 0; f < 6; f++)
+                            enDataContainer.AddEntityInScene(path.Cells[i], Util.FaceToLHQ(f), IsPath[f]?"PipePath":"PipeWall", TM, 0);
+                }
 
             }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Stage1Generator
   m_EditorClassIdentifier: 
   pathSimplicity: 10
-  pathLinearity: 1
+  pathLinearity: 5

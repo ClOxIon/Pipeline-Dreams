@@ -45,6 +45,7 @@ public class PlayerInputBroadcaster : MonoBehaviour
             PI.actions.FindActionMap("UI").Disable();
     }
     public void Subscribe(GameObject obj) { if(!Subscribers.Contains(obj))Subscribers.Add(obj); }
+    public void UnSubscribe(GameObject obj) { Subscribers.Remove(obj); }
 
     private void PI_onActionTriggered(InputAction.CallbackContext obj) {
         if (obj.performed && obj.action.type == InputActionType.Button) {

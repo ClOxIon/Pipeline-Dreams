@@ -16,7 +16,7 @@ namespace PipelineDreams {
             TM.Initialize();
             EM.Initialize();
             MR.Initialize(TM);
-            MR.RenderMap(MG.GenerateMap(0, 0.2f));
+            MR.RenderMap(MG.GenerateMap(0, 1f));
             PC.Init(PM, CR);
             PI.InitPlayer(Player, EM.GetEntityDataFromName("Player"));
 

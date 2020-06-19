@@ -18,16 +18,19 @@ namespace PipelineDreams.Map
         public override MapFeatData GenerateMap(int seed, float scale = 1) {
 
             var tpData = new MapFeatData();
-            var spawningroom = new SquareRoom(1);
-            spawningroom.Entrances.Add(new DirectionalFeature() { Position = Util.FaceToLHVector(0), Rotation = Util.FaceToLHQ(1) });//Entrance to the spawning room.
-            tpData.Features.Add(spawningroom);
-            var room2 = new SquareRoom((int)(scale * 5));
+            var generatorRoom = new SquareRoom(9);
+            for(int f = 0; f<6;f++)
+                generatorRoom.Entrances.Add(new DirectionalFeature() { Position = Util.FaceToLHVector(f)*5+4*Vector3Int.one, Rotation = Util.FaceToLHQ(Util.FaceFlip(f)) });//Entrance to the generator room.
+            generatorRoom.Position = new Vector3Int(-4, -4, -4);
+            tpData.Features.Add(generatorRoom);
+            
+            var room2 = new SquareRoom((int)(scale * 3));
             room2.Position = new Vector3Int((int)(scale * 10), (int)(scale * 10), (int)(scale * 10));
-            var room3 = new SquareRoom((int)(scale * 5));
+            var room3 = new SquareRoom((int)(scale * 3));
             room3.Position = new Vector3Int(-(int)(scale * 10), -(int)(scale * 10), -(int)(scale * 10));
-            var room4 = new SquareRoom((int)(scale * 5));
+            var room4 = new SquareRoom((int)(scale * 3));
             room4.Position = new Vector3Int((int)(scale * 10), -(int)(scale * 10), -(int)(scale * 10));
-            var room5 = new SquareRoom((int)(scale * 5));
+            var room5 = new SquareRoom((int)(scale * 3));
             room5.Position = new Vector3Int((int)(scale * 10), (int)(scale * 10), -(int)(scale * 10));
 
             tpData.Features.Add(room2);
@@ -58,7 +61,7 @@ namespace PipelineDreams.Map
             deadend4.Rotation = Util.FaceToLHQ(2);
             tpData.Features.Add(deadend4);
             //TODO: Replace with seeded PRNG
-            tpData.Paths = GeneratePaths(new List<MapFeature>(), new List<MapFeature> { spawningroom, room2, room3,room4, room5, deadend1, deadend2, deadend3, deadend4 }, pathSimplicity, pathLinearity, 1, 3, () => UnityEngine.Random.value);
+            tpData.Paths = GeneratePaths(new List<MapFeature>(), new List<MapFeature> { generatorRoom, room2, room3,room4, room5, deadend1, deadend2, deadend3, deadend4 }, pathSimplicity, pathLinearity, 1, 3, () => UnityEngine.Random.value);
             LastGenData = tpData;
 
             return tpData;

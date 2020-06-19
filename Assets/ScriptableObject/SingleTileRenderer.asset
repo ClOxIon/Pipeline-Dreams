@@ -19,4 +19,4 @@ MonoBehaviour:
   RoomEntrance: {fileID: 0}
   TM: {fileID: 0}
   enDataContainer: {fileID: 11400000, guid: 35792da0ba7388e4abe0c2e0c26c110d, type: 2}
-  TargetTile: PipeVendingMachine
+  TargetTile: Terminal

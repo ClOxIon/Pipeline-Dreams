@@ -3,17 +3,17 @@ tags:
 colorID: 0
 position: 524,111
 ---
-<<if checkEntityParameter("recovered") is false>>
+//<<if checkEntityParameter("recovered") is false>>
     I see a large, smooth metal body that probably was once alive.
     Obviously it hasn't been operational for a while, but I think I could fix it given a proper tool.
-<<else>>
-    <<if checkEntityParameter("recovered_now") is false>>
+//<<else>>
+    //<<if checkEntityParameter("recovered_now") is false>>
         [[RecoveryVaultManager.Recovered]]
-    <<else>>
+    //<<else>>
         [[RecoveryVaultManager.Normal]]
 
-    <<endif>>
-<<endif>>
+    //<<endif>>
+//<<endif>>
 
 ===
 

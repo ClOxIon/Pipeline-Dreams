@@ -1,0 +1,48 @@
+title: CryonicsChamber.Start
+tags: 
+colorID: 0
+position: 524,111
+---
+Welcome to Cryonics Chamger.
+[[Status|CryonicsChamber.Status]]
+[[Communication|CryonicsChamber.Communication]]
+[[Information|CryonicsChamber.Information]]
+[[Entrance|CryonicsChamber.Entrance]]
+===
+
+title: CryonicsChamber.Status
+tags: 
+colorID: 0
+position: 512,430
+---
+Something went wrong. Try again.
+[[Back|CryonicsChamber.Start]]
+
+===
+
+title: CryonicsChamber.Communication
+tags: 
+colorID: 6
+position: 211,417
+---
+Something went wrong. Try again.
+[[Back|CryonicsChamber.Start]]
+===
+
+title: CryonicsChamber.Information
+tags: 
+colorID: 0
+position: 827,439
+---
+Something went wrong. Try again.
+[[Back|CryonicsChamber.Start]]
+===
+
+title: CryonicsChamber.Entrance
+tags: 
+colorID: 0
+position: 827,439
+---
+Something went wrong. Try again.
+[[Back|CryonicsChamber.Start]]
+===

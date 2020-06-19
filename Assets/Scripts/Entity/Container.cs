@@ -145,16 +145,16 @@ namespace PipelineDreams.Entity
             return FindEntity(v.x, v.y, v.z, f, type);
         }
         public Entity FindEntity(int i, int j, int k, EntityType type) {
-            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k) && x.Data.Type == type);
+            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && x.Data.Type == type);
         }
         public Entity FindEntity(int i, int j, int k, int f, EntityType type) {
-            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f && x.Data.Type == type);
+            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f && x.Data.Type == type);
         }
         public Entity FindEntity(int i, int j, int k, int f) {
-            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f);
+            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f);
         }
         public Entity FindEntity(int i, int j, int k) {
-            return EntitiesInScene.Values.First((x) => x.IdealPosition == new Vector3Int(i, j, k));
+            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k));
         }
         class EntityAddTask : IClockTask
         {
