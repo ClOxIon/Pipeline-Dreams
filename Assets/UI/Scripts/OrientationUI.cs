@@ -65,7 +65,7 @@ public class OrientationUI : MonoBehaviour
 
     private IEnumerator OnEntityRotate(Quaternion qi, Quaternion qf)
     {
-        var rotationMarker = RotationMarkers.Where((x) => x.gameObject.name.Contains(Directions[Util.LHQToFace(qi)]) && x.gameObject.name.Contains(Directions[Util.LHQToFace(qf)])).FirstOrDefault();
+        var rotationMarker = RotationMarkers.Where((x) => x.gameObject.name.Contains(Directions[Util.QToFace(qi)]) && x.gameObject.name.Contains(Directions[Util.QToFace(qf)])).FirstOrDefault();
         //Debug.Log($"Orientation change is {rotationMarker.gameObject.name}");
         IsRotatingAnimationPlayed = true;
         CurrentRotationMarker = rotationMarker;
@@ -84,7 +84,7 @@ public class OrientationUI : MonoBehaviour
     void UpdateEntitySigns(int rings) {
         for (int f = 0; f < 6; f++)
         {
-            EntitySigns[rings].GetChild(f).gameObject.SetActive(TargetEntity.GetComponent<PipelineDreams.Entity.Move>().CanMove(TargetEntity.IdealPosition + Util.FaceToLHVector(f)));
+            EntitySigns[rings].GetChild(f).gameObject.SetActive(TargetEntity.GetComponent<PipelineDreams.Entity.Move>().CanMove(TargetEntity.IdealPosition + Util.FaceToUVector(f)));
             var entity = EM.FindLineOfSightEntityOnAxis(f, TargetEntity);
             EntitySigns[rings + 1].GetChild(f).gameObject.SetActive(entity != null && entity.Data.Type == PipelineDreams.Entity.EntityType.ENEMY);
             EntitySigns[rings + 2].GetChild(f).gameObject.SetActive(entity != null && entity.Data.Type == PipelineDreams.Entity.EntityType.NPC);

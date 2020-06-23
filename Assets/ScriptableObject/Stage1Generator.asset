@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathSimplicity: 10
   pathLinearity: 5
+  DeadendFeature: {fileID: 11400000, guid: 37afeec80084ced4bbc4788cf1e67f71, type: 2}
+  GeneratorRoom: {fileID: 11400000, guid: ded965a5d8bc0524f90195c6844d6233, type: 2}
+  SquareRoom: {fileID: 11400000, guid: ded965a5d8bc0524f90195c6844d6233, type: 2}

@@ -275,6 +275,7 @@ public partial class AreaLight : MonoBehaviour
 
 	void OnDrawGizmosSelected()
 	{
+		/*
 		Gizmos.color = Color.white;
 
 		if (m_Angle == 0.0f)
@@ -293,5 +294,6 @@ public partial class AreaLight : MonoBehaviour
 		Gizmos.color = Color.yellow;
 		Bounds bounds = GetFrustumBounds();
 		Gizmos.DrawWireCube(bounds.center, bounds.size);
+		*/
 	}
 }

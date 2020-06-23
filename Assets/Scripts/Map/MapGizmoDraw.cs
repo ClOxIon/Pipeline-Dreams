@@ -35,7 +35,7 @@ namespace PipelineDreams.Map
                         Gizmos.color = Color.red;
                         Gizmos.DrawSphere(scale * (room.Rotation * cell.Position + room.Position), 0.5f);
                         Gizmos.color = Color.green;
-                        Gizmos.DrawLine(scale * (room.Rotation * cell.Position + room.Position), scale * (room.Rotation * (cell.Position+Util.LHQToLHUnitVector(cell.Rotation)) + room.Position));
+                        Gizmos.DrawLine(scale * (room.Rotation * cell.Position + room.Position), scale * (room.Rotation * (cell.Position+Util.QToUVector(cell.Rotation)) + room.Position));
                     }
                     
                 }

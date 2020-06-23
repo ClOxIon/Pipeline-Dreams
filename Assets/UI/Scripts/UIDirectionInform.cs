@@ -41,7 +41,7 @@ namespace PipelineDreams {
         void UpdateUIInfo() {
             var q = Player.GetComponent<Entity.SightWithRotation>().IdealRotation;
             
-            CenterText.text = Directions[Util.LHQToFace(q)];
+            CenterText.text = Directions[Util.QToFace(q)];
             /*
             var f = Vector3Int.RoundToInt(q * new Vector3(0, 0, 1));
             var entity = EM.FindEntityOnAxis(Util.LHUnitVectorToFace(f), Player);
@@ -58,16 +58,16 @@ namespace PipelineDreams {
 
             }
             */
-            var e = Util.LHUnitVectorToFace(Vector3Int.RoundToInt(q * new Vector3(-1, 0, 0)));
+            var e = Util.UVectorToFace(Vector3Int.RoundToInt(q * new Vector3(-1, 0, 0)));
             LeftFrame.sprite = Arrows[e];
             LeftText.text = Directions[e];
-            var w = Util.LHUnitVectorToFace(Vector3Int.RoundToInt(q * new Vector3(1, 0, 0)));
+            var w = Util.UVectorToFace(Vector3Int.RoundToInt(q * new Vector3(1, 0, 0)));
             RightFrame.sprite = Arrows[w];
             RightText.text = Directions[w];
-            var u = Util.LHUnitVectorToFace(Vector3Int.RoundToInt(q * new Vector3(0, 1, 0)));
+            var u = Util.UVectorToFace(Vector3Int.RoundToInt(q * new Vector3(0, 1, 0)));
             UpFrame.sprite = Arrows[u];
             UpText.text = Directions[u];
-            var d = Util.LHUnitVectorToFace(Vector3Int.RoundToInt(q * new Vector3(0, -1, 0)));
+            var d = Util.UVectorToFace(Vector3Int.RoundToInt(q * new Vector3(0, -1, 0)));
             DownFrame.sprite = Arrows[d];
             DownText.text = Directions[d];
             rotation = q;

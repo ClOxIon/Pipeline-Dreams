@@ -43,7 +43,7 @@ public class Minimap2DUI : MonoBehaviour
             }
             foreach (var cell in room.UsedEntrances)
             {
-                DrawPath(room.Rotation * cell.Position + room.Position, room.Rotation * (cell.Position + PipelineDreams.Util.LHQToLHUnitVector(cell.Rotation)) + room.Position);
+                DrawPath(room.Rotation * cell.Position + room.Position, room.Rotation * (cell.Position + PipelineDreams.Util.QToUVector(cell.Rotation)) + room.Position);
                 DrawNode(room.Rotation * cell.Position + room.Position);
             }
         }
@@ -71,14 +71,14 @@ public class Minimap2DUI : MonoBehaviour
     void DrawPath(Vector3 i, Vector3 f) {
         if (!visitedNodes.VisitedNodes.Contains(Vector3Int.RoundToInt(i)) && !visitedNodes.VisitedNodes.Contains(Vector3Int.RoundToInt(f))) return;
         if (Vector3Int.RoundToInt(i).y != targetZ && Vector3Int.RoundToInt(f).y != targetZ) return;
-        var fif = PipelineDreams.Util.LHUnitVectorToFace(Vector3Int.RoundToInt(i - f));
+        var fif = PipelineDreams.Util.UVectorToFace(Vector3Int.RoundToInt(i - f));
         if (!DrawUpDownArrows && (fif == 2 || fif == 3)) return;
         var vec = 0.5f * i + 0.5f * f;
         var inst = Instantiate(PathPrefab, transform);
         inst.color = color;
         RectTransform rec = inst.GetComponent<RectTransform>();
         rec.anchoredPosition = Projection(vec);
-        var face = PipelineDreams.Util.LHUnitVectorToFace(Vector3Int.RoundToInt(f - i));
+        var face = PipelineDreams.Util.UVectorToFace(Vector3Int.RoundToInt(f - i));
         float angle = 0;
         switch (face / 2)
         {

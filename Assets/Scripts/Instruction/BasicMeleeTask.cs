@@ -12,7 +12,7 @@ namespace PipelineDreams.Instruction
             protected override IEnumerator OnRun()
             {
                 ///Attack priority is given by OrderBy.
-                var _entity = Op.EM.FindEntities((x)=>x.IdealPosition == Util.LHQToLHUnitVector(Op.Holder.IdealRotation) + Op.Holder.IdealPosition).OrderBy((x)=>x.Data.Type).FirstOrDefault();
+                var _entity = Op.EM.FindEntities((x)=>x.IdealPosition == Util.QToUVector(Op.Holder.IdealRotation) + Op.Holder.IdealPosition).OrderBy((x)=>x.Data.Type).FirstOrDefault();
                 if (_entity != null)
                 {
                     var anim = Op.Holder.GetComponent<Entity.Animator>();

@@ -75,16 +75,16 @@ namespace PipelineDreams.Entity
         /// <returns></returns>
         public Entity FindLineOfSightEntityOnAxis(int f, Entity observer, int searchDistance = 100) {
             //first examine entities in zero distance
-            foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition && Util.LHQToFace(x.IdealRotation) == f && x != observer).OrderBy((x) => x.Data.Type)) {
-                if (EntityCrossSection(f, x))//You cannot see yourself.
+            foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition && Util.QToFace(x.IdealRotation) == f && x != observer).OrderBy((x) => x.Data.Type)) {
+                if (EntityBlocks(f, x))//You cannot see yourself.
                     return x;
             }
 
             for (int i = 1; i <= searchDistance; i++) {
                 //OrderBy uses type as priority
-                foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition+Util.FaceToLHVector(f)*i).OrderBy((x)=>x.Data.Type)) {
+                foreach (var x in FindEntities((x) => x.IdealPosition == observer.IdealPosition+Util.FaceToUVector(f)*i).OrderBy((x)=>x.Data.Type)) {
                     //Check if the entities in between are invisible in our axis of interest.
-                    if (EntityCrossSection(f, x))
+                    if (EntityBlocks(f, x))
                         return x;
                 }
             }
@@ -96,7 +96,7 @@ namespace PipelineDreams.Entity
         /// <param name="f"></param>
         /// <param name="x"></param>
         /// <returns></returns>
-        bool EntityCrossSection(int f, Entity x) =>!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f));
+        bool EntityBlocks(int f, Entity x) => true;//!x.Data.InvisibleOn(Quaternion.Inverse(x.IdealRotation) * Util.FaceToLHQ(f));
         
         
         public Entity[] FindEntitiesOfType(EntityType type) {
@@ -148,10 +148,10 @@ namespace PipelineDreams.Entity
             return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && x.Data.Type == type);
         }
         public Entity FindEntity(int i, int j, int k, int f, EntityType type) {
-            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f && x.Data.Type == type);
+            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.QToFace(x.IdealRotation) == f && x.Data.Type == type);
         }
         public Entity FindEntity(int i, int j, int k, int f) {
-            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.LHQToFace(x.IdealRotation) == f);
+            return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k) && Util.QToFace(x.IdealRotation) == f);
         }
         public Entity FindEntity(int i, int j, int k) {
             return EntitiesInScene.Values.FirstOrDefault((x) => x.IdealPosition == new Vector3Int(i, j, k));
@@ -171,7 +171,7 @@ namespace PipelineDreams.Entity
                 var data = EM.GetEntityDataFromName(Name);
                 var e = Instantiate(data.Prefab, GraphicalConstants.WORLDSCALE * (Vector3)Pos, Rot);
                 e.Initialize(Pos, Rot, data, TM, EM);
-                if (data.Type == EntityType.TILE && data.OccupySpace && EM.EntitiesInScene.Values.Any((x) => x.IdealPosition == Pos && Util.LHQToFace(x.IdealRotation) == Util.LHQToFace(Rot) && x.Data.Type == EntityType.TILE && x.Data.OccupySpace))
+                if (data.Type == EntityType.TILE && data.OccupySpace && EM.EntitiesInScene.Values.Any((x) => x.IdealPosition == Pos && Util.QToFace(x.IdealRotation) == Util.QToFace(Rot) && x.Data.Type == EntityType.TILE && x.Data.OccupySpace))
                     Debug.LogWarning("Overlapping Tile Detected!:" + e.IdealPosition);
                 EM.EntitiesInScene.Add(Guid.NewGuid(), e);
                 EM.OnNewEntitySpawn?.Invoke(e);

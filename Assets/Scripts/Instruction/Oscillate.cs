@@ -20,7 +20,7 @@ namespace PipelineDreams.Instruction
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    var _entity = Op.EM.FindEntityRelative(Util.FaceToLHVector(i), Op.Holder);
+                    var _entity = Op.EM.FindEntityRelative(Util.FaceToUVector(i), Op.Holder);
                     if (_entity != null)
                         Op.Holder.GetComponent<Entity.WeaponHolder>().PerformAttack(_entity, StartClock, 0, 0, Op.OpData.FieldCoef, Accuracy);
                 }

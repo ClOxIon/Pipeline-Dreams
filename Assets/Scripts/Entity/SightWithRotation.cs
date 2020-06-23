@@ -61,7 +61,7 @@ namespace PipelineDreams.Entity {
         /// <param name="e"></param>
         /// <returns></returns>
         public override bool IsVisible(Entity e) {
-            return ec.FindLineOfSightEntityOnAxis(Util.LHQToFace(IdealRotation), entity) == e;
+            return ec.FindLineOfSightEntityOnAxis(Util.QToFace(IdealRotation), entity) == e;
         }
         class SightRotateTask : IClockTask
         {

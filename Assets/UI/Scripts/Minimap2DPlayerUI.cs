@@ -37,7 +37,7 @@ public class Minimap2DPlayerUI : MonoBehaviour
         inst.GetComponent<RectTransform>().anchoredPosition = Projection(vec);
         inst.color = color;
         float angle = 0;
-        switch (PipelineDreams.Util.LHQToFace(Player.IdealRotation))
+        switch (PipelineDreams.Util.QToFace(Player.IdealRotation))
         {
             case 0:
                 angle = 120;

@@ -20,7 +20,7 @@ namespace PipelineDreams.Entity
         //Vector3Int Target;
         protected new void Awake() {
             base.Awake();
-            GetComponent<Health>().OnDamaged += (x, e) => { if (x > 0) IsRecentlyDamaged = true; DamagedDirection = Util.LHUnitVectorToFace(Util.Normalize(e.IdealPosition - entity.IdealPosition)); };
+            GetComponent<Health>().OnDamaged += (x, e) => { if (x > 0) IsRecentlyDamaged = true; DamagedDirection = Util.UVectorToFace(Util.Normalize(e.IdealPosition - entity.IdealPosition)); };
         }
 
         protected override void Act() {
@@ -47,7 +47,7 @@ namespace PipelineDreams.Entity
                             break;
                         }
                         var dv = Target.IdealPosition - entity.IdealPosition;
-                            if (dv.magnitude <= 1 && Util.LHQToFace(entity.IdealRotation) == Util.LHUnitVectorToFace(dv))
+                            if (dv.magnitude <= 1 && Util.QToFace(entity.IdealRotation) == Util.UVectorToFace(dv))
                             if (IsTargetSeen) {
                                 State = AIState.Chase;
                             } else {
@@ -63,7 +63,7 @@ namespace PipelineDreams.Entity
                             break;
                         }
                         dv = Target.IdealPosition - entity.IdealPosition;
-                            if (dv.magnitude <= 1 && Util.LHQToFace(entity.IdealRotation) == Util.LHUnitVectorToFace(dv))
+                            if (dv.magnitude <= 1 && Util.QToFace(entity.IdealRotation) == Util.UVectorToFace(dv))
                             State = AIState.Attack;
                         if (entity.IdealPosition == LastTargetPositionSeen && !ES.IsVisible(Target)) {
                             State = AIState.Wander;
@@ -90,7 +90,7 @@ namespace PipelineDreams.Entity
                         }
                         break;
                     case AIState.Confused:
-                        if (Util.LHQToFace(entity.IdealRotation) == DamagedDirection) {
+                        if (Util.QToFace(entity.IdealRotation) == DamagedDirection) {
                             Target = EM.FindLineOfSightEntityOnAxis(DamagedDirection, entity);
                             if (Target != null) {
                                 IsTargetSeen = true;
@@ -137,8 +137,8 @@ namespace PipelineDreams.Entity
                     IsRecentlyDamaged = false;
                     Act();
                     void RandomWalk() {
-                        if (UnityEngine.Random.Range(0f, 1f) < 0.5f) { Emotion = EntityEmotion.None; move.MoveToward(Util.LHQToLHUnitVector(entity.IdealRotation), EntityClock); } else {
-                            Emotion = EntityEmotion.None; move.Face(Util.LHQToFace(entity.IdealRotation * TurnRandom()), EntityClock);
+                        if (UnityEngine.Random.Range(0f, 1f) < 0.5f) { Emotion = EntityEmotion.None; move.MoveToward(Util.QToUVector(entity.IdealRotation), EntityClock); } else {
+                            Emotion = EntityEmotion.None; move.Face(Util.QToFace(entity.IdealRotation * TurnRandom()), EntityClock);
                         }
 
                     }

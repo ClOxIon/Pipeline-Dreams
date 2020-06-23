@@ -67,10 +67,10 @@ namespace PipelineDreams.Entity {
         public bool CanMove(Vector3Int WVector) {
             if (!CanStay(WVector)) return false;
             //If there are tiles in the same cell as the player, blocking the way.
-            if (EM.FindEntities((x) => x.IdealPosition == entity.IdealPosition &&Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(WVector - entity.IdealPosition) && x.Data.Type == EntityType.TILE&&x.Data.HasParameter("BlockEntity")).Count!=0) return false;
+            if (EM.FindEntities((x) => x.IdealPosition == entity.IdealPosition &&Util.QToFace(x.IdealRotation) == Util.UVectorToFace(WVector - entity.IdealPosition) && x.Data.Type == EntityType.TILE&&x.Data.HasParameter("BlockEntity")).Count!=0) return false;
             //If there are tiles in the cell the player is trying to go, blocking the way.
             if (EM.FindEntities((x) => x.IdealPosition == WVector &&
-            Util.LHQToFace(x.IdealRotation) == Util.LHUnitVectorToFace(entity.IdealPosition - WVector) &&
+            Util.QToFace(x.IdealRotation) == Util.UVectorToFace(entity.IdealPosition - WVector) &&
             x.Data.Type == EntityType.TILE &&
             x.Data.HasParameter("BlockEntity")).Count != 0) return false;
             return true;
@@ -124,7 +124,7 @@ namespace PipelineDreams.Entity {
 
                 case EntityType.PLAYER: _p = TaskPriority.PLAYER; break;
             }
-            CM.AddSequentialTask(new MoveTask() { Entity = entity, Face = Util.LHQToFace(entity.IdealRotation), StartClock = startClock, Priority = _p });
+            CM.AddSequentialTask(new MoveTask() { Entity = entity, Face = Util.QToFace(entity.IdealRotation), StartClock = startClock, Priority = _p });
             
             GetComponent<AI>().EntityClock += TTimeModifier.Value;
         }
@@ -155,8 +155,8 @@ namespace PipelineDreams.Entity {
             public IEnumerator Run() {
                 var em = Entity.GetComponent<Move>();
                 var PositionBefore = Entity.IdealPosition;
-                if (!em.CanMove(Entity.IdealPosition+Util.FaceToLHVector(Face))) yield break;
-                Entity.IdealPosition += Util.FaceToLHVector(Face);
+                if (!em.CanMove(Entity.IdealPosition+Util.FaceToUVector(Face))) yield break;
+                Entity.IdealPosition += Util.FaceToUVector(Face);
                 foreach (var x in em.OnMove) {
                     var r = x?.Invoke(PositionBefore, Entity.IdealPosition);
                     if (r != null)

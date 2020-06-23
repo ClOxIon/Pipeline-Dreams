@@ -63,7 +63,7 @@ namespace PipelineDreams {
 
 
 
-            var e = EM.FindEntityRelative(Vector3Int.zero,Util.LHQToFace(Player.GetComponent<Entity.SightWithRotation>().IdealRotation), Entity.EntityType.TILE, Player);
+            var e = EM.FindEntityRelative(Vector3Int.zero,Util.QToFace(Player.GetComponent<Entity.SightWithRotation>().IdealRotation), Entity.EntityType.TILE, Player);
             if (e != null)
                 ShowEntityDescription(e.Data);
             

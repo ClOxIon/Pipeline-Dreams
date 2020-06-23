@@ -25,7 +25,7 @@ namespace PipelineDreams.Map
         /// </summary>
         int NumAverageConnection;
         /// <summary>
-        /// Determines the average size of stages. The number of features increases; the size stays the same.
+        /// Determines the average size of stages. The number of Feature.Features increases; the size stays the same.
         /// </summary>
         int StageSizeMultiplier;
         int gameSize;
@@ -44,7 +44,7 @@ namespace PipelineDreams.Map
         /// </summary>
         /// <param name="featsInBound"></param>
         /// <returns>(min, max)</returns>
-        public Tuple<Vector3Int, Vector3Int> Boundary(IEnumerable<MapFeature> featsInBound) {
+        public Tuple<Vector3Int, Vector3Int> Boundary(IEnumerable<Feature.Feature> featsInBound) {
             var max = Vector3Int.zero;
             var min = Vector3Int.zero;
             foreach (var x in featsInBound)
@@ -62,15 +62,15 @@ namespace PipelineDreams.Map
         public abstract MapFeatData GenerateMap(int seed, float scale = 1);
         /// <summary>
         /// </summary>
-        /// <param name="featsToAvoid">Features to go around when generating paths. You should NOT include featsToConnect.</param>
-        /// <param name="featsToConnect">n. If the features have designated entrances, paths are generated toward them and nothing else. If not, then paths are generated toward any point the feature occupies.</param>
+        /// <param name="featsToAvoid">Feature.Features to go around when generating paths. You should NOT include featsToConnect.</param>
+        /// <param name="featsToConnect">n. If the Feature.Features have designated entrances, paths are generated toward them and nothing else. If not, then paths are generated toward any point the Feature.Feature occupies.</param>
         /// <param name="pathSimplicity">Paths are more likely to differ from the shortest path. =>0. </param>
         /// <param name="pathLinearity">Paths are less likely to be linear. >0. </param>
         /// <param name="pathWidth">The width of the path.</param>
         /// <param name="margin">The margin between the boundary of feats and the boundary in which the paths are generated. The former is included in the latter. >=1</param>
         /// <param name="prng">PRNG that returns [0,1)</param>
-        public List<PDMapPath> GeneratePaths(IEnumerable<MapFeature> featsToAvoid, IEnumerable<MapFeature> featsToConnect, int pathSimplicity, int pathLinearity, int pathWidth, int margin, Func<float> prng) {
-            var paths = new List<PDMapPath>();
+        public List<Path> GeneratePaths(IEnumerable<Feature.Feature> featsToAvoid, IEnumerable<Feature.Feature> featsToConnect, int pathSimplicity, int pathLinearity, int pathWidth, int margin, Func<float> prng) {
+            var paths = new List<Path>();
             var AllFeats = featsToAvoid.ToList().Concat(featsToConnect);
             var boundsFeat = Boundary(AllFeats);
             var min = boundsFeat.Item1 - Vector3Int.one * margin;
@@ -143,7 +143,7 @@ namespace PipelineDreams.Map
             else
                 foreach (var p in firstRoom.OccupiedCells)
                     for (int f = 0; f < 6; f++) {
-                        var vf = Vector3Int.RoundToInt(firstRoom.Rotation * p) + firstRoom.Position + Util.FaceToLHVector(f);
+                        var vf = Vector3Int.RoundToInt(firstRoom.Rotation * p) + firstRoom.Position + Util.FaceToUVector(f);
                         if (!GetGrid(OccupancyGrid, vf) && !ConnectedCells.Contains(vf))
                             ConnectedCells.Add(vf);
                     }
@@ -170,7 +170,7 @@ namespace PipelineDreams.Map
 
                     minDist = GetGrid(DistanceGrid, calc);
                     for (int f = 0; f < 6; f++) {
-                        var vf = calc + Util.FaceToLHVector(f);
+                        var vf = calc + Util.FaceToUVector(f);
                         if (!GridExists(DistanceGrid, vf) || GetGrid(OccupancyGrid, vf))
                             continue;
                         var xf = GetGrid(DistanceGrid, vf);
@@ -181,21 +181,21 @@ namespace PipelineDreams.Map
 
                     }
                 }
-                var path = new PDMapPath();
-                MapFeature room = featsToConnect.ElementAt(pathIndex);
-                DirectionalFeature addedEnt = new DirectionalFeature();
+                var path = new Path();
+                Feature.Feature room = featsToConnect.ElementAt(pathIndex);
+                Z3Q addedEnt = new Z3Q();
                 //Set the starting point of the path to a random entrance of the room.
-                //If the path starts in a feature, or the width of the path is large, we should "pull out" the path out of the feature first in order to prevent CheckOccupancy() from halting the generation.
+                //If the path starts in a Feature.Feature, or the width of the path is large, we should "pull out" the path out of the Feature.Feature first in order to prevent CheckOccupancy() from halting the generation.
                 //To pull out, if there is a designated entrance, we move out of it. Otherwise, we move in random direction until the path does not overlap with the room
                 if (room.Entrances.Count != 0) {
                     var ent = SelectRandom(room.Entrances);
-                    var uv = Util.LHQToLHUnitVector(ent.Rotation* room.Rotation);
+                    var uv = Util.QToUVector(ent.Rotation* room.Rotation);
                     path.Head = Vector3Int.RoundToInt(room.Rotation * ent.Position) + room.Position;
                     room.UsedEntrances.Add(ent);
                     addedEnt = ent;
                 } else {//Create new entrance when there is no designated entrance
                     var f = SelectRandom(new int[] { 0, 1, 2, 3, 4, 5 });
-                    var uv = Util.FaceToLHVector(f);
+                    var uv = Util.FaceToUVector(f);
                     Vector3Int p = Vector3Int.RoundToInt(room.Rotation * SelectRandom(room.OccupiedCells)) + room.Position;
                     while (GetGrid(OccupancyGrid, p)) {
 
@@ -205,7 +205,7 @@ namespace PipelineDreams.Map
 
                     }
                     //New Entrance is created!
-                    addedEnt = new DirectionalFeature() { Position = p - room.Position, Rotation = Quaternion.Inverse(room.Rotation) * Util.FaceToLHQ(Util.FaceFlip(f)) };
+                    addedEnt = new Z3Q() { Position = p - room.Position, Rotation = Quaternion.Inverse(room.Rotation) * Util.FaceToLHQ(Util.FaceFlip(f)) };
                     room.UsedEntrances.Add(addedEnt);
                 }
                 path.Cells.Add(path.Head);
@@ -213,7 +213,7 @@ namespace PipelineDreams.Map
                 while (GetGrid(DistanceGrid, path.Cells.Last()) > 0) {
                     var availableNextCells = new List<Vector3Int>();
                     for (int f = 0; f < 6; f++) {
-                        var p = path.Cells.Last() + Util.FaceToLHVector(f);
+                        var p = path.Cells.Last() + Util.FaceToUVector(f);
                         if (!GridExists(DistanceGrid, p))
                             continue;
                         //If p is safely distanced from anything dangerous
@@ -241,22 +241,22 @@ namespace PipelineDreams.Map
                 path.Tail = path.Cells.Last();
 
 
-                //Add UsedEntrance to the features just connected at the tail;
+                //Add UsedEntrance to the Feature.Features just connected at the tail;
                 for (int f = 0; f < 6; f++)
                     foreach (var x in featsToConnect)
                         // for rooms do not have fixed entrances.
                         if (x.Entrances.Count == 0)
                         {
-                            if (x.OccupiedCells.Contains(Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail + Util.FaceToLHVector(f) - x.Position)))
-                            && !x.UsedEntrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.LHQToFace(x.Rotation * ent.Rotation) == f))
-                                x.UsedEntrances.Add(new DirectionalFeature() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
+                            if (x.OccupiedCells.Contains(Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail + Util.FaceToUVector(f) - x.Position)))
+                            && !x.UsedEntrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.QToFace(x.Rotation * ent.Rotation) == f))
+                                x.UsedEntrances.Add(new Z3Q() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
                         }
                         //for rooms of which entrances are fixed
                         else
                         {
-                            if (x.Entrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.LHQToFace(x.Rotation * ent.Rotation) == f)
-                                && !x.UsedEntrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.LHQToFace(x.Rotation * ent.Rotation) == f))
-                                x.UsedEntrances.Add(new DirectionalFeature() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
+                            if (x.Entrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.QToFace(x.Rotation * ent.Rotation) == f)
+                                && !x.UsedEntrances.Any((ent) => ent.Position == Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)) && Util.QToFace(x.Rotation * ent.Rotation) == f))
+                                x.UsedEntrances.Add(new Z3Q() { Position = Vector3Int.RoundToInt(Quaternion.Inverse(x.Rotation) * (path.Tail - x.Position)), Rotation = Quaternion.Inverse(x.Rotation) * Util.FaceToLHQ(f) });
                         }
                 //Add joints to the paths connected at the tail:
                 //If the path is singleton
@@ -265,7 +265,7 @@ namespace PipelineDreams.Map
                     {
                         for (int i = 1; i < path2.Cells.Count - 1; i++)
                             if (path2.Cells[i] == path.Tail)
-                                path2.Joints.Add(new DirectionalFeature() { Position = path2.Cells[i], Rotation = addedEnt.Rotation });
+                                path2.Joints.Add(new Z3Q() { Position = path2.Cells[i], Rotation = addedEnt.Rotation });
                     }
                 }
                 else
@@ -274,7 +274,7 @@ namespace PipelineDreams.Map
                     {
                         for (int i = 1; i < path2.Cells.Count - 1; i++)
                             if (path2.Cells[i] == path.Tail)
-                                path2.Joints.Add(new DirectionalFeature() { Position = path2.Cells[i], Rotation = Util.FaceToLHQ(Util.LHUnitVectorToFace(path.Cells[path.Cells.Count - 2] - path.Tail)) });
+                                path2.Joints.Add(new Z3Q() { Position = path2.Cells[i], Rotation = Util.FaceToLHQ(Util.UVectorToFace(path.Cells[path.Cells.Count - 2] - path.Tail)) });
                     }
                     paths.Add(path);
                 }
@@ -285,7 +285,7 @@ namespace PipelineDreams.Map
                 else
                     foreach (var p in room.OccupiedCells)
                         for (int f = 0; f < 6; f++) {
-                            var vf = Vector3Int.RoundToInt(room.Rotation * p) + room.Position + Util.FaceToLHVector(f);
+                            var vf = Vector3Int.RoundToInt(room.Rotation * p) + room.Position + Util.FaceToUVector(f);
                             if (!GetGrid(OccupancyGrid, vf) && !ConnectedCells.Contains(vf))
                                 ConnectedCells.Add(vf);
                         }
@@ -303,65 +303,52 @@ namespace PipelineDreams.Map
         Renderer renderer;
     }
     public class MapFeatData {
-        public List<MapFeature> Features = new List<MapFeature>();
-        public List<PDMapPath> Paths = new List<PDMapPath>();
+        public List<Feature.Feature> Features = new List<Feature.Feature>();
+        public List<Path> Paths = new List<Path>();
     }
-    public class MapFeature {
-       
-        public string Name;
-
-        /// <summary>
-        /// When multiple instances of a same feature exists, a unique index is given to each of them. 
-        /// </summary>
-        public int Index;
-        /// <summary>
-        /// The position of the feature origin.
-        /// </summary>
+    [Serializable]
+    public struct Z3Q {
         public Vector3Int Position;
-        /// <summary>
-        /// The position of the cells that this feature occupies; relative to the feature origin.
-        /// </summary>
-        public List<Vector3Int> OccupiedCells = new List<Vector3Int>();
-        /// <summary>
-        /// The position of entrances to the feature; if not specified, then every occupied point could be an entrance. All specified entrances should NOT be in OccupiedCells, and point toward an OccupiedCell.
-        /// Multiple entrances could exist in a cell if they all point to different points.
-        /// </summary>
-        public List<DirectionalFeature> Entrances = new List<DirectionalFeature>();
-
-        public List<DirectionalFeature> UsedEntrances = new List<DirectionalFeature>();
-        public Quaternion Rotation = Quaternion.identity;
+        [SerializeField] private int face;
+        [SerializeField] private int foot;
+        public Quaternion Rotation {
+            get {
+               return Util.FaceToLHQ(face, foot);
+            }
+            set {
+                face = Util.QToFace(value);
+                foot = Util.QToFoot(value);
+            }
+        }
     }
-    public class DirectionalFeature {
+    [Serializable]
+    public struct Z3QE
+    {
         public Vector3Int Position;
-        public Quaternion Rotation;
+        [SerializeField] private int face;
+        [SerializeField] private int foot;
+        public Quaternion Rotation
+        {
+            get
+            {
+                return Util.FaceToLHQ(face, foot);
+            }
+            set
+            {
+                face = Util.QToFace(value);
+                foot = Util.QToFoot(value);
+            }
+        }
+        public string EntityName;
     }
-    public class PDMapPath {
+    public class Path {
         public Vector3Int Head;
         public Vector3Int Tail;
         /// <summary>
         /// The points where the path branches out
         /// </summary>
-        public List<DirectionalFeature> Joints = new List<DirectionalFeature>();
+        public List<Z3Q> Joints = new List<Z3Q>();
         public List<Vector3Int> Cells = new List<Vector3Int>();
     }
-    public class SquareRoom : MapFeature {
-        public SquareRoom(int size) : base() {
-            Name = "Room";
-            for (int i = 0; i < size; i++)
-                for (int j = 0; j < size; j++)
-                    for (int k = 0; k < size; k++) {
-                        OccupiedCells.Add(new Vector3Int(i, j, k));
-                    }
-        }
-    }
 
-    public class DeadendFeature : MapFeature
-    {
-        public DeadendFeature() : base() {
-            Name = "Deadend";
-            OccupiedCells.Add(Vector3Int.zero);
-            //The entrance to this feature is at -z direction, heading +z direction.
-            Entrances.Add(new DirectionalFeature() { Position = new Vector3Int(0,0,-1), Rotation = Util.FaceToLHQ(4)});
-        }
-    }
 }

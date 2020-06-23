@@ -33,13 +33,13 @@ namespace PipelineDreams {
 
         void PlayerRotate(Quaternion deltaQ) {
 
-            Player.GetComponent<Entity.Move>().Face(Util.LHQToFace(Player.IdealRotation * deltaQ), CM.Clock);
+            Player.GetComponent<Entity.Move>().Face(Util.QToFace(Player.IdealRotation * deltaQ), CM.Clock);
 
 
         }
 
         void PlayerTranslateForward() {
-            Player.GetComponent<Entity.Move>().MoveToward(Util.LHQToLHUnitVector(Player.IdealRotation), CM.Clock);
+            Player.GetComponent<Entity.Move>().MoveToward(Util.QToUVector(Player.IdealRotation), CM.Clock);
 
         }
 
@@ -50,7 +50,7 @@ namespace PipelineDreams {
         /// </summary>
         /// <param name="value"></param>
         private void OnMoveForward(object value) {
-            if (Player.GetComponent<Entity.Move>().CanMove(Player.IdealPosition+Util.LHQToLHUnitVector(Player.IdealRotation))) {
+            if (Player.GetComponent<Entity.Move>().CanMove(Player.IdealPosition+Util.QToUVector(Player.IdealRotation))) {
 
                 PlayerTranslateForward();
                 OnCommandKeyPressed(Command.space);
@@ -91,22 +91,22 @@ namespace PipelineDreams {
         private void OnSightTurnLeft(object value)
         {
             var sr = Player.GetComponent<Entity.SightWithRotation>();
-            sr.Face(Util.LHQToFace(sr.IdealRotation * Util.TurnLeft), CM.Clock);
+            sr.Face(Util.QToFace(sr.IdealRotation * Util.TurnLeft), CM.Clock);
         }
         private void OnSightTurnRight(object value)
         {
             var sr = Player.GetComponent<Entity.SightWithRotation>();
-            sr.Face(Util.LHQToFace(sr.IdealRotation * Util.TurnRight), CM.Clock);
+            sr.Face(Util.QToFace(sr.IdealRotation * Util.TurnRight), CM.Clock);
         }
         private void OnSightTurnUp(object value)
         {
             var sr = Player.GetComponent<Entity.SightWithRotation>();
-            sr.Face(Util.LHQToFace(sr.IdealRotation * Util.TurnUp), CM.Clock);
+            sr.Face(Util.QToFace(sr.IdealRotation * Util.TurnUp), CM.Clock);
         }
         private void OnSightTurnDown(object value)
         {
             var sr = Player.GetComponent<Entity.SightWithRotation>();
-            sr.Face(Util.LHQToFace(sr.IdealRotation*Util.TurnDown), CM.Clock);
+            sr.Face(Util.QToFace(sr.IdealRotation*Util.TurnDown), CM.Clock);
         }
     }
 }
