@@ -3,12 +3,11 @@
 namespace PipelineDreams
 {
     /// <summary>
-    /// Container with limited number of objects.
+    /// Container with fixed positions of elements and finite capacity. Not used for now.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public abstract class PDObjectContainerLimitedCapacity<T> : PDObjectContainer<T> where T : PDObject {
         public event Action<int> OnContainerCapacityChanged;
-        readonly int temporarySlotIndex = 0;
         int capacity;
         public void ChangeCapacity(int after)
         {
@@ -36,7 +35,7 @@ namespace PipelineDreams
                 if (objs[i] == null)
                 {
                     objs[i] = item;
-                    SetRemoveCallback(item);
+                    //SetRemoveCallback(item);
                     flag = false;
                     break;
                 }
@@ -45,10 +44,10 @@ namespace PipelineDreams
             if (flag)
             {
                 //Instead of opening Item destroy prompt, the item in the temporary slot will be overwritten without prompt.
-                var i = temporarySlotIndex;//Temporary slot
+                var i = 0;//temporarySlotIndex;//Temporary slot
                 objs[i]?.Remove();
                 objs[i] = item;
-                SetRemoveCallback(item);
+                //SetRemoveCallback(item);
 
             }
             item.Obtain(Holder, TM);

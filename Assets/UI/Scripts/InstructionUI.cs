@@ -37,11 +37,11 @@ namespace PipelineDreams {
             var d = _o.Data as Instruction.Data;
             _operator = _o;
             OpIcon.sprite = d.Icon;
-            OpName.text = d.Name + " " + _o.Variant;
+            OpName.text = d.Name;
             foreach (var o in CommandImages)
                 Destroy(o);
             CommandImages = new List<GameObject>();
-            foreach (var c in _operator.GetCommandsVariant()) {
+            foreach (var c in ((Instruction.Data)_operator.Data).Commands) {
 
                 CommandImages.Add(Instantiate(CommandImagePrefabs[(int)c], CommandImagesContainer.transform, false));
             }

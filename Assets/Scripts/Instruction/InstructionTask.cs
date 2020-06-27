@@ -9,7 +9,6 @@ namespace PipelineDreams.Instruction
             public TaskPriority Priority { get; set; }
             public Instruction Op;
             public float StartClock { get; set; }
-            public float Accuracy = 0;
             /// <summary>
             /// Duration of the animation, seconds
             /// </summary>
@@ -24,14 +23,24 @@ namespace PipelineDreams.Instruction
                
             }
             /// <summary>
-            /// Called immidiately after this task is called. Do not call bask method when overridden.
+            /// Called immidiately after this task is called. Do not call the base method when overridden.
             /// </summary>
             protected virtual void OnRunStart() { }
             /// <summary>
-            /// Called after any animation. Do not call bask method when overridden.
+            /// Called after OnRunStart. Animation Coroutine could be implemented here. Do not call the base method when overridden.
             /// </summary>
             protected virtual IEnumerator OnRun() {
                 return null;
+                /*
+                private IEnumerator WaitForAnimation ( Animation animation )
+                {
+                    do
+                    {
+                        yield return null;
+                    } while ( animation.isPlaying );
+                }
+                
+                */
             }
         }
     }

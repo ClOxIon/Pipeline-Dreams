@@ -8,7 +8,6 @@ namespace PipelineDreams.Entity
     {
         Entity entity;
         CommandBroadcast targetCB;
-        Container EC;
         public event Action<Command> OnCommandKeyPressed;
         // Start is called before the first frame update
         void Awake()
@@ -19,17 +18,15 @@ namespace PipelineDreams.Entity
 
         private void Entity_OnClockInit(TaskManager arg1, Container arg2)
         {
-            EC = arg2;
-            arg1.OnTaskEnd += Arg1_OnTaskEnd;
+            GetComponent<Sight>().OnTargetChange += Sight_OnTargetChange;
         }
 
-        private void Arg1_OnTaskEnd()
+        private void Sight_OnTargetChange(Entity NewTarget)
         {
             if(targetCB!=null)
                 targetCB.OnCommand -= OnCommandKeyPressed;
-            var e = EC.FindLineOfSightEntityOnAxis(Util.QToFace(entity.IdealRotation), entity);
-            if (e!=null)
-            targetCB = e.GetComponent<CommandBroadcast>();
+            if (NewTarget!=null)
+            targetCB = NewTarget.GetComponent<CommandBroadcast>();
             if (targetCB != null)
                 targetCB.OnCommand += OnCommandKeyPressed;
         }

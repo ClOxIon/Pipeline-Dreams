@@ -1,15 +1,18 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PipelineDreams.Instruction {
+namespace PipelineDreams.Instruction
+{
     [CreateAssetMenu(fileName = "InstructionContainer", menuName = "ScriptableObjects/Manager/InstructionContainer")]
-    public class Container : PDObjectContainerLimitedCapacity<Instruction> {
-        public event Action<int> OnChangeItemSlotAvailability;
+    public partial class Container : PDObjectContainer<Instruction> {
         
-        int MaximumInstructionCount = 10;
-        int ActivatedSlots;
+        int CurrentEntryPoint = 0;
         CommandsContainer TargetContainer;
+        /// <summary>
+        /// This is for AIs.
+        /// </summary>
         public void UseInstructionByName(string name)
         {
             var inst = objs.Find((x) => x.Data.Name == name) as Instruction;
@@ -26,35 +29,29 @@ namespace PipelineDreams.Instruction {
         public virtual void Init(TaskManager tm, Entity.Entity holder, CommandsContainer pC) {
             base.Init(tm, holder);
             TargetContainer = pC;
-            for (int i = 0; i < MaximumInstructionCount; i++)
-                objs.Add(null);
             
-
         }
         public override void PushItem(Instruction item)
         {
             item.Obtain(Holder, TM, EM, TargetContainer);
-            objs.Add(item);
-        }
-        public void UseInstructionAt(int i) {
-            if (objs.Count > i && objs[i] != null)
-                if (objs[i].ReadCommand()) {
-                    TM.AddSequentialTask(objs[i].Operation(TM.Clock));
-                    Holder.GetComponent<Entity.PlayerAI>().EntityClock += objs[i].TimeCost.Value;
-
-                }
-        }
-        
-
-        public void ChangeActivatedSlots(int after) {
-            ActivatedSlots = after;
-            if (ActivatedSlots < objs.Count) {
-
-                objs.RemoveRange(after, objs.Count - after);
-            }
-            OnChangeItemSlotAvailability?.Invoke(after);
+            objs.Insert(CurrentEntryPoint, item);
             InvokeUIRefresh();
         }
-        
+        /// <summary>
+        /// This method is used to move an item from a container to somewhere else.
+        /// Notice that Remove() is still called.
+        /// </summary>
+        /// <param name="index"></param>
+        public override Instruction PopItem(int index)
+        {
+            var b = objs[index];
+            objs.Remove(b);
+            b.Remove();
+            if(CurrentEntryPoint>index)
+                CurrentEntryPoint--;
+            InvokeUIRefresh();
+            return b;
+        }
+
     }
 }

@@ -11,7 +11,6 @@ namespace PipelineDreams.Instruction {
         public override void Init(TaskManager tm, Entity.Entity holder)
         {
             base.Init(tm, holder);
-            ChangeActivatedSlots(AbilitySet.Count);
             foreach (var x in AbilitySet)
                 AddItem(x);
 

@@ -10,8 +10,6 @@ namespace PipelineDreams.Instruction
         /// Type conversion macro
         /// </summary>
         protected Data OpData => Data as Data;
-        public string Variant;
-        Command[] Commands;
         EffectVisualizer _instance;
         public MutableValue.FunctionChain TimeCost { get; } = new MutableValue.FunctionChain();
         public abstract IClockTask Operation(float startClock);
@@ -29,75 +27,10 @@ namespace PipelineDreams.Instruction
         }
         public override void Init(PDData data, params object[] args) {
             base.Init(data, args);
-            if (args.Length > 0)
-            {
-                Variant = args[0] as string;
-                Commands = GetCommandsVariant();
-            }
-            else
-                Debug.LogWarning($"No Variant Argument Passed!: {data.Name}");
-            
-
             TimeCost.OnEvalRequest += () => { TimeCost.AddFunction(new MutableValue.Constant() { Value = (Data as Data).Time }); };
             TimeCost.EvalAtNextGet = true;
         }
-        /// <summary>
-        /// Inteprets variant string.
-        /// </summary>
-        /// <returns></returns>
-        public Command[] GetCommandsVariant() {
-            Data OpData = Data as Data;
-            if (Variant == "")
-                return OpData.Commands;
-            if (Variant == "S")
-                return new Command[] { Command.space };
-            int d = InstUtil.TC(Variant[0]) - OpData.Commands[0];
-            var r = new List<Command>();
-            foreach (var x in OpData.Commands)
-                r.Add(InstUtil.RC(x, d));
-            if (Variant.Length == 1) {
-                return r.ToArray();
-            } else {//Variant.length == 2
-                if (InstUtil.TC(Variant[1]) != r[1]) {
-                    r.Clear();
-                    foreach (var x in OpData.Commands)
-                        r.Add(InstUtil.RC(InstUtil.MC(x), d));
-                }
-                return r.ToArray();
-
-            }
-            
-        }
-        protected static class InstUtil
-        {
-            public static Command RC(Command c, int i)
-            {
-                if (c == Command.space) return c;
-                return (Command)(((int)c + i + 4) % 4);
-            }
-            public static Command MC(Command c)
-            {
-                if (c == Command.space || c == Command.left || c == Command.right) return c;
-                return (Command)(((int)c + 2) % 4);
-            }
-            public static Command TC(char c)
-            {
-                switch (c)
-                {
-                    case 'L':
-                        return Command.left;
-                    case 'R':
-                        return Command.right;
-                    case 'U':
-                        return Command.up;
-
-                    case 'D':
-                        return Command.down;
-                    default:
-                        return Command.space;
-                };
-            }
-        }
+        
         /// <summary>
         /// Reads Commands from the current pipeline.
         /// </summary>
@@ -114,7 +47,7 @@ namespace PipelineDreams.Instruction
                 for (int ch = 0; ch < VL - OC + 1; ch++) {
                     bool b = true;
                     for (int i = 0; i < OC; i++)
-                        if (v[ch + i] != Commands[i])
+                        if (v[ch + i] != (Data as Data).Commands[i])
                             b = false;
                     if (b) {
                         PC.DeleteCommandAt(ch, OC);
@@ -157,7 +90,6 @@ namespace PipelineDreams.Instruction
             }
             x.Priority = _p;
             x.EffectDuration = (Data as Data).EffectDuration;
-            x.Accuracy = (Data as Data).BaseAccuracy;
             x.StartClock = startClock;
             return x;
         }

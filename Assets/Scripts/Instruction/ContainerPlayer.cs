@@ -11,7 +11,6 @@ namespace PipelineDreams.Instruction {
         public override void Init(TaskManager tm, Entity.Entity holder, CommandsContainer pC)
         {
             base.Init(tm, holder, pC);
-            ChangeActivatedSlots(3);
             AddItem("Inertia", "R");
 
 

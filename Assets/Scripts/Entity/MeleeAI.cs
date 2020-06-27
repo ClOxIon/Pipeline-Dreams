@@ -14,9 +14,9 @@ namespace PipelineDreams.Entity
         bool IsRecentlyDamaged = false;
         Vector3Int LastTargetPositionSeen;
         int DamagedDirection;
-        Entity Target;
         int memoryTime;
-
+        Sight sight;
+       
         //Vector3Int Target;
         protected new void Awake() {
             base.Awake();
@@ -91,7 +91,7 @@ namespace PipelineDreams.Entity
                         break;
                     case AIState.Confused:
                         if (Util.QToFace(entity.IdealRotation) == DamagedDirection) {
-                            Target = EM.FindLineOfSightEntityOnAxis(DamagedDirection, entity);
+                            //Target = EM.FindLineOfSightEntityOnAxis(DamagedDirection, entity);
                             if (Target != null) {
                                 IsTargetSeen = true;
                                 memoryTime = 0;

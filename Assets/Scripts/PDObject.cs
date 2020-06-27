@@ -15,14 +15,14 @@ namespace PipelineDreams
         public PDData Data { get; protected set; }
 
         /// <summary>
-        /// Called when an object is enabled or disabled. For example, an item in a storage is disabled, while an item held by a player is enabled.
+        /// Called when this object is enabled or disabled. For example, an item in a storage is disabled, while an item held by a player is enabled.
         /// </summary>
         /// <param name="enabled"></param>
         public virtual void SetEnabled(bool enabled) {
             Enabled = enabled;
         }
         /// <summary>
-        /// Called when an object is moved into a container.
+        /// Called when this object is moved into a container.
         /// </summary>
         /// <param name="data"></param>
         public virtual void Obtain(Entity.Entity holder, TaskManager cM) {
@@ -35,7 +35,7 @@ namespace PipelineDreams
             Data = data;
         }
         /// <summary>
-        /// Called when an object is removed from a container.
+        /// Called when this object is removed from a container.
         /// </summary>
         public virtual void Remove() {
             OnRemove?.Invoke();

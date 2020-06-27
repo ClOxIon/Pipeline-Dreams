@@ -18,6 +18,10 @@ namespace PipelineDreams
             Holder = holder;
             OnContainerInit?.Invoke();
         }
+
+        /// <summary>
+        /// Create new instance of an item and push into this container.
+        /// </summary>
         public void AddItem(string name, params object[] args)
         {
 
@@ -61,51 +65,39 @@ namespace PipelineDreams
             OnRefreshItems?.Invoke(objs.ToArray());
         }
         public PDData GetItemInfo(int index) {
-            if (index < objs.Count)
-                return objs[index]?.Data;
-            return null;
+            return objs[index].Data;
+            
         }
         /// <summary>
         /// This method is used to move an item from a container to somewhere else.
         /// Notice that Remove() is still called.
         /// </summary>
         /// <param name="index"></param>
-        public T PopItem(int index)
+        public virtual T PopItem(int index)
         {
-            var i = objs[index];
-            i.Remove();
-
-            return i;
+            var b = objs[index];
+            objs.Remove(b);
+            b.Remove();
+            InvokeUIRefresh();
+            return b;
         }
 
         
         public T PopItem(string name)
         {
-            var b = objs.Find((x) => x.Data.Name == typeof(T).Name + name);
-            objs.Remove(b);
-            return b;
+            var index = objs.FindIndex((x) => x.Data.Name == typeof(T).Name + name);
+            return PopItem(index);
         }
 
         /// <summary>
-        /// This method is used to move an item into a container.
+        /// This method is used to move an item into the container.
         /// </summary>
         /// <param name="item"></param>
         public virtual void PushItem(T item) {
             item.Obtain(Holder, TM);
-                objs.Add(item);
+            objs.Add(item);
+            InvokeUIRefresh();
         }
-        /// <summary>
-        /// Subscribe to the destroy event of an object;
-        /// </summary>
-        /// <param name="i"></param>
-        /// <param name="position"></param>
-        protected void SetRemoveCallback(T i)
-        {
-            i.OnRemove += () => {
-
-                objs[objs.IndexOf(i)] = null;
-                InvokeUIRefresh();
-            };
-        }
+        
     }
 }

@@ -7,7 +7,7 @@ using System.Threading;
 namespace PipelineDreams {
     public enum TaskPriority
     {
-        PLAYER, ENEMY = 100, NPC = 200, SPAWNER = 300, TASKMANAGER = 999
+        PLAYER, ENEMY = 100, NPC = 200, SPAWNER = 300, TASKMANAGER = 999, INSTCHECK = 1999
     }
     public class TaskManager : MonoBehaviour {
         PlayerInputBroadcaster PC;
@@ -37,7 +37,7 @@ namespace PipelineDreams {
             AddTime(0);//Alert all event receivers.
         }
         /// <summary>
-        /// Warning! AddTime does not lock the main thread; Every function that calls AddTime should be confident that nothing happens after the call and next player input.
+        /// Warning! Only call this method through PlayerAI.
         /// </summary>
         /// <param name="time"></param>
         public void AddTime(float time) {
@@ -53,11 +53,8 @@ namespace PipelineDreams {
         }
         public void AddSequentialTask(IClockTask f) {
             if(f!=null)
-            UndoneTasks.Add(f);
+                UndoneTasks.Add(f);
 
-        }
-        public void RerunTasks() {
-            StartCoroutine(RunTasks());
         }
 
         IEnumerator RunTasks() {
@@ -108,18 +105,5 @@ namespace PipelineDreams {
         TaskPriority Priority { get; }
         float StartClock { get; }
         IEnumerator Run();
-    }
-    class RunTasksTask : IClockTask
-    {
-        public TaskManager TM;
-        public TaskPriority Priority => TaskPriority.TASKMANAGER;
-
-        public float StartClock { get; set; }
-
-        public IEnumerator Run()
-        {
-            TM.RerunTasks();
-            return null;
-        }
     }
 }
